@@ -266,7 +266,7 @@ def build_email(deals, updated_time):
             html_parts.append('<div style="margin-bottom:18px;padding:12px;border:1px solid #eee;border-radius:6px">')
             html_parts.append(f'<div style="font-weight:bold;color:#361500">{item["title"]}</div>')
             if item["price"]:
-                html_parts.append(f'<div style="color:#a61a32;margin-top:4px">{item["price"]}</div>')
+                html_parts.append(f'<div style="color:#4CAF50;margin-top:4px">{item["price"]}</div>')
             if item["description"]:
                 html_parts.append(f'<div style="color:#555;font-size:13px;margin-top:6px">{item["description"]}</div>')
             if item["coupons"]:
