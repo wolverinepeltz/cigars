@@ -149,6 +149,15 @@ def strip_tags(text):
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
 
+def resolve_href(href):
+    from urllib.parse import parse_qs, unquote
+    parsed = urlparse(href)
+    params = parse_qs(parsed.query)
+    for key in ("url", "URL", "dest", "destination", "redirect", "to", "target", "u"):
+        if key in params:
+            return unquote(params[key][0])
+    return href
+
 def extract_deals(html, blacklist, history):
     deals = []
     seen_urls = set()
@@ -170,14 +179,8 @@ def extract_deals(html, blacklist, history):
         if href in seen_urls or href in history:
             continue
 
-        # ── CHANGED: follow redirects before blacklist check ──
-        try:
-            req = Request(href, headers={"User-Agent": "Mozilla/5.0 (compatible; CigarScraper/1.0)"})
-            with urlopen(req, timeout=10) as r:
-                href = r.url  # update to final destination URL
-        except Exception:
-            pass  # keep original href if redirect fails
-        # ─────────────────────────────────────────────────────
+        # ── CHANGED: extract destination URL from affiliate link ──
+        href = resolve_href(href)
 
         parsed = urlparse(href)
         domain = parsed.netloc.lower().lstrip("www.")
