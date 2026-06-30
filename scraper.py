@@ -170,6 +170,15 @@ def extract_deals(html, blacklist, history):
         if href in seen_urls or href in history:
             continue
 
+        # ── CHANGED: follow redirects before blacklist check ──
+        try:
+            req = Request(href, headers={"User-Agent": "Mozilla/5.0 (compatible; CigarScraper/1.0)"})
+            with urlopen(req, timeout=10) as r:
+                href = r.url  # update to final destination URL
+        except Exception:
+            pass  # keep original href if redirect fails
+        # ─────────────────────────────────────────────────────
+
         parsed = urlparse(href)
         domain = parsed.netloc.lower().lstrip("www.")
         if is_blacklisted(domain, blacklist):
