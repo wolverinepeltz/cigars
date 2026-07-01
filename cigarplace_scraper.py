@@ -31,6 +31,7 @@ MIN_DISCOUNT    = 0.60    # 60% off
 MIN_RATING      = 4.5
 MAX_OUR_PRICE   = 150.00
 BATCH_SIZE      = 8       # parallel pages at once
+GOTO_TIMEOUT_MS = 30_000  # per-attempt navigation timeout (fail fast if blocked)
 FORCE           = False   # True = ignore history, email everything found
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -157,12 +158,12 @@ async def fetch_page(context, pg, attempts=3):
     for attempt in range(1, attempts + 1):
         page = await context.new_page()
         try:
-            # First attempt waits for DOM; retries settle for the initial
-            # response ("commit") in case the site stalls the load event.
-            wait = "domcontentloaded" if attempt == 1 else "commit"
-            await page.goto(url, wait_until=wait, timeout=60_000)
+            # This site never fires DOMContentLoaded (a hung third-party
+            # resource), so wait only for the initial response ("commit"),
+            # then poll for the product grid to confirm real content.
+            await page.goto(url, wait_until="commit", timeout=GOTO_TIMEOUT_MS)
             try:
-                await page.wait_for_selector("li.swatch-item", timeout=12_000)
+                await page.wait_for_selector("li.swatch-item", timeout=15_000)
             except:
                 pass
             html = await page.content()
@@ -175,7 +176,7 @@ async def fetch_page(context, pg, attempts=3):
         finally:
             await page.close()
         if attempt < attempts:
-            await asyncio.sleep(5 * attempt)   # backoff before retrying
+            await asyncio.sleep(3 * attempt)   # backoff before retrying
     return pg, None
 
 
