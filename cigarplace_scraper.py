@@ -30,7 +30,7 @@ SENDER_PASSWORD = os.environ.get("GMAIL_PASSWORD", "")   # set in GitHub Secrets
 TO_EMAIL        = "peltz.chris@gmail.com"
 
 MAX_PAGES       = None    # None = all pages, or e.g. 3
-MIN_DISCOUNT    = 0.55    # 60% off
+MIN_DISCOUNT    = 0.50    # 60% off
 MIN_RATING      = 4.5
 MAX_OUR_PRICE   = 150.00
 BATCH_SIZE      = 8       # parallel pages at once
@@ -171,6 +171,29 @@ def extract_stamped_creds(html):
     return (key.group(1) if key else STAMPED_API_KEY,
             st.group(1) if st else STAMPED_STORE_URL)
 
+
+def _norm(s):
+    return re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
+
+
+def extract_brands(html):
+    """Canonical brand names from the sidebar filter, longest first."""
+    soup = BeautifulSoup(html, "html.parser")
+    brands = {li.get("data-text", "").strip()
+              for li in soup.select('li[class*="amshopby-attr-brands"]')}
+    brands.discard("")
+    return sorted(brands, key=lambda b: -len(_norm(b)))
+
+
+def match_brand(name, brands):
+    """Longest brand whose words lead the product name (normalized)."""
+    n = _norm(name)
+    for b in brands:
+        nb = _norm(b)
+        if n == nb or n.startswith(nb + " "):
+            return b
+    return None
+
 # ── Stamped.io ratings ────────────────────────────────────────────────────────
 def fetch_ratings(product_ids, api_key, store_url):
     """Return {product_id(str): (rating, review_count)} via Stamped's API."""
@@ -249,6 +272,7 @@ async def crawl():
     candidates = []
     stats = {"parsed": 0, "discount_ok": 0}
     creds = (STAMPED_API_KEY, STAMPED_STORE_URL)
+    brands = []
 
     async with async_playwright() as pw:
         launch_args = ["--no-sandbox", "--disable-setuid-sandbox",
@@ -275,9 +299,11 @@ async def crawl():
         if not html1:
             print("Failed to load page 1. Aborting.")
             await browser.close()
-            return [], stats, creds
+            return [], stats, creds, brands
 
-        creds = extract_stamped_creds(html1)
+        creds  = extract_stamped_creds(html1)
+        brands = extract_brands(html1)
+        print(f"({len(brands)} brands harvested from sidebar filter)")
 
         total_pages = get_total_pages(html1)
         if MAX_PAGES is not None:
@@ -313,11 +339,15 @@ async def crawl():
 
     elapsed = time.time() - start
     print(f"\nCrawl finished in {elapsed/60:.1f} min  ({elapsed:.0f}s)")
-    return candidates, stats, creds
+    return candidates, stats, creds, brands
 
 
 # ── Run ───────────────────────────────────────────────────────────────────────
-candidates, stats, creds = asyncio.run(crawl())
+candidates, stats, creds, brands = asyncio.run(crawl())
+
+# Tag each candidate with its brand (longest-match against sidebar list)
+for c in candidates:
+    c["brand"] = match_brand(c["name"], brands)
 
 # Second pass: ratings from Stamped, ONLY for discount+price survivors
 print(f"\nFetching ratings for {len(candidates)} candidate(s) "
@@ -355,7 +385,8 @@ print(f"{'═'*68}\n")
 for c in new_deals:
     price = f"${c['our_price']:.2f}" if c["our_price"] else "N/A"
     msrp  = f"${c['msrp']:.2f}"      if c["msrp"]      else "N/A"
-    print(f"{c['name']}")
+    brand = f"[{c['brand']}]  " if c.get("brand") else ""
+    print(f"{brand}{c['name']}")
     print(f"  Our price {price}  (MSRP {msrp})  "
           f"({c['discount_pct']*100:.0f}% off)  "
           f"★{c['rating']:.1f} ({c['reviews']} reviews)")
@@ -364,7 +395,7 @@ for c in new_deals:
 # ── Save CSV (new deals only) ─────────────────────────────────────────────────
 with open(OUTPUT_CSV, "w", newline="", encoding="utf-8") as f:
     writer = csv.DictWriter(
-        f, fieldnames=["name", "our_price", "msrp", "discount_pct",
+        f, fieldnames=["brand", "name", "our_price", "msrp", "discount_pct",
                        "rating", "reviews", "url"],
         extrasaction="ignore")
     writer.writeheader()
@@ -388,16 +419,29 @@ else:
         + "\n",
         "=" * 60,
     ]
+
+    # Group by brand; alphabetical brands, unbranded last; alpha within
+    by_brand = {}
     for c in new_deals:
-        price = f"${c['our_price']:.2f}" if c["our_price"] else "N/A"
-        msrp  = f"${c['msrp']:.2f}"      if c["msrp"]      else "N/A"
-        body_lines += [
-            f"\n{c['name']}",
-            f"  Our price {price}  (MSRP {msrp})  "
-            f"({c['discount_pct']*100:.0f}% off)  "
-            f"★{c['rating']:.1f} ({c['reviews']} reviews)",
-            f"  {c['url']}",
-        ]
+        by_brand.setdefault(c.get("brand") or "Other", []).append(c)
+    brand_order = sorted((b for b in by_brand if b != "Other"),
+                         key=str.lower)
+    if "Other" in by_brand:
+        brand_order.append("Other")
+
+    for b in brand_order:
+        items = sorted(by_brand[b], key=lambda c: c["name"].lower())
+        body_lines.append(f"\n──── {b} ({len(items)}) ────")
+        for c in items:
+            price = f"${c['our_price']:.2f}" if c["our_price"] else "N/A"
+            msrp  = f"${c['msrp']:.2f}"      if c["msrp"]      else "N/A"
+            body_lines += [
+                f"\n{c['name']}",
+                f"  Our price {price}  (MSRP {msrp})  "
+                f"({c['discount_pct']*100:.0f}% off)  "
+                f"★{c['rating']:.1f} ({c['reviews']} reviews)",
+                f"  {c['url']}",
+            ]
     body_lines += ["\n" + "="*60, "\nFull results attached as CSV."]
 
     msg = MIMEMultipart()
