@@ -1,6 +1,6 @@
 """
-PASTE THIS ENTIRE FILE INTO A SINGLE GOOGLE COLAB CELL AND RUN IT.
-
+Cigarplace Deals Scraper
+------------------------
 Crawls https://www.cigarplace.biz/cigars.html and emails every cigar
 that is >= 60% off MSRP AND rated >= 4.5 stars AND our price <= $150.
 
@@ -11,6 +11,10 @@ can live in the same directory without clobbering each other's state.
 
 Credentials: reads the Gmail App Password from the GMAIL_PASSWORD
 environment variable (set in GitHub Secrets, same as the other script).
+
+Dependencies (installed by the GitHub Actions workflow):
+    pip install playwright beautifulsoup4
+    python -m playwright install --with-deps chromium
 """
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -30,16 +34,6 @@ BATCH_SIZE      = 8       # parallel pages at once
 FORCE           = False   # True = ignore history, email everything found
 # ══════════════════════════════════════════════════════════════════════════════
 
-# ── Install dependencies ──────────────────────────────────────────────────────
-import subprocess, sys
-subprocess.run([sys.executable, "-m", "pip", "install", "-q",
-                "playwright", "beautifulsoup4", "nest_asyncio"], check=True)
-subprocess.run([sys.executable, "-m", "playwright", "install", "chromium"],
-               check=True, capture_output=True)
-subprocess.run([sys.executable, "-m", "playwright", "install-deps", "chromium"],
-               check=True, capture_output=True)
-print("✓ Dependencies ready\n")
-
 # ── Imports ───────────────────────────────────────────────────────────────────
 import asyncio, csv, json, math, re, smtplib, time
 from email import encoders
@@ -47,11 +41,8 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-import nest_asyncio
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
-
-nest_asyncio.apply()
 
 # ── State files (live alongside the script, same pattern as smoking-hub) ──────
 try:
