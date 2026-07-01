@@ -164,6 +164,10 @@ async def fetch_page(context, pg, attempts=3):
             await page.goto(url, wait_until="commit", timeout=GOTO_TIMEOUT_MS)
             try:
                 await page.wait_for_selector("li.swatch-item", timeout=15_000)
+                # Ratings are injected by the Stamped.io JS widget after the
+                # grid renders — give the badges a moment to hydrate too.
+                await page.wait_for_selector(
+                    ".stamped-badge[data-rating]", timeout=10_000)
             except:
                 pass
             html = await page.content()
@@ -184,6 +188,7 @@ async def fetch_page(context, pg, attempts=3):
 async def crawl():
     start = time.time()
     qualifying = []
+    stats = {"parsed": 0, "rated": 0, "discount_ok": 0}
 
     async with async_playwright() as pw:
         launch_args = ["--no-sandbox", "--disable-setuid-sandbox",
@@ -220,6 +225,11 @@ async def crawl():
         def process(html):
             found = []
             for p in parse_products(html):
+                stats["parsed"] += 1
+                if p["rating"] is not None:
+                    stats["rated"] += 1
+                if p["discount_pct"] >= MIN_DISCOUNT:
+                    stats["discount_ok"] += 1
                 if (p["discount_pct"] >= MIN_DISCOUNT
                         and p["rating"] is not None
                         and p["rating"] >= MIN_RATING):
@@ -244,6 +254,13 @@ async def crawl():
 
     elapsed = time.time() - start
     print(f"\nFinished in {elapsed/60:.1f} min  ({elapsed:.0f}s)")
+    print(f"Funnel: {stats['parsed']} parsed (≤${MAX_OUR_PRICE:.0f})  |  "
+          f"{stats['rated']} with a rating  |  "
+          f"{stats['discount_ok']} at ≥{MIN_DISCOUNT*100:.0f}% off  |  "
+          f"{len(qualifying)} passed all filters")
+    if stats["parsed"] > 0 and stats["rated"] == 0:
+        print("WARNING: no products had ratings — the rating widget likely "
+              "didn't load. Results are unreliable this run.")
     return qualifying
 
 
