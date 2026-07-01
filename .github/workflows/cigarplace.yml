@@ -1,0 +1,33 @@
+name: Cigarplace Deal Scraper
+on:
+  schedule:
+    - cron: '30 */3 * * *'   # :30 offset so it never overlaps the other scraper at :00
+  workflow_dispatch:
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install dependencies
+        run: |
+          pip install playwright beautifulsoup4
+          python -m playwright install --with-deps chromium
+      - name: Run scraper
+        env:
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+        run: python cigarplace_scraper.py
+      - name: Commit updated state files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add cigarplace_sent_history.json || true
+          git diff --cached --quiet || git commit -m "Update cigarplace scraper state"
+          git pull --rebase origin main
+          git push
