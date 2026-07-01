@@ -1,8 +1,8 @@
 """
-Probe v5: find Stamped's trigger. Blocks broken 3rd parties, hides the
-automation flag, then in order: (1) inspect raw placeholder markup and
-whether StampedFn exists, (2) wait for the full 'load' event,
-(3) if still nothing, force StampedFn.init() manually.
+Probe v6: stop inferring, start looking. Dumps one full product tile's
+HTML, every context where 'stamped' appears in the document, any
+custom elements with 'stamped'/'rating'/'review' in the tag name,
+and any product-id markers we could use for a direct API fallback.
 """
 
 import re
@@ -10,42 +10,16 @@ import time
 from playwright.sync_api import sync_playwright
 
 URL = "https://www.cigarplace.biz/cigars.html?limit=48&p=1"
-
-BLOCK = ("comodo.com", "trustlogo", "klaviyo", "googletagmanager",
-         "google-analytics", "doubleclick", "facebook")
-
-JS_DIAG = """
-() => ({
-    stampedfn:   typeof window.StampedFn,
-    stamped_els: document.querySelectorAll('[class*="stamped"]').length,
-    badges:      document.querySelectorAll('.stamped-badge[data-rating]').length,
-    nonzero:     [...document.querySelectorAll('.stamped-badge[data-rating]')]
-                   .filter(b => parseFloat(b.getAttribute('data-rating')) > 0).length,
-    sample_el:   document.querySelector('li.item.swatch-item [class*="stamped"]')
-                   ?.outerHTML.slice(0, 250) ?? '(no stamped-classed element in tiles)',
-    readyState:  document.readyState,
-})
-"""
-
-def report(page, label):
-    d = page.evaluate(JS_DIAG)
-    print(f"\n[{label}] readyState={d['readyState']}  StampedFn={d['stampedfn']}  "
-          f"stamped els={d['stamped_els']}  badges w/rating={d['badges']}  nonzero={d['nonzero']}")
-    print(f"  sample: {d['sample_el']}")
-    return d
-
-api_calls = []
+BLOCK = ("comodo.com", "trustlogo")
 
 with sync_playwright() as pw:
     try:
-        browser = pw.chromium.launch(
-            channel="chrome", headless=True,
-            args=["--no-sandbox", "--disable-blink-features=AutomationControlled"])
+        browser = pw.chromium.launch(channel="chrome", headless=True,
+                                     args=["--no-sandbox",
+                                           "--disable-blink-features=AutomationControlled"])
         print("Using system Google Chrome")
     except Exception:
-        browser = pw.chromium.launch(
-            headless=True,
-            args=["--no-sandbox", "--disable-blink-features=AutomationControlled"])
+        browser = pw.chromium.launch(headless=True, args=["--no-sandbox"])
         print("Using bundled Chromium")
 
     context = browser.new_context()
@@ -53,54 +27,46 @@ with sync_playwright() as pw:
                   if any(b in route.request.url for b in BLOCK)
                   else route.continue_())
     page = context.new_page()
-    page.on("response", lambda r: api_calls.append(f"{r.status} {r.url[:160]}")
-            if "stamped.io/api" in r.url else None)
-
-    page.goto(URL, wait_until="domcontentloaded", timeout=30_000)
-    print("✓ DOMContentLoaded")
-    report(page, "after DCL")
-
-    # Theory 1: full load event
-    try:
-        page.wait_for_load_state("load", timeout=30_000)
-        print("\n✓ full 'load' event fired")
-    except Exception:
-        print("\n✗ full 'load' event did not fire within 30s")
+    page.goto(URL, wait_until="load", timeout=45_000)
     time.sleep(5)
-    d = report(page, "after load+5s")
+    print("✓ page loaded\n")
 
-    # Theory 2: force init manually
-    if d["nonzero"] == 0:
-        html = page.evaluate("document.documentElement.outerHTML")
-        key = re.search(r"apiKey\s*[:=]\s*['\"]([^'\"]+)", html)
-        st  = re.search(r"storeUrl\s*[:=]\s*['\"]([^'\"]+)", html)
-        key = key.group(1) if key else "pubkey-gj6eXSCyUdiY2z6sIcRU22I8b7BP0N"
-        st  = st.group(1) if st else "www.cigarplace.biz"
-        print(f"\nForcing StampedFn.init(apiKey={key[:20]}..., storeUrl={st})")
-        try:
-            page.evaluate(
-                "([k, s]) => window.StampedFn && StampedFn.init({apiKey: k, storeUrl: s})",
-                [key, st])
-            deadline = time.time() + 20
-            while time.time() < deadline:
-                d = page.evaluate(JS_DIAG)
-                if d["nonzero"] > 0:
-                    break
-                time.sleep(2)
-            report(page, "after forced init")
-        except Exception as e:
-            print(f"  init threw: {e}")
+    # Custom elements / any tag or attribute mentioning stamped|review|rating
+    hits = page.evaluate("""() => {
+        const out = [];
+        for (const el of document.querySelectorAll('li.item.swatch-item *')) {
+            const tag = el.tagName.toLowerCase();
+            const attrs = [...el.attributes].map(a => a.name + '=' + a.value).join(' ');
+            if (/stamped|review|rating/i.test(tag + ' ' + attrs))
+                out.push((tag + ' ' + attrs).slice(0, 200));
+        }
+        return out.slice(0, 12);
+    }""")
+    print(f"── tile elements mentioning stamped/review/rating ({len(hits)}) ──")
+    for h in hits:
+        print(" ", h)
+    if not hits:
+        print("  (none)")
 
-    print(f"\nStamped API calls seen: {len(api_calls)}")
-    for c in api_calls[:5]:
-        print(" ", c)
-
-    print("\nSample ratings:")
-    for p in page.evaluate("""() =>
-        [...document.querySelectorAll('li.item.swatch-item')].slice(0, 8).map(li => ({
-            name:   li.querySelector('h2.product-name a')?.textContent.trim(),
-            rating: li.querySelector('.stamped-badge')?.getAttribute('data-rating') ?? null,
-        }))"""):
-        print(f"  ★{p['rating']}  {p['name']}")
-
+    html = page.evaluate("document.documentElement.outerHTML")
     browser.close()
+
+# Every 'stamped' occurrence in the raw HTML, with context
+print(f"\n── 'stamped' occurrences in document: "
+      f"{len(re.findall('stamped', html, re.I))} ──")
+shown = 0
+for m in re.finditer("stamped", html, re.I):
+    snippet = html[max(0, m.start()-60):m.start()+120].replace("\n", " ")
+    print(" ", re.sub(r"\s+", " ", snippet))
+    shown += 1
+    if shown >= 8:
+        break
+
+# One full product tile, verbatim
+tile = re.search(r'<li class="item[^"]*swatch-item.*?</li>', html, re.DOTALL)
+print("\n── first product tile (first 2500 chars) ──")
+print(tile.group(0)[:2500] if tile else "(tile regex found nothing)")
+
+# Product-id markers for a potential direct-API fallback
+ids = set(re.findall(r'(?:data-product-id|product-price-|product_id[=:"\s]+)(\d+)', html))
+print(f"\n── product-id markers found: {len(ids)} (sample: {sorted(ids)[:5]}) ──")
