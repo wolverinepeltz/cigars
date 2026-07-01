@@ -152,22 +152,31 @@ def get_total_pages(html):
 
 
 # ── Page fetcher ──────────────────────────────────────────────────────────────
-async def fetch_page(context, pg):
+async def fetch_page(context, pg, attempts=3):
     url = f"{BASE_URL}?limit={ITEMS_PER_PAGE}&p={pg}"
-    page = await context.new_page()
-    try:
-        await page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+    for attempt in range(1, attempts + 1):
+        page = await context.new_page()
         try:
-            await page.wait_for_selector("li.swatch-item", timeout=12000)
-        except:
-            pass
-        html = await page.content()
-        return pg, html
-    except Exception as e:
-        print(f"  Page {pg} error: {e}")
-        return pg, None
-    finally:
-        await page.close()
+            # First attempt waits for DOM; retries settle for the initial
+            # response ("commit") in case the site stalls the load event.
+            wait = "domcontentloaded" if attempt == 1 else "commit"
+            await page.goto(url, wait_until=wait, timeout=60_000)
+            try:
+                await page.wait_for_selector("li.swatch-item", timeout=12_000)
+            except:
+                pass
+            html = await page.content()
+            if "swatch-item" in html:
+                return pg, html
+            print(f"  Page {pg} attempt {attempt}: loaded but no products "
+                  f"(likely bot challenge page)")
+        except Exception as e:
+            print(f"  Page {pg} attempt {attempt} error: {type(e).__name__}: {e}")
+        finally:
+            await page.close()
+        if attempt < attempts:
+            await asyncio.sleep(5 * attempt)   # backoff before retrying
+    return pg, None
 
 
 # ── Crawler ───────────────────────────────────────────────────────────────────
@@ -176,12 +185,25 @@ async def crawl():
     qualifying = []
 
     async with async_playwright() as pw:
-        browser = await pw.chromium.launch(
-            headless=True,
-            args=["--no-sandbox", "--disable-setuid-sandbox",
-                  "--disable-dev-shm-usage"],
+        launch_args = ["--no-sandbox", "--disable-setuid-sandbox",
+                       "--disable-dev-shm-usage",
+                       "--disable-blink-features=AutomationControlled"]
+        try:
+            # Real Google Chrome (preinstalled on GitHub runners) is far less
+            # likely to be flagged by bot detection than bundled Chromium.
+            browser = await pw.chromium.launch(channel="chrome", headless=True,
+                                               args=launch_args)
+            print("Using system Google Chrome")
+        except Exception:
+            browser = await pw.chromium.launch(headless=True, args=launch_args)
+            print("Using bundled Chromium")
+
+        context = await browser.new_context(
+            user_agent=USER_AGENT,
+            viewport={"width": 1920, "height": 1080},
+            locale="en-US",
+            timezone_id="America/New_York",
         )
-        context = await browser.new_context(user_agent=USER_AGENT)
 
         print("Loading page 1…")
         _, html1 = await fetch_page(context, 1)
