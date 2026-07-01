@@ -31,4 +31,6 @@ jobs:
           git config user.email "github-actions@github.com"
           git add state.json sent_history.json blacklist.json || true
           git diff --cached --quiet || git commit -m "Update scraper state"
-          git push --force
+
+          git pull --rebase origin main
+          git push
