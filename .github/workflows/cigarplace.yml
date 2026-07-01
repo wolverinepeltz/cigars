@@ -24,14 +24,6 @@ jobs:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
           PYTHONUNBUFFERED: "1"
         run: python cigarplace_scraper.py
-      - name: Upload debug page HTML
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-page1
-          path: debug_page1.html
-          if-no-files-found: ignore
-          retention-days: 3
       - name: Commit updated state files
         run: |
           git config user.name "github-actions"
