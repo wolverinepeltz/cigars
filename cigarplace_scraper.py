@@ -274,7 +274,8 @@ async def crawl():
         _, html1 = await fetch_page(context, 1)
         if not html1:
             print("Failed to load page 1. Aborting.")
-            return [], stats
+            await browser.close()
+            return [], stats, creds
 
         creds = extract_stamped_creds(html1)
 
