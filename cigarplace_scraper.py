@@ -222,6 +222,11 @@ async def crawl():
             total_pages = min(total_pages, MAX_PAGES)
         print(f"→ Scanning {total_pages} page(s)  ({total_pages * ITEMS_PER_PAGE} products)\n")
 
+        # Save page 1 HTML for debugging (uploaded as a workflow artifact)
+        with open(os.path.join(BASE_DIR, "debug_page1.html"), "w",
+                  encoding="utf-8") as f:
+            f.write(html1)
+
         def process(html):
             found = []
             for p in parse_products(html):
