@@ -1,7 +1,7 @@
 name: Cigarplace Deal Scraper
 on:
   schedule:
-    - cron: '30 */3 * * *'   # :30 offset so it never overlaps the other scraper at :00
+    - cron: '30 */6 * * *'   # :30 offset so it never overlaps the other scraper at :00
   workflow_dispatch:
 jobs:
   scrape:
