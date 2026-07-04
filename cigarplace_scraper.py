@@ -30,7 +30,7 @@ SENDER_PASSWORD = os.environ.get("GMAIL_PASSWORD", "")   # set in GitHub Secrets
 TO_EMAIL        = "peltz.chris@gmail.com"
 
 MAX_PAGES       = None    # None = all pages, or e.g. 3
-MIN_DISCOUNT    = 0.45    # 60% off
+MIN_DISCOUNT    = 0.40    # 60% off
 MIN_RATING      = 4.5
 MAX_OUR_PRICE   = 150.00
 BATCH_SIZE      = 8       # parallel pages at once
