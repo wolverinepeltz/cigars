@@ -4,7 +4,7 @@
 categories: 0          # how many brand categories to crawl. 0 = all of them
 min_discount: 40        # only keep items at least this % off. 0 = keep everything
 min_pack: 5             # smallest pack to keep. 5 skips singles. 1 = keep singles
-max_price: 99.99            # price cap in dollars. leave blank for no cap
+max_price:    99.99          # price cap in dollars. leave blank for no cap
 
 # --- what to skip ---
 include_out_of_stock: false
@@ -16,7 +16,9 @@ workers: 4              # concurrent requests. 4 is polite for a small shop
 delay: 0.5              # minimum seconds between requests, counted across all workers
 
 # --- output ---
-output: cigars.csv
+output: cigars.csv                  # every qualifying item
+changes_output: cigars-changes.csv  # only items new or re-priced today
+history: data/latest.csv            # last run, used to detect changes
 
 # --- diagnostics ---
 inspect: 0              # set to 5 to print raw pack labels and stop, without crawling
