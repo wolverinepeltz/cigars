@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       limit:
-    description: "categories to crawl (0 = all)"
+        description: "categories to crawl (0 = all)"
         default: "0"
       min_pack:
         description: "minimum pack size"
@@ -100,6 +100,7 @@ jobs:
       - name: Commit snapshot to data/
         run: |
           stamp=$(date -u +%Y-%m-%d)
+          mkdir -p data
           cp cigars.csv "data/cigars-$stamp.csv"
           cp cigars.csv data/latest.csv
           git config user.name "github-actions[bot]"
