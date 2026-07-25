@@ -1,4 +1,4 @@
-name: cigar deals
+name: hilands deals
 
 on:
   # 13:17 UTC every Monday. Odd minute on purpose: the top of the hour is
