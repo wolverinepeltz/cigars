@@ -19,6 +19,7 @@ fetched once.
 """
 
 import csv
+import html
 import os
 import re
 import sys
@@ -37,6 +38,23 @@ FIELDS = ["brand", "name", "pack_label", "pack_qty", "price", "regular_price",
           "sale_price", "discount", "discount_pct", "on_sale",
           "price_is_range", "currency", "sku", "in_stock", "purchasable",
           "backorder", "stock_qty", "url"]
+
+# Categories that describe a promotion or format, not a maker.
+GENERIC_CATEGORIES = {
+    "cigars", "samplers", "bundles", "clash packs", "hot deals", "hot deals 🔥",
+    "cigar clearance", "clearance", "national brand bundles", "nic bundles",
+    "sasc bundles", "cra samplers", "shop", "accessories",
+}
+
+
+def pick_brand(product, fallback):
+    """Prefer the product's own maker category over a promo category."""
+    for c in product.get("categories") or []:
+        name = clean(c.get("name"))
+        if name and name.lower() not in GENERIC_CATEGORIES:
+            return name
+    return fallback
+
 
 DEFAULTS = {
     "categories": 25,
@@ -182,11 +200,18 @@ PACK_RES = [
 ]
 
 
+def clean(text):
+    """Decode HTML entities and tidy whitespace."""
+    if not text:
+        return ""
+    return re.sub(r"\s+", " ", html.unescape(str(text))).strip()
+
+
 def parse_pack(text):
     """How many cigars a label describes, or None if unclear."""
     if not text:
         return None
-    t = str(text)
+    t = clean(text)
     for rx in PACK_RES:
         m = rx.search(t)
         if m:
@@ -264,9 +289,10 @@ def row_from_product(p):
     pr = p.get("prices", {}) or {}
     unit = pr.get("currency_minor_unit", 2)
     row = blank_row()
+    name = clean(p.get("name"))
     row.update({
-        "name": p.get("name", ""),
-        "pack_qty": parse_pack(p.get("name")),
+        "name": name,
+        "pack_qty": parse_pack(name),
         "price": money(pr.get("price"), unit),
         "regular_price": money(pr.get("regular_price"), unit),
         "sale_price": money(pr.get("sale_price"), unit),
@@ -298,7 +324,7 @@ def api_products(cat_id):
 
 
 def variation_label(v):
-    parts = [str(a.get("value") or a.get("option") or "")
+    parts = [clean(a.get("value") or a.get("option") or "")
              for a in (v.get("attributes") or [])]
     return " / ".join(x for x in parts if x)
 
@@ -315,8 +341,8 @@ def fetch_variation(parent, v):
     except ValueError:
         return None
     row = row_from_product(vp)
-    label = label or vp.get("name", "")
-    row["name"] = parent.get("name", row["name"])
+    label = label or clean(vp.get("name"))
+    row["name"] = clean(parent.get("name")) or row["name"]
     row["pack_label"] = label
     row["pack_qty"] = (parse_pack(label) or parse_pack(vp.get("name"))
                        or parse_pack(parent.get("name")))
@@ -375,7 +401,7 @@ def html_products(url):
                 row["price"] = num(box.get_text())
                 row["regular_price"] = row["price"]
             link = li.select_one("a[href]")
-            name = title.get_text(strip=True)
+            name = clean(title.get_text(strip=True))
             classes = " ".join(li.get("class") or [])
             sold_out = ("outofstock" in classes
                         or "out of stock" in li.get_text(" ", strip=True).lower())
@@ -484,8 +510,9 @@ def main():
 
                 found = (variation_rows(p, pool) if expand and variations
                          else [row_from_product(p)])
+                brand = pick_brand(p, name)
                 for row in found:
-                    row["brand"] = name
+                    row["brand"] = brand
                     if keep(row):
                         rows.append(row)
                         announce(row)
