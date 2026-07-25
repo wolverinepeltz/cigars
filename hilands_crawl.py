@@ -34,10 +34,13 @@ from bs4 import BeautifulSoup
 BASE = "https://www.hilandscigars.com"
 ROOT = f"{BASE}/shop/cigars/"
 
-FIELDS = ["brand", "name", "pack_label", "pack_qty", "price", "regular_price",
-          "sale_price", "discount", "discount_pct", "on_sale",
-          "price_is_range", "currency", "sku", "in_stock", "purchasable",
-          "backorder", "stock_qty", "url"]
+# Columns written to the CSV.
+FIELDS = ["brand", "name", "pack_qty", "sale_price", "regular_price",
+          "discount_pct", "stock_qty", "url"]
+
+# Gathered for filtering but not written out.
+INTERNAL = ["price_is_range", "in_stock", "purchasable", "backorder",
+            "pack_label", "on_sale"]
 
 # Categories that describe a promotion or format, not a maker.
 GENERIC_CATEGORIES = {
@@ -247,21 +250,19 @@ def num(text):
 
 
 def add_discount(row):
-    p, rp = row.get("price"), row.get("regular_price")
+    p, rp = row.get("sale_price"), row.get("regular_price")
     if isinstance(p, (int, float)) and isinstance(rp, (int, float)) and rp > 0:
         diff = round(rp - p, 2)
-        row["discount"] = diff if diff > 0 else 0
         row["discount_pct"] = round(diff / rp * 100, 1) if diff > 0 else 0
         row["on_sale"] = diff > 0
     else:
-        row.setdefault("discount", "")
         row.setdefault("discount_pct", "")
         row.setdefault("on_sale", "")
     return row
 
 
 def blank_row():
-    return {f: "" for f in FIELDS}
+    return {f: "" for f in FIELDS + INTERNAL}
 
 
 # ---------- Store API ----------
@@ -290,15 +291,15 @@ def row_from_product(p):
     unit = pr.get("currency_minor_unit", 2)
     row = blank_row()
     name = clean(p.get("name"))
+    sale = money(pr.get("sale_price"), unit)
+    if sale is None:
+        sale = money(pr.get("price"), unit)   # not on sale, or field left null
     row.update({
         "name": name,
         "pack_qty": parse_pack(name),
-        "price": money(pr.get("price"), unit),
+        "sale_price": sale,
         "regular_price": money(pr.get("regular_price"), unit),
-        "sale_price": money(pr.get("sale_price"), unit),
         "price_is_range": bool(pr.get("price_range") or {}),
-        "currency": pr.get("currency_code", ""),
-        "sku": p.get("sku", ""),
         "in_stock": p.get("is_in_stock", ""),
         "purchasable": p.get("is_purchasable", ""),
         "backorder": p.get("is_on_backorder", ""),
@@ -395,11 +396,10 @@ def html_products(url):
             row = blank_row()
             if old is not None and new is not None:
                 row["regular_price"] = num(old.get_text())
-                row["price"] = num(new.get_text())
-                row["sale_price"] = row["price"]
+                row["sale_price"] = num(new.get_text())
             elif box is not None:
-                row["price"] = num(box.get_text())
-                row["regular_price"] = row["price"]
+                row["sale_price"] = num(box.get_text())
+                row["regular_price"] = row["sale_price"]
             link = li.select_one("a[href]")
             name = clean(title.get_text(strip=True))
             classes = " ".join(li.get("class") or [])
@@ -445,7 +445,7 @@ def main():
                 dropped["pack"] += 1
                 return False
         if cfg["max_price"] is not None:
-            price = row.get("price")
+            price = row.get("sale_price")
             if not isinstance(price, (int, float)) or price > cfg["max_price"]:
                 dropped["price"] += 1
                 return False
@@ -464,8 +464,9 @@ def main():
         pack = (f" [{row['pack_label']}]" if row.get("pack_label")
                 else (" (from)" if row["price_is_range"] else ""))
         with PRINT_LOCK:
-            print(f"    >>> {row['discount_pct']:>5}% OFF  {row['price']:.2f} "
-                  f"was {row['regular_price']:.2f}  {row['name'][:42]}{pack}")
+            print(f"    >>> {row['discount_pct']:>5}% OFF  "
+                  f"{row['sale_price']:.2f} was {row['regular_price']:.2f}  "
+                  f"{row['name'][:42]}{pack}")
             print(f"        {row['url']}")
             sys.stdout.flush()
 
@@ -541,7 +542,7 @@ def main():
             unique.append(r)
 
     with open(cfg["output"], "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS)
+        w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
         w.writeheader()
         w.writerows(unique)
 
@@ -564,7 +565,7 @@ def main():
         for r in deals:
             pack = r["pack_label"] or (f"{r['pack_qty']} ct"
                                        if r["pack_qty"] else "?")
-            print(f"  {r['discount_pct']:>5}%  {r['price']:>9.2f}  was "
+            print(f"  {r['discount_pct']:>5}%  {r['sale_price']:>9.2f}  was "
                   f"{r['regular_price']:>9.2f}  {r['name'][:40]}  [{pack}]")
             print(f"          {r['url']}")
     else:
