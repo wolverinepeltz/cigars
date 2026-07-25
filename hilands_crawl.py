@@ -1,33 +1,25 @@
 #!/usr/bin/env python3
 """
-Crawl Hiland's Cigars and dump products to CSV with sale price and discount.
+Crawl Hiland's Cigars and record discounted stock.
 
-By default only items 40% off or more are written to the CSV. Change that
-with --alert-pct, or pass --alert-pct 0 for the entire catalog.
+Everything is configured in config.yml sitting next to this file.
+Run it with no arguments:
 
-Pack filtering
---------------
-Pack size (single / 5-pack / box of 20) is a WooCommerce *variation*, not a
-product field. So --min-pack triggers a second pass that fetches each
-variation individually. That costs one extra request per variation, so a full
-catalog run gets slow. Use --limit while testing.
+    pip install -r requirements.txt
+    python hilands_crawl.py
 
-Usage:
-    pip install requests beautifulsoup4
+Optionally point it at a different config:
 
-    python hilands_crawl.py                        # 5 categories, everything
-    python hilands_crawl.py --min-pack 5           # packs of 5+, no singles
-    python hilands_crawl.py --max-price 75         # nothing over $75
-    python hilands_crawl.py --alert-pct 25         # 25%+ instead of 40%+
-    python hilands_crawl.py --alert-pct 0          # whole catalog, no filter
-    python hilands_crawl.py --workers 4 --delay 0.5 # ~2 req/s, about 4x faster
-    python hilands_crawl.py --min-pack 5 --limit 0 # ...whole catalog
-    python hilands_crawl.py --inspect 5            # dump raw pack labels
-    python hilands_crawl.py --html                 # force HTML fallback
+    python hilands_crawl.py other-config.yml
+
+Pack sizes (single, 5-pack, box of 25) are WooCommerce variations, so when
+min_pack is above 1 the crawler fetches each size separately. That is the
+slow part. Products repeated across parent and child categories are only
+fetched once.
 """
 
-import argparse
 import csv
+import os
 import re
 import sys
 import threading
@@ -35,6 +27,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
+import yaml
 from bs4 import BeautifulSoup
 
 BASE = "https://www.hilandscigars.com"
@@ -44,6 +37,81 @@ FIELDS = ["brand", "name", "pack_label", "pack_qty", "price", "regular_price",
           "sale_price", "discount", "discount_pct", "on_sale",
           "price_is_range", "currency", "sku", "in_stock", "purchasable",
           "backorder", "stock_qty", "url"]
+
+DEFAULTS = {
+    "categories": 25,
+    "min_discount": 40.0,
+    "min_pack": 5,
+    "max_price": None,
+    "include_out_of_stock": False,
+    "allow_backorder": False,
+    "include_unknown_pack": False,
+    "workers": 4,
+    "delay": 0.5,
+    "output": "cigars.csv",
+    "inspect": 0,
+}
+
+
+# ---------- config ----------
+
+def load_config(argv):
+    """config.yml next to this script, unless a path is given."""
+    if len(argv) > 1:
+        path = argv[1]
+    else:
+        here = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(here, "config.yml")
+
+    cfg = dict(DEFAULTS)
+    if not os.path.exists(path):
+        print(f"No config at {path}, using built-in defaults.")
+        return cfg
+
+    with open(path) as f:
+        loaded = yaml.safe_load(f) or {}
+
+    unknown = set(loaded) - set(DEFAULTS)
+    if unknown:
+        sys.exit(f"Unknown setting(s) in {path}: {', '.join(sorted(unknown))}\n"
+                 f"Valid settings: {', '.join(sorted(DEFAULTS))}")
+
+    cfg.update({k: v for k, v in loaded.items() if v is not None})
+    # blank max_price means no cap, so it stays None
+    if loaded.get("max_price") in (None, ""):
+        cfg["max_price"] = None
+
+    for key in ("categories", "min_pack", "workers", "inspect"):
+        cfg[key] = int(cfg[key])
+    for key in ("min_discount", "delay"):
+        cfg[key] = float(cfg[key])
+    if cfg["max_price"] is not None:
+        cfg["max_price"] = float(cfg["max_price"])
+    print(f"Config: {os.path.basename(path)}")
+    return cfg
+
+
+def describe(cfg):
+    cats = "all" if cfg["categories"] <= 0 else cfg["categories"]
+    lines = [
+        f"  categories:    {cats}",
+        f"  min discount:  {cfg['min_discount']:g}%"
+        + ("  (no filter)" if cfg["min_discount"] <= 0 else ""),
+        f"  min pack:      {cfg['min_pack']}"
+        + ("  (singles kept)" if cfg["min_pack"] <= 1 else "  (singles skipped)"),
+        f"  max price:     "
+        + ("none" if cfg["max_price"] is None else f"${cfg['max_price']:.2f}"),
+        f"  stock:         "
+        + ("including out of stock" if cfg["include_out_of_stock"]
+           else "in stock only"),
+        f"  rate:          {cfg['workers']} workers, "
+        f"{cfg['delay']:g}s between requests",
+        f"  output:        {cfg['output']}",
+    ]
+    return "\n".join(lines)
+
+
+# ---------- plumbing ----------
 
 class RateLimiter:
     """Caps requests per second across all threads."""
@@ -64,8 +132,8 @@ class RateLimiter:
             time.sleep(wait_for)
 
 
-RATE = RateLimiter(1.5)          # reset from --delay in main()
-PRINT_LOCK = threading.Lock()    # keeps interleaved alerts readable
+RATE = RateLimiter(0.5)
+PRINT_LOCK = threading.Lock()
 
 session = requests.Session()
 session.headers.update({
@@ -77,7 +145,6 @@ session.headers.update({
 _adapter = requests.adapters.HTTPAdapter(pool_connections=16, pool_maxsize=16)
 session.mount("https://", _adapter)
 session.mount("http://", _adapter)
-
 # If pages come back empty, mirror the site's age-gate cookie here:
 # session.cookies.set("age_verified", "1", domain="www.hilandscigars.com")
 
@@ -103,7 +170,7 @@ def get(url, **kw):
     return None
 
 
-# ---------- pack size parsing ----------
+# ---------- parsing helpers ----------
 
 SINGLE_RE = re.compile(r"\b(single|singles|1\s*(stick|cigar)|each)\b", re.I)
 PACK_RES = [
@@ -116,7 +183,7 @@ PACK_RES = [
 
 
 def parse_pack(text):
-    """Return how many cigars a label describes, or None if unclear."""
+    """How many cigars a label describes, or None if unclear."""
     if not text:
         return None
     t = str(text)
@@ -135,11 +202,22 @@ def parse_pack(text):
 
 
 def money(raw, minor_unit):
+    """Store API sends integer cents. 1299 with unit 2 -> 12.99"""
     if raw in (None, ""):
         return None
     try:
         return round(int(raw) / (10 ** minor_unit), 2)
     except (TypeError, ValueError):
+        return None
+
+
+def num(text):
+    m = re.search(r"[\d,]+\.?\d*", text or "")
+    if not m:
+        return None
+    try:
+        return round(float(m.group().replace(",", "")), 2)
+    except ValueError:
         return None
 
 
@@ -161,7 +239,7 @@ def blank_row():
     return {f: "" for f in FIELDS}
 
 
-# ---------- strategy 1: Store API ----------
+# ---------- Store API ----------
 
 def api_categories():
     out, page = [], 1
@@ -185,16 +263,14 @@ def api_categories():
 def row_from_product(p):
     pr = p.get("prices", {}) or {}
     unit = pr.get("currency_minor_unit", 2)
-    rng = pr.get("price_range") or {}
     row = blank_row()
     row.update({
         "name": p.get("name", ""),
-        "pack_label": "",
         "pack_qty": parse_pack(p.get("name")),
         "price": money(pr.get("price"), unit),
         "regular_price": money(pr.get("regular_price"), unit),
         "sale_price": money(pr.get("sale_price"), unit),
-        "price_is_range": bool(rng),
+        "price_is_range": bool(pr.get("price_range") or {}),
         "currency": pr.get("currency_code", ""),
         "sku": p.get("sku", ""),
         "in_stock": p.get("is_in_stock", ""),
@@ -206,8 +282,7 @@ def row_from_product(p):
     return add_discount(row)
 
 
-def api_raw_products(cat_id):
-    """Yield raw product dicts for a category."""
+def api_products(cat_id):
     page = 1
     while True:
         r = get(f"{BASE}/wp-json/wc/store/v1/products",
@@ -223,18 +298,13 @@ def api_raw_products(cat_id):
 
 
 def variation_label(v):
-    """Human label for a variation, from its attribute values."""
-    attrs = v.get("attributes") or []
-    parts = []
-    for a in attrs:
-        val = a.get("value") or a.get("option") or ""
-        if val:
-            parts.append(str(val))
-    return " / ".join(parts)
+    parts = [str(a.get("value") or a.get("option") or "")
+             for a in (v.get("attributes") or [])]
+    return " / ".join(x for x in parts if x)
 
 
 def fetch_variation(parent, v):
-    """One variation -> one row, or None if the fetch failed."""
+    """One size of one product -> one row."""
     vid = v.get("id") if isinstance(v, dict) else v
     label = variation_label(v) if isinstance(v, dict) else ""
     r = get(f"{BASE}/wp-json/wc/store/v1/products/{vid}")
@@ -245,33 +315,25 @@ def fetch_variation(parent, v):
     except ValueError:
         return None
     row = row_from_product(vp)
-    # Variation names are usually "Parent - 5 Pack"; prefer the attribute
-    # label, fall back to whatever the name gives us.
     label = label or vp.get("name", "")
     row["name"] = parent.get("name", row["name"])
     row["pack_label"] = label
-    row["pack_qty"] = parse_pack(label) or parse_pack(vp.get("name")) \
-        or parse_pack(parent.get("name"))
+    row["pack_qty"] = (parse_pack(label) or parse_pack(vp.get("name"))
+                       or parse_pack(parent.get("name")))
     row["price_is_range"] = False
     row["url"] = parent.get("permalink", row["url"])
     return add_discount(row)
 
 
-def api_variation_rows(parent, pool):
-    """All variations of a product, fetched concurrently."""
+def variation_rows(parent, pool):
     variations = parent.get("variations") or []
     if not variations:
         return []
     futures = [pool.submit(fetch_variation, parent, v) for v in variations]
-    out = []
-    for f in as_completed(futures):
-        row = f.result()
-        if row is not None:
-            out.append(row)
-    return out
+    return [r for r in (f.result() for f in as_completed(futures)) if r]
 
 
-# ---------- strategy 2: HTML ----------
+# ---------- HTML fallback, used only if the API is closed ----------
 
 def brand_links():
     r = get(ROOT)
@@ -290,17 +352,7 @@ def brand_links():
     return links
 
 
-def num(text):
-    m = re.search(r"[\d,]+\.?\d*", text or "")
-    if not m:
-        return None
-    try:
-        return round(float(m.group().replace(",", "")), 2)
-    except ValueError:
-        return None
-
-
-def html_products(url, delay):
+def html_products(url):
     while url:
         r = get(url)
         if r is None:
@@ -337,179 +389,123 @@ def html_products(url, delay):
             yield add_discount(row)
         nxt = soup.select_one("a.next.page-numbers, .next.page-numbers a")
         url = nxt["href"] if nxt and nxt.has_attr("href") else None
-        time.sleep(delay)
 
 
 # ---------- main ----------
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--limit", type=int, default=5,
-                    help="how many categories to crawl (0 = all). default 5")
-    ap.add_argument("--min-pack", type=int, default=1,
-                    help="drop anything smaller than N cigars. "
-                         "use 5 to skip singles. default 1 (keep all)")
-    ap.add_argument("--max-price", type=float, default=None, metavar="USD",
-                    help="drop anything priced above this. no max by default")
-    ap.add_argument("--include-oos", action="store_true",
-                    help="keep out-of-stock items. off by default")
-    ap.add_argument("--allow-backorder", action="store_true",
-                    help="with stock filtering on, keep backorder items too")
-    ap.add_argument("--include-unknown", action="store_true",
-                    help="with --min-pack, keep rows whose pack size "
-                         "could not be parsed")
-    ap.add_argument("--inspect", type=int, metavar="N",
-                    help="print raw variation labels for the first N "
-                         "variable products, then exit")
-    ap.add_argument("--delay", type=float, default=1.5,
-                    help="minimum seconds between requests, counted across "
-                         "all threads. default 1.5")
-    ap.add_argument("--workers", type=int, default=1,
-                    help="concurrent variation fetches. default 1. "
-                         "4 is a reasonable ceiling for a small shop")
-    ap.add_argument("--html", action="store_true", help="skip the Store API")
-    ap.add_argument("--alert-pct", type=float, default=40.0,
-                    help="only include items at least this much off, and "
-                         "print them as they are found. default 40. "
-                         "pass 0 to include the whole catalog")
-    ap.add_argument("--out", default="cigars.csv")
-    args = ap.parse_args()
-
-    RATE.min_interval = args.delay
-    expand = args.min_pack > 1 or bool(args.inspect)
+    cfg = load_config(sys.argv)
+    RATE.min_interval = cfg["delay"]
+    print(describe(cfg) + "\n")
 
     dropped = {"oos": 0, "pack": 0, "price": 0, "disc": 0}
+    alerted = set()
 
     def keep(row):
-        if not args.include_oos:
+        if not cfg["include_out_of_stock"]:
             if row.get("in_stock") is False or row.get("purchasable") is False:
                 dropped["oos"] += 1
                 return False
-            if row.get("backorder") is True and not args.allow_backorder:
+            if row.get("backorder") is True and not cfg["allow_backorder"]:
                 dropped["oos"] += 1
                 return False
-        if args.min_pack > 1:
+        if cfg["min_pack"] > 1:
             q = row.get("pack_qty")
             if not isinstance(q, int):
-                if not args.include_unknown:
+                if not cfg["include_unknown_pack"]:
                     dropped["pack"] += 1
                     return False
-            elif q < args.min_pack:
+            elif q < cfg["min_pack"]:
                 dropped["pack"] += 1
                 return False
-        if args.max_price is not None:
+        if cfg["max_price"] is not None:
             price = row.get("price")
-            if not isinstance(price, (int, float)) or price > args.max_price:
+            if not isinstance(price, (int, float)) or price > cfg["max_price"]:
                 dropped["price"] += 1
                 return False
-        if args.alert_pct > 0:
+        if cfg["min_discount"] > 0:
             pct = row.get("discount_pct")
-            if not isinstance(pct, (int, float)) or pct < args.alert_pct:
+            if not isinstance(pct, (int, float)) or pct < cfg["min_discount"]:
                 dropped["disc"] += 1
                 return False
         return True
 
-    alerted = set()
-
-    def watch(p):
-        pct = p.get("discount_pct")
-        if not isinstance(pct, (int, float)) or pct < args.alert_pct:
-            return
-        key = (p["url"], p["name"], p.get("pack_label", ""))
+    def announce(row):
+        key = (row["url"], row["name"], row.get("pack_label", ""))
         if key in alerted:
             return
         alerted.add(key)
-        pack = f" [{p['pack_label']}]" if p.get("pack_label") else \
-               (" (from)" if p["price_is_range"] else "")
+        pack = (f" [{row['pack_label']}]" if row.get("pack_label")
+                else (" (from)" if row["price_is_range"] else ""))
         with PRINT_LOCK:
-            print(f"    >>> {pct:>5}% OFF  {p['price']:.2f} was "
-                  f"{p['regular_price']:.2f}  {p['name'][:42]}{pack}")
-            print(f"        {p['url']}")
+            print(f"    >>> {row['discount_pct']:>5}% OFF  {row['price']:.2f} "
+                  f"was {row['regular_price']:.2f}  {row['name'][:42]}{pack}")
+            print(f"        {row['url']}")
             sys.stdout.flush()
 
     rows = []
-    cats = None if args.html else api_categories()
+    cats = api_categories()
 
     if cats:
         live = [c for c in cats if c[2] > 0]
-        targets = live if args.limit <= 0 else live[:args.limit]
+        targets = live if cfg["categories"] <= 0 else live[:cfg["categories"]]
         print(f"Store API works. {len(live)} categories with stock, "
-              f"crawling {len(targets)}.")
-        if expand:
-            print(f"Variation pass on: one request per size, "
-                  f"{args.workers} at a time, "
-                  f"max one request every {args.delay:g}s overall.")
-        if args.min_pack > 1:
-            print(f"Filtering to packs of {args.min_pack} or more.")
-        print("Skipping out-of-stock items." if not args.include_oos
-              else "Including out-of-stock items.")
-        if args.max_price is not None:
-            print(f"Skipping anything over ${args.max_price:.2f}.")
-        if args.alert_pct > 0:
-            print(f"Keeping only items {args.alert_pct:g}% off or more.")
-        print()
+              f"crawling {len(targets)}.\n")
 
-        seen_inspect = 0
-        seen_products = {}   # product id -> already expanded
-        pool = ThreadPoolExecutor(max_workers=max(1, args.workers))
+        expand = cfg["min_pack"] > 1 or cfg["inspect"] > 0
+        seen_products = set()
+        inspected = 0
+        pool = ThreadPoolExecutor(max_workers=max(1, cfg["workers"]))
+
         for cat_id, name, count in targets:
             print(f"  {name[:45]:<45} {count}", flush=True)
-            for p in api_raw_products(cat_id):
+            for p in api_products(cat_id):
                 variations = p.get("variations") or []
 
-                if args.inspect:
-                    if variations and seen_inspect < args.inspect:
-                        seen_inspect += 1
+                if cfg["inspect"] > 0:
+                    if variations and inspected < cfg["inspect"]:
+                        inspected += 1
                         print(f"\n  {p.get('name', '')}")
                         for v in variations:
                             lbl = variation_label(v) if isinstance(v, dict) else ""
-                            vid = v.get("id") if isinstance(v, dict) else v
-                            print(f"    id={vid}  label={lbl!r}  "
-                                  f"parsed_qty={parse_pack(lbl)}")
-                    if seen_inspect >= args.inspect:
-                        print("\nAdjust PACK_RES at the top of the script if "
-                              "the parsed_qty values look wrong.")
+                            print(f"    label={lbl!r}  parsed={parse_pack(lbl)}")
+                    if inspected >= cfg["inspect"]:
+                        print("\nIf parsed values look wrong, adjust PACK_RES "
+                              "near the top of this script.")
+                        pool.shutdown(wait=False)
                         return
                     continue
 
                 pid = p.get("id")
-                if pid is not None and pid in seen_products:
-                    continue          # same product under a parent category
                 if pid is not None:
-                    seen_products[pid] = True
+                    if pid in seen_products:
+                        continue    # same product under a parent category
+                    seen_products.add(pid)
 
-                if expand and variations:
-                    for row in api_variation_rows(p, pool):
-                        row["brand"] = name
-                        if keep(row):
-                            rows.append(row)
-                            watch(row)
-                else:
-                    row = row_from_product(p)
+                found = (variation_rows(p, pool) if expand and variations
+                         else [row_from_product(p)])
+                for row in found:
                     row["brand"] = name
                     if keep(row):
                         rows.append(row)
-                        watch(row)
+                        announce(row)
+
         pool.shutdown(wait=True)
         print(f"\n{len(seen_products)} distinct products examined.")
     else:
-        print("Store API unavailable, scraping HTML instead.")
-        if args.min_pack > 1:
-            print("Note: HTML mode sees only listing prices, so pack size is "
-                  "guessed from product names.")
+        print("Store API unavailable, reading the shop pages instead.\n")
         links = brand_links()
-        targets = links if args.limit <= 0 else links[:args.limit]
+        targets = links if cfg["categories"] <= 0 else links[:cfg["categories"]]
         print(f"{len(links)} brand pages found, crawling {len(targets)}.\n")
         for url in targets:
             brand = url.rstrip("/").split("/")[-1].replace("-", " ").title()
             print(f"  {brand}", flush=True)
-            for row in html_products(url, args.delay):
+            for row in html_products(url):
                 row["brand"] = brand
                 if keep(row):
                     rows.append(row)
-                    watch(row)
+                    announce(row)
 
-    # subcategories overlap with parent brands, so de-dupe
     seen, unique = set(), []
     for r in rows:
         key = (r["url"], r["name"], r.get("pack_label", ""))
@@ -517,45 +513,40 @@ def main():
             seen.add(key)
             unique.append(r)
 
-    on_sale = [r for r in unique if r["on_sale"] is True]
-
-    with open(args.out, "w", newline="", encoding="utf-8") as f:
+    with open(cfg["output"], "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS)
         w.writeheader()
         w.writerows(unique)
 
-    print(f"\nWrote {len(unique)} rows to {args.out}")
+    print(f"\nWrote {len(unique)} rows to {cfg['output']}")
     if dropped["oos"]:
-        print(f"Skipped {dropped['oos']} out-of-stock or unpurchasable.")
+        print(f"  skipped {dropped['oos']} out of stock")
     if dropped["pack"]:
-        print(f"Skipped {dropped['pack']} below the pack threshold.")
+        print(f"  skipped {dropped['pack']} under {cfg['min_pack']} count")
     if dropped["price"]:
-        print(f"Skipped {dropped['price']} over the ${args.max_price:.2f} cap.")
+        print(f"  skipped {dropped['price']} over ${cfg['max_price']:.2f}")
     if dropped["disc"]:
-        print(f"Skipped {dropped['disc']} under {args.alert_pct:g}% off.")
-    if args.min_pack > 1:
-        unknown = [r for r in unique if not isinstance(r["pack_qty"], int)]
-        if unknown:
-            print(f"({len(unknown)} kept with unparsed pack size)")
+        print(f"  skipped {dropped['disc']} under {cfg['min_discount']:g}% off")
 
-    big = sorted([r for r in unique if isinstance(r["discount_pct"], (int, float))
-                  and r["discount_pct"] >= args.alert_pct],
-                 key=lambda x: -x["discount_pct"])
+    deals = sorted([r for r in unique
+                    if isinstance(r["discount_pct"], (int, float))],
+                   key=lambda x: -x["discount_pct"])
     print("=" * 72)
-    if big:
-        print(f"{len(big)} item(s) at {args.alert_pct:g}% off or more:\n")
-        for r in big:
+    if deals:
+        print(f"{len(deals)} item(s) at {cfg['min_discount']:g}% off or more:\n")
+        for r in deals:
             pack = r["pack_label"] or (f"{r['pack_qty']} ct"
                                        if r["pack_qty"] else "?")
             print(f"  {r['discount_pct']:>5}%  {r['price']:>9.2f}  was "
                   f"{r['regular_price']:>9.2f}  {r['name'][:40]}  [{pack}]")
             print(f"          {r['url']}")
     else:
-        print(f"No items at {args.alert_pct:g}% off or more.")
+        print(f"Nothing at {cfg['min_discount']:g}% off or more.")
     print("=" * 72)
 
-    if args.limit > 0:
-        print("\n(Test run. Use --limit 0 for the full catalog.)")
+    if cfg["categories"] > 0:
+        print(f"\nOnly {cfg['categories']} categories checked. "
+              f"Set categories: 0 in config.yml for the whole catalog.")
 
 
 if __name__ == "__main__":
