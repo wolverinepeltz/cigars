@@ -1,44 +1,23 @@
-name: hilands cigar deals
+name: hilands cigar deala
+
+# Settings live in config.yml, not here.
 
 on:
-  # 13:17 UTC every Monday. Odd minute on purpose: the top of the hour is
-  # congested and GitHub delays crowded cron slots.
   schedule:
-    - cron: "17 13 * * 1"
-  # Lets you run it by hand from the Actions tab, with overrides.
+    - cron: "17 13 * * 1"   # Mondays, 13:17 UTC
   workflow_dispatch:
-    inputs:
-      limit:
-        description: "categories to crawl (0 = all)"
-        default: "25"
-      min_pack:
-        description: "minimum pack size"
-        default: "5"
-      max_price:
-        description: "price cap in USD (blank = none)"
-        default: "99.99"
-      alert_pct:
-        description: "alert threshold, percent off"
-        default: "40"
-      workers:
-        description: "concurrent requests"
-        default: "4"
-      delay:
-        description: "min seconds between requests"
-        default: "0.5"
 
-# Never let two crawls overlap.
 concurrency:
-  group: cigar-deals
+  group: hilands-deals
   cancel-in-progress: false
 
 jobs:
   crawl:
     runs-on: ubuntu-latest
-    timeout-minutes: 330  # 6h is the hard ceiling; leave headroom
+    timeout-minutes: 330
     permissions:
-      contents: write   # to commit the CSV history
-      issues: write     # to open an issue when deals appear
+      contents: write
+      issues: write
 
     steps:
       - uses: actions/checkout@v4
@@ -52,48 +31,24 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Crawl
-        id: crawl
-        env:
-          LIMIT: ${{ github.event.inputs.limit || '0' }}
-          MIN_PACK: ${{ github.event.inputs.min_pack || '5' }}
-          MAX_PRICE: ${{ github.event.inputs.max_price || '' }}
-          ALERT_PCT: ${{ github.event.inputs.alert_pct || '40' }}
-          WORKERS: ${{ github.event.inputs.workers || '4' }}
-          DELAY: ${{ github.event.inputs.delay || '0.5' }}
-          # If Cloudflare blocks the runner, add a proxy as a repo secret
-          # and uncomment. Settings > Secrets and variables > Actions.
-          # HTTPS_PROXY: ${{ secrets.HTTPS_PROXY }}
         run: |
           set -o pipefail
-          ARGS="--limit $LIMIT --min-pack $MIN_PACK --alert-pct $ALERT_PCT"
-          ARGS="$ARGS --workers $WORKERS --delay $DELAY"
-          if [ -n "$MAX_PRICE" ]; then ARGS="$ARGS --max-price $MAX_PRICE"; fi
-          echo "Running: hilands_crawl.py $ARGS"
-          python hilands_crawl.py $ARGS 2>&1 | tee run.log
-
-      - name: Fail if nothing came back
-        run: |
-          rows=$(($(wc -l < cigars.csv) - 1))
-          echo "rows=$rows"
-          if [ "$rows" -le 0 ]; then
-            echo "::error::No products captured. Likely a Cloudflare block or a markup change."
-            exit 1
-          fi
+          python hilands_crawl.py 2>&1 | tee run.log
 
       - name: Build run summary
         run: |
           {
-            echo "## Cigar deals"
+            echo "## Hiland's deals"
             echo
             echo "Rows: $(($(wc -l < cigars.csv) - 1))"
             echo
             if grep -q '>>>' run.log; then
-              echo "### Alerts"
+              echo "### Found"
               echo '```'
               grep -A1 '>>>' run.log | sed 's/^ *//'
               echo '```'
             else
-              echo "No items over the alert threshold."
+              echo "Nothing over the threshold this week."
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -123,7 +78,6 @@ jobs:
           fi
 
       - name: Open an issue for the deals
-        if: success()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -132,7 +86,7 @@ jobs:
             exit 0
           fi
           {
-            echo "Found by the scheduled crawl on $(date -u +%Y-%m-%d)."
+            echo "Found by the crawl on $(date -u +%Y-%m-%d)."
             echo
             echo '```'
             grep -A1 '>>>' run.log | sed 's/^ *//'
@@ -140,7 +94,9 @@ jobs:
             echo
             echo "Full CSV: [run $GITHUB_RUN_NUMBER artifacts]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
           } > body.md
+          gh label create deals --color EDEDED \
+            --description "Automated deal reports" --force
           gh issue create \
-            --title "Cigar deals $(date -u +%Y-%m-%d)" \
+            --title "Hiland's deals $(date -u +%Y-%m-%d)" \
             --body-file body.md \
             --label deals
