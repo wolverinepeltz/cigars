@@ -36,11 +36,14 @@ ROOT = f"{BASE}/shop/cigars/"
 
 # Columns written to the CSV.
 FIELDS = ["brand", "name", "pack_qty", "sale_price", "regular_price",
-          "discount_pct", "stock_qty", "url"]
+          "discount_pct", "stock_qty", "last_modified", "url"]
+
+# The changes file adds a note about what moved.
+CHANGE_FIELDS = FIELDS + ["change"]
 
 # Gathered for filtering but not written out.
 INTERNAL = ["price_is_range", "in_stock", "purchasable", "backorder",
-            "pack_label", "on_sale"]
+            "pack_label", "on_sale", "change"]
 
 # Categories that describe a promotion or format, not a maker.
 GENERIC_CATEGORIES = {
@@ -70,6 +73,8 @@ DEFAULTS = {
     "workers": 4,
     "delay": 0.5,
     "output": "cigars.csv",
+    "changes_output": "cigars-changes.csv",
+    "history": "data/latest.csv",
     "inspect": 0,
 }
 
@@ -128,8 +133,59 @@ def describe(cfg):
         f"  rate:          {cfg['workers']} workers, "
         f"{cfg['delay']:g}s between requests",
         f"  output:        {cfg['output']}",
+        f"  changes:       {cfg['changes_output']}",
+        f"  compared to:   {cfg['history']}",
     ]
     return "\n".join(lines)
+
+
+def load_history(path):
+    """Previous run keyed by product url -> (discount_pct, last_modified)."""
+    if not path or not os.path.exists(path):
+        return {}
+    out = {}
+    try:
+        with open(path, newline="", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                url = (row.get("url") or "").strip()
+                if not url:
+                    continue
+                try:
+                    pct = round(float(row.get("discount_pct") or 0), 1)
+                except ValueError:
+                    pct = None
+                out[url] = (pct, (row.get("last_modified") or "").strip())
+    except OSError as e:
+        print(f"Could not read history at {path}: {e}")
+        return {}
+    return out
+
+
+def mark_changes(rows, history, today):
+    """Stamp last_modified, and return the subset that moved today."""
+    changed = []
+    for r in rows:
+        try:
+            pct = round(float(r["discount_pct"]), 1)
+        except (TypeError, ValueError):
+            pct = None
+        prior = history.get((r.get("url") or "").strip())
+
+        if prior is None:
+            r["last_modified"] = today
+            r["change"] = "new"
+        elif prior[0] is None or pct is None or abs(pct - prior[0]) >= 0.05:
+            r["last_modified"] = today
+            r["change"] = f"{prior[0]:g}% -> {pct:g}%" if (
+                prior[0] is not None and pct is not None) else "discount changed"
+        else:
+            # unchanged: keep the date it last moved
+            r["last_modified"] = prior[1] or today
+            r["change"] = ""
+
+        if r["change"]:
+            changed.append(r)
+    return changed
 
 
 # ---------- plumbing ----------
@@ -541,12 +597,29 @@ def main():
             seen.add(key)
             unique.append(r)
 
+    today = time.strftime("%Y-%m-%d")
+    history = load_history(cfg["history"])
+    changed = mark_changes(unique, history, today)
+
     with open(cfg["output"], "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
         w.writeheader()
         w.writerows(unique)
 
+    with open(cfg["changes_output"], "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=CHANGE_FIELDS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(changed)
+
     print(f"\nWrote {len(unique)} rows to {cfg['output']}")
+    if history:
+        new_count = sum(1 for r in changed if r["change"] == "new")
+        moved = len(changed) - new_count
+        print(f"Wrote {len(changed)} changed rows to {cfg['changes_output']} "
+              f"({new_count} new, {moved} discount moved)")
+    else:
+        print(f"No history at {cfg['history']}, so all {len(changed)} rows "
+              f"count as new. Next run will show real changes.")
     if dropped["oos"]:
         print(f"  skipped {dropped['oos']} out of stock")
     if dropped["pack"]:
