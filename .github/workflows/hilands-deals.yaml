@@ -131,6 +131,9 @@ jobs:
             echo
             echo "Full CSV: [run $GITHUB_RUN_NUMBER artifacts]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
           } > body.md
+          gh label create deals --color EDEDED \
+            --description "Automated deal reports" --force
+      
           gh issue create \
             --title "Cigar deals $(date -u +%Y-%m-%d)" \
             --body-file body.md \
