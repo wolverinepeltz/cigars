@@ -607,6 +607,18 @@ def main():
 
     today = time.strftime("%Y-%m-%d")
     history = load_history(cfg["history"])
+
+   # >>> NEW BLOCK STARTS HERE
+    if not unique:
+        print("\nNo products captured. Leaving the previous files alone.")
+        sys.exit(1)
+
+    if history and len(unique) < len(history) * 0.5:
+        print(f"\nOnly {len(unique)} rows, down from {len(history)} last run.")
+        print("That looks truncated. Leaving the previous files alone.")
+        sys.exit(1)
+    # <<< NEW BLOCK ENDS HERE
+
     changed = mark_changes(unique, history, today)
 
     with open(cfg["output"], "w", newline="", encoding="utf-8") as f:
