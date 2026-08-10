@@ -1,6 +1,9 @@
-name: hilands
+name: hilands cigar deals
 
-# Settings live in config.yml, not here.
+# All crawl settings live in config.yml, not here.
+# GMAIL_PASSWORD must be set under
+#   Settings > Secrets and variables > Actions > New repository secret
+# using a Gmail App Password, not your account password.
 
 on:
   schedule:
@@ -17,7 +20,6 @@ jobs:
     timeout-minutes: 330
     permissions:
       contents: write
-      issues: write
 
     steps:
       - uses: actions/checkout@v4
@@ -30,48 +32,53 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Crawl
+      - name: Crawl and email
+        env:
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
         run: |
           set -o pipefail
           python hilands_crawl.py 2>&1 | tee run.log
 
       - name: Build run summary
+        if: always()
         run: |
           {
             echo "## Hiland's deals"
             echo
-            echo "Rows: $(($(wc -l < cigars.csv) - 1))"
-            echo "Changed today: $(($(wc -l < cigars-changes.csv) - 1))"
-            echo
+            if [ -f cigars.csv ]; then
+              echo "Qualifying: $(($(wc -l < cigars.csv) - 1))"
+              echo "Changed today: $(($(wc -l < cigars-changes.csv) - 1))"
+              echo
+            fi
             if grep -q '>>>' run.log; then
-              echo "### Found"
               echo '```'
               grep -A1 '>>>' run.log | sed 's/^ *//'
               echo '```'
             else
-              echo "Nothing over the threshold this week."
+              echo "Nothing found this run."
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Upload CSV and log
+      - name: Upload CSVs and log
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cigars-${{ github.run_number }}
+          name: hilands-${{ github.run_number }}
           path: |
             cigars.csv
             cigars-changes.csv
             run.log
+          if-no-files-found: warn
           retention-days: 90
 
       - name: Commit snapshot to data/
         run: |
           stamp=$(date -u +%Y-%m-%d)
           mkdir -p data
+          # The script already wrote data/latest.csv, its own baseline.
+          # These are just dated copies for history.
           cp cigars.csv "data/cigars-$stamp.csv"
           cp cigars-changes.csv "data/changes-$stamp.csv"
-          # latest.csv is the baseline the next run compares against,
-          # so it must be updated last and always.
-          cp cigars.csv data/latest.csv
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/
@@ -81,27 +88,3 @@ jobs:
             git commit -m "data: crawl $stamp"
             git push
           fi
-
-      - name: Open an issue for the deals
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          if ! grep -q '>>>' run.log; then
-            echo "Nothing to report."
-            exit 0
-          fi
-          {
-            echo "Found by the crawl on $(date -u +%Y-%m-%d)."
-            echo
-            echo '```'
-            grep -A1 '>>>' run.log | sed 's/^ *//'
-            echo '```'
-            echo
-            echo "Full CSV: [run $GITHUB_RUN_NUMBER artifacts]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
-          } > body.md
-          gh label create deals --color EDEDED \
-            --description "Automated deal reports" --force
-          gh issue create \
-            --title "Hiland's deals $(date -u +%Y-%m-%d)" \
-            --body-file body.md \
-            --label deals
