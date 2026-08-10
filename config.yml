@@ -15,10 +15,5 @@ include_unknown_pack: false   # keep items whose pack size could not be read
 workers: 4              # concurrent requests. 4 is polite for a small shop
 delay: 0.5              # minimum seconds between requests, counted across all workers
 
-# --- output ---
-output: cigars.csv                  # every qualifying item
-changes_output: cigars-changes.csv  # only items new or re-priced today
-history: data/latest.csv            # last run, used to detect changes
-
 # --- diagnostics ---
 inspect: 0              # set to 5 to print raw pack labels and stop, without crawling
