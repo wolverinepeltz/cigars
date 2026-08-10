@@ -326,9 +326,10 @@ def blank_row():
 def api_categories():
     out, page = [], 1
     while True:
-
+        r = get(f"{BASE}/wp-json/wc/store/v1/products/categories",
+                params={"per_page": 100, "page": page})
         if r is None:
-             print("  no response (network error or blocked).")
+            print("  no response (network error or blocked).")
             return None
         if r.status_code != 200:
             print(f"  Store API returned HTTP {r.status_code}")
@@ -341,10 +342,6 @@ def api_categories():
             print("  body starts:", " ".join((r.text or "")[:200].split()))
             print("  A challenge page here means Cloudflare is blocking this IP.")
             return None
-
-
-        r = get(f"{BASE}/wp-json/wc/store/v1/products/categories",
-                params={"per_page": 100, "page": page})
         if not data:
             break
         for c in data:
