@@ -1,15 +1,20 @@
+#!/usr/bin/env python3
 """
 Cigarplace Deals Scraper
 ------------------------
 Crawls https://www.cigarplace.biz/cigars.html and emails every cigar
 that is >= 60% off MSRP AND rated >= 4.5 stars AND our price <= $150.
 
+The rating criterion can be turned off with CHECK_RATINGS = False, in
+which case the Stamped.io lookup is skipped entirely and deals qualify
+on discount + price alone.
+
 Ratings come directly from Stamped.io's public widget API (the site
 serves bot traffic a page variant without review markup, so the
 in-page widget can't be scraped). Only products that already pass the
 discount + price filters are looked up, so it's 1-2 API calls per run.
 
-Only NEW deals (URLs not previously emailed) are sent — sent URLs are
+Only NEW deals (URLs not previously emailed) are sent. Sent URLs are
 persisted to cigarplace_sent_history.json alongside the script.
 
 Credentials: reads the Gmail App Password from the GMAIL_PASSWORD
@@ -31,7 +36,8 @@ TO_EMAIL        = "peltz.chris@gmail.com"
 
 MAX_PAGES       = None    # None = all pages, or e.g. 3
 MIN_DISCOUNT    = 0.40    # 60% off
-MIN_RATING      = 4.5
+CHECK_RATINGS   = False   # False = skip Stamped API, ignore MIN_RATING
+MIN_RATING      = 4.5     # only used when CHECK_RATINGS is True
 MAX_OUR_PRICE   = 150.00
 BATCH_SIZE      = 8       # parallel pages at once
 GOTO_TIMEOUT_MS = 30_000  # navigation timeout
@@ -78,6 +84,18 @@ BLOCKED_URL_PARTS = ("comodo.com", "trustlogo", "klaviyo",
                      "googletagmanager", "google-analytics",
                      "doubleclick", "facebook")
 BLOCKED_RESOURCE_TYPES = {"image", "media", "font"}
+
+# Human-readable description of the active filters, used in headers.
+CRITERIA = (f"≥{MIN_DISCOUNT*100:.0f}% off, "
+            + (f"≥{MIN_RATING}★, " if CHECK_RATINGS else "")
+            + f"≤${MAX_OUR_PRICE:.0f}")
+
+
+def format_stars(c):
+    """Rating suffix for display, or empty string when there's no rating."""
+    if not c.get("rating"):
+        return ""
+    return f"  ★{c['rating']:.1f} ({c['reviews']} reviews)"
 
 # ── Sent history ──────────────────────────────────────────────────────────────
 def load_history():
@@ -328,7 +346,7 @@ async def crawl():
         remaining = list(range(2, total_pages + 1))
         for i in range(0, len(remaining), BATCH_SIZE):
             batch = remaining[i:i + BATCH_SIZE]
-            print(f"Pages {batch[0]}–{batch[-1]} of {total_pages}…")
+            print(f"Pages {batch[0]}-{batch[-1]} of {total_pages}…")
             results = await asyncio.gather(
                 *[fetch_page(context, pg) for pg in batch])
             for pg, html in sorted(results):
@@ -350,25 +368,34 @@ for c in candidates:
     c["brand"] = match_brand(c["name"], brands)
 
 # Second pass: ratings from Stamped, ONLY for discount+price survivors
-print(f"\nFetching ratings for {len(candidates)} candidate(s) "
-      f"({math.ceil(len(candidates)/STAMPED_BATCH) if candidates else 0} "
-      f"API call(s))…")
-ratings = fetch_ratings([c["product_id"] for c in candidates], *creds)
+if CHECK_RATINGS:
+    print(f"\nFetching ratings for {len(candidates)} candidate(s) "
+          f"({math.ceil(len(candidates)/STAMPED_BATCH) if candidates else 0} "
+          f"API call(s))…")
+    ratings = fetch_ratings([c["product_id"] for c in candidates], *creds)
+else:
+    print("\nRating check disabled (CHECK_RATINGS = False) - "
+          "skipping Stamped API.")
+    ratings = {}
 
 qualifying = []
 for c in candidates:
     r = ratings.get(str(c["product_id"]))
     if r:
         c["rating"], c["reviews"] = r
-    if c["rating"] and c["rating"] >= MIN_RATING:
+    if not CHECK_RATINGS or (c["rating"] and c["rating"] >= MIN_RATING):
         qualifying.append(c)
 
 qualifying.sort(key=lambda x: (-x["discount_pct"], -(x["rating"] or 0)))
 
-print(f"Funnel: {stats['parsed']} parsed (≤${MAX_OUR_PRICE:.0f})  |  "
-      f"{stats['discount_ok']} at ≥{MIN_DISCOUNT*100:.0f}% off  |  "
-      f"{len([c for c in candidates if c['rating']])} with a rating  |  "
-      f"{len(qualifying)} at ≥{MIN_RATING}★")
+funnel = (f"Funnel: {stats['parsed']} parsed (≤${MAX_OUR_PRICE:.0f})  |  "
+          f"{stats['discount_ok']} at ≥{MIN_DISCOUNT*100:.0f}% off  |  ")
+if CHECK_RATINGS:
+    funnel += (f"{len([c for c in candidates if c['rating']])} with a rating"
+               f"  |  {len(qualifying)} at ≥{MIN_RATING}★")
+else:
+    funnel += f"{len(qualifying)} qualifying"
+print(funnel)
 
 # ── Delta filtering against sent history ──────────────────────────────────────
 history = load_history() if not FORCE else set()
@@ -376,8 +403,7 @@ new_deals = [c for c in qualifying if c["url"] not in history]
 skipped   = len(qualifying) - len(new_deals)
 
 print(f"\n{'═'*68}")
-print(f"  Cigars ≥{MIN_DISCOUNT*100:.0f}% off, ≥{MIN_RATING}★, "
-      f"≤${MAX_OUR_PRICE:.0f}   →   {len(qualifying)} found, "
+print(f"  Cigars {CRITERIA}   →   {len(qualifying)} found, "
       f"{len(new_deals)} new"
       + (f" ({skipped} already sent)" if skipped else ""))
 print(f"{'═'*68}\n")
@@ -388,8 +414,8 @@ for c in new_deals:
     brand = f"[{c['brand']}]  " if c.get("brand") else ""
     print(f"{brand}{c['name']}")
     print(f"  Our price {price}  (MSRP {msrp})  "
-          f"({c['discount_pct']*100:.0f}% off)  "
-          f"★{c['rating']:.1f} ({c['reviews']} reviews)")
+          f"({c['discount_pct']*100:.0f}% off)"
+          f"{format_stars(c)}")
     print(f"  {c['url']}\n")
 
 # ── Save CSV (new deals only) ─────────────────────────────────────────────────
@@ -404,17 +430,15 @@ print(f"✓ CSV saved to {OUTPUT_CSV}\n")
 
 # ── Email (only if there are new deals) ───────────────────────────────────────
 if not new_deals:
-    print("No new deals since last run — no email sent.")
+    print("No new deals since last run - no email sent.")
 elif not SENDER_PASSWORD:
     print("ERROR: GMAIL_PASSWORD environment variable not set.")
-    print("  History NOT updated — these deals will be retried next run.")
+    print("  History NOT updated - these deals will be retried next run.")
 else:
     print("Sending email…")
 
     body_lines = [
-        f"Found {len(new_deals)} NEW cigar deal(s) — "
-        f"≥{MIN_DISCOUNT*100:.0f}% off, ≥{MIN_RATING}★, "
-        f"≤${MAX_OUR_PRICE:.0f}"
+        f"Found {len(new_deals)} NEW cigar deal(s) - {CRITERIA}"
         + (f"  ({skipped} previously sent, skipped)" if skipped else "")
         + "\n",
         "=" * 60,
@@ -438,8 +462,8 @@ else:
             body_lines += [
                 f"\n{c['name']}",
                 f"  Our price {price}  (MSRP {msrp})  "
-                f"({c['discount_pct']*100:.0f}% off)  "
-                f"★{c['rating']:.1f} ({c['reviews']} reviews)",
+                f"({c['discount_pct']*100:.0f}% off)"
+                f"{format_stars(c)}",
                 f"  {c['url']}",
             ]
     body_lines += ["\n" + "="*60, "\nFull results attached as CSV."]
@@ -470,7 +494,7 @@ else:
             print(f"✓ {len(new_deals)} URL(s) added to "
                   f"{os.path.basename(HISTORY_FILE)}")
         else:
-            print("Force mode — history not updated.")
+            print("Force mode - history not updated.")
     except Exception as e:
         print(f"✗ Email failed: {e}")
-        print("  History NOT updated — these deals will be retried next run.")
+        print("  History NOT updated - these deals will be retried next run.")
