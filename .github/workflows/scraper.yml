@@ -2,7 +2,7 @@ name: Cigar Deal Scraper
 
 on:
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: '17 4 * * *'
   workflow_dispatch:
 
 jobs:
