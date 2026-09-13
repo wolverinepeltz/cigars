@@ -104,20 +104,30 @@ def _extract_products(soup: BeautifulSoup) -> list[dict]:
         if href in seen_urls:
             continue
 
-        # Climb from the title link to the nearest ancestor whose text
-        # includes a price. This is normally just 1-3 levels up and stays
-        # within a single product's card rather than merging siblings.
-        block_text = None
+        # Find the full single-item card by climbing from the title link
+        # until climbing further would pull in a SECOND product's link
+        # (i.e. we've crossed into a sibling card). This captures the whole
+        # item - including badges like "Out of stock" that might sit above
+        # or beside the price rather than in the same small wrapper - while
+        # still stopping before merging into the next product over.
+        card = a
         node = a
-        for _ in range(6):
+        for _ in range(10):
             if node.parent is None:
                 break
-            node = node.parent
-            text = node.get_text(" ", strip=True)
-            if "$" in text:
-                block_text = text
-                break
-        if not block_text:
+            candidate = node.parent
+            hrefs_here = {
+                urljoin(BASE_URL, x["href"])
+                for x in candidate.find_all("a", href=True)
+                if PRODUCT_URL_RE.match(urljoin(BASE_URL, x["href"]))
+            }
+            if len(hrefs_here) > 1:
+                break  # climbed too far, this level includes a sibling product
+            card = candidate
+            node = candidate
+
+        block_text = card.get_text(" ", strip=True)
+        if "$" not in block_text:
             continue
 
         prices = [float(p.replace(",", "")) for p in PRICE_RE.findall(block_text)]
@@ -149,6 +159,9 @@ def scrape_deals(
     delay: float = 1.5,
 ) -> list[dict]:
     matches = []
+    seen_urls = set()  # dedup ACROSS pages, not just within one page - a
+                        # product can drift onto an adjacent page between
+                        # requests if the site's sort order isn't fully stable
     page = 1
     while True:
         if max_pages is not None and page > max_pages:
@@ -168,8 +181,11 @@ def scrape_deals(
             break
 
         for p in products:
+            if p["url"] in seen_urls:
+                continue
             if p["in_stock"] and p["discount_pct"] >= min_discount and p["price"] <= max_price:
                 matches.append(p)
+                seen_urls.add(p["url"])
 
         page += 1
         time.sleep(delay)
