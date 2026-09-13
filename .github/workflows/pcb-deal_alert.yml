@@ -1,0 +1,42 @@
+name: Perfect Cigar Blend deal alert
+
+# GMAIL_PASSWORD must be set under
+#   Settings > Secrets and variables > Actions > New repository secret
+# using a Gmail App Password, not your account password.
+# Sender/recipient are set as constants in pcb_deal_alert.py.
+
+on:
+  schedule:
+    # Runs at 13:00 UTC daily. Adjust to taste - cron is UTC, not your local time.
+    - cron: "0 13 * * *"
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+
+jobs:
+  check-deals:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run deal alert
+        env:
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+        run: python pcb_deal_alert.py --min-discount 40 --max-price 125
+
+      - name: Commit updated history file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pcb_sent_history.json
+          git diff --staged --quiet || git commit -m "Update sent history [skip ci]"
+          git push
