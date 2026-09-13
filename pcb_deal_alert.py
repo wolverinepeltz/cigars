@@ -75,40 +75,70 @@ def get_soup(url: str, session: requests.Session) -> BeautifulSoup:
     return BeautifulSoup(resp.text, "html.parser")
 
 
-def _parse_product(li) -> dict | None:
-    link_tag = li.select_one(
-        "a.woocommerce-LoopProduct-link, a.woocommerce-loop-product__link"
-    )
-    name_tag = li.select_one("h2, h3, .woocommerce-loop-product__title")
-    if not link_tag or not name_tag:
-        return None
+PRODUCT_URL_RE = re.compile(r"^https?://perfectcigarblend\.com/product/[^/?#]+/?$")
 
-    text = li.get_text(" ", strip=True)
 
-    prices = [float(p.replace(",", "")) for p in PRICE_RE.findall(text)]
-    if not prices:
-        return None
-    # Lowest price mentioned is the current/sale starting price (msrp is
-    # always listed first and is higher, so min() is a safe way to get the
-    # cheapest current variant price without needing to split MSRP vs sale).
-    current_price = min(prices)
+def _extract_products(soup: BeautifulSoup) -> list[dict]:
+    """
+    Theme-agnostic product extraction.
 
-    save_match = SAVE_RE.search(text)
-    discount_pct = int(save_match.group(1)) if save_match else 0
+    Rather than assuming a specific item class (themes vary this a lot),
+    this scopes to the WooCommerce product-loop wrapper (`ul.products`,
+    a near-universal convention) and then, within it, finds products by
+    their permalink pattern (/product/slug/) plus the nearest ancestor
+    block that contains a price. This survives theme-specific markup
+    changes that would break a hardcoded `li.product` selector.
+    """
+    scope = soup.select_one("ul.products, .products") or soup
 
-    li_classes = li.get("class", [])
-    out_of_stock = (
-        "outofstock" in li_classes
-        or li.select_one(".out-of-stock, .outofstock") is not None
-    )
+    products = []
+    seen_urls = set()
 
-    return {
-        "name": name_tag.get_text(strip=True),
-        "url": urljoin(BASE_URL, link_tag["href"]),
-        "price": current_price,
-        "discount_pct": discount_pct,
-        "in_stock": not out_of_stock,
-    }
+    for a in scope.find_all("a", href=True):
+        href = urljoin(BASE_URL, a["href"])
+        if not PRODUCT_URL_RE.match(href):
+            continue
+        name = a.get_text(strip=True)
+        if not name:
+            continue  # image-only anchor wrapping the same product link
+        if href in seen_urls:
+            continue
+
+        # Climb from the title link to the nearest ancestor whose text
+        # includes a price. This is normally just 1-3 levels up and stays
+        # within a single product's card rather than merging siblings.
+        block_text = None
+        node = a
+        for _ in range(6):
+            if node.parent is None:
+                break
+            node = node.parent
+            text = node.get_text(" ", strip=True)
+            if "$" in text:
+                block_text = text
+                break
+        if not block_text:
+            continue
+
+        prices = [float(p.replace(",", "")) for p in PRICE_RE.findall(block_text)]
+        if not prices:
+            continue
+        current_price = min(prices)
+
+        save_match = SAVE_RE.search(block_text)
+        discount_pct = int(save_match.group(1)) if save_match else 0
+        out_of_stock = "out of stock" in block_text.lower()
+
+        seen_urls.add(href)
+        products.append({
+            "name": name,
+            "url": href,
+            "price": current_price,
+            "discount_pct": discount_pct,
+            "in_stock": not out_of_stock,
+        })
+
+    return products
 
 
 def scrape_deals(
@@ -132,7 +162,7 @@ def scrape_deals(
             print(f"  failed: {e}")
             break
 
-        products = [p for li in soup.select("li.product") if (p := _parse_product(li))]
+        products = _extract_products(soup)
         if not products:
             print("  no products found, stopping.")
             break
