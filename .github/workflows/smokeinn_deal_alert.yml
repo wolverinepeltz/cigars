@@ -60,7 +60,7 @@ jobs:
           python smokeinn_deal_alert.py $ARGS
 
       - name: Commit updated history file
-        - [ ] run: |
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           [ -f smokeinn_sent_history.json ] || echo '{}' > smokeinn_sent_history.json
