@@ -43,7 +43,7 @@ jobs:
         if: github.event_name == 'schedule'
         env:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-        run: python smokeinn_deal_alert.py --min-discount 40 --max-price 125 --full-catalog
+        run: python smokeinn_deal_alert.py --min-discount 35 --max-price 125 --full-catalog
 
       - name: Run deal alert (manual trigger)
         if: github.event_name == 'workflow_dispatch'
