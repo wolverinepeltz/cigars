@@ -8,7 +8,7 @@ public JSON product API. This script crawls the HTML category listings
 
   1. Crawls the paginated cigar catalog.
   2. Parses each product's list price, sale price, and discount %.
-  3. Keeps items where discount >= --min-discount AND price <= --max-price.
+  3. Keeps items where discounbt >= --min-discount AND price <= --max-price.
   4. Diffs against cigora_sent_history.json (product URLs already emailed).
   5. Emails only the NEW matches (if any) and updates the history file.
 
