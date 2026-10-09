@@ -18,8 +18,10 @@ Each run:
   1. Pulls every product in the chosen collections (all cigars plus the
      daily / weekly / monthly deal collections by default).
   2. Works out each size's discount from price vs compare_at_price.
-  3. Keeps sizes where discount >= --min-discount AND price <= --max-price
-     AND in stock.
+  3. Keeps in-stock sizes that pass EITHER rule:
+       a) discount >= --min-discount (40%) AND price <= --max-price ($125)
+       b) discount >= --alt-min-discount (25%) AND price between
+          --alt-min-price ($100) and --alt-max-price ($125)
   4. Diffs against gtcigars_sent_history.json (link -> last-notified price).
      "New" means never seen before, OR seen but now cheaper than when it
      was last emailed.
@@ -48,6 +50,7 @@ Usage
 -----
     python gtcigars_deal_alert.py
     python gtcigars_deal_alert.py --min-discount 40 --max-price 125
+    python gtcigars_deal_alert.py --alt-min-discount 25 --alt-min-price 100
     python gtcigars_deal_alert.py --dry-run
     python gtcigars_deal_alert.py --collections daily-deals weekly-deals
     python gtcigars_deal_alert.py --max-pages 1          # quick test
@@ -215,11 +218,21 @@ def scrape_collection(
     return rows
 
 
+def qualifies(row: dict, rules: dict) -> bool:
+    """True if an in-stock size passes either the main or the alternate rule."""
+    if not row["in_stock"]:
+        return False
+    pct, price = row["discount_pct"], row["price"]
+    main = pct >= rules["min_discount"] and price <= rules["max_price"]
+    alt = (pct >= rules["alt_min_discount"]
+           and rules["alt_min_price"] <= price <= rules["alt_max_price"])
+    return main or alt
+
+
 def scrape_deals(
     session: requests.Session,
     collections: list[str],
-    min_discount: float,
-    max_price: float,
+    rules: dict,
     max_pages: int | None = None,
     delay: float = 1.5,
 ) -> tuple[list[dict], int]:
@@ -237,9 +250,7 @@ def scrape_deals(
                 continue  # same item listed in more than one collection
             seen_variants.add(vid)
             examined += 1
-            if (row["in_stock"]
-                    and row["discount_pct"] >= min_discount
-                    and row["price"] <= max_price):
+            if qualifies(row, rules):
                 matches.append(row)
 
     return matches, examined
@@ -311,10 +322,16 @@ def send_email(new_items: list[dict]) -> bool:
 
 def main():
     parser = argparse.ArgumentParser(description="Alert on gtcigars.com deals")
-    parser.add_argument("--min-discount", type=float, default=40,
-                        help="minimum %% off (default 40)")
+    parser.add_argument("--min-discount", type=float, default=35,
+                        help="minimum %% off (default 35)")
     parser.add_argument("--max-price", type=float, default=125.0,
                         help="maximum price (default 125)")
+    parser.add_argument("--alt-min-discount", type=float, default=25,
+                        help="alternate rule: minimum %% off (default 25)")
+    parser.add_argument("--alt-min-price", type=float, default=100.0,
+                        help="alternate rule: lowest price (default 100)")
+    parser.add_argument("--alt-max-price", type=float, default=125.0,
+                        help="alternate rule: highest price (default 125)")
     parser.add_argument("--collections", nargs="+", default=DEFAULT_COLLECTIONS,
                         help="collection handles to scan "
                              f"(default: {' '.join(DEFAULT_COLLECTIONS)})")
@@ -332,8 +349,13 @@ def main():
     matches, examined = scrape_deals(
         session,
         collections=args.collections,
-        min_discount=args.min_discount,
-        max_price=args.max_price,
+        rules={
+            "min_discount": args.min_discount,
+            "max_price": args.max_price,
+            "alt_min_discount": args.alt_min_discount,
+            "alt_min_price": args.alt_min_price,
+            "alt_max_price": args.alt_max_price,
+        },
         max_pages=args.max_pages,
         delay=args.delay,
     )
