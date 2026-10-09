@@ -32,7 +32,7 @@ jobs:
       - name: Run deal alert
         env:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-        run: python gtcigars_deal_alert.py --min-discount 35 --max-price 125
+        run: python gtcigars_deal_alert.py --min-discount 35 --max-price 125 --alt-min-discount 25 --alt-min-price 100 --alt-max-price 125
 
       - name: Commit updated history file
         run: |
