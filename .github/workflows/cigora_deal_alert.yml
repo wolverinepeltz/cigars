@@ -28,7 +28,7 @@ jobs:
       - name: Run deal alert
         env:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-        run: python cigora_deal_alert.py --min-discount 35 --max-price 125
+        run: python cigora_deal_alert.py --min-discount 33.333 --max-price 125
 
       - name: Commit updated history file
         run: |
