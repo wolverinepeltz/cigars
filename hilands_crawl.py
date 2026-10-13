@@ -82,7 +82,7 @@ GENERIC_CATEGORIES = {
 
 DEFAULTS = {
     "categories": 0,
-    "min_discount": 40.0,
+    "min_discount": 33.333,
     "min_pack": 5,
     "max_price": 99.99,
     "include_out_of_stock": False,
