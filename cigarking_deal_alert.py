@@ -79,10 +79,15 @@ SITEMAP_INDEX = f"{BASE_URL}/xmlsitemap.php"
 CORE_DEAL_CATEGORIES = ["weekly-deals", "slam-packs"]
 
 # A category slug containing any of these words counts as a deal page.
+# ("red" is left out on purpose: it matches lines like Cohiba Red Dot.
+#  Red-tag sale pages are still caught by "sale" / "off".)
 DEAL_WORDS = {
     "deal", "deals", "sale", "clearance", "special", "specials", "off",
-    "slam", "closeout", "blowout", "discount", "red", "steal", "steals",
+    "slam", "closeout", "blowout", "discount", "steal", "steals",
+    "overstock",
 }
+# Product-line names that contain a deal word but aren't promos.
+NOT_DEAL_PHRASES = ("special-selection", "special-edition", "special-reserve")
 # Never worth scanning for cigar deals.
 SKIP_WORDS = {
     "humidor", "humidors", "accessories", "accessory", "lighter",
@@ -174,7 +179,9 @@ def pick_categories(all_urls: list[str], full_catalog: bool) -> list[str]:
         words = set(re.split(r"[^a-z0-9]+", slug_of(u)))
         if words & SKIP_WORDS:
             continue
-        if full_catalog or words & DEAL_WORDS:
+        is_deal = (words & DEAL_WORDS
+                   and not any(p in slug_of(u) for p in NOT_DEAL_PHRASES))
+        if full_catalog or is_deal:
             chosen.append(u)
     seen, out = set(), []
     for u in chosen:
