@@ -1,0 +1,55 @@
+name: Cigar King deal alert
+
+# GMAIL_PASSWORD must be set under
+#   Settings > Secrets and variables > Actions > New repository secret
+# using a Gmail App Password, not your account password.
+# Sender/recipient are set as constants in cigarking_deal_alert.py.
+
+on:
+  schedule:
+    # 10:00 UTC daily, clear of the other scrapers' slots. Cron is UTC.
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+    inputs:
+      full_catalog:
+        description: "Scan every category, not just deal pages (slow)"
+        type: boolean
+        default: false
+
+jobs:
+  check-deals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run deal alert
+        env:
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+        run: |
+          ARGS="--min-discount 33 --max-price 125"
+          if [ "${{ github.event.inputs.full_catalog }}" = "true" ]; then
+            ARGS="$ARGS --full-catalog"
+          fi
+          python cigarking_deal_alert.py $ARGS
+
+      - name: Commit updated history file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          [ -f cigarking_sent_history.json ] || echo '{}' > cigarking_sent_history.json
+          git add cigarking_sent_history.json
+          git diff --staged --quiet || git commit -m "Update Cigar King sent history [skip ci]"
+          git pull --rebase origin main
+          git push
