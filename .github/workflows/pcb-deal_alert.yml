@@ -39,4 +39,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pcb_sent_history.json
           git diff --staged --quiet || git commit -m "Update sent history [skip ci]"
-          git push
+          # Other workflows push to main too; pull their commits first so this
+          # push isn't rejected as out of date. Retries in case two land at once.
+          pushed=no
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push; then pushed=yes; break; fi
+            git rebase --abort 2>/dev/null || true
+            echo "Push attempt $i failed, retrying..."; sleep $((i * 10))
+          done
+          [ "$pushed" = yes ] || { echo "Push failed after 3 attempts"; exit 1; }
