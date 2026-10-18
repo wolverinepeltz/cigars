@@ -75,8 +75,14 @@ from bs4 import BeautifulSoup
 BASE_URL = "https://www.cigarking.com"
 SITEMAP_INDEX = f"{BASE_URL}/xmlsitemap.php"
 
-# Always scanned, even if the sitemap can't be read.
-CORE_DEAL_CATEGORIES = ["weekly-deals", "slam-packs"]
+# Always scanned, even if the sitemap can't be read. Add any page here that
+# Cigar King leaves out of its sitemap, such as the email-only "hidden
+# offers" sale. If one is retired the run just logs a 404 and moves on.
+CORE_DEAL_CATEGORIES = [
+    "weekly-deals",
+    "slam-packs",
+    "weekend-preview-sale-hidden-offers",
+]
 
 # A category slug containing any of these words counts as a deal page.
 # ("red" is left out on purpose: it matches lines like Cohiba Red Dot.
