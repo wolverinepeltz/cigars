@@ -5,9 +5,9 @@ name: Smoke Inn deal alert
 
 on:
   schedule:
-    # Runs at 14:00 UTC daily (an hour after the perfectcigarblend run, so
-    # they don't overlap). Adjust to taste - cron is UTC, not your local time.
-    - cron: "0 6 * * *"
+    # 3:58 AM Denver in summer (MDT), 2:58 AM in winter (MST).
+    # Cron is UTC. Workflows run 30 min apart; last one 6:28 AM at the latest.
+    - cron: "58 9 * * *"
   workflow_dispatch:
     inputs:
       full_catalog:
