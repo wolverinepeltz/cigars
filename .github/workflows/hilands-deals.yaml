@@ -7,9 +7,9 @@ name: hilands cigar deals
 
 on:
   schedule:
-    # 3:28 AM Denver in summer (MDT), 2:28 AM in winter (MST).
-    # Cron is UTC. Workflows run 30 min apart; last one 6:28 AM at the latest.
-    - cron: "28 9 * * *"
+    # 3:28 PM Denver in summer (MDT), 2:28 PM in winter (MST). Cron is UTC.
+    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
+    - cron: "28 21 * * *"
   workflow_dispatch:
 
 concurrency:

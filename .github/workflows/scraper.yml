@@ -2,9 +2,9 @@ name: Cigar Deal Scraper
 
 on:
   schedule:
-    # 5:28 AM Denver in summer (MDT), 4:28 AM in winter (MST).
-    # Cron is UTC. Workflows run 30 min apart; last one 6:28 AM at the latest.
-    - cron: "28 11 * * *"
+    # 4:08 PM Denver in summer (MDT), 3:08 PM in winter (MST). Cron is UTC.
+    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
+    - cron: "8 22 * * *"
   workflow_dispatch:
 
 jobs:
