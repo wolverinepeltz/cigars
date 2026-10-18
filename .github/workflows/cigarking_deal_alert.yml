@@ -7,8 +7,9 @@ name: Cigar King deal alert
 
 on:
   schedule:
-    # 10:00 UTC daily, clear of the other scrapers' slots. Cron is UTC.
-    - cron: "0 10 * * *"
+    # 6:28 AM Denver in summer (MDT), 5:28 AM in winter (MST).
+    # Cron is UTC. Workflows run 30 min apart; last one 6:28 AM at the latest.
+    - cron: "28 12 * * *"
   workflow_dispatch:
     inputs:
       full_catalog:

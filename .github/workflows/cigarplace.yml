@@ -1,7 +1,9 @@
 name: Cigarplace Deal Scraper
 on:
   schedule:
-    - cron: '0 22 * * *' 
+    # 4:28 AM Denver in summer (MDT), 3:28 AM in winter (MST).
+    # Cron is UTC. Workflows run 30 min apart; last one 6:28 AM at the latest.
+    - cron: "28 10 * * *"
   workflow_dispatch:
 jobs:
   scrape:
