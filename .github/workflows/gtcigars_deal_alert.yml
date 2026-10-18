@@ -7,9 +7,9 @@ name: GT Cigars deal alert
 
 on:
   schedule:
-    # 5:58 AM Denver in summer (MDT), 4:58 AM in winter (MST).
-    # Cron is UTC. Workflows run 30 min apart; last one 6:28 AM at the latest.
-    - cron: "58 11 * * *"
+    # 4:18 PM Denver in summer (MDT), 3:18 PM in winter (MST). Cron is UTC.
+    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
+    - cron: "18 22 * * *"
   workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
 
 jobs:
