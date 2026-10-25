@@ -259,7 +259,13 @@ def run(store, argv=None):
 
     session = requests.Session()
     items, examined = store.scan(session, args)
-    matches = [i for i in items if rules.qualifies(i)]
+    # A product can be listed on more than one page; keep its first
+    # qualifying listing only.
+    matches, matched_urls = [], set()
+    for i in items:
+        if i["url"] not in matched_urls and rules.qualifies(i):
+            matches.append(i)
+            matched_urls.add(i["url"])
     print(f"\n{examined} item(s) examined, {len(matches)} meet the "
           f"discount/price criteria this run.")
 

@@ -12,15 +12,28 @@ so the same deal is only emailed again if the price drops further.
 | `bigcommerce.py` | Reads product tiles from BigCommerce stores and finds their deal pages |
 | `shopify.py` | Reads the product feed from Shopify stores |
 
-| Store | Script | Platform |
-|---|---|---|
-| Cigar King | `cigarking_deal_alert.py` | BigCommerce |
-| Cigars N Cigars | `cigarsncigars_deal_alert.py` | BigCommerce |
-| Corona Cigar | `coronacigar_deal_alert.py` | BigCommerce |
-| GT Cigars | `gtcigars_deal_alert.py` | Shopify |
+| Store | Script | Platform | Page reading |
+|---|---|---|---|
+| Cigar King | `cigarking_deal_alert.py` | BigCommerce | shared |
+| Cigars N Cigars | `cigarsncigars_deal_alert.py` | BigCommerce | shared |
+| Corona Cigar | `coronacigar_deal_alert.py` | BigCommerce | shared |
+| GT Cigars | `gtcigars_deal_alert.py` | Shopify | shared |
+| Smoke Inn | `smokeinn_deal_alert.py` | Miva | in the script |
+| Perfect Cigar Blend | `pcb_deal_alert.py` | WooCommerce | in the script |
+| Cigora | `cigora_deal_alert.py` | Salesforce Commerce | in the script |
 
-The older scrapers (Hiland's, Cigarplace, Smoke Inn, Perfect Cigar Blend,
-Cigora, Smoking Hub) are still standalone scripts.
+All of these use `core.py` for fetching, rules, history, email and options.
+Stores on a platform with no shared module keep their page reading in their
+own script and plug into `core.run()` with a small store class.
+
+Still standalone, because they work differently:
+
+- `hilands_crawl.py` (Hiland's): settings in `config.yml`, pack-size filter,
+  CSV reports in `data/`, emails on any discount change.
+- `cigarplace_scraper.py` (Cigarplace): drives a real browser (Playwright)
+  and can check star ratings.
+- `scraper.py` (Smoking Hub): reads a deals blog with coupon codes, not a
+  store's prices.
 
 ## Adding a store
 
@@ -34,8 +47,11 @@ Cigora, Smoking Hub) are still standalone scripts.
    free time slot.
 4. Run it once from the Actions tab and check the log.
 
-A store on a new platform needs a new module next to `bigcommerce.py` with a
-`scan(session, args)` method; everything else is shared.
+A store on a platform with no shared module needs a store class with a
+`scan(session, args)` method that returns its items; see `pcb_deal_alert.py`
+for a short example. Everything else is shared. If a second store on that
+platform comes along, move the page reading into a module next to
+`bigcommerce.py`.
 
 ## Options every store script takes
 
