@@ -3,7 +3,8 @@ Shared pieces every deal alert needs, whatever platform the store runs on:
 
     fetch()        HTTP GET with retries and polite backoff
     Rules          the discount / price filter (with an optional second rule)
-    History        the <store>_sent_history.json file: what's been emailed
+    History        the <store>_sent_history.json file: what's been emailed,
+                   and which deals are currently live
     send_email()   the Gmail alert
     run()          the command line every store script shares
 
@@ -135,12 +136,31 @@ class Rules:
 # Sent history
 # --------------------------------------------------------------------------
 
+DISCOUNT_STEP = 1.0   # % points the discount must rise to count as a change
+PARTIAL_RUN = 0.5     # a run that sees under half of last run's items is partial
+META_KEY = "_meta"    # run bookkeeping stored alongside the deals
+
+
 class History:
-    """{url: last-emailed price}. An item is new if never emailed, or cheaper now."""
+    """
+    The <store>_sent_history.json file. One entry per deal URL:
+
+        {"price": 89.95, "discount": 40.0, "active": true}
+
+    price, discount  what the last email said about this deal
+    active           whether it qualified on the latest run
+
+    A deal is emailed when it's new, cheaper than last emailed, its discount
+    rose by DISCOUNT_STEP points or more, or it's back after not qualifying.
+
+    Older files stored just {url: price} (or a list of URLs); those load as
+    active deals with no known discount, and are upgraded on the next save.
+    """
 
     def __init__(self, path):
         self.path = Path(path)
         self.data = {}
+        self.meta = {}
         self.existed = self.path.exists()
         if not self.existed:
             print(f"No {self.path.name} yet (first run); starting a new one.")
@@ -154,25 +174,74 @@ class History:
             # Don't let a damaged file stop the alerts; start over instead.
             print(f"WARNING: {self.path.name} isn't valid JSON; starting a new one.")
             return
-        # back-compat: an older flat list of URLs with no prices
-        self.data = ({u: None for u in loaded} if isinstance(loaded, list)
-                     else loaded or {})
+        if isinstance(loaded, list):  # oldest format: just URLs
+            loaded = {u: None for u in loaded}
+        loaded = loaded or {}
+        self.meta = loaded.pop(META_KEY, None) or {}
+        for url, entry in loaded.items():
+            if isinstance(entry, dict):
+                self.data[url] = {"price": entry.get("price"),
+                                  "discount": entry.get("discount"),
+                                  "active": entry.get("active", True)}
+            else:  # older format: the last price, or None
+                self.data[url] = {"price": entry, "discount": None, "active": True}
 
-    def is_new(self, item):
-        if item["url"] not in self.data:
-            return True
-        last = self.data[item["url"]]
-        if last is None:
-            return False  # old-format entry with no price; treat as seen
-        return item["price"] < last
+    def change(self, item):
+        """Why this qualifying item should be emailed, or None if it shouldn't."""
+        entry = self.data.get(item["url"])
+        if entry is None:
+            return "new"
+        last_price, last_pct = entry["price"], entry["discount"]
+        if last_price is None:
+            return None  # oldest format: seen, nothing to compare against
+        reasons = []
+        if not entry["active"]:
+            reasons.append("back")
+        if item["price"] < last_price - 0.005:
+            reasons.append(f"price dropped from ${last_price:.2f}")
+        elif (last_pct is not None
+              and item["discount_pct"] >= last_pct + DISCOUNT_STEP):
+            reasons.append(f"discount up from {last_pct:g}%")
+        return ", ".join(reasons) or None
 
-    def record(self, items):
-        for item in items:
-            self.data[item["url"]] = item["price"]
+    def is_partial(self, examined):
+        last = self.meta.get("last_examined")
+        return bool(last) and examined < last * PARTIAL_RUN
+
+    def update(self, emailed, qualifying, examined):
+        """
+        Record what was emailed, and which deals qualify right now.
+        Deals that stopped qualifying are marked inactive (so they can come
+        "back"), unless this run looks partial: a blocked or failed page
+        would otherwise make everything on it look "back" next time.
+        """
+        partial = self.is_partial(examined)
+        for item in emailed:
+            self.data[item["url"]] = {"price": item["price"],
+                                      "discount": item["discount_pct"],
+                                      "active": True}
+        for item in qualifying:  # deals live right now, emailed or not
+            if item["url"] in self.data:
+                self.data[item["url"]]["active"] = True
+        if partial:
+            print(f"Only {examined} item(s) read vs {self.meta['last_examined']} "
+                  f"last run; looks partial, so no deals are marked inactive.")
+            return
+        live = {i["url"] for i in qualifying}
+        dropped = [u for u, e in self.data.items() if e["active"] and u not in live]
+        for url in dropped:
+            self.data[url]["active"] = False
+        if dropped:
+            print(f"{len(dropped)} previously emailed deal(s) no longer qualify; "
+                  f"they'll be emailed again if they come back.")
+        self.meta["last_examined"] = examined
 
     def save(self):
+        out = dict(sorted(self.data.items()))
+        if self.meta:
+            out = {META_KEY: self.meta, **out}
         with open(self.path, "w", encoding="utf-8") as f:
-            json.dump(self.data, f, indent=2, sort_keys=True)
+            json.dump(out, f, indent=2)
 
 
 # --------------------------------------------------------------------------
@@ -185,9 +254,35 @@ def describe_item(item):
            if item.get("ref") else "")
     sizes = (f"\n  largest size; smaller packs from ${item['from_price']:.2f}"
              if item.get("from_price") else "")
-    return (f"{item['name']}{size}\n"
+    change = item.get("change")
+    why = f"[{'NEW' if change == 'new' else change}] " if change else ""
+    return (f"{why}{item['name']}{size}\n"
             f"  ${item['price']:.2f}{ref}, {item['discount_pct']:g}% off{sizes}\n"
             f"  {item['url']}")
+
+
+def change_kind(change):
+    """Main reason, for counting: new > back > price drop > discount up."""
+    change = change or "new"
+    if change == "new":
+        return "new"
+    if change.startswith("back"):
+        return "back"
+    if "price dropped" in change:
+        return "price drop"
+    return "discount up"
+
+
+def summarize(items):
+    """e.g. '2 new, 1 back, 3 price drops' (each deal counted once)."""
+    plural = {"new": "new", "back": "back", "price drop": "price drops",
+              "discount up": "discounts up"}
+    counts = {}
+    for i in items:
+        k = change_kind(i.get("change"))
+        counts[k] = counts.get(k, 0) + 1
+    return ", ".join(f"{counts[k]} {k if counts[k] == 1 else plural[k]}"
+                     for k in plural if k in counts)
 
 
 def send_email(store_name, items):
@@ -198,11 +293,12 @@ def send_email(store_name, items):
         return False
 
     ordered = sorted(items, key=lambda x: (-x["discount_pct"], x["price"]))
-    body = (f"Found {len(items)} new cigar deal(s) on {store_name}:\n\n"
+    summary = summarize(items)
+    body = (f"{len(items)} cigar deal(s) on {store_name} ({summary}):\n\n"
             + "\n\n".join(describe_item(i) for i in ordered))
 
     msg = MIMEText(body)
-    msg["Subject"] = f"{len(items)} new cigar deal(s) on {store_name}"
+    msg["Subject"] = f"{store_name}: {len(items)} deal(s) ({summary})"
     msg["From"] = SENDER_EMAIL
     msg["To"] = TO_EMAIL
 
@@ -275,25 +371,27 @@ def run(store, argv=None):
         raise SystemExit(1)
 
     history = History(args.history_file)
-    if not history.existed and not args.dry_run:
-        history.save()  # first run: create the file so the workflow can commit it
-    new_items = [m for m in matches if history.is_new(m)]
-    if not new_items:
-        print("No new items since last run. Nothing to email.")
-        return
+    to_send = []
+    for m in matches:
+        why = history.change(m)
+        if why:
+            to_send.append({**m, "change": why})
 
-    print(f"{len(new_items)} of those are new (first-seen, or cheaper than before):")
-    for item in new_items:
-        size = f" [{item['size']}]" if item.get("size") else ""
-        print(f"  - {item['name']}{size} (${item['price']:.2f}, "
-              f"{item['discount_pct']:g}% off) {item['url']}")
+    if to_send:
+        print(f"{len(to_send)} to email ({summarize(to_send)}):")
+        for item in to_send:
+            size = f" [{item['size']}]" if item.get("size") else ""
+            print(f"  - [{item['change']}] {item['name']}{size} "
+                  f"(${item['price']:.2f}, {item['discount_pct']:g}% off) {item['url']}")
+    else:
+        print("Nothing new, cheaper, more discounted, or back since last run.")
 
     if args.dry_run:
         print("\n--dry-run set: skipping email and history update.")
         return
-    if not send_email(store.name, new_items):
-        return  # don't mark as notified if the email never went out
+    if to_send and not send_email(store.name, to_send):
+        return  # history untouched, so these are retried next run
 
-    history.record(new_items)
+    history.update(to_send, matches, examined)
     history.save()
     print(f"History updated: {args.history_file}")

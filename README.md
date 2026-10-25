@@ -1,8 +1,27 @@
 # cigars
 
 Daily cigar deal alerts. Each store is scanned by a GitHub Actions workflow
-that emails new deals and saves what it sent in `<store>_sent_history.json`,
-so the same deal is only emailed again if the price drops further.
+that emails deals and saves what it sent in `<store>_sent_history.json`.
+
+## When a deal is emailed
+
+For the stores on the shared code, a qualifying deal is emailed when it is:
+
+| Label | Meaning |
+|---|---|
+| `NEW` | never emailed before |
+| `price dropped from $X` | cheaper than the last email said |
+| `discount up from X%` | same price, but at least 1 point more off (MSRP/was went up) |
+| `back` | it stopped qualifying (sold out, price rose, left the deals page) and now qualifies again |
+
+Discounts shrinking or prices rising are never emailed. The subject line
+counts each kind, e.g. `Cigar King: 4 deal(s) (2 new, 1 back, 1 price drop)`.
+
+Each history entry looks like `{"price": 89.95, "discount": 40.0, "active": true}`.
+If a run reads less than half as many items as the last one (a page failed
+or the site blocked part of the run), nothing is marked inactive, so a bad
+run can't cause a wave of false "back" emails. Older history files load as
+they are and are upgraded on the next save.
 
 ## Shared components (`dealalerts/`)
 
