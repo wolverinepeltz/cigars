@@ -141,12 +141,22 @@ class History:
     def __init__(self, path):
         self.path = Path(path)
         self.data = {}
-        if self.path.exists():
-            with open(self.path, encoding="utf-8") as f:
-                loaded = json.load(f)
-            # back-compat: an older flat list of URLs with no prices
-            self.data = ({u: None for u in loaded} if isinstance(loaded, list)
-                         else loaded)
+        self.existed = self.path.exists()
+        if not self.existed:
+            print(f"No {self.path.name} yet (first run); starting a new one.")
+            return
+        text = self.path.read_text(encoding="utf-8").strip()
+        if not text:
+            return  # an empty file, e.g. created by hand on GitHub
+        try:
+            loaded = json.loads(text)
+        except ValueError:
+            # Don't let a damaged file stop the alerts; start over instead.
+            print(f"WARNING: {self.path.name} isn't valid JSON; starting a new one.")
+            return
+        # back-compat: an older flat list of URLs with no prices
+        self.data = ({u: None for u in loaded} if isinstance(loaded, list)
+                     else loaded or {})
 
     def is_new(self, item):
         if item["url"] not in self.data:
@@ -259,6 +269,8 @@ def run(store, argv=None):
         raise SystemExit(1)
 
     history = History(args.history_file)
+    if not history.existed and not args.dry_run:
+        history.save()  # first run: create the file so the workflow can commit it
     new_items = [m for m in matches if history.is_new(m)]
     if not new_items:
         print("No new items since last run. Nothing to email.")

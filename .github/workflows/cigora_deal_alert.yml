@@ -34,6 +34,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # First run may not have created the file yet; start it empty.
+          [ -f cigora_sent_history.json ] || echo '{}' > cigora_sent_history.json
           git add cigora_sent_history.json
           git diff --staged --quiet || git commit -m "Update sent history [skip ci]"
           # Other workflows push to main too; pull their commits first so this
