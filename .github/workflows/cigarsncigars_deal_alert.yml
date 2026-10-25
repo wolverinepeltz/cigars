@@ -1,0 +1,64 @@
+name: Cigars N Cigars deal alert
+
+# GMAIL_PASSWORD must be set under
+#   Settings > Secrets and variables > Actions > New repository secret
+# using a Gmail App Password, not your account password.
+# Store settings are in cigarsncigars_deal_alert.py; shared logic is in dealalerts/.
+
+on:
+  schedule:
+    # 4:38 PM Denver in summer (MDT), 3:38 PM in winter (MST). Cron is UTC.
+    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
+    - cron: "38 22 * * *"
+  workflow_dispatch:
+    inputs:
+      full_catalog:
+        description: "Also scan the full catalog, not just deal pages (slow)"
+        type: boolean
+        default: false
+
+jobs:
+  check-deals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run deal alert
+        env:
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+        run: |
+          ARGS="--min-discount 33 --max-price 125"
+          if [ "${{ github.event.inputs.full_catalog }}" = "true" ]; then
+            ARGS="$ARGS --full-catalog"
+          fi
+          python cigarsncigars_deal_alert.py $ARGS
+
+      - name: Commit updated history file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          [ -f cigarsncigars_sent_history.json ] || echo '{}' > cigarsncigars_sent_history.json
+          git add cigarsncigars_sent_history.json
+          git diff --staged --quiet && exit 0
+          git commit -m "Update Cigars N Cigars sent history [skip ci]"
+          # Other workflows push to main too; pull their commits first so this
+          # push isn't rejected as out of date. Retries in case two land at once.
+          pushed=no
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push; then pushed=yes; break; fi
+            git rebase --abort 2>/dev/null || true
+            echo "Push attempt $i failed, retrying..."; sleep $((i * 10))
+          done
+          [ "$pushed" = yes ] || { echo "Push failed after 3 attempts"; exit 1; }
