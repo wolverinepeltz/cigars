@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "last_examined": 138
+  },
+  "https://cigarsncigars.com/epicurean-carnivale-double-robusto/": {
+    "price": 85.95,
+    "discount": 39.9,
+    "active": true
+  },
+  "https://cigarsncigars.com/epicurean-carnivale-lancero/": {
+    "price": 69.95,
+    "discount": 35.8,
+    "active": true
+  },
+  "https://cigarsncigars.com/flores-y-rodriguez-cabinet-seleccion-maduro-canonazo/": {
+    "price": 89.95,
+    "discount": 34.3,
+    "active": true
+  },
+  "https://cigarsncigars.com/pura-soul-barber-pole/": {
+    "price": 99.95,
+    "discount": 45.7,
+    "active": true
+  },
+  "https://cigarsncigars.com/rodrigo-habano-clasico-lancero/": {
+    "price": 59.95,
+    "discount": 38.8,
+    "active": true
+  }
+}
