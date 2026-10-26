@@ -52,17 +52,60 @@ HTML_ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
 # Fetching
 # --------------------------------------------------------------------------
 
+# Response headers that identify which bot-protection service blocked us.
+BLOCK_HEADERS = ("server", "cf-ray", "cf-mitigated", "x-sucuri-id",
+                 "x-iinfo", "x-datadome", "x-amzn-waf-action", "akamai-grn",
+                 "x-cdn", "x-akamai-transformed")
+
+
+def block_details(resp):
+    """One line naming the blocker, e.g. 'server=cloudflare cf-ray=8f2...'."""
+    parts = [f"{h}={resp.headers[h]}" for h in BLOCK_HEADERS if resp.headers.get(h)]
+    text = getattr(resp, "text", "") or ""
+    start = text.lower().find("<title>")
+    if start != -1:
+        title = text[start + 7:text.lower().find("</title>", start)].strip()[:80]
+        if title:
+            parts.append(f'page title="{title}"')
+    return " ".join(parts) or "no identifying headers"
+
+
+def browser_session(session):
+    """
+    A session that looks like real Chrome at the connection level (TLS and
+    HTTP/2 fingerprint), via curl_cffi. Many bot blocks check that, not just
+    the User-Agent. Created once per run and reused; None if curl_cffi isn't
+    installed.
+    """
+    if not hasattr(session, "_browser"):
+        try:
+            from curl_cffi import requests as curl_requests
+            session._browser = curl_requests.Session(impersonate="chrome")
+        except Exception:
+            session._browser = None
+    return session._browser
+
+
 def fetch(url, session, params=None, accept=HTML_ACCEPT, timeout=25):
     """
     GET a URL. Returns the Response on HTTP 200, or None on failure (with
     the reason printed). Retries network errors, and backs off on 429/503.
+
+    On HTTP 403 (bot blocked) it retries as real Chrome (browser_session);
+    if that gets through, the rest of the run uses it too.
     """
-    headers = {"User-Agent": USER_AGENT, "Accept": accept,
-               "Accept-Language": "en-US,en;q=0.9"}
+    browser = getattr(session, "_browser", None) if getattr(session, "_use_browser", False) else None
     for attempt in range(3):
         try:
-            resp = session.get(url, headers=headers, params=params, timeout=timeout)
-        except requests.RequestException as e:
+            if browser is not None:
+                # Let the impersonated Chrome send its own matching headers.
+                resp = browser.get(url, headers={"Accept": accept}, params=params,
+                                   timeout=timeout)
+            else:
+                headers = {"User-Agent": USER_AGENT, "Accept": accept,
+                           "Accept-Language": "en-US,en;q=0.9"}
+                resp = session.get(url, headers=headers, params=params, timeout=timeout)
+        except Exception as e:  # requests or curl_cffi network errors
             print(f"  request failed ({type(e).__name__}: {e})")
             time.sleep(3 * (attempt + 1))
             continue
@@ -72,8 +115,21 @@ def fetch(url, session, params=None, accept=HTML_ACCEPT, timeout=25):
             time.sleep(wait)
             continue
         if resp.status_code == 403:
-            print("  HTTP 403 - this IP is blocked. The same code often "
-                  "works from a home connection.")
+            print(f"  HTTP 403 (blocked): {block_details(resp)}")
+            if browser is None and not getattr(session, "_browser_failed", False):
+                browser = browser_session(session)
+                if browser is None:
+                    print("  curl_cffi isn't installed, so can't retry as Chrome "
+                          "(pip install curl_cffi).")
+                    return None
+                print("  retrying as real Chrome (browser fingerprint) ...")
+                session._use_browser = True
+                continue
+            if browser is not None:
+                # Chrome fingerprint didn't help either; stop trying it.
+                session._use_browser, session._browser_failed = False, True
+            print("  Still blocked. This site refuses this network's address; "
+                  "the same code often works from a home connection.")
             return None
         if resp.status_code == 404:
             print(f"  HTTP 404 - {url} doesn't exist (renamed or removed?)")
@@ -81,6 +137,9 @@ def fetch(url, session, params=None, accept=HTML_ACCEPT, timeout=25):
         if resp.status_code != 200:
             print(f"  HTTP {resp.status_code}")
             return None
+        if browser is not None and not getattr(session, "_browser_announced", False):
+            session._browser_announced = True
+            print("  Chrome fingerprint got through; using it for the rest of this run.")
         return resp
     return None
 
