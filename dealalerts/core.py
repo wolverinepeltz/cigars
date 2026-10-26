@@ -86,60 +86,100 @@ def browser_session(session):
     return session._browser
 
 
+# How fetch() gets a page, cheapest first. When a site blocks one (HTTP
+# 403), fetch() moves on to the next; the first that works is used for the
+# rest of the run, and one that fails isn't tried again this run.
+METHODS = ("plain", "chrome fingerprint", "real browser")
+
+
+def _client(session, method):
+    """The object to call .get() on for a method, or None if unavailable."""
+    if method == "plain":
+        return session
+    if method == "chrome fingerprint":
+        client = browser_session(session)
+        if client is None:
+            print("  curl_cffi isn't installed, so can't retry with a Chrome "
+                  "fingerprint (pip install curl_cffi).")
+        return client
+    from .browser import real_browser
+    return real_browser(session)
+
+
+def _get(session, method, client, url, params, accept, timeout):
+    if method == "plain":
+        headers = {"User-Agent": USER_AGENT, "Accept": accept,
+                   "Accept-Language": "en-US,en;q=0.9"}
+        return client.get(url, headers=headers, params=params, timeout=timeout)
+    if method == "chrome fingerprint":
+        # Let the impersonated Chrome send its own matching headers.
+        return client.get(url, headers={"Accept": accept}, params=params,
+                          timeout=timeout)
+    return client.get(url, params=params)
+
+
 def fetch(url, session, params=None, accept=HTML_ACCEPT, timeout=25):
     """
     GET a URL. Returns the Response on HTTP 200, or None on failure (with
     the reason printed). Retries network errors, and backs off on 429/503.
 
-    On HTTP 403 (bot blocked) it retries as real Chrome (browser_session);
-    if that gets through, the rest of the run uses it too.
+    On HTTP 403 (bot blocked) it escalates through METHODS: plain request,
+    then Chrome's connection fingerprint, then a real Chrome browser that
+    can run Cloudflare's "Just a moment..." check.
     """
-    browser = getattr(session, "_browser", None) if getattr(session, "_use_browser", False) else None
-    for attempt in range(3):
+    if not hasattr(session, "_failed_methods"):
+        session._failed_methods = set()
+    method = getattr(session, "_method", "plain")
+    if method in session._failed_methods:
+        method = "plain"
+    client = _client(session, method)
+
+    attempt = 0
+    while attempt < 3:
         try:
-            if browser is not None:
-                # Let the impersonated Chrome send its own matching headers.
-                resp = browser.get(url, headers={"Accept": accept}, params=params,
-                                   timeout=timeout)
-            else:
-                headers = {"User-Agent": USER_AGENT, "Accept": accept,
-                           "Accept-Language": "en-US,en;q=0.9"}
-                resp = session.get(url, headers=headers, params=params, timeout=timeout)
-        except Exception as e:  # requests or curl_cffi network errors
+            resp = _get(session, method, client, url, params, accept, timeout)
+        except Exception as e:  # network errors from any method
             print(f"  request failed ({type(e).__name__}: {e})")
-            time.sleep(3 * (attempt + 1))
+            attempt += 1
+            time.sleep(3 * attempt)
             continue
         if resp.status_code in (429, 503):
-            wait = 10 * (attempt + 1)
+            attempt += 1
+            wait = 10 * attempt
             print(f"  HTTP {resp.status_code}, waiting {wait}s ...")
             time.sleep(wait)
             continue
         if resp.status_code == 403:
-            print(f"  HTTP 403 (blocked): {block_details(resp)}")
-            if browser is None and not getattr(session, "_browser_failed", False):
-                browser = browser_session(session)
-                if browser is None:
-                    print("  curl_cffi isn't installed, so can't retry as Chrome "
-                          "(pip install curl_cffi).")
-                    return None
-                print("  retrying as real Chrome (browser fingerprint) ...")
-                session._use_browser = True
-                continue
-            if browser is not None:
-                # Chrome fingerprint didn't help either; stop trying it.
-                session._use_browser, session._browser_failed = False, True
-            print("  Still blocked. This site refuses this network's address; "
-                  "the same code often works from a home connection.")
-            return None
+            print(f"  HTTP 403 (blocked, {method}): {block_details(resp)}")
+            if method != "plain":
+                session._failed_methods.add(method)
+            # escalate to the next method that hasn't failed this run
+            nxt, client = None, None
+            for m in METHODS[METHODS.index(method) + 1:]:
+                if m in session._failed_methods:
+                    continue
+                client = _client(session, m)
+                if client is None:
+                    session._failed_methods.add(m)
+                    continue
+                nxt = m
+                break
+            if nxt is None:
+                print("  Still blocked. This site refuses this network's address; "
+                      "the same code often works from a home connection.")
+                return None
+            print(f"  retrying with {nxt} ...")
+            method = nxt
+            continue
         if resp.status_code == 404:
             print(f"  HTTP 404 - {url} doesn't exist (renamed or removed?)")
             return None
         if resp.status_code != 200:
             print(f"  HTTP {resp.status_code}")
             return None
-        if browser is not None and not getattr(session, "_browser_announced", False):
-            session._browser_announced = True
-            print("  Chrome fingerprint got through; using it for the rest of this run.")
+        if method != getattr(session, "_method", "plain"):
+            session._method = method
+            print(f"  {method} got through; using it for the rest of this run.")
         return resp
     return None
 

@@ -28,6 +28,7 @@ they are and are upgraded on the next save.
 | File | What it does |
 |---|---|
 | `core.py` | Fetching with retries, deal rules, sent history, email, command-line options |
+| `browser.py` | Last-resort fetching through real Chrome, for sites behind Cloudflare's "Just a moment..." check |
 | `bigcommerce.py` | Reads product tiles from BigCommerce stores and finds their deal pages |
 | `shopify.py` | Reads the product feed from Shopify stores |
 
@@ -53,6 +54,15 @@ Still standalone, because they work differently:
   and can check star ratings.
 - `scraper.py` (Smoking Hub): reads a deals blog with coupon codes, not a
   store's prices.
+
+## When a site blocks GitHub
+
+`fetch()` escalates on HTTP 403: a plain request, then Chrome's connection
+fingerprint (`curl_cffi`), then a real Chrome browser (`playwright`). The
+first that works is used for the rest of the run. The log's 403 line names
+the blocker (e.g. `server=cloudflare cf-mitigated=challenge`). A workflow
+only gets the real-browser step if it installs `playwright` and runs the
+script under `xvfb-run` (see the Cigora workflow).
 
 ## Adding a store
 
