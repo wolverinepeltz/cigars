@@ -145,19 +145,66 @@ def find_cards(soup):
     return cards
 
 
+# Link/button text that is never a product name.
+BUTTON_TEXT_RE = re.compile(
+    r"^(choose options|add to cart|quick view|view details?|compare|"
+    r"out of stock|sold out|pre-?order|buy now|shop now|learn more|sale|new)$", re.I)
+# Stores tack these onto image descriptions: "X Cigars For Sale".
+ALT_SUFFIX_RE = re.compile(r"\s+(cigars?\s+for\s+sale|for\s+sale)\s*$", re.I)
+
+
+def card_name(card, link):
+    """
+    The product name on a tile. Themes differ on where it lives, so try, in
+    order: the title/heading text, the product image's description, then
+    link text that isn't a button label, then the web address.
+    """
+    def clean(text):
+        return re.sub(r"\s+", " ", text or "").strip()
+
+    for sel in (".card-title", "[data-test='card-title']", ".product-title",
+                ".productView-title", "h2", "h3", "h4", "h5"):
+        el = card.select_one(sel)
+        if el is not None:
+            text = clean(el.get_text(" ", strip=True))
+            if text and not BUTTON_TEXT_RE.match(text):
+                return text
+    for attr in ("data-product-name", "data-name", "aria-label", "title"):
+        for el in card.select(f"[{attr}]"):
+            text = clean(el.get(attr))
+            if text and not BUTTON_TEXT_RE.match(text) and not text.lower().startswith(
+                    ("quick view", "compare", "add ")):
+                return ALT_SUFFIX_RE.sub("", text)
+    img = card.select_one("img[alt]")
+    if img is not None and clean(img["alt"]):
+        return ALT_SUFFIX_RE.sub("", clean(img["alt"]))
+    for a in card.select("a[href]"):
+        text = clean(a.get_text(" ", strip=True))
+        if text and not BUTTON_TEXT_RE.match(text):
+            return text
+    slug = urlparse(link["href"]).path.strip("/").rsplit("/", 1)[-1]
+    return slug.replace("-", " ").title()
+
+
+def product_link(card):
+    """The tile's link to the product page (not add-to-cart or compare)."""
+    link = card.select_one(".card-title a[href], h3 a[href], h4 a[href]")
+    if link is not None:
+        return link
+    return next((a for a in card.select("a[href]")
+                 if "cart.php" not in a["href"] and "compare" not in a["href"]
+                 and not a["href"].startswith(("#", "javascript"))), None)
+
+
 def extract_products(page_html, base_url):
     """Returns (items, tiles skipped as accessories or unpriceable)."""
     soup = BeautifulSoup(page_html, "html.parser")
     items, skipped = [], 0
     for card in find_cards(soup):
-        link = card.select_one(".card-title a[href], h3 a[href], h4 a[href]")
-        if link is None:
-            link = next((a for a in card.select("a[href]")
-                         if a.get_text(strip=True) and "cart.php" not in a["href"]),
-                        None)
+        link = product_link(card)
         if link is None:
             continue
-        name = link.get_text(" ", strip=True)
+        name = card_name(card, link)
         if not name:
             continue
         if NON_CIGAR_NAME_RE.search(name):
