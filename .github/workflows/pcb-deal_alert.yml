@@ -5,11 +5,13 @@ name: Perfect Cigar Blend deal alert
 # using a Gmail App Password, not your account password.
 # Sender/recipient are set as constants in pcb_deal_alert.py.
 
+# Manual-only for now: since about Oct 13, perfectcigarblend.com answers
+# GitHub's servers with Cloudflare's challenge page, and even a real Chrome
+# can't get past it from here. To put it back on the schedule (e.g. once it
+# runs from a computer at home), restore:
+#   schedule:
+#     - cron: "58 21 * * *"   # 3:58 PM Denver (MDT), 2:58 PM (MST)
 on:
-  schedule:
-    # 3:58 PM Denver in summer (MDT), 2:58 PM in winter (MST). Cron is UTC.
-    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
-    - cron: "58 21 * * *"
   workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
 
 jobs:
