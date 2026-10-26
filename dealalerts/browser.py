@@ -23,7 +23,8 @@ import os
 import time
 
 CHALLENGE_TITLES = ("just a moment", "attention required", "checking your browser",
-                    "please wait", "verifying you are human")
+                    "please wait", "verifying you are human", "security verification",
+                    "security check", "one more step")
 CHALLENGE_MARKERS = ("challenge-platform", "cf-chl-", "cf_chl_opt", "turnstile")
 CHALLENGE_WAIT = 30      # seconds to let a challenge clear
 NAV_TIMEOUT_MS = 45_000
