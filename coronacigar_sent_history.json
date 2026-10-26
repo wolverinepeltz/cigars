@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "last_examined": 112
+  },
+  "https://www.coronacigar.com/corona-ranchero-churchill/": {
+    "price": 49.95,
+    "discount": 44.5,
+    "active": true
+  },
+  "https://www.coronacigar.com/corona-ranchero-double-corona/": {
+    "price": 49.95,
+    "discount": 44.5,
+    "active": true
+  },
+  "https://www.coronacigar.com/corona-ranchero-pocos/": {
+    "price": 29.95,
+    "discount": 57.2,
+    "active": true
+  },
+  "https://www.coronacigar.com/corona-special-wheel-churchill/": {
+    "price": 65.0,
+    "discount": 48.0,
+    "active": true
+  },
+  "https://www.coronacigar.com/corona-special-wheel-connecticut-churchill/": {
+    "price": 69.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.coronacigar.com/corona-special-wheel-connecticut-robusto/": {
+    "price": 61.0,
+    "discount": 44.5,
+    "active": true
+  },
+  "https://www.coronacigar.com/corona-special-wheel-connecticut-toro/": {
+    "price": 62.0,
+    "discount": 48.3,
+    "active": true
+  },
+  "https://www.coronacigar.com/corona-special-wheel-connecticut-torpedo/": {
+    "price": 64.0,
+    "discount": 50.8,
+    "active": true
+  },
+  "https://www.coronacigar.com/corona-special-wheel-nicaragua-presidente/": {
+    "price": 66.0,
+    "discount": 49.2,
+    "active": true
+  },
+  "https://www.coronacigar.com/corona-special-wheel-nicaragua-torpedo/": {
+    "price": 64.0,
+    "discount": 50.8,
+    "active": true
+  },
+  "https://www.coronacigar.com/oliveros-gran-retorno-habano-toro/": {
+    "price": 24.95,
+    "discount": 35.2,
+    "active": true
+  },
+  "https://www.coronacigar.com/rocky-patel-olde-world-reserve-corojo-2nds-torpedo/": {
+    "price": 75.95,
+    "discount": 55.2,
+    "active": true
+  },
+  "https://www.coronacigar.com/rocky-patel-smoking-world-championship-robusto/": {
+    "price": 95.95,
+    "discount": 69.6,
+    "active": true
+  },
+  "https://www.coronacigar.com/villiger-kreme-connecticut-churchill/": {
+    "price": 124.95,
+    "discount": 38.8,
+    "active": true
+  },
+  "https://www.coronacigar.com/villiger-kreme-connecticut-toro-gordo/": {
+    "price": 119.95,
+    "discount": 40.0,
+    "active": true
+  }
+}
