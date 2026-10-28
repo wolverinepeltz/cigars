@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4998
+    "last_examined": 5014
   },
   "https://www.cigarking.com/95-rated-worlds-best-sampler-assorted-sizes-16-pack/": {
     "price": 109.95,
@@ -1372,6 +1372,11 @@
     "discount": null,
     "active": true
   },
+  "https://www.cigarking.com/e-p-carrillo-short-run-retro-2022-maduro-short-play-5x50-box-24/": {
+    "price": 108.0,
+    "discount": 40.0,
+    "active": true
+  },
   "https://www.cigarking.com/e-p-carrillo-the-pledge-prequel-5x50-5-pack/": {
     "price": 41.62,
     "discount": null,
@@ -1457,6 +1462,11 @@
     "discount": null,
     "active": true
   },
+  "https://www.cigarking.com/hvc-10th-anniversary-2021-limited-edition-toro-6-5x50-box-10/": {
+    "price": 79.95,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/hvc-cerro-maduro-sabrositos-corona-4-5x46-bundle-20/": {
     "price": 89.95,
     "discount": null,
@@ -1467,6 +1477,11 @@
     "discount": null,
     "active": true
   },
+  "https://www.cigarking.com/hvc-san-isidro-geniales-6x52-box-20/": {
+    "price": 120.79,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/hvc-san-isidro-hermoso-4-25x54-5-pack/": {
     "price": 28.1,
     "discount": null,
@@ -1475,6 +1490,11 @@
   "https://www.cigarking.com/hvc-san-isidro-hermoso-4-25x54-box-20/": {
     "price": 112.4,
     "discount": null,
+    "active": true
+  },
+  "https://www.cigarking.com/hvc-vieja-cosecha-no-2-6-5x56-box-20/": {
+    "price": 121.6,
+    "discount": 50.0,
     "active": true
   },
   "https://www.cigarking.com/joya-de-nicaragua-antano-gran-reserva-gt20-6x52-10-pack/": {
