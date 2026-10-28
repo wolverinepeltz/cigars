@@ -43,9 +43,9 @@
     "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-enclave-broadleaf?variant=50419202818336": {
-    "price": 79.99,
-    "discount": null,
-    "active": false
+    "price": 110.99,
+    "discount": 44.5,
+    "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-enclave-broadleaf?variant=50419202851104": {
     "price": 79.99,
@@ -179,8 +179,8 @@
   },
   "https://gtcigars.com/products/aj-fernandez-new-world-dorado?variant=50417793073440": {
     "price": 79.99,
-    "discount": null,
-    "active": false
+    "discount": 36.5,
+    "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-new-world-dorado?variant=50417793106208": {
     "price": 79.99,
@@ -233,9 +233,9 @@
     "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-new-world?variant=50418214535456": {
-    "price": 79.99,
-    "discount": null,
-    "active": false
+    "price": 124.99,
+    "discount": 37.3,
+    "active": true
   },
   "https://gtcigars.com/products/baccarat-the-game?variant=51033452839200": {
     "price": 112.99,
@@ -765,7 +765,7 @@
   "https://gtcigars.com/products/saint-luis-rey-original?variant=51158771007776": {
     "price": 121.99,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/special-edition?variant=51176382464288": {
     "price": 77.99,
