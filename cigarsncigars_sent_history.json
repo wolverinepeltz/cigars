@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 138
+    "last_examined": 146
   },
   "https://cigarsncigars.com/epicurean-carnivale-double-robusto/": {
     "price": 85.95,
@@ -15,7 +15,7 @@
   "https://cigarsncigars.com/flores-y-rodriguez-cabinet-seleccion-maduro-canonazo/": {
     "price": 89.95,
     "discount": 34.3,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/pura-soul-barber-pole/": {
     "price": 99.95,
