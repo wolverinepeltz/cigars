@@ -5,7 +5,7 @@
   "https://www.smokeinn.com/AVO-XO-Intermezzo-5-Pack.html": {
     "price": 38.5,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/AVO-XO-Intermezzo-Tubo-5-Pack-SKU20897111.html": {
     "price": 40.0,
@@ -145,7 +145,7 @@
   "https://www.smokeinn.com/Illusione-Garagiste-Toro-5-Pack.html": {
     "price": 27.5,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Joya-Red-Robusto-5-Pack.html": {
     "price": 25.98,
