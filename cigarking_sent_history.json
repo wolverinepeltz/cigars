@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 5014
+    "last_examined": 4980
   },
   "https://www.cigarking.com/95-rated-worlds-best-sampler-assorted-sizes-16-pack/": {
     "price": 109.95,
@@ -335,7 +335,7 @@
   "https://www.cigarking.com/copy-of-aj-fernandez-dias-de-gloria-brazil-gordo-6-5x60-10-pack/": {
     "price": 95.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-dias-de-gloria-robusto-5-5x52-box-20/": {
     "price": 115.49,
@@ -895,7 +895,7 @@
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-maduro-nub-4x60-box-10-8k8w/": {
     "price": 96.8,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-maduro-robusto-5x52-box-10-1wdt/": {
     "price": 93.17,
@@ -915,7 +915,7 @@
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-nub-4x60-box-10/": {
     "price": 96.8,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-robusto-5x52-box-10-w11g/": {
     "price": 93.17,
@@ -1690,7 +1690,7 @@
   "https://www.cigarking.com/la-aurora-adn-dominicano-toro-5-7x54-10-pack/": {
     "price": 57.0,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/la-aurora-adn-dominicano-toro-5-7x54-box-20/": {
     "price": 109.95,
