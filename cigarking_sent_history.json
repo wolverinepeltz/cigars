@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4980
+    "last_examined": 4952
   },
   "https://www.cigarking.com/95-rated-worlds-best-sampler-assorted-sizes-16-pack/": {
     "price": 109.95,
@@ -740,22 +740,22 @@
   "https://www.cigarking.com/copy-of-my-father-the-judge-grand-robusto-vs-aj-fernandez-cuban-diplomat-robusto-box-press-5x52-8-pack/": {
     "price": 69.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-my-father-the-judge-grand-robusto-vs-aj-fernandez-havana-soul-robusto-box-press-5x52-8-pack/": {
     "price": 69.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-my-father-the-judge-toro-vs-aj-fernandez-cuban-diplomat-gordo-box-press-6x60-8-pack/": {
     "price": 79.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-my-father-the-judge-toro-vs-aj-fernandez-havana-soul-gordo-box-press-6x60-8-pack/": {
     "price": 79.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-my-father-vegas-cubanas-corona-5-5x44-10-pack-17lv/": {
     "price": 56.16,
@@ -1040,7 +1040,7 @@
   "https://www.cigarking.com/copy-of-slam-pack-aj-fernandez-havana-soul-robusto-vs-h-upmann-the-banker-daytrader-toro-assorted-sizes-10-pack/": {
     "price": 79.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-slam-pack-aj-fernandez-havana-soul-robusto-vs-la-aurora-preferidos-1903-edition-sapphire-connecticut-robusto-assorted-sizes-10-pack/": {
     "price": 79.95,
@@ -1985,7 +1985,7 @@
   "https://www.cigarking.com/my-father-the-judge-grand-robusto-vs-aj-fernandez-spanish-heirloom-toro-assorted-sizes-8-pack/": {
     "price": 69.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/oliva-big-70-inflation-buster-assorted-sizes-25-cigars/": {
     "price": 107.95,
@@ -2185,6 +2185,11 @@
   "https://www.cigarking.com/slam-pack-aj-fernandez-havana-soul-gordo-vs-oliva-serie-v-melanio-double-toro-gordo-assorted-sizes-10-pack/": {
     "price": 104.95,
     "discount": null,
+    "active": true
+  },
+  "https://www.cigarking.com/slam-pack-aj-fernandez-havana-soul-robusto-vs-h-upmann-the-banker-daytrader-toro-assorted-sizes-10-pack-flash-sale/": {
+    "price": 79.95,
+    "discount": 48.4,
     "active": true
   },
   "https://www.cigarking.com/slam-pack-aj-fernandez-new-world-decenio-robusto-vs-aj-fernandez-dias-de-gloria-brazil-figurado-assorted-sizes-10-pack/": {
