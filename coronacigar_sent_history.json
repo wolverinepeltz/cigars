@@ -20,7 +20,7 @@
   "https://www.coronacigar.com/corona-special-wheel-churchill/": {
     "price": 65.0,
     "discount": 48.0,
-    "active": true
+    "active": false
   },
   "https://www.coronacigar.com/corona-special-wheel-connecticut-churchill/": {
     "price": 69.95,
