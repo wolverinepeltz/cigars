@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 2361
+    "last_examined": 2377
   },
   "https://gtcigars.com/products/aj-fernandez-bellas-artes-maduro?variant=50423808753952": {
     "price": 99.99,
@@ -38,9 +38,9 @@
     "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-enclave-broadleaf?variant=50419202785568": {
-    "price": 79.99,
-    "discount": null,
-    "active": false
+    "price": 118.99,
+    "discount": 37.4,
+    "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-enclave-broadleaf?variant=50419202818336": {
     "price": 110.99,
@@ -100,7 +100,7 @@
   "https://gtcigars.com/products/aj-fernandez-last-call-maduro?variant=50419014730016": {
     "price": 79.99,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-last-call?variant=50419037405472": {
     "price": 79.99,
