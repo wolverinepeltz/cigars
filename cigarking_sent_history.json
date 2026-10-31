@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4952
+    "last_examined": 4914
   },
   "https://www.cigarking.com/95-rated-worlds-best-sampler-assorted-sizes-16-pack/": {
     "price": 109.95,
@@ -1150,17 +1150,17 @@
   "https://www.cigarking.com/copy-of-trinidad-espiritu-no-1-toro-6x54-15-pack/": {
     "price": 98.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-trinidad-espiritu-no-2-toro-6x54-15-pack/": {
     "price": 103.19,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-trinidad-espiritu-no-3-toro-6x54-15-pack/": {
     "price": 103.19,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/cuban-heirloom-connecticut-churchill-7x50-bundle-20/": {
     "price": 99.95,
@@ -2190,7 +2190,7 @@
   "https://www.cigarking.com/slam-pack-aj-fernandez-havana-soul-robusto-vs-h-upmann-the-banker-daytrader-toro-assorted-sizes-10-pack-flash-sale/": {
     "price": 79.95,
     "discount": 48.4,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-aj-fernandez-new-world-decenio-robusto-vs-aj-fernandez-dias-de-gloria-brazil-figurado-assorted-sizes-10-pack/": {
     "price": 89.95,
@@ -2205,7 +2205,7 @@
   "https://www.cigarking.com/slam-pack-arturo-fuente-hemingway-short-story-vs-dbl-maduro-little-bull-assorted-sizes-10-pack/": {
     "price": 59.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-cigar-king-celebrating-64-years-robusto-vs-atabey-divinos-robusto-assorted-sizes-6-pack/": {
     "price": 79.95,
@@ -2255,22 +2255,22 @@
   "https://www.cigarking.com/slam-pack-dbl-formula-corona-vs-montecristo-original-no-2-assorted-sizes-10-pack/": {
     "price": 59.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-dbl-formula-corona-vs-oliva-serie-o-corona-assorted-sizes-10-pack/": {
     "price": 59.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-dbl-formula-corona-vs-romeo-y-julieta-reserva-real-robusto-assorted-sizes-10-pack/": {
     "price": 59.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-dbl-formula-sumatra-corona-vs-purofino-white-label-connecticut-robusto-assorted-sizes-10-pack-flash-sale/": {
     "price": 69.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-h-upmann-by-aj-fernandez-toro-vs-brick-house-connecticut-churchill-assorted-sizes-10-pack/": {
     "price": 79.95,
@@ -2310,7 +2310,7 @@
   "https://www.cigarking.com/slam-pack-habana-leon-serie-f-2000-gordo-vs-te-amo-the-original-san-andres-magnum-gordo-assorted-sizes-10-pack/": {
     "price": 79.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-la-aurora-107-ecuador-toro-vs-dbl-habano-560-gordo-assorted-sizes-10-pack/": {
     "price": 59.95,
@@ -2320,7 +2320,7 @@
   "https://www.cigarking.com/slam-pack-la-aurora-107-ecuador-toro-vs-dbl-mafu-cameroon-toro-assorted-sizes-10-pack/": {
     "price": 59.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-la-aurora-107-ecuador-toro-vs-roma-craft-intemperance-volstead-revenuer-grand-corona-assorted-sizes-10-pack/": {
     "price": 59.95,
@@ -2515,7 +2515,7 @@
   "https://www.cigarking.com/slam-pack-la-aurora-preferidos-1903-edition-sapphire-connecticut-robusto-vs-dbl-mafu-cameroon-toro-assorted-sizes-10-pack/": {
     "price": 79.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-la-aurora-preferidos-1903-edition-sapphire-connecticut-robusto-vs-romeo-y-julieta-1875-reserva-real-nicaragua-toro-assorted-sizes-10-pack/": {
     "price": 79.95,
@@ -2525,22 +2525,22 @@
   "https://www.cigarking.com/slam-pack-la-aurora-preferidos-hors-d-age-2018-corona-gorda-vs-el-septimo-gilgamesh-sable-shamash-2019-toro-assorted-sizes-10-pack/": {
     "price": 89.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-la-aurora-preferidos-hors-d-age-2018-corona-gorda-vs-gurkha-the-beast-gordo-assorted-sizes-10-pack/": {
     "price": 89.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-la-aurora-preferidos-hors-d-age-2018-corona-gorda-vs-montecristo-original-double-corona-assorted-sizes-10-pack/": {
     "price": 89.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-la-aurora-preferidos-hors-d-age-2018-corona-gorda-vs-montecristo-platinum-habana-no-2-belicoso-assorted-sizes-10-pack/": {
     "price": 89.95,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-montecristo-espada-guard-toro-vs-la-aurora-115th-anniversary-toro-assorted-sizes-10-pack/": {
     "price": 79.95,
