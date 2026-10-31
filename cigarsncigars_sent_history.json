@@ -1,10 +1,10 @@
 {
   "_meta": {
-    "last_examined": 164
+    "last_examined": 167
   },
   "https://cigarsncigars.com/epicurean-carnivale-double-robusto/": {
-    "price": 85.95,
-    "discount": 39.9,
+    "price": 79.95,
+    "discount": 44.1,
     "active": true
   },
   "https://cigarsncigars.com/epicurean-carnivale-lancero/": {
@@ -16,6 +16,11 @@
     "price": 89.95,
     "discount": 34.3,
     "active": false
+  },
+  "https://cigarsncigars.com/guayacan-habano-ecuador-torpedo-box-of-25/": {
+    "price": 90.95,
+    "discount": 38.5,
+    "active": true
   },
   "https://cigarsncigars.com/pura-soul-barber-pole/": {
     "price": 99.95,
