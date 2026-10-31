@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 6059
+    "last_examined": 6061
   },
   "https://www.smokeinn.com/AVO-XO-Intermezzo-5-Pack.html": {
     "price": 38.5,
@@ -120,7 +120,7 @@
   "https://www.smokeinn.com/HVC-Cerro-Natural-Robusto-Gordo-5-Pack-SKU3212713.html": {
     "price": 59.0,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/HVC-Havana-City-Seleccion-No.1-Maduro-Poderosos-5-Pack-SKU357482215.html": {
     "price": 26.5,
@@ -260,7 +260,7 @@
   "https://www.smokeinn.com/Nat-Cicco-Elephant-Jumbo-Ear-Jr-10-Pack-Clearance.html": {
     "price": 69.5,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Ozgener-Family-Cigars-Pi-Synesthesia-Red-5-Pack-Clearance.html": {
     "price": 39.95,
