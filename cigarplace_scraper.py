@@ -15,9 +15,9 @@ in-page widget can't be scraped). Only products that already pass the
 discount + price filters are looked up, so it's 1-2 API calls per run.
 
 Only NEW deals are sent: URLs never emailed before, plus previously
-emailed URLs that hit a new all-time low price. History in
-cigarplace_sent_history.json maps each URL to the lowest price ever
-seen for it, updated every run whether or not an email goes out.
+emailed URLs whose price has since dropped by at least PRICE_DROP_MIN.
+Each sent URL is saved with the price it was emailed at in
+cigarplace_sent_history.json alongside the script.
 
 Credentials: reads the Gmail App Password from the GMAIL_PASSWORD
 environment variable (set in GitHub Secrets).
@@ -44,8 +44,8 @@ MAX_OUR_PRICE   = 150.00
 BATCH_SIZE      = 8       # parallel pages at once
 GOTO_TIMEOUT_MS = 30_000  # navigation timeout
 FORCE           = False   # True = ignore history, email everything found
-PRICE_DROP_MIN  = 0.0     # re-alert when price beats the all-time low by
-                          # this fraction. 0 = any new low, 0.05 = 5%+ lower
+PRICE_DROP_MIN  = 0.05    # re-alert a sent URL if its price falls 5%+ below
+                          # the price it was last emailed at
 
 # Stamped.io public widget credentials (also re-extracted from page 1
 # at runtime in case the site rotates them)
@@ -107,7 +107,7 @@ def format_price(c):
         return "N/A"
     s = f"${c['our_price']:.2f}"
     if c.get("prev_price"):
-        s += f" (NEW LOW, previous low ${c['prev_price']:.2f})"
+        s += f" (PRICE DROP, was ${c['prev_price']:.2f})"
     return s
 
 # ── Sent history ──────────────────────────────────────────────────────────────
@@ -417,38 +417,34 @@ print(funnel)
 
 # ── Delta filtering against sent history ──────────────────────────────────────
 history = load_history() if not FORCE else {}
-new_deals = []
-lowered   = 0
+new_deals  = []
+backfilled = 0
 for c in qualifying:
     url, price = c["url"], c["our_price"]
     if url not in history:
         new_deals.append(c)
         continue
-    low = history[url]
-    if not price:
-        continue
-    if low is None:
-        history[url] = price          # no low on record yet: start one
-        lowered += 1
-    elif price < low and price <= low * (1 - PRICE_DROP_MIN):
-        c["prev_price"] = low         # new all-time low: alert
+    prev = history[url]
+    if prev is None:
+        # Sent before prices were tracked: record today's price quietly
+        # so future drops are measured from here.
+        if price:
+            history[url] = price
+            backfilled += 1
+    elif price and price <= prev * (1 - PRICE_DROP_MIN):
+        c["prev_price"] = prev
         new_deals.append(c)
-    elif price < low:
-        history[url] = price          # lower, but under the alert threshold
-        lowered += 1
 skipped = len(qualifying) - len(new_deals)
 drops   = sum(1 for c in new_deals if c.get("prev_price"))
 
-# Lows for items not being emailed are saved now; alerted items are
-# saved only after the email goes out, so a failed send retries.
-if lowered and not FORCE:
+if backfilled and not FORCE:
     save_history(history)
-    print(f"Updated lowest price for {lowered} previously sent URL(s).")
+    print(f"Recorded current price for {backfilled} previously sent URL(s).")
 
 print(f"\n{'═'*68}")
 print(f"  Cigars {CRITERIA}   →   {len(qualifying)} found, "
       f"{len(new_deals)} new"
-      + (f" incl. {drops} new low(s)" if drops else "")
+      + (f" incl. {drops} price drop(s)" if drops else "")
       + (f" ({skipped} already sent)" if skipped else ""))
 print(f"{'═'*68}\n")
 
@@ -483,7 +479,7 @@ else:
 
     body_lines = [
         f"Found {len(new_deals)} NEW cigar deal(s) - {CRITERIA}"
-        + (f", including {drops} new low(s)" if drops else "")
+        + (f", including {drops} price drop(s)" if drops else "")
         + (f"  ({skipped} previously sent, skipped)" if skipped else "")
         + "\n",
         "=" * 60,
@@ -517,8 +513,8 @@ else:
     msg["From"]    = SENDER_EMAIL
     msg["To"]      = TO_EMAIL
     msg["Subject"] = (f"🍵 Cigar Deals: {len(new_deals)} new"
-                      + (f" ({drops} new low)" if drops == 1 else
-                         f" ({drops} new lows)" if drops else ""))
+                      + (f" ({drops} price drop)" if drops == 1 else
+                         f" ({drops} price drops)" if drops else ""))
     msg.attach(MIMEText("\n".join(body_lines), "plain"))
 
     with open(OUTPUT_CSV, "rb") as f:
