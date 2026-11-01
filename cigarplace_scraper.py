@@ -503,23 +503,29 @@ else:
         "=" * 60,
     ]
 
-    # Group by brand; alphabetical brands, unbranded last; alpha within
-    by_brand = {}
-    for c in new_deals:
-        by_brand.setdefault(c.get("brand") or "Other", []).append(c)
-    brand_order = sorted((b for b in by_brand if b != "Other"),
-                         key=str.lower)
-    if "Other" in by_brand:
-        brand_order.append("Other")
+    # Group by discount tier (80%+, 70-79%, ... 30-39%, then under 30%),
+    # best first; within a tier, alphabetical by brand then name.
+    def tier(c):
+        t = int(round(c["discount_pct"] * 100)) // 10 * 10
+        return min(t, 80) if t >= 30 else 0
 
-    for b in brand_order:
-        items = sorted(by_brand[b], key=lambda c: c["name"].lower())
-        body_lines.append(f"\n──── {b} ({len(items)}) ────")
+    by_tier = {}
+    for c in new_deals:
+        by_tier.setdefault(tier(c), []).append(c)
+
+    for t in sorted(by_tier, reverse=True):
+        label = ("80%+ off" if t == 80 else
+                 "Under 30% off" if t == 0 else f"{t}-{t+9}% off")
+        items = sorted(by_tier[t],
+                       key=lambda c: ((c.get("brand") or "~").lower(),
+                                      c["name"].lower()))
+        body_lines.append(f"\n════ {label} ({len(items)}) ════")
         for c in items:
             price = format_price(c)
             msrp  = f"${c['msrp']:.2f}"      if c["msrp"]      else "N/A"
+            brand = f"[{c['brand']}]  " if c.get("brand") else ""
             body_lines += [
-                f"\n{c['name']}",
+                f"\n{brand}{c['name']}",
                 f"  Our price {price}  (MSRP {msrp})  "
                 f"({c['discount_pct']*100:.0f}% off)"
                 f"{format_stars(c)}",
