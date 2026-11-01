@@ -16,8 +16,8 @@ discount + price filters are looked up, so it's 1-2 API calls per run.
 
 Only NEW deals are sent: URLs never emailed before, plus previously
 emailed URLs whose price has since dropped by at least PRICE_DROP_MIN.
-Each sent URL is saved with the price it was emailed at in
-cigarplace_sent_history.json alongside the script.
+Each sent URL is saved in cigarplace_sent_history.json with the price
+it was emailed at, raised whenever the site's price goes up.
 
 Credentials: reads the Gmail App Password from the GMAIL_PASSWORD
 environment variable (set in GitHub Secrets).
@@ -303,6 +303,10 @@ async def _block_junk(route):
         await route.continue_()
 
 
+# Every price seen this run, qualifying or not, so a sent cigar whose
+# price rose (even out of deal range) can have its saved price raised.
+seen_prices = {}
+
 async def crawl():
     start = time.time()
     candidates = []
@@ -351,6 +355,8 @@ async def crawl():
             found = []
             for p in parse_products(html):
                 stats["parsed"] += 1
+                if p["our_price"]:
+                    seen_prices[p["url"]] = p["our_price"]
                 if p["discount_pct"] >= MIN_DISCOUNT:
                     stats["discount_ok"] += 1
                     found.append(p)
@@ -437,9 +443,21 @@ for c in qualifying:
 skipped = len(qualifying) - len(new_deals)
 drops   = sum(1 for c in new_deals if c.get("prev_price"))
 
-if backfilled and not FORCE:
+# Price went up since it was emailed: raise the saved price so a later
+# drop back down is measured from the higher price and alerts again.
+raised = 0
+for url, prev in history.items():
+    now = seen_prices.get(url)
+    if prev is not None and now and now > prev:
+        history[url] = now
+        raised += 1
+
+if (backfilled or raised) and not FORCE:
     save_history(history)
-    print(f"Recorded current price for {backfilled} previously sent URL(s).")
+    if backfilled:
+        print(f"Recorded current price for {backfilled} previously sent URL(s).")
+    if raised:
+        print(f"Raised saved price for {raised} URL(s) whose price went up.")
 
 print(f"\n{'═'*68}")
 print(f"  Cigars {CRITERIA}   →   {len(qualifying)} found, "
