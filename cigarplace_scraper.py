@@ -14,8 +14,10 @@ serves bot traffic a page variant without review markup, so the
 in-page widget can't be scraped). Only products that already pass the
 discount + price filters are looked up, so it's 1-2 API calls per run.
 
-Only NEW deals (URLs not previously emailed) are sent. Sent URLs are
-persisted to cigarplace_sent_history.json alongside the script.
+Only NEW deals are sent: URLs never emailed before, plus previously
+emailed URLs whose price has since dropped by at least PRICE_DROP_MIN.
+Each sent URL is saved with the price it was emailed at in
+cigarplace_sent_history.json alongside the script.
 
 Credentials: reads the Gmail App Password from the GMAIL_PASSWORD
 environment variable (set in GitHub Secrets).
@@ -42,6 +44,8 @@ MAX_OUR_PRICE   = 150.00
 BATCH_SIZE      = 8       # parallel pages at once
 GOTO_TIMEOUT_MS = 30_000  # navigation timeout
 FORCE           = False   # True = ignore history, email everything found
+PRICE_DROP_MIN  = 0.05    # re-alert a sent URL if its price falls 5%+ below
+                          # the price it was last emailed at
 
 # Stamped.io public widget credentials (also re-extracted from page 1
 # at runtime in case the site rotates them)
@@ -97,16 +101,30 @@ def format_stars(c):
         return ""
     return f"  ★{c['rating']:.1f} ({c['reviews']} reviews)"
 
+def format_price(c):
+    """Our price, with the earlier emailed price when this is a drop."""
+    if not c["our_price"]:
+        return "N/A"
+    s = f"${c['our_price']:.2f}"
+    if c.get("prev_price"):
+        s += f" (PRICE DROP, was ${c['prev_price']:.2f})"
+    return s
+
 # ── Sent history ──────────────────────────────────────────────────────────────
 def load_history():
+    """Return {url: price emailed at}. Old list-format files load with
+    price None, meaning "sent, price unknown"."""
     if os.path.exists(HISTORY_FILE):
         with open(HISTORY_FILE) as f:
-            return set(json.load(f))
-    return set()
+            data = json.load(f)
+        if isinstance(data, list):
+            return {u: None for u in data}
+        return data
+    return {}
 
 def save_history(history):
     with open(HISTORY_FILE, "w") as f:
-        json.dump(sorted(history), f, indent=2)
+        json.dump(dict(sorted(history.items())), f, indent=2)
 
 # ── Parsers ───────────────────────────────────────────────────────────────────
 def parse_price(text):
@@ -398,18 +416,40 @@ else:
 print(funnel)
 
 # ── Delta filtering against sent history ──────────────────────────────────────
-history = load_history() if not FORCE else set()
-new_deals = [c for c in qualifying if c["url"] not in history]
-skipped   = len(qualifying) - len(new_deals)
+history = load_history() if not FORCE else {}
+new_deals  = []
+backfilled = 0
+for c in qualifying:
+    url, price = c["url"], c["our_price"]
+    if url not in history:
+        new_deals.append(c)
+        continue
+    prev = history[url]
+    if prev is None:
+        # Sent before prices were tracked: record today's price quietly
+        # so future drops are measured from here.
+        if price:
+            history[url] = price
+            backfilled += 1
+    elif price and price <= prev * (1 - PRICE_DROP_MIN):
+        c["prev_price"] = prev
+        new_deals.append(c)
+skipped = len(qualifying) - len(new_deals)
+drops   = sum(1 for c in new_deals if c.get("prev_price"))
+
+if backfilled and not FORCE:
+    save_history(history)
+    print(f"Recorded current price for {backfilled} previously sent URL(s).")
 
 print(f"\n{'═'*68}")
 print(f"  Cigars {CRITERIA}   →   {len(qualifying)} found, "
       f"{len(new_deals)} new"
+      + (f" incl. {drops} price drop(s)" if drops else "")
       + (f" ({skipped} already sent)" if skipped else ""))
 print(f"{'═'*68}\n")
 
 for c in new_deals:
-    price = f"${c['our_price']:.2f}" if c["our_price"] else "N/A"
+    price = format_price(c)
     msrp  = f"${c['msrp']:.2f}"      if c["msrp"]      else "N/A"
     brand = f"[{c['brand']}]  " if c.get("brand") else ""
     print(f"{brand}{c['name']}")
@@ -421,8 +461,8 @@ for c in new_deals:
 # ── Save CSV (new deals only) ─────────────────────────────────────────────────
 with open(OUTPUT_CSV, "w", newline="", encoding="utf-8") as f:
     writer = csv.DictWriter(
-        f, fieldnames=["brand", "name", "our_price", "msrp", "discount_pct",
-                       "rating", "reviews", "url"],
+        f, fieldnames=["brand", "name", "our_price", "prev_price", "msrp",
+                       "discount_pct", "rating", "reviews", "url"],
         extrasaction="ignore")
     writer.writeheader()
     writer.writerows(new_deals)
@@ -439,6 +479,7 @@ else:
 
     body_lines = [
         f"Found {len(new_deals)} NEW cigar deal(s) - {CRITERIA}"
+        + (f", including {drops} price drop(s)" if drops else "")
         + (f"  ({skipped} previously sent, skipped)" if skipped else "")
         + "\n",
         "=" * 60,
@@ -457,7 +498,7 @@ else:
         items = sorted(by_brand[b], key=lambda c: c["name"].lower())
         body_lines.append(f"\n──── {b} ({len(items)}) ────")
         for c in items:
-            price = f"${c['our_price']:.2f}" if c["our_price"] else "N/A"
+            price = format_price(c)
             msrp  = f"${c['msrp']:.2f}"      if c["msrp"]      else "N/A"
             body_lines += [
                 f"\n{c['name']}",
@@ -471,7 +512,9 @@ else:
     msg = MIMEMultipart()
     msg["From"]    = SENDER_EMAIL
     msg["To"]      = TO_EMAIL
-    msg["Subject"] = f"🍵 Cigar Deals: {len(new_deals)} new"
+    msg["Subject"] = (f"🍵 Cigar Deals: {len(new_deals)} new"
+                      + (f" ({drops} price drop)" if drops == 1 else
+                         f" ({drops} price drops)" if drops else ""))
     msg.attach(MIMEText("\n".join(body_lines), "plain"))
 
     with open(OUTPUT_CSV, "rb") as f:
@@ -489,7 +532,7 @@ else:
         print(f"✓ Email sent to {TO_EMAIL}")
 
         if not FORCE:
-            history.update(c["url"] for c in new_deals)
+            history.update({c["url"]: c["our_price"] for c in new_deals})
             save_history(history)
             print(f"✓ {len(new_deals)} URL(s) added to "
                   f"{os.path.basename(HISTORY_FILE)}")
