@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 2377
+    "last_examined": 2391
   },
   "https://gtcigars.com/products/aj-fernandez-bellas-artes-maduro?variant=50423808753952": {
     "price": 99.99,
@@ -70,7 +70,7 @@
   "https://gtcigars.com/products/aj-fernandez-enclave?variant=50419192955168": {
     "price": 79.99,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-enclave?variant=50419192987936": {
     "price": 79.99,
