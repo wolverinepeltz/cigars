@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4910
+    "last_examined": 4922
   },
   "https://www.cigarking.com/95-rated-worlds-best-sampler-assorted-sizes-16-pack/": {
     "price": 109.95,
@@ -1980,6 +1980,21 @@
   "https://www.cigarking.com/marvelous-mild-masterpieces-assorted-sizes-20-pack/": {
     "price": 119.95,
     "discount": null,
+    "active": true
+  },
+  "https://www.cigarking.com/montecristo-espada-guard-toro-6x50-10-pack/": {
+    "price": 69.0,
+    "discount": 70.0,
+    "active": true
+  },
+  "https://www.cigarking.com/montecristo-espada-oscuro-guard-toro-6x50-10-pack/": {
+    "price": 65.97,
+    "discount": 70.0,
+    "active": true
+  },
+  "https://www.cigarking.com/montecristo-espada-oscuro-magnum-especial-6x60-10-pack/": {
+    "price": 70.47,
+    "discount": 70.0,
     "active": true
   },
   "https://www.cigarking.com/my-father-the-judge-grand-robusto-vs-aj-fernandez-spanish-heirloom-toro-assorted-sizes-8-pack/": {
