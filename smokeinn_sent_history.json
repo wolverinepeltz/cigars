@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 6061
+    "last_examined": 6066
   },
   "https://www.smokeinn.com/AVO-XO-Intermezzo-5-Pack.html": {
     "price": 38.5,
@@ -100,7 +100,7 @@
   "https://www.smokeinn.com/Epic-Maduro-Toro-Tubes-10-Pack-Clearance.html": {
     "price": 82.8,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Fiat-Lux-Geniuses-5-Pack-SKU335522211.html": {
     "price": 27.5,
@@ -140,7 +140,7 @@
   "https://www.smokeinn.com/Illusione-Garagiste-Gordo-5-Pack.html": {
     "price": 29.5,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Illusione-Garagiste-Toro-5-Pack.html": {
     "price": 27.5,
@@ -165,7 +165,7 @@
   "https://www.smokeinn.com/Kristoff-Nicaragua-Robusto-5-Pack.html": {
     "price": 53.5,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Kristoff-Nicaragua-Toro-5-Pack.html": {
     "price": 58.95,
@@ -272,15 +272,35 @@
     "discount": null,
     "active": true
   },
+  "https://www.smokeinn.com/Raices-Cubanas-Clasico-Churchill-5-Pack.html": {
+    "price": 24.0,
+    "discount": 44,
+    "active": true
+  },
   "https://www.smokeinn.com/Raices-Cubanas-Clasico-Robusto-10-Pack-Promo.html": {
     "price": 72.5,
     "discount": null,
+    "active": true
+  },
+  "https://www.smokeinn.com/Raices-Cubanas-Clasico-Robusto-5-Pack-SKU4118612.html": {
+    "price": 19.5,
+    "discount": 46,
     "active": true
   },
   "https://www.smokeinn.com/Raices-Cubanas-Clasico-Toro-10-Pack-Promo.html": {
     "price": 79.95,
     "discount": null,
     "active": false
+  },
+  "https://www.smokeinn.com/Raices-Cubanas-Liga-De-Reyes-Churchill-5-pack-SKU413331112.html": {
+    "price": 22.98,
+    "discount": 58,
+    "active": true
+  },
+  "https://www.smokeinn.com/Raices-Cubanas-Liga-De-Reyes-Robusto-5-Pack-SKU41333122.html": {
+    "price": 20.34,
+    "discount": 58,
+    "active": true
   },
   "https://www.smokeinn.com/Romeo-By-Romeo-y-Julieta-Piramides-5-Pack-SKU18610122.html": {
     "price": 42.5,
@@ -430,6 +450,11 @@
   "https://www.smokeinn.com/Tatiana-Vanilla-Robusto.html": {
     "price": 103.5,
     "discount": null,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatuaje-Nuevitas-Jibaro-No.-1-5-Pack.html": {
+    "price": 28.5,
+    "discount": 40,
     "active": true
   }
 }
