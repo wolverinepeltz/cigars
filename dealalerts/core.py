@@ -321,7 +321,12 @@ class History:
                                       "active": True}
         for item in qualifying:  # deals live right now, emailed or not
             if item["url"] in self.data:
-                self.data[item["url"]]["active"] = True
+                entry = self.data[item["url"]]
+                entry["active"] = True
+                # Older entries were saved without a discount; fill it in
+                # from this run so the history shows how deep each deal is.
+                if entry["discount"] is None:
+                    entry["discount"] = item["discount_pct"]
         if partial:
             print(f"Only {examined} item(s) read vs {self.meta['last_examined']} "
                   f"last run; looks partial, so no deals are marked inactive.")
