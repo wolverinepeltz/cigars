@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4922
+    "last_examined": 4846
   },
   "https://www.cigarking.com/95-rated-worlds-best-sampler-assorted-sizes-16-pack/": {
     "price": 109.95,
@@ -860,7 +860,7 @@
   "https://www.cigarking.com/copy-of-oliva-serie-v-maduro-especial-robusto-5x54-box-10/": {
     "price": 78.53,
     "discount": null,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-maduro-especial-toro-6x50-box-10/": {
     "price": 86.52,
@@ -2061,6 +2061,11 @@
     "price": 58.71,
     "discount": null,
     "active": false
+  },
+  "https://www.cigarking.com/oliva-serie-v-maduro-especial-double-robusto-5x54-box-10/": {
+    "price": 78.53,
+    "discount": 50.0,
+    "active": true
   },
   "https://www.cigarking.com/oliva-serie-v-melanio-edicion-ano-2025-5x54-box-10-flash-sale/": {
     "price": 99.95,
