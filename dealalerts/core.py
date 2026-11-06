@@ -344,7 +344,9 @@ class History:
         out = dict(sorted(self.data.items()))
         if self.meta:
             out = {META_KEY: self.meta, **out}
-        with open(self.path, "w", encoding="utf-8") as f:
+        # newline="\n": the same bytes on Windows as on Linux, so a run on
+        # the home PC doesn't rewrite every line of the file in git.
+        with open(self.path, "w", encoding="utf-8", newline="\n") as f:
             json.dump(out, f, indent=2)
 
 

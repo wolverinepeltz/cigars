@@ -60,9 +60,52 @@ Still standalone, because they work differently:
 `fetch()` escalates on HTTP 403: a plain request, then Chrome's connection
 fingerprint (`curl_cffi`), then a real Chrome browser (`playwright`). The
 first that works is used for the rest of the run. The log's 403 line names
-the blocker (e.g. `server=cloudflare cf-mitigated=challenge`). A workflow
-only gets the real-browser step if it installs `playwright` and runs the
-script under `xvfb-run` (see the Cigora workflow).
+the blocker (e.g. `server=cloudflare cf-mitigated=challenge`). On GitHub's
+servers a workflow only gets the real-browser step if it installs
+`playwright` and runs the script under `xvfb-run`.
+
+Cigora and Perfect Cigar Blend block GitHub's servers outright (Cloudflare
+challenges even a real browser there), so they run on the home runner.
+
+## Home runner
+
+Cigora and Perfect Cigar Blend run on a Windows PC at home, through a
+GitHub self-hosted runner labelled `home-cigars`. Their workflows say
+`runs-on: [self-hosted, Windows, home-cigars]`; nothing else runs there.
+
+One-time setup on the PC:
+
+1. Install [Git for Windows](https://git-scm.com/download/win) (default
+   options) if `git --version` in PowerShell doesn't print a version.
+   Google Chrome should be installed too (it usually is); without it the
+   workflow downloads Playwright's Chromium instead.
+2. On GitHub: repo **Settings > Actions > Runners > New self-hosted runner**,
+   choose **Windows** and **x64**.
+3. Open **PowerShell as Administrator** and run the **Download** commands
+   from that page (they make `C:\actions-runner`).
+4. Run the **Configure** command from that page (`./config.cmd --url ...
+   --token ...`) and answer:
+   - runner group: press Enter
+   - runner name: press Enter, or type `home-pc`
+   - additional labels: type `home-cigars`
+   - work folder: press Enter
+   - run as a service: `Y`
+   - service account: press Enter (`NT AUTHORITY\NETWORK SERVICE`)
+5. Back on the Runners page the runner should show **Idle**.
+6. Actions tab: run **Cigora deal alert** and **Perfect Cigar Blend deal
+   alert** once by hand and check the logs.
+
+The PC must be on and awake when the runs are due (they wait otherwise).
+Never add a `pull_request` trigger to a workflow that runs on this runner:
+this repo is public, and that would let strangers' code run on the PC.
+
+Troubleshooting:
+- Run stuck on "Waiting for a runner": the runner service isn't running
+  (Windows Services > "GitHub Actions Runner").
+- "Set up Python" fails: an existing Python 3.12 install can block the
+  installer; remove it in Apps & Features or change `python-version`.
+- Remove the runner: `C:\actions-runner\config.cmd remove --token ...`
+  (token from the runner's page on GitHub).
 
 ## Adding a store
 
