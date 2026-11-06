@@ -10,16 +10,17 @@ One browser is started per run, on first use, and reused for every page
 after that, so the clearance cookie Cloudflare hands out is kept. It is
 closed automatically when the run ends.
 
-Odds are better with a visible (non-headless) browser, so the workflow runs
-the script under xvfb-run, a virtual screen. Without a screen it falls back
-to headless mode.
+Odds are better with a visible (non-headless) browser. On Windows and Mac
+it opens a normal window; on Linux it needs a screen, which GitHub's
+servers get from xvfb-run. Without one it runs hidden (headless).
 
-Needs:  pip install playwright   (uses the Google Chrome preinstalled on
-GitHub's ubuntu runners; falls back to Playwright's own Chromium)
+Needs:  pip install playwright   (uses Google Chrome if it's installed;
+otherwise Playwright's own Chromium: python -m playwright install chromium)
 """
 
 import atexit
 import os
+import sys
 import time
 
 CHALLENGE_TITLES = ("just a moment", "attention required", "checking your browser",
@@ -62,21 +63,42 @@ def looks_like_challenge(title, html):
     return len(html) < 30000 and any(m in html.lower() for m in CHALLENGE_MARKERS)
 
 
+def wants_headless():
+    """
+    Hidden (headless) Chrome only when there's no screen to draw on: Linux
+    without a display (e.g. GitHub's servers not using xvfb-run), or when
+    DEALALERTS_HEADLESS=1 is set. Windows and Mac always have a screen,
+    and a visible browser passes bot checks more often.
+    """
+    forced = os.environ.get("DEALALERTS_HEADLESS")
+    if forced is not None:
+        return forced.strip().lower() in ("1", "true", "yes")
+    return sys.platform.startswith("linux") and not os.environ.get("DISPLAY")
+
+
 class RealBrowser:
     def __init__(self):
         from playwright.sync_api import sync_playwright  # ImportError if missing
         self._pw = sync_playwright().start()
-        headless = not os.environ.get("DISPLAY")
         args = ["--disable-blink-features=AutomationControlled",
                 "--no-sandbox", "--disable-dev-shm-usage"]
-        try:
-            self._browser = self._pw.chromium.launch(channel="chrome",
-                                                     headless=headless, args=args)
-            which = "Google Chrome"
-        except Exception:
-            self._browser = self._pw.chromium.launch(headless=headless, args=args)
-            which = "Chromium"
-        print(f"  started {which} ({'headless' if headless else 'on a virtual screen'})")
+        # Try the best combination first; fall back if a browser or a
+        # visible window isn't available here.
+        attempts = [("chrome", False), (None, False), ("chrome", True), (None, True)]
+        if wants_headless():
+            attempts = [a for a in attempts if a[1]]
+        self._browser, last_error = None, None
+        for channel, headless in attempts:
+            try:
+                opts = {"channel": channel} if channel else {}
+                self._browser = self._pw.chromium.launch(headless=headless, args=args, **opts)
+                break
+            except Exception as e:
+                last_error = e
+        if self._browser is None:
+            raise last_error
+        which = "Google Chrome" if channel else "Chromium"
+        print(f"  started {which} ({'headless' if headless else 'visible window'})")
         self._context = self._browser.new_context(
             locale="en-US", timezone_id="America/Denver",
             viewport={"width": 1366, "height": 768})

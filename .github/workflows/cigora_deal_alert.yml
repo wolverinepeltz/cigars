@@ -1,19 +1,34 @@
 name: Cigora deal alert
 
+# Runs on the home Windows PC (a self-hosted runner labelled "home-cigars"),
+# not on GitHub's servers: cigora.com answers GitHub's servers with Cloudflare's
+# challenge page, which even a real browser can't get past from there.
+# Setup steps are in README.md under "Home runner".
+#
 # GMAIL_PASSWORD must be set under
 #   Settings > Secrets and variables > Actions > New repository secret
 # using a Gmail App Password, not your account password.
-# Sender/recipient are set as constants in cigora_deal_alert.py.
 
 on:
-  workflow_dispatch:
+  schedule:
+    # 4:58 PM Denver in summer (MDT), 3:58 PM in winter (MST). Cron is UTC.
+    - cron: "58 22 * * *"
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
 
 jobs:
   check-deals:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Windows, home-cigars]
     timeout-minutes: 60
     permissions:
       contents: write
+    defaults:
+      run:
+        shell: powershell
+    env:
+      # Product names can contain characters like n-tilde; make Python's
+      # output UTF-8 so Windows' default code page can't crash the run.
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -24,32 +39,50 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        # playwright drives the Google Chrome already on GitHub's runners, for
-        # Cloudflare's "Just a moment..." check. xvfb gives Chrome a virtual
-        # screen, since a visible browser gets past the check more often.
         run: |
-          pip install requests beautifulsoup4 curl_cffi playwright
-          command -v xvfb-run >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq xvfb)
+          $ErrorActionPreference = "Continue"
+          python -m pip install --upgrade --quiet requests beautifulsoup4 curl_cffi playwright
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          # Only used if the site still challenges a plain request: the shared
+          # code falls back to Google Chrome, or to this Chromium if Chrome
+          # isn't installed. Skips the download once it's there.
+          python -m playwright install chromium
+          if ($LASTEXITCODE -ne 0) { Write-Host "Chromium install failed; Chrome or plain requests will be used." }
+          exit 0
 
       - name: Run deal alert
         env:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-        run: xvfb-run -a python cigora_deal_alert.py --min-discount 33.333 --max-price 125
+        run: |
+          python cigora_deal_alert.py --min-discount 33.333 --max-price 125
+          exit $LASTEXITCODE
 
       - name: Commit updated history file
         run: |
+          $ErrorActionPreference = "Continue"   # git reports progress on stderr
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          $hist = "cigora_sent_history.json"
           # First run may not have created the file yet; start it empty.
-          [ -f cigora_sent_history.json ] || echo '{}' > cigora_sent_history.json
-          git add cigora_sent_history.json
-          git diff --staged --quiet || git commit -m "Update sent history [skip ci]"
+          if (-not (Test-Path $hist)) { [IO.File]::WriteAllText((Join-Path $PWD $hist), "{}") }
+          git add $hist
+          git diff --staged --quiet
+          if ($LASTEXITCODE -eq 0) { Write-Host "No history changes."; exit 0 }
+          git commit -m "Update Cigora sent history [skip ci]"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
           # Other workflows push to main too; pull their commits first so this
           # push isn't rejected as out of date. Retries in case two land at once.
-          pushed=no
-          for i in 1 2 3; do
-            if git pull --rebase origin main && git push; then pushed=yes; break; fi
-            git rebase --abort 2>/dev/null || true
-            echo "Push attempt $i failed, retrying..."; sleep $((i * 10))
-          done
-          [ "$pushed" = yes ] || { echo "Push failed after 3 attempts"; exit 1; }
+          $pushed = $false
+          foreach ($i in 1..3) {
+            git pull --rebase origin main
+            if ($LASTEXITCODE -eq 0) {
+              git push
+              if ($LASTEXITCODE -eq 0) { $pushed = $true; break }
+            } else {
+              git rebase --abort
+            }
+            Write-Host "Push attempt $i failed, retrying..."
+            Start-Sleep -Seconds (10 * $i)
+          }
+          if (-not $pushed) { Write-Host "Push failed after 3 attempts"; exit 1 }
+          exit 0
