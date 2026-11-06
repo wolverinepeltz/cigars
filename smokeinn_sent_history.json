@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 6066
+    "last_examined": 6073
   },
   "https://www.smokeinn.com/AVO-XO-Maestoso-5-Pack.html": {
     "price": 42.5,
@@ -57,6 +57,16 @@
     "discount": 50,
     "active": true
   },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Sun-Grown-Toro.html": {
+    "price": 58.95,
+    "discount": 34,
+    "active": true
+  },
+  "https://www.smokeinn.com/El-Titan-De-Bronze-30th-Anniversary-5-pack.html": {
+    "price": 90.0,
+    "discount": 39,
+    "active": true
+  },
   "https://www.smokeinn.com/Epic-Corojo-Toro-SKU384821.html": {
     "price": 26.0,
     "discount": 50,
@@ -72,6 +82,11 @@
     "discount": 40,
     "active": true
   },
+  "https://www.smokeinn.com/Epic-Maduro-Toro-Tubes-10-Pack-Clearance.html": {
+    "price": 82.8,
+    "discount": 40,
+    "active": true
+  },
   "https://www.smokeinn.com/Fiat-Lux-Geniuses-5-Pack-SKU335522211.html": {
     "price": 27.5,
     "discount": 50,
@@ -82,9 +97,19 @@
     "discount": 45,
     "active": true
   },
+  "https://www.smokeinn.com/Four-Kicks-Capa-Especial-Robusto-5-Pack.html": {
+    "price": 29.5,
+    "discount": 39,
+    "active": true
+  },
   "https://www.smokeinn.com/HVC-Havana-City-Seleccion-No.1-Maduro-Poderosos-5-Pack-SKU357482215.html": {
     "price": 26.5,
     "discount": 50,
+    "active": true
+  },
+  "https://www.smokeinn.com/Hoyo-La-Amistad-Dark-Sumatra-Espresso.html": {
+    "price": 124.95,
+    "discount": 35,
     "active": true
   },
   "https://www.smokeinn.com/Joya-Red-Robusto-5-Pack.html": {
@@ -99,6 +124,11 @@
   },
   "https://www.smokeinn.com/Kristoff-Nicaragua-Robusto-5-Pack-SKU3843912.html": {
     "price": 27.0,
+    "discount": 49,
+    "active": true
+  },
+  "https://www.smokeinn.com/Kristoff-Nicaragua-Robusto-5-Pack.html": {
+    "price": 53.5,
     "discount": 49,
     "active": true
   },
@@ -135,6 +165,16 @@
   "https://www.smokeinn.com/Luciano-Foreign-Affair-Toro-Extra-5-Pack-SKU36895211.html": {
     "price": 29.5,
     "discount": 50,
+    "active": true
+  },
+  "https://www.smokeinn.com/Macanudo-Cafe-Crystal.html": {
+    "price": 79.95,
+    "discount": 34,
+    "active": true
+  },
+  "https://www.smokeinn.com/Macanudo-Gold-Label-Crystal-Tube.html": {
+    "price": 88.0,
+    "discount": 36,
     "active": true
   },
   "https://www.smokeinn.com/Maniac-Gran-Belicoso-5-Pack.html": {
@@ -177,9 +217,19 @@
     "discount": 47,
     "active": true
   },
+  "https://www.smokeinn.com/Partagas-10.html": {
+    "price": 85.95,
+    "discount": 34,
+    "active": true
+  },
   "https://www.smokeinn.com/Raices-Cubanas-Clasico-Churchill-5-Pack.html": {
     "price": 24.0,
     "discount": 44,
+    "active": true
+  },
+  "https://www.smokeinn.com/Raices-Cubanas-Clasico-Robusto-10-Pack-Promo.html": {
+    "price": 72.5,
+    "discount": 36,
     "active": true
   },
   "https://www.smokeinn.com/Raices-Cubanas-Clasico-Robusto-5-Pack-SKU4118612.html": {
@@ -207,14 +257,129 @@
     "discount": 40,
     "active": true
   },
+  "https://www.smokeinn.com/Room-101-FARCE-Connecticut-Churchill-10-Pack-Promo.html": {
+    "price": 91.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-FARCE-Connecticut-Robusto-10-Pack-Promo.html": {
+    "price": 84.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-FARCE-Connecticut-Super-Toro-10-Pack-Promo.html": {
+    "price": 97.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-FARCE-Maduro-Toro-10-Pack-Promo.html": {
+    "price": 97.0,
+    "discount": 35,
+    "active": true
+  },
   "https://www.smokeinn.com/Room-101-FARCE-Maduro-Toro-5-Pack.html": {
     "price": 30.5,
     "discount": 59,
     "active": true
   },
+  "https://www.smokeinn.com/Room-101-FARCE-Original-Robusto-10-Pack-Promo.html": {
+    "price": 88.0,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-FARCE-Original-Toro-10-Pack-Promo.html": {
+    "price": 97.0,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-Farce-Nicaragua-Gordo-10-Pack-SKU34918212.html": {
+    "price": 104.95,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-Farce-Nicaragua-Robusto-10-Pack-SKU3491822110.html": {
+    "price": 87.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-Farce-Nicaragua-Toro-10-Pack-SKU3491812.html": {
+    "price": 96.95,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Sancho-Panza-Extra-Chido-Gigante-10-Pack-Promo.html": {
+    "price": 65.5,
+    "discount": 34,
+    "active": true
+  },
+  "https://www.smokeinn.com/Sancho-Panza-Extra-Chido-Robusto-10-Pack-Promo.html": {
+    "price": 57.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Sancho-Panza-Extra-Chido-Toro-10-Pack-Promo.html": {
+    "price": 61.5,
+    "discount": 35,
+    "active": true
+  },
   "https://www.smokeinn.com/Sancho-Panza-Extra-Chido-Toro.html": {
     "price": 94.95,
     "discount": 50,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Classic-Cherry.html": {
+    "price": 81.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Classic-Chocolate.html": {
+    "price": 81.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Classic-Cinnamon.html": {
+    "price": 81.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Classic-Cognac-Corona.html": {
+    "price": 81.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Classic-Groovy-Blue-Corona.html": {
+    "price": 81.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Classic-Honey.html": {
+    "price": 81.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Classic-Night-Cap-Corona.html": {
+    "price": 81.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Classic-Rum.html": {
+    "price": 81.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Classic-Sweet-Euphoria-Corona.html": {
+    "price": 81.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Rum-Robusto.html": {
+    "price": 103.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Tatiana-Vanilla-Robusto.html": {
+    "price": 103.5,
+    "discount": 35,
     "active": true
   },
   "https://www.smokeinn.com/Tatuaje-Nuevitas-Jibaro-No.-1-5-Pack.html": {
