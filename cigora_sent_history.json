@@ -1,1 +1,15 @@
-{}
+{
+  "_meta": {
+    "last_examined": 6
+  },
+  "https://www.cigora.com/product/ep-carrillo-dark-rituals/ECE-PM.html": {
+    "price": 34.99,
+    "discount": 39.7,
+    "active": true
+  },
+  "https://www.cigora.com/product/man-o-war-armada/MWF-PM.html": {
+    "price": 39.99,
+    "discount": 68.5,
+    "active": true
+  }
+}
