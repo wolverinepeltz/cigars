@@ -1,15 +1,160 @@
 {
   "_meta": {
-    "last_examined": 6
+    "last_examined": 1289
+  },
+  "https://www.cigora.com/product/anti-drama-drama-club-by-bunny-droppings/BUA-PM.html": {
+    "price": 74.99,
+    "discount": 37.5,
+    "active": true
+  },
+  "https://www.cigora.com/product/bahia-caf%C3%A9/BCF-PM.html": {
+    "price": 39.99,
+    "discount": 57.9,
+    "active": true
+  },
+  "https://www.cigora.com/product/blackened-spray-can-lighter-and-cutter-combo/CGOR149-SP.html": {
+    "price": 79.99,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigora.com/product/cao-gold-cigarillos/001-CAO_Gold_Minis.html": {
+    "price": 73.99,
+    "discount": 37.5,
+    "active": true
+  },
+  "https://www.cigora.com/product/champagne-toast-mega-sampler-ii/CIDD613-SP.html": {
+    "price": 99.99,
+    "discount": 44.8,
+    "active": true
+  },
+  "https://www.cigora.com/product/connecticut-collectors-sampler-ii/CIGASST599-SP.html": {
+    "price": 109.99,
+    "discount": 53.9,
+    "active": true
+  },
+  "https://www.cigora.com/product/connecticut-comfort-sampler/CIGASST808-SP.html": {
+    "price": 69.99,
+    "discount": 64.4,
+    "active": true
+  },
+  "https://www.cigora.com/product/crowd-pleaser-collection/CIGASST776-SP.html": {
+    "price": 99.99,
+    "discount": 44.0,
+    "active": true
+  },
+  "https://www.cigora.com/product/crowned-heads-la-vereda/F4K-PM.html": {
+    "price": 55.99,
+    "discount": 36.4,
+    "active": true
+  },
+  "https://www.cigora.com/product/deadwood-the-girl-with-no-name/DWN-PM.html": {
+    "price": 27.99,
+    "discount": 48.2,
+    "active": true
+  },
+  "https://www.cigora.com/product/diesel-wicked-witches-brew/J57-PM.html": {
+    "price": 74.99,
+    "discount": 45.1,
+    "active": true
+  },
+  "https://www.cigora.com/product/drew-estate-chateau-real-connecticut-shade/CTC-PM.html": {
+    "price": 24.99,
+    "discount": 37.5,
+    "active": true
+  },
+  "https://www.cigora.com/product/drew-estate-ultimate-infused-assortment/CIGASST750-SP.html": {
+    "price": 119.99,
+    "discount": 49.5,
+    "active": true
+  },
+  "https://www.cigora.com/product/drew-estate-ultimate-traditional-20ct-mega-sampler/AIASST94-SP.html": {
+    "price": 109.99,
+    "discount": 49.4,
+    "active": true
+  },
+  "https://www.cigora.com/product/emilio-side-1/EM1-PM.html": {
+    "price": 27.99,
+    "discount": 39.1,
+    "active": true
+  },
+  "https://www.cigora.com/product/emilio-side-2/EM2-PM.html": {
+    "price": 29.99,
+    "discount": 37.5,
+    "active": true
   },
   "https://www.cigora.com/product/ep-carrillo-dark-rituals/ECE-PM.html": {
     "price": 34.99,
     "discount": 39.7,
     "active": true
   },
+  "https://www.cigora.com/product/la-palina-nicaragua-connecticut/9UC-PM.html": {
+    "price": 29.99,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://www.cigora.com/product/la-perla-habana-black-tan/9YA-PM.html": {
+    "price": 39.99,
+    "discount": 44.8,
+    "active": true
+  },
+  "https://www.cigora.com/product/la-perla-habana-oro-pearlas/LOP-PM.html": {
+    "price": 61.99,
+    "discount": 47.0,
+    "active": true
+  },
+  "https://www.cigora.com/product/latitude-zero-el-valle/LZ8-PM.html": {
+    "price": 8.49,
+    "discount": 77.7,
+    "active": true
+  },
   "https://www.cigora.com/product/man-o-war-armada/MWF-PM.html": {
     "price": 39.99,
     "discount": 68.5,
+    "active": true
+  },
+  "https://www.cigora.com/product/man-o-war-dark-horse-se/MWT-PM.html": {
+    "price": 79.99,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://www.cigora.com/product/mark-twain-rough-drafts-habano/TRH-PM.html": {
+    "price": 59.99,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigora.com/product/mellow-masterpieces-sampler/CIGASST777-SP.html": {
+    "price": 99.99,
+    "discount": 59.3,
+    "active": true
+  },
+  "https://www.cigora.com/product/nica-libre-sun-grown/NLS-PM.html": {
+    "price": 7.59,
+    "discount": 76.3,
+    "active": true
+  },
+  "https://www.cigora.com/product/nica-libre-x-oliva/NLX-PM.html": {
+    "price": 9.69,
+    "discount": 76.9,
+    "active": true
+  },
+  "https://www.cigora.com/product/rocky-patel-best-of-mellow-collection/RPASST56-SP.html": {
+    "price": 59.99,
+    "discount": 48.1,
+    "active": true
+  },
+  "https://www.cigora.com/product/rocky-patel-top-twenty-collection/RPASST54-SP.html": {
+    "price": 94.99,
+    "discount": 54.0,
+    "active": true
+  },
+  "https://www.cigora.com/product/room101-ichiban-limited-edition-maduro/RMP-PM.html": {
+    "price": 59.99,
+    "discount": 61.4,
+    "active": true
+  },
+  "https://www.cigora.com/product/torano-exodus-1959-50-years/T8B-PM.html": {
+    "price": 19.99,
+    "discount": 39.4,
     "active": true
   }
 }
