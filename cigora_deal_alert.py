@@ -162,31 +162,53 @@ class CigoraStore:
         p.add_argument("--category", default=CATEGORY,
                        help="category slug under /category/ (default: cigars)")
 
+    # Safety cap; a run that reaches it is looping.
+    PAGE_CAP = 150
+
     def scan(self, session, args):
-        items, seen, page = [], set(), 0
-        while args.max_pages is None or page < args.max_pages:
+        items, seen, seen_tiles, page = [], set(), set(), 0
+        tiles_read = 0
+        limit = args.max_pages if args.max_pages is not None else self.PAGE_CAP
+        while page < limit:
             start = page * PAGE_SIZE
             url = LISTING_URL_TMPL.format(category=args.category, start=start)
             print(f"Scanning page {page + 1} (start={start}): {url}")
             try:
-                products = _extract_products(get_soup(url, session))
+                soup = get_soup(url, session)
             except requests.RequestException as e:
                 print(f"  failed: {e}")
                 break
-            if not products:
-                print("  no products found, stopping.")
+            # Count the page's product tiles, not just the ones that could be
+            # priced as deals (most are price ranges with no markdown): the
+            # end of the catalog is a page with fewer than PAGE_SIZE tiles.
+            tile_ids = [t.get("data-pid") or str(i)
+                        for i, t in enumerate(soup.select("div.product[data-pid]"))]
+            if not tile_ids:
+                print("  no products on this page, stopping.")
                 break
-            for p in products:
+            if not set(tile_ids) - seen_tiles:
+                print("  nothing new on this page (site is repeating pages), stopping.")
+                break
+            seen_tiles.update(tile_ids)
+            tiles_read += len(tile_ids)
+            for p in _extract_products(soup):
                 if p["url"] not in seen:  # dedup across pages, first listing wins
                     seen.add(p["url"])
                     p["ref"], p["ref_label"] = p.get("list_price"), "was"
                     items.append(p)
-            if len(products) < PAGE_SIZE:  # SFCC listings end on a short page
+            if len(tile_ids) < PAGE_SIZE:  # SFCC listings end on a short page
                 print("  short page - end of catalog.")
                 break
             page += 1
             time.sleep(args.delay)
-        return items, len(items)
+        else:
+            if args.max_pages is None:
+                print(f"  stopped at the {self.PAGE_CAP}-page safety cap.")
+        print(f"  {tiles_read} product(s) listed, {len(items)} with a price "
+              f"that can be compared (the rest are ranges with no markdown)")
+        # "examined" counts every listed product, so a catalog of mostly
+        # unpriceable ranges isn't mistaken for "nothing was read".
+        return items, tiles_read
 
 
 STORE = CigoraStore()
