@@ -180,8 +180,44 @@ def fetch(url, session, params=None, accept=HTML_ACCEPT, timeout=25):
         if method != getattr(session, "_method", "plain"):
             session._method = method
             print(f"  {method} got through; using it for the rest of this run.")
+        session._last_page = (url, getattr(resp, "text", "") or "")
         return resp
     return None
+
+
+# Strings worth counting in a page that yielded no products, to tell a
+# changed layout from a bot-check or JavaScript-only page at a glance.
+PAGE_MARKERS = ("data-pid", "product-tile", "/product/", "class=\"product",
+                "data-entity-id", "price", "$", "<script", "challenge",
+                "captcha", "enable javascript")
+
+
+def save_debug_page(store, session):
+    """
+    When a run reads nothing, save the last page that did load to
+    debug/<store>-last-page.html and log a summary of it, so a changed
+    page layout can be diagnosed from the log (and the saved file).
+    """
+    url, text = getattr(session, "_last_page", (None, None))
+    if not url:
+        return
+    slug = "".join(c if c.isalnum() else "-" for c in store.name.lower()).strip("-")
+    path = Path("debug") / f"{slug}-last-page.html"
+    try:
+        path.parent.mkdir(exist_ok=True)
+        path.write_text(text, encoding="utf-8", newline="\n")
+    except OSError as e:
+        print(f"  (couldn't save debug page: {e})")
+        path = None
+    low = text.lower()
+    start = low.find("<title>")
+    title = text[start + 7:low.find("</title>", start)].strip()[:100] if start != -1 else ""
+    counts = ", ".join(f"{m!r}: {low.count(m.lower())}" for m in PAGE_MARKERS)
+    print(f"\nLast page that loaded: {url}")
+    print(f"  title: {title!r}, size: {len(text):,} characters")
+    print(f"  contains {counts}")
+    if path:
+        print(f"  saved to {path}")
 
 
 def discount(price, ref):
@@ -474,6 +510,7 @@ def run(store, argv=None):
     if examined == 0:
         # Nothing parsed at all: a block or a site change, not an empty store.
         print("Nothing was read from the site. Check the messages above.")
+        save_debug_page(store, session)
         raise SystemExit(1)
 
     history = History(args.history_file)
