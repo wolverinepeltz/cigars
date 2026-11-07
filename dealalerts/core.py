@@ -29,6 +29,7 @@ and optionally:
 import argparse
 import json
 import os
+import re
 import smtplib
 import time
 from email.mime.text import MIMEText
@@ -205,7 +206,10 @@ def save_debug_page(store, session):
     path = Path("debug") / f"{slug}-last-page.html"
     try:
         path.parent.mkdir(exist_ok=True)
-        path.write_text(text, encoding="utf-8", newline="\n")
+        # Pages can show the visitor's own IP address; don't publish it.
+        ip_re = re.compile(r"\b(?:[0-9a-f]{1,4}:){2,7}[0-9a-f]{0,4}\b|"
+                           r"\b\d{1,3}(?:\.\d{1,3}){3}\b", re.I)
+        path.write_text(ip_re.sub("[IP removed]", text), encoding="utf-8", newline="\n")
     except OSError as e:
         print(f"  (couldn't save debug page: {e})")
         path = None

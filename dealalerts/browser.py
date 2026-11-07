@@ -58,6 +58,10 @@ def looks_like_challenge(title, html):
     t = (title or "").lower()
     if any(x in t for x in CHALLENGE_TITLES):
         return True
+    # Cloudflare's check script only appears on check pages, even ones a
+    # site has restyled with its own title and logo (Hiland's: 1.3 MB).
+    if "_cf_chl_opt" in (html or ""):
+        return True
     # Challenge pages are small; a real product listing that merely embeds
     # a Cloudflare widget somewhere is much bigger.
     html = html or ""
@@ -120,7 +124,8 @@ class RealBrowser:
                                timeout=NAV_TIMEOUT_MS)
         status = resp.status if resp else 0
         title, html = self._page.title(), self._page.content()
-        if looks_like_challenge(title, html):
+        flagged = bool(resp) and (resp.headers or {}).get("cf-mitigated") == "challenge"
+        if flagged or looks_like_challenge(title, html):
             print("  challenge page; letting the browser work through it ...")
             deadline = time.time() + CHALLENGE_WAIT
             while time.time() < deadline:

@@ -283,6 +283,14 @@ def block_details(r):
     return " ".join(parts) or "no identifying headers"
 
 
+IP_RE = re.compile(r"\b(?:[0-9a-f]{1,4}:){2,7}[0-9a-f]{0,4}\b|\b\d{1,3}(?:\.\d{1,3}){3}\b", re.I)
+
+
+def redact_ips(text):
+    """Blank out IP addresses (block pages show the visitor's own IP)."""
+    return IP_RE.sub("[IP removed]", text or "")
+
+
 def page_summary(r):
     """Title and opening text of a blocked page, to tell a hard block
     ("Sorry, you have been blocked", "Access denied") from a check page."""
@@ -291,7 +299,7 @@ def page_summary(r):
     title = clean(soup.title.get_text()) if soup.title else ""
     for tag in soup(["script", "style"]):
         tag.decompose()
-    text = " ".join(soup.get_text(" ").split())[:240]
+    text = redact_ips(" ".join(soup.get_text(" ").split()))[:240]
     return f'title="{title}" text="{text}"'
 
 
@@ -300,7 +308,7 @@ def save_blocked_page(r):
         os.makedirs(os.path.join(BASE_DIR, "debug"), exist_ok=True)
         path = os.path.join(BASE_DIR, "debug", "hilands-blocked-page.html")
         with open(path, "w", encoding="utf-8", newline="\n") as f:
-            f.write(r.text or "")
+            f.write(redact_ips(r.text))
         print(f"  saved the blocked page to debug/{os.path.basename(path)}")
     except OSError as e:
         print(f"  (couldn't save the blocked page: {e})")
