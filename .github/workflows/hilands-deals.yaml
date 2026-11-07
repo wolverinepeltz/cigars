@@ -1,5 +1,10 @@
 name: hilands cigar deals
 
+# Runs on the home Windows PC (self-hosted runner labelled "home-cigars"):
+# hilandscigars.com started answering GitHub's servers with Cloudflare's
+# challenge in Nov 2026. The script also retries blocked requests with a
+# Chrome fingerprint (curl_cffi). Runner setup: README.md, "Home runner".
+#
 # All crawl settings live in config.yml, not here.
 # GMAIL_PASSWORD must be set under
 #   Settings > Secrets and variables > Actions > New repository secret
@@ -8,7 +13,6 @@ name: hilands cigar deals
 on:
   schedule:
     # 3:28 PM Denver in summer (MDT), 2:28 PM in winter (MST). Cron is UTC.
-    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
     - cron: "28 21 * * *"
   workflow_dispatch:
 
@@ -18,48 +22,87 @@ concurrency:
 
 jobs:
   crawl:
-    runs-on: ubuntu-latest
-    timeout-minutes: 330
+    runs-on: [self-hosted, Windows, home-cigars]
+    timeout-minutes: 120
     permissions:
       contents: write
+    defaults:
+      run:
+        shell: powershell
+    env:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
+      - name: Set up Python
+        # Uses the Python installed on the PC for all users, in a private
+        # environment the runner can install packages into (same one the
+        # Cigora and Perfect Cigar Blend workflows use).
+        run: |
+          $ErrorActionPreference = "Continue"
+          $py = @("$env:ProgramFiles\Python312\python.exe", "$env:ProgramFiles\Python313\python.exe") |
+                Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $py) {
+            $cmd = Get-Command python -ErrorAction SilentlyContinue
+            if ($cmd -and $cmd.Source -notlike "*WindowsApps*") { $py = $cmd.Source }
+          }
+          if (-not $py) {
+            Write-Host "Python isn't installed for all users on this PC. In an Administrator PowerShell run:"
+            Write-Host "  winget install -e --id Python.Python.3.12 --scope machine"
+            exit 1
+          }
+          $venv = Join-Path $env:RUNNER_TOOL_CACHE "cigars-venv"
+          if (-not (Test-Path (Join-Path $venv "Scripts\python.exe"))) {
+            & $py -m venv $venv
+            if ($LASTEXITCODE -ne 0) { Write-Host "Couldn't create $venv"; exit 1 }
+          }
+          Add-Content -Path $env:GITHUB_PATH -Value (Join-Path $venv "Scripts")
+          & (Join-Path $venv "Scripts\python.exe") --version
+          exit $LASTEXITCODE
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          $ErrorActionPreference = "Continue"
+          python -m pip install --upgrade --quiet -r requirements.txt curl_cffi
+          exit $LASTEXITCODE
 
       - name: Crawl and email
         env:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
         run: |
-          set -o pipefail
-          python hilands_crawl.py 2>&1 | tee run.log
+          $ErrorActionPreference = "Continue"
+          # cmd does the redirect so run.log is plain UTF-8 (PowerShell 5.1's
+          # Tee-Object would write UTF-16), then the log is shown here.
+          cmd /c "python hilands_crawl.py > run.log 2>&1"
+          $code = $LASTEXITCODE
+          Get-Content run.log -Encoding UTF8
+          exit $code
 
       - name: Build run summary
         if: always()
         run: |
-          {
-            echo "## Hiland's deals"
-            echo
-            if [ -f cigars.csv ]; then
-              echo "Qualifying: $(($(wc -l < cigars.csv) - 1))"
-              echo "Changed today: $(($(wc -l < cigars-changes.csv) - 1))"
-              echo
-            fi
-            if grep -q '>>>' run.log; then
-              echo '```'
-              grep -A1 '>>>' run.log | sed 's/^ *//'
-              echo '```'
-            else
-              echo "Nothing found this run."
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
+          $ErrorActionPreference = "Continue"
+          $out = @("## Hiland's deals", "")
+          if (Test-Path cigars.csv) {
+            $out += "Qualifying: $((Get-Content cigars.csv -Encoding UTF8).Count - 1)"
+            $out += "Changed today: $((Get-Content cigars-changes.csv -Encoding UTF8).Count - 1)"
+            $out += ""
+          }
+          $hits = if (Test-Path run.log) { Select-String -Path run.log -Pattern '>>>' -Context 0,1 -Encoding UTF8 } else { $null }
+          if ($hits) {
+            $out += '```'
+            foreach ($h in $hits) {
+              $out += $h.Line.Trim()
+              foreach ($c in $h.Context.PostContext) { $out += $c.Trim() }
+            }
+            $out += '```'
+          } else {
+            $out += "Nothing found this run."
+          }
+          $out | Add-Content -Path $env:GITHUB_STEP_SUMMARY -Encoding UTF8
+          exit 0
 
       - name: Upload CSVs and log
         if: always()
@@ -75,26 +118,33 @@ jobs:
 
       - name: Commit snapshot to data/
         run: |
-          stamp=$(date -u +%Y-%m-%d)
-          mkdir -p data
+          $ErrorActionPreference = "Continue"   # git reports progress on stderr
+          $stamp = (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd")
+          New-Item -ItemType Directory -Force -Path data | Out-Null
           # The script already wrote data/latest.csv, its own baseline.
           # These are just dated copies for history.
-          cp cigars.csv "data/cigars-$stamp.csv"
-          cp cigars-changes.csv "data/changes-$stamp.csv"
+          Copy-Item cigars.csv "data/cigars-$stamp.csv"
+          Copy-Item cigars-changes.csv "data/changes-$stamp.csv"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/
-          if git diff --cached --quiet; then
-            echo "No change since last run."
-          else
-            git commit -m "data: crawl $stamp"
-            # Other workflows push to main too; pull their commits first so this
-            # push isn't rejected as out of date. Retries in case two land at once.
-            pushed=no
-            for i in 1 2 3; do
-              if git pull --rebase origin main && git push; then pushed=yes; break; fi
-              git rebase --abort 2>/dev/null || true
-              echo "Push attempt $i failed, retrying..."; sleep $((i * 10))
-            done
-            [ "$pushed" = yes ] || { echo "Push failed after 3 attempts"; exit 1; }
-          fi
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 0) { Write-Host "No change since last run."; exit 0 }
+          git commit -m "data: crawl $stamp"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          # Other workflows push to main too; pull their commits first so this
+          # push isn't rejected as out of date. Retries in case two land at once.
+          $pushed = $false
+          foreach ($i in 1..3) {
+            git pull --rebase origin main
+            if ($LASTEXITCODE -eq 0) {
+              git push
+              if ($LASTEXITCODE -eq 0) { $pushed = $true; break }
+            } else {
+              git rebase --abort
+            }
+            Write-Host "Push attempt $i failed, retrying..."
+            Start-Sleep -Seconds (10 * $i)
+          }
+          if (-not $pushed) { Write-Host "Push failed after 3 attempts"; exit 1 }
+          exit 0

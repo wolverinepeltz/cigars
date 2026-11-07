@@ -240,11 +240,42 @@ session.mount("http://", _adapter)
 # session.cookies.set("age_verified", "1", domain="www.hilandscigars.com")
 
 
+# Cloudflare answers plain requests with HTTP 403 ("Just a moment..."). A
+# request that looks like real Chrome at the connection level (TLS/HTTP2
+# fingerprint, via curl_cffi) often gets through, at least from a home
+# connection. On the first 403 every thread switches to that for the rest
+# of the run. Each thread gets its own curl_cffi session (they aren't
+# thread-safe); None means curl_cffi isn't installed.
+CHROME = {"mode": "plain", "lock": threading.Lock()}   # plain | chrome | failed
+_chrome_local = threading.local()
+
+
+def chrome_session():
+    if not hasattr(_chrome_local, "s"):
+        try:
+            from curl_cffi import requests as curl_requests
+            _chrome_local.s = curl_requests.Session(impersonate="chrome")
+        except Exception:
+            _chrome_local.s = None
+    return _chrome_local.s
+
+
+def block_details(r):
+    parts = [f"{h}={r.headers.get(h)}" for h in ("server", "cf-mitigated", "cf-ray")
+             if r.headers.get(h)]
+    return " ".join(parts) or "no identifying headers"
+
+
 def get(url, **kw):
     for attempt in range(3):
+        mode = CHROME["mode"]
         try:
             RATE.wait()
-            r = session.get(url, timeout=30, **kw)
+            if mode == "chrome" and chrome_session() is not None:
+                r = chrome_session().get(url, timeout=30,
+                                         headers={"Accept-Language": "en-US,en;q=0.9"}, **kw)
+            else:
+                r = session.get(url, timeout=30, **kw)
             if r.status_code == 429:
                 time.sleep(10 * (attempt + 1))
                 continue
@@ -253,12 +284,29 @@ def get(url, **kw):
                 time.sleep(15 * (attempt + 1))
                 continue
             if r.status_code == 403:
-                print(f"  HTTP 403 from {r.headers.get('server', '?')}. "
-                      f"This IP is blocked; the same code often works from a "
-                      f"home connection.")
+                with CHROME["lock"]:
+                    if CHROME["mode"] == "plain" and mode == "plain":
+                        print(f"  HTTP 403 (blocked): {block_details(r)}")
+                        if chrome_session() is None:
+                            print("  curl_cffi isn't installed, so can't retry with a "
+                                  "Chrome fingerprint (pip install curl_cffi).")
+                            CHROME["mode"] = "failed"
+                        else:
+                            print("  retrying with a Chrome fingerprint ...")
+                            CHROME["mode"] = "chrome"
+                    elif CHROME["mode"] == "chrome" and mode == "chrome":
+                        print(f"  HTTP 403 with the Chrome fingerprint too: {block_details(r)}. "
+                              f"This network's address is blocked; the same code often "
+                              f"works from a home connection.")
+                        CHROME["mode"] = "failed"
+                if CHROME["mode"] == "chrome" and mode == "plain":
+                    continue          # try this URL again as Chrome
                 return None
+            if mode == "chrome" and not CHROME.get("announced"):
+                CHROME["announced"] = True
+                print("  Chrome fingerprint got through; using it for the rest of this run.")
             return r
-        except requests.RequestException as e:
+        except Exception as e:  # requests or curl_cffi network errors
             if attempt == 2:
                 print(f"  failed: {url} ({type(e).__name__}: {e})")
                 return None
