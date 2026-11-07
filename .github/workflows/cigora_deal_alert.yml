@@ -34,9 +34,32 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        # Uses the Python installed on the PC for all users (Administrator
+        # PowerShell: winget install -e --id Python.Python.3.12 --scope machine),
+        # in a private environment the runner can install packages into.
+        # (actions/setup-python's own builds fail to install on this PC.)
+        run: |
+          $ErrorActionPreference = "Continue"
+          $py = @("$env:ProgramFiles\Python312\python.exe", "$env:ProgramFiles\Python313\python.exe") |
+                Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $py) {
+            $cmd = Get-Command python -ErrorAction SilentlyContinue
+            if ($cmd -and $cmd.Source -notlike "*WindowsApps*") { $py = $cmd.Source }
+          }
+          if (-not $py) {
+            Write-Host "Python isn't installed for all users on this PC. In an Administrator PowerShell run:"
+            Write-Host "  winget install -e --id Python.Python.3.12 --scope machine"
+            exit 1
+          }
+          Write-Host "Using $py"
+          $venv = Join-Path $env:RUNNER_TOOL_CACHE "cigars-venv"
+          if (-not (Test-Path (Join-Path $venv "Scripts\python.exe"))) {
+            & $py -m venv $venv
+            if ($LASTEXITCODE -ne 0) { Write-Host "Couldn't create $venv"; exit 1 }
+          }
+          Add-Content -Path $env:GITHUB_PATH -Value (Join-Path $venv "Scripts")
+          & (Join-Path $venv "Scripts\python.exe") --version
+          exit $LASTEXITCODE
 
       - name: Install dependencies
         run: |
