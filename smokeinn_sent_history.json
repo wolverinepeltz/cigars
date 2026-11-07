@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 6073
+    "last_examined": 6077
   },
   "https://www.smokeinn.com/AVO-XO-Maestoso-5-Pack.html": {
     "price": 42.5,
@@ -145,7 +145,7 @@
   "https://www.smokeinn.com/La-Palina-Black-Robusto-5-Pack.html": {
     "price": 27.0,
     "discount": 49,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/La-Palina-Black-Toro-SKU206561205.html": {
     "price": 28.0,
@@ -160,7 +160,7 @@
   "https://www.smokeinn.com/Los-Statos-Deluxe-Connecticut-Robusto-5-Pack.html": {
     "price": 22.0,
     "discount": 50,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Luciano-Foreign-Affair-Toro-Extra-5-Pack-SKU36895211.html": {
     "price": 29.5,
