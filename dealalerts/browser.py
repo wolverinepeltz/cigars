@@ -43,10 +43,11 @@ class BrowserResponse:
     """Just enough of a requests.Response for fetch() and the stores."""
 
     def __init__(self, status_code, text, url, headers=None):
+        from requests.structures import CaseInsensitiveDict
         self.status_code = status_code
         self.text = text
         self.url = url
-        self.headers = headers or {}
+        self.headers = CaseInsensitiveDict(headers or {})
 
     def json(self):
         import json
@@ -106,7 +107,12 @@ class RealBrowser:
         self._page = self._context.new_page()
         atexit.register(self.close)
 
-    def get(self, url, params=None, timeout=None, **_):
+    def get(self, url, params=None, timeout=None, raw=False, **_):
+        """
+        Load url and return a BrowserResponse. With raw=True the body is the
+        server's exact response (e.g. JSON from an API) rather than the page
+        as Chrome renders it, and the response headers are included.
+        """
         if params:
             from urllib.parse import urlencode
             url = f"{url}{'&' if '?' in url else '?'}{urlencode(params)}"
@@ -128,6 +134,20 @@ class RealBrowser:
                     break
             else:
                 return BrowserResponse(403, html, url, {"page-title": title})
+            if raw:
+                # The page reloaded itself after the check; load the URL again
+                # (now with the clearance cookie) to get its exact response.
+                resp = self._page.goto(url, wait_until="domcontentloaded",
+                                       timeout=NAV_TIMEOUT_MS)
+                if resp is not None and looks_like_challenge(self._page.title(),
+                                                             self._page.content()):
+                    return BrowserResponse(403, self._page.content(), url)
+        if raw and resp is not None:
+            try:
+                body = resp.text()
+            except Exception:
+                body = self._page.content()
+            return BrowserResponse(resp.status, body, url, dict(resp.headers))
         if status == 0:
             status = 200
         return BrowserResponse(status, html, url)
@@ -163,3 +183,36 @@ def real_browser(session=None):
             print(f"  couldn't start a browser ({type(e).__name__}: {e})")
             _SHARED["browser"] = None
     return _SHARED["browser"]
+
+
+class BrowserWorker:
+    """
+    A RealBrowser on its own thread, for multi-threaded scripts (Hiland's
+    crawls with several threads). Playwright's browser can only be driven
+    from the thread that started it, so every get() is handed to that one
+    thread and the caller waits for the answer; pages load one at a time.
+    The browser starts on the first get(); if it can't, get() raises.
+    """
+
+    def __init__(self):
+        from concurrent.futures import ThreadPoolExecutor
+        self._exec = ThreadPoolExecutor(max_workers=1, thread_name_prefix="browser")
+        self._browser = None
+        atexit.register(self.close)
+
+    def _get(self, url, params, raw):
+        if self._browser is None:
+            self._browser = RealBrowser()
+        return self._browser.get(url, params=params, raw=raw)
+
+    def get(self, url, params=None, raw=True, timeout=None, **_):
+        return self._exec.submit(self._get, url, params, raw).result()
+
+    def close(self):
+        if self._browser is not None:
+            try:
+                self._exec.submit(self._browser.close).result(timeout=30)
+            except Exception:
+                pass
+            self._browser = None
+        self._exec.shutdown(wait=False)
