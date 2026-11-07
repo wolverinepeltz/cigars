@@ -109,3 +109,20 @@ jobs:
           }
           if (-not $pushed) { Write-Host "Push failed after 3 attempts"; exit 1 }
           exit 0
+
+      - name: Share debug page if nothing was read
+        # When a run reads nothing, the script saves the last page it loaded
+        # in debug/. Push it to the debug-pages branch so it can be inspected.
+        if: failure()
+        run: |
+          $ErrorActionPreference = "Continue"
+          if (-not (Test-Path debug)) { Write-Host "No debug page saved."; exit 0 }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B debug-pages
+          git add -f debug
+          git commit -m "Debug page from a failed Cigora run [skip ci]"
+          git push -f origin debug-pages
+          if ($LASTEXITCODE -ne 0) { Write-Host "Couldn't push the debug page."; exit 0 }
+          Write-Host "Saved to the debug-pages branch."
+          exit 0
