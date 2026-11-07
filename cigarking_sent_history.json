@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4838
+    "last_examined": 4824
   },
   "https://www.cigarking.com/95-rated-worlds-best-sampler-assorted-sizes-16-pack/": {
     "price": 109.95,
@@ -845,12 +845,12 @@
   "https://www.cigarking.com/copy-of-oliva-master-blend-iii-robusto-5x50-bundle-20/": {
     "price": 120.95,
     "discount": 70.1,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-master-blend-iii-sampler-6x50-bundle-20/": {
     "price": 123.95,
     "discount": 71.3,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-maduro-especial-double-toro-6x60-box-10/": {
     "price": 91.84,
@@ -875,22 +875,22 @@
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-4-petite-corona-4-5x46-box-10-u5mp/": {
     "price": 79.26,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-churchill-7x50-box-10-qweo/": {
     "price": 118.75,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-maduro-4-petite-corona-4-5x46-box-10-gvxv/": {
     "price": 79.26,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-maduro-churchill-7x50-box-10-p23e/": {
     "price": 118.75,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-maduro-nub-4x60-box-10-8k8w/": {
     "price": 96.8,
@@ -900,17 +900,17 @@
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-maduro-robusto-5x52-box-10-1wdt/": {
     "price": 93.17,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-maduro-toro-6x52-box-10-hgcd/": {
     "price": 113.14,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-maduro-torpedo-6-5x52-box-10-9foe/": {
     "price": 118.58,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-nub-4x60-box-10/": {
     "price": 96.8,
@@ -920,17 +920,17 @@
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-robusto-5x52-box-10-w11g/": {
     "price": 93.17,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-toro-6x52-box-10-tdiz/": {
     "price": 113.14,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-melanio-torpedo-6-5x52-box-10-gdnb/": {
     "price": 118.58,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-premium-8-racks-aj-fernandez-havana-soul-gordo-box-press-vs-montecristo-1935-edicion-diamante-assorted-sizes-8-pack/": {
     "price": 79.95,
@@ -2072,15 +2072,65 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/oliva-serie-v-melanio-4-petite-corona-4-5x46-box-10/": {
+    "price": 79.26,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-churchill-7x50-box-10/": {
+    "price": 118.75,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/oliva-serie-v-melanio-edicion-ano-2025-5x54-box-10-flash-sale/": {
     "price": 99.95,
     "discount": 58.4,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-4-petite-corona-4-5x46-box-10/": {
+    "price": 79.26,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-churchill-7x50-box-10/": {
+    "price": 118.75,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-robusto-5x52-box-10/": {
+    "price": 93.17,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-toro-6x52-box-10/": {
+    "price": 113.14,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-torpedo-6-5x52-box-10/": {
+    "price": 118.58,
+    "discount": 50.0,
     "active": true
   },
   "https://www.cigarking.com/oliva-serie-v-melanio-nub-4x60-box-10-free-50-torch-lighter/": {
     "price": 96.8,
     "discount": null,
     "active": false
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-robusto-5x52-box-10/": {
+    "price": 93.17,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-toro-6x52-box-10/": {
+    "price": 113.14,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-torpedo-6-5x52-box-10/": {
+    "price": 118.58,
+    "discount": 50.0,
+    "active": true
   },
   "https://www.cigarking.com/olympic-rings-le-grande-especial-sampler-assorted-sizes-5-cigars/": {
     "price": 79.95,
