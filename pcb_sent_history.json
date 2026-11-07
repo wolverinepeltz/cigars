@@ -1,41 +1,300 @@
 {
-  "https://perfectcigarblend.com/product/acid-by-drew-estate-krush-classic-morado-maduro-tins/": 59.95,
-  "https://perfectcigarblend.com/product/acid-by-drew-estate-toast/": 31.66,
-  "https://perfectcigarblend.com/product/aj-fernandez-the-hits-volume-1/": 49.95,
-  "https://perfectcigarblend.com/product/aladino-cameroon-gordo/": 40.75,
-  "https://perfectcigarblend.com/product/aladino-cameroon-robusto/": 35.5,
-  "https://perfectcigarblend.com/product/aladino-cameroon-super-toro/": 37.5,
-  "https://perfectcigarblend.com/product/aladino-connecticut-gordo/": 38.75,
-  "https://perfectcigarblend.com/product/aladino-connecticut-toro/": 36.25,
-  "https://perfectcigarblend.com/product/aladino-corojo-reserva-robusto/": 48.75,
-  "https://perfectcigarblend.com/product/aladino-corojo-reserva-toro/": 55.25,
-  "https://perfectcigarblend.com/product/alec-bradley-gatekeeper-gordo/": 44.95,
-  "https://perfectcigarblend.com/product/alec-bradley-gatekeeper-robusto/": 39.95,
-  "https://perfectcigarblend.com/product/big-papi-firecracker/": 39.95,
-  "https://perfectcigarblend.com/product/cao-flathead-v450-sparkplug/": 34.95,
-  "https://perfectcigarblend.com/product/cao-flathead-v642-piston/": 34.95,
-  "https://perfectcigarblend.com/product/cao-flathead-v660-carb/": 39.95,
-  "https://perfectcigarblend.com/product/casdagli-brothers-of-the-saber-epicurist-figurado/": 84.95,
-  "https://perfectcigarblend.com/product/casdagli-brothers-of-the-saber-vater-figurado/": 84.95,
-  "https://perfectcigarblend.com/product/cohiba-macassar-toro-grande/": 81.5,
-  "https://perfectcigarblend.com/product/crowned-heads-las-calaveras-edicion-limitada-2025-lc52-10-pack/": 85.5,
-  "https://perfectcigarblend.com/product/crowned-heads-las-calaveras-edicion-limitada-2025-lc56-10-pack/": 97.5,
-  "https://perfectcigarblend.com/product/eclectic-select-sampler/": 59.95,
-  "https://perfectcigarblend.com/product/ep-carrillo-inch-maduro-no-60/": 33.5,
-  "https://perfectcigarblend.com/product/ep-carrillo-inch-natural-no-62/": 29.5,
-  "https://perfectcigarblend.com/product/herrera-esteli-brazilian-maduro-lonsdale-deluxe-10-pack-6-x-44/": 66.95,
-  "https://perfectcigarblend.com/product/herrera-esteli-habano-lonsdale-deluxe-10-pack-6-x-44/": 66.95,
-  "https://perfectcigarblend.com/product/hvc-edicion-especial-2015-maduro-toro/": 35.95,
-  "https://perfectcigarblend.com/product/la-gloria-cubana-seleccion-suprema/": 29.95,
-  "https://perfectcigarblend.com/product/la-gloria-cubana-serie-r-natural-10-packs/": 69.95,
-  "https://perfectcigarblend.com/product/la-palina-el-diario-petit-corona/": 24.95,
-  "https://perfectcigarblend.com/product/montecristo-classic-churchill/": 54.95,
-  "https://perfectcigarblend.com/product/montecristo-classic-toro/": 49.95,
-  "https://perfectcigarblend.com/product/my-father-made-selection/": 59.95,
-  "https://perfectcigarblend.com/product/plasencia-triunfal-gran-toro-limited-edition-2026/": 108.25,
-  "https://perfectcigarblend.com/product/precious-cargo-selection/": 44.95,
-  "https://perfectcigarblend.com/product/romeo-y-julieta-1875-bully/": 24.95,
-  "https://perfectcigarblend.com/product/sunday-gravy-9-cigar-selection/": 49.95,
-  "https://perfectcigarblend.com/product/united-firecracker-black-bomb/": 109.95,
-  "https://perfectcigarblend.com/product/united-firecracker-connecticut/": 34.95
+  "_meta": {
+    "last_examined": 1906
+  },
+  "https://perfectcigarblend.com/product/acid-by-drew-estate-krush-classic-morado-maduro-tins/": {
+    "price": 59.95,
+    "discount": 40,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/acid-by-drew-estate-toast/": {
+    "price": 31.66,
+    "discount": 34,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/aj-fernandez-the-hits-volume-1/": {
+    "price": 49.95,
+    "discount": 37,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/aladino-cameroon-gordo/": {
+    "price": 40.75,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/aladino-cameroon-robusto/": {
+    "price": 35.5,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/aladino-cameroon-super-toro/": {
+    "price": 37.5,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/aladino-connecticut-gordo/": {
+    "price": 38.75,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/aladino-connecticut-toro/": {
+    "price": 36.25,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/aladino-corojo-reserva-robusto/": {
+    "price": 48.75,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/aladino-corojo-reserva-toro/": {
+    "price": 55.25,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/alec-bradley-gatekeeper-gordo/": {
+    "price": 44.95,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/alec-bradley-gatekeeper-robusto/": {
+    "price": 39.95,
+    "discount": 40,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/alec-bradley-gatekeeper-toro/": {
+    "price": 44.95,
+    "discount": 38,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/big-papi-firecracker/": {
+    "price": 39.95,
+    "discount": 37,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/cao-flathead-v450-sparkplug/": {
+    "price": 34.95,
+    "discount": 35,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/cao-flathead-v642-piston/": {
+    "price": 34.95,
+    "discount": 35,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/cao-flathead-v660-carb/": {
+    "price": 39.95,
+    "discount": 36,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/casdagli-brothers-of-the-saber-epicurist-figurado/": {
+    "price": 84.95,
+    "discount": 50,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/casdagli-brothers-of-the-saber-vater-figurado/": {
+    "price": 84.95,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/cohiba-macassar-gigante/": {
+    "price": 97.75,
+    "discount": 50,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/cohiba-macassar-toro-grande/": {
+    "price": 81.5,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/cohiba-royale-toro/": {
+    "price": 109.95,
+    "discount": 36,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/crowned-heads-las-calaveras-edicion-limitada-2025-lc52-10-pack/": {
+    "price": 85.5,
+    "discount": 40,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/crowned-heads-las-calaveras-edicion-limitada-2025-lc56-10-pack/": {
+    "price": 97.5,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/eclectic-select-sampler/": {
+    "price": 59.95,
+    "discount": 46,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/ep-carrillo-inch-maduro-no-60/": {
+    "price": 33.5,
+    "discount": 35,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/ep-carrillo-inch-natural-no-62/": {
+    "price": 29.5,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/herrera-esteli-brazilian-maduro-lonsdale-deluxe-10-pack-6-x-44/": {
+    "price": 66.95,
+    "discount": 40,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/herrera-esteli-habano-lonsdale-deluxe-10-pack-6-x-44/": {
+    "price": 66.95,
+    "discount": 40,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/hvc-edicion-especial-2015-maduro-toro/": {
+    "price": 35.95,
+    "discount": 47,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-latte-toro/": {
+    "price": 41.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-maduro-corona/": {
+    "price": 35.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-maduro-toro/": {
+    "price": 41.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-mint-corona/": {
+    "price": 35.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-mint-toro/": {
+    "price": 41.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-red-corona/": {
+    "price": 35.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-red-toro/": {
+    "price": 41.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/joya-de-nicaragua-3x3-selection/": {
+    "price": 54.95,
+    "discount": 49,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/la-gloria-cubana-los-gloriosos-toro/": {
+    "price": 29.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/la-gloria-cubana-seleccion-suprema/": {
+    "price": 29.95,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/la-gloria-cubana-serie-r-natural-10-packs/": {
+    "price": 69.95,
+    "discount": 44,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/la-palina-el-diario-petit-corona/": {
+    "price": 24.95,
+    "discount": 40,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/macanduo-emissary-selection/": {
+    "price": 59.95,
+    "discount": 54,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/montecristo-classic-churchill/": {
+    "price": 54.95,
+    "discount": 40,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/montecristo-classic-toro/": {
+    "price": 49.95,
+    "discount": 43,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/my-father-made-selection/": {
+    "price": 59.95,
+    "discount": 35,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/partagas-cortado-robusto/": {
+    "price": 33.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/petit-perfection-premium-selection/": {
+    "price": 69.95,
+    "discount": 34,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/plasencia-triunfal-gran-toro-limited-edition-2026/": {
+    "price": 108.25,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/precious-cargo-selection/": {
+    "price": 44.95,
+    "discount": 50,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/punch-rare-corojo-aristocrat-le-2022/": {
+    "price": 42.95,
+    "discount": 45,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-fifty-five-titan/": {
+    "price": 49.95,
+    "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rojas-statement-lancero-10-pack-7-x-38/": {
+    "price": 70.95,
+    "discount": 46,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rojas-statement-toro-10-pack-6-x-50/": {
+    "price": 70.95,
+    "discount": 46,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/roma-craft-society-selection/": {
+    "price": 62.95,
+    "discount": 45,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/romeo-y-julieta-1875-bully/": {
+    "price": 24.95,
+    "discount": 43,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/sunday-gravy-9-cigar-selection/": {
+    "price": 49.95,
+    "discount": 57,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/united-firecracker-black-bomb/": {
+    "price": 109.95,
+    "discount": null,
+    "active": false
+  },
+  "https://perfectcigarblend.com/product/united-firecracker-connecticut/": {
+    "price": 34.95,
+    "discount": 41,
+    "active": true
+  }
 }
