@@ -240,14 +240,20 @@ session.mount("http://", _adapter)
 # session.cookies.set("age_verified", "1", domain="www.hilandscigars.com")
 
 
-# Cloudflare answers plain requests with HTTP 403 ("Just a moment..."). A
-# request that looks like real Chrome at the connection level (TLS/HTTP2
-# fingerprint, via curl_cffi) often gets through, at least from a home
-# connection. On the first 403 every thread switches to that for the rest
-# of the run. Each thread gets its own curl_cffi session (they aren't
-# thread-safe); None means curl_cffi isn't installed.
-CHROME = {"mode": "plain", "lock": threading.Lock()}   # plain | chrome | failed
+# Cloudflare answers plain requests with HTTP 403 ("Just a moment...").
+# get() escalates on a 403, for every thread at once:
+#   plain   -> requests
+#   chrome  -> a request that looks like real Chrome at the connection level
+#              (TLS/HTTP2 fingerprint, via curl_cffi; one session per thread,
+#              since they aren't thread-safe)
+#   browser -> a real Chrome (Playwright) that runs Cloudflare's check page;
+#              one browser on its own thread, so pages load one at a time
+#   failed  -> give up for the rest of the run
+# The first method that works is used for the rest of the run; one that is
+# blocked isn't tried again, so a blocked run doesn't hit the site twice.
+CHROME = {"mode": "plain", "lock": threading.Lock()}
 _chrome_local = threading.local()
+BROWSER = {"worker": None}
 
 
 def chrome_session():
@@ -260,10 +266,49 @@ def chrome_session():
     return _chrome_local.s
 
 
+def browser_worker():
+    """The run's real-browser worker, or None if Playwright isn't installed."""
+    if BROWSER["worker"] is None:
+        import importlib.util
+        if importlib.util.find_spec("playwright") is None:
+            return None
+        from dealalerts.browser import BrowserWorker
+        BROWSER["worker"] = BrowserWorker()
+    return BROWSER["worker"]
+
+
 def block_details(r):
     parts = [f"{h}={r.headers.get(h)}" for h in ("server", "cf-mitigated", "cf-ray")
              if r.headers.get(h)]
     return " ".join(parts) or "no identifying headers"
+
+
+def _escalate(mode, r):
+    """Called under the lock after a 403 in `mode`; moves CHROME["mode"] on."""
+    if CHROME["mode"] != mode:
+        return  # another thread already moved on
+    if mode == "plain":
+        print(f"  HTTP 403 (blocked): {block_details(r)}")
+        if chrome_session() is not None:
+            print("  retrying with a Chrome fingerprint ...")
+            CHROME["mode"] = "chrome"
+            return
+        print("  curl_cffi isn't installed, so skipping the Chrome fingerprint "
+              "(pip install curl_cffi).")
+        mode = "chrome"
+    if mode == "chrome":
+        if CHROME["mode"] == "chrome":
+            print(f"  HTTP 403 with the Chrome fingerprint too: {block_details(r)}")
+        if browser_worker() is not None:
+            print("  retrying with a real Chrome browser (pages load one at a time) ...")
+            CHROME["mode"] = "browser"
+            return
+        print("  playwright isn't installed, so can't try a real browser "
+              "(pip install playwright).")
+    else:  # browser
+        print("  HTTP 403 even in a real Chrome browser.")
+    print("  Still blocked. This site refuses this network's address.")
+    CHROME["mode"] = "failed"
 
 
 def get(url, **kw):
@@ -271,7 +316,9 @@ def get(url, **kw):
         mode = CHROME["mode"]
         try:
             RATE.wait()
-            if mode == "chrome" and chrome_session() is not None:
+            if mode == "browser":
+                r = browser_worker().get(url, params=kw.get("params"), raw=True)
+            elif mode == "chrome" and chrome_session() is not None:
                 r = chrome_session().get(url, timeout=30,
                                          headers={"Accept-Language": "en-US,en;q=0.9"}, **kw)
             else:
@@ -285,28 +332,27 @@ def get(url, **kw):
                 continue
             if r.status_code == 403:
                 with CHROME["lock"]:
-                    if CHROME["mode"] == "plain" and mode == "plain":
-                        print(f"  HTTP 403 (blocked): {block_details(r)}")
-                        if chrome_session() is None:
-                            print("  curl_cffi isn't installed, so can't retry with a "
-                                  "Chrome fingerprint (pip install curl_cffi).")
-                            CHROME["mode"] = "failed"
-                        else:
-                            print("  retrying with a Chrome fingerprint ...")
-                            CHROME["mode"] = "chrome"
-                    elif CHROME["mode"] == "chrome" and mode == "chrome":
-                        print(f"  HTTP 403 with the Chrome fingerprint too: {block_details(r)}. "
-                              f"This network's address is blocked; the same code often "
-                              f"works from a home connection.")
-                        CHROME["mode"] = "failed"
-                if CHROME["mode"] == "chrome" and mode == "plain":
-                    continue          # try this URL again as Chrome
+                    _escalate(mode, r)
+                if CHROME["mode"] not in ("failed", mode):
+                    continue          # try this URL again with the next method
                 return None
-            if mode == "chrome" and not CHROME.get("announced"):
-                CHROME["announced"] = True
-                print("  Chrome fingerprint got through; using it for the rest of this run.")
+            with CHROME["lock"]:
+                if mode != "plain" and CHROME.get("announced") != mode:
+                    CHROME["announced"] = mode
+                    label = "Chrome fingerprint" if mode == "chrome" else "Real Chrome browser"
+                    print(f"  {label} got through; using it for the rest of this run.")
             return r
-        except Exception as e:  # requests or curl_cffi network errors
+        except Exception as e:  # requests, curl_cffi or browser errors
+            if mode == "browser":
+                with CHROME["lock"]:
+                    if CHROME["mode"] == "browser" and not CHROME.get("browser_error"):
+                        CHROME["browser_error"] = True
+                        print(f"  browser error: {type(e).__name__}: {e}")
+                    if BROWSER["worker"]._browser is None and CHROME["mode"] == "browser":
+                        print("  Chrome couldn't be started, so giving up for this run.")
+                        CHROME["mode"] = "failed"
+                if CHROME["mode"] == "failed":
+                    return None
             if attempt == 2:
                 print(f"  failed: {url} ({type(e).__name__}: {e})")
                 return None

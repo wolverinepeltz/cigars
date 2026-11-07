@@ -2,18 +2,20 @@ name: hilands cigar deals
 
 # Runs on the home Windows PC (self-hosted runner labelled "home-cigars"):
 # hilandscigars.com started answering GitHub's servers with Cloudflare's
-# challenge in Nov 2026. The script also retries blocked requests with a
-# Chrome fingerprint (curl_cffi). Runner setup: README.md, "Home runner".
+# challenge in Nov 2026, and from the home PC it also blocks the Chrome
+# fingerprint, so the script falls back to a real Chrome (Playwright).
+# Runner setup: README.md, "Home runner".
 #
 # All crawl settings live in config.yml, not here.
 # GMAIL_PASSWORD must be set under
 #   Settings > Secrets and variables > Actions > New repository secret
 # using a Gmail App Password, not your account password.
 
+# Manual-only until a run confirms the real-browser fallback gets through
+# from the home PC. Then restore the schedule:
+#   schedule:
+#     - cron: "28 21 * * *"   # 3:28 PM Denver (MDT), 2:28 PM (MST)
 on:
-  schedule:
-    # 3:28 PM Denver in summer (MDT), 2:28 PM in winter (MST). Cron is UTC.
-    - cron: "28 21 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -23,7 +25,7 @@ concurrency:
 jobs:
   crawl:
     runs-on: [self-hosted, Windows, home-cigars]
-    timeout-minutes: 120
+    timeout-minutes: 240   # a real browser loads pages one at a time
     permissions:
       contents: write
     defaults:
@@ -65,8 +67,14 @@ jobs:
       - name: Install dependencies
         run: |
           $ErrorActionPreference = "Continue"
-          python -m pip install --upgrade --quiet -r requirements.txt curl_cffi
-          exit $LASTEXITCODE
+          python -m pip install --upgrade --quiet -r requirements.txt curl_cffi playwright
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          # Used if Cloudflare blocks both plain requests and the Chrome
+          # fingerprint: the script falls back to Google Chrome, or to this
+          # Chromium if Chrome isn't installed. Skips the download once there.
+          python -m playwright install chromium
+          if ($LASTEXITCODE -ne 0) { Write-Host "Chromium install failed; Google Chrome will be used if installed." }
+          exit 0
 
       - name: Crawl and email
         env:
