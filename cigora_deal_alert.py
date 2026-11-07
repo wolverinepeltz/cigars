@@ -51,52 +51,62 @@ def get_soup(url, session):
 
 def _card_prices(card) -> tuple[float | None, float | None]:
     """
-    Returns (sale_price, list_price).
+    Returns (sale_price, list_price), or (None, None) if the tile can't be
+    priced as a deal.
 
-    Cigora's tile markup carries exact numeric values in `content`
-    attributes:
-      sale: <span class="sales"><span class="value" content="49.99">
-      list: <del><span class="strike-through list"><span class="value"
-             content="56.99">
-    Falls back to SFCC-generic selectors, then to min/max of every
-    $ amount in the card.
+    Cigora's tiles carry exact numbers in `content` attributes. Two layouts
+    (checked against the live site, Nov 2026):
+
+      single price:  .strike-through .value[content]   list (MSRP) price
+                     .sales .value[content]            sale price
+      price range:   .price .range  "As low as $X - $Y"  (several sizes)
+                     a struck price, when present, sits right before the
+                     .sales.promo-price it applies to: "$39.99, was $126.99"
+
+    A range with no struck price has no markdown to measure (its low and
+    high ends are different pack sizes), so it's skipped rather than read
+    as "the single cigar is 95% off the box price".
     """
-    def content_of(selector):
-        el = card.select_one(selector)
-        if el and el.has_attr("content"):
+    def content_of(el):
+        if el is not None and el.has_attr("content"):
             try:
                 return float(el["content"])
             except (TypeError, ValueError):
                 pass
         return None
 
-    sale = (content_of(".sales .value")
-            or content_of(".price .sales .value"))
-    list_p = (content_of(".strike-through .value")
-              or content_of("del .value")
-              or content_of(".list .value"))
+    price = card.select_one(".price")
+    struck = content_of(card.select_one(".strike-through .value"))
 
-    if sale is None or list_p is None:
-        # Fallback: every $ amount in the card.
-        amounts = [float(p.replace(",", ""))
-                   for p in PRICE_RE.findall(card.get_text(" ", strip=True))]
-        if amounts:
-            lo, hi = min(amounts), max(amounts)
-            sale = sale if sale is not None else lo
-            if list_p is None and hi > sale:
-                list_p = hi
-    return sale, list_p
+    if price is not None and price.select_one(".range") is not None:
+        if struck is None:
+            return None, None
+        promo = (card.select_one(".sales.promo-price .value")
+                 or card.select_one(".range .sales .value"))
+        return content_of(promo), struck
+
+    sale = content_of(card.select_one(".sales .value"))
+    if sale is None and price is None:
+        # No price markup at all: fall back to the tile's $ amounts, but
+        # only when there are exactly two (was / now).
+        amounts = [float(a.replace(",", ""))
+                   for a in PRICE_RE.findall(card.get_text(" ", strip=True))]
+        if len(amounts) == 2:
+            return min(amounts), max(amounts)
+        return None, None
+    return sale, struck
 
 
 def _extract_products(soup: BeautifulSoup) -> list[dict]:
     """
     Extracts one record per div.product tile.
 
-    Tile structure (verified against the live site):
+    Tile structure (checked against the live site, Nov 2026):
       div.product[data-pid]                      <- one tile
+        a.append-wishlist-modal[href=""]         <- "Add to Favorites"
         a[href=/product/<slug>/<id>.html]        <- product link
-        span.product-tile-product-name           <- name
-        span.product-tile-badges                 <- "Sale" badge (no % given)
+        p.product-tile-product-name              <- name
+        span.product-tile-badge                  <- "Sale" badge (no % given)
         .sales .value[content]                   <- sale price
         del .strike-through .value[content]      <- list price
       "SOLD OUT" text marks unavailable tiles.
@@ -105,7 +115,9 @@ def _extract_products(soup: BeautifulSoup) -> list[dict]:
     seen_urls = set()
 
     for tile in soup.select("div.product"):
-        link = tile.select_one("a[href]")
+        # The first link in a tile is now the "Add to Favorites" button
+        # (empty href), so pick the product link explicitly.
+        link = tile.select_one('a[href*="/product/"]')
         if not link:
             continue
         href = urljoin(BASE_URL, link["href"]).split("?")[0].split("#")[0]
