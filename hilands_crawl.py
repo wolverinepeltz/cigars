@@ -283,10 +283,33 @@ def block_details(r):
     return " ".join(parts) or "no identifying headers"
 
 
+def page_summary(r):
+    """Title and opening text of a blocked page, to tell a hard block
+    ("Sorry, you have been blocked", "Access denied") from a check page."""
+    raw = r.text or ""
+    soup = BeautifulSoup(raw, "html.parser")
+    title = clean(soup.title.get_text()) if soup.title else ""
+    for tag in soup(["script", "style"]):
+        tag.decompose()
+    text = " ".join(soup.get_text(" ").split())[:240]
+    return f'title="{title}" text="{text}"'
+
+
+def save_blocked_page(r):
+    try:
+        os.makedirs(os.path.join(BASE_DIR, "debug"), exist_ok=True)
+        path = os.path.join(BASE_DIR, "debug", "hilands-blocked-page.html")
+        with open(path, "w", encoding="utf-8", newline="\n") as f:
+            f.write(r.text or "")
+        print(f"  saved the blocked page to debug/{os.path.basename(path)}")
+    except OSError as e:
+        print(f"  (couldn't save the blocked page: {e})")
+
+
 def _escalate(mode, r):
     """Called under the lock after a 403 in `mode`; moves CHROME["mode"] on."""
-    if CHROME["mode"] != mode:
-        return  # another thread already moved on
+    if CHROME["mode"] != mode or mode == "failed":
+        return  # another thread already moved on, or already gave up
     if mode == "plain":
         print(f"  HTTP 403 (blocked): {block_details(r)}")
         if chrome_session() is not None:
@@ -306,7 +329,9 @@ def _escalate(mode, r):
         print("  playwright isn't installed, so can't try a real browser "
               "(pip install playwright).")
     else:  # browser
-        print("  HTTP 403 even in a real Chrome browser.")
+        print(f"  HTTP 403 even in a real Chrome browser: {block_details(r)}")
+        print(f"  page says: {page_summary(r)}")
+        save_blocked_page(r)
     print("  Still blocked. This site refuses this network's address.")
     CHROME["mode"] = "failed"
 
