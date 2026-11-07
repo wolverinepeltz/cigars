@@ -64,12 +64,13 @@ the blocker (e.g. `server=cloudflare cf-mitigated=challenge`). On GitHub's
 servers a workflow only gets the real-browser step if it installs
 `playwright` and runs the script under `xvfb-run`.
 
-Cigora and Perfect Cigar Blend block GitHub's servers outright (Cloudflare
-challenges even a real browser there), so they run on the home runner.
+Cigora, Perfect Cigar Blend and Hiland's block GitHub's servers outright
+(Cloudflare challenges even a real browser there), so they run on the home
+runner.
 
 ## Home runner
 
-Cigora and Perfect Cigar Blend run on a Windows PC at home, through a
+Cigora, Perfect Cigar Blend and Hiland's run on a Windows PC at home, through a
 GitHub self-hosted runner labelled `home-cigars`. Their workflows say
 `runs-on: [self-hosted, Windows, home-cigars]`; nothing else runs there.
 
