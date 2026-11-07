@@ -116,9 +116,14 @@ class PerfectCigarBlendStore:
     history_file = Path(__file__).parent / "pcb_sent_history.json"
     defaults = {"min_discount": 40, "max_price": 125, "delay": 1.5}
 
+    # Safety cap: the catalog has been well under this; a run that reaches
+    # it is looping (e.g. the site serving an earlier page for page N).
+    PAGE_CAP = 150
+
     def scan(self, session, args):
-        items, page = [], 1
-        while args.max_pages is None or page <= args.max_pages:
+        items, seen, page = [], set(), 1
+        limit = args.max_pages if args.max_pages is not None else self.PAGE_CAP
+        while page <= limit:
             url = CATALOG_URL_TMPL.format(page=page)
             print(f"Scanning page {page}: {url}")
             try:
@@ -129,9 +134,19 @@ class PerfectCigarBlendStore:
             if not products:
                 print("  no products found, stopping.")
                 break
+            new = [p for p in products if p["url"] not in seen]
+            if not new:
+                # Past the last page some sites repeat an earlier page
+                # instead of returning "not found"; stop instead of looping.
+                print("  nothing new on this page (site is repeating pages), stopping.")
+                break
+            seen.update(p["url"] for p in new)
             items.extend(products)
             page += 1
             time.sleep(args.delay)
+        else:
+            if args.max_pages is None:
+                print(f"  stopped at the {self.PAGE_CAP}-page safety cap.")
         # A product can drift onto the next page between requests; the
         # shared runner keeps only its first qualifying listing.
         return items, len(items)
