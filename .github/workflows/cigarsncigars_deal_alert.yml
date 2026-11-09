@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       full_catalog:
-        description: "Also scan the full catalog, not just deal pages (slow)"
+        description: "Also scan the full catalog, not just deal pages (slow; scheduled runs always do)"
         type: boolean
         default: false
 
@@ -40,7 +40,8 @@ jobs:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
         run: |
           ARGS="--min-discount 30 --max-price 125"
-          if [ "${{ github.event.inputs.full_catalog }}" = "true" ]; then
+          # Scheduled runs always scan the whole site; manual runs only when ticked.
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.full_catalog }}" = "true" ]; then
             ARGS="$ARGS --full-catalog"
           fi
           python cigarsncigars_deal_alert.py $ARGS
