@@ -72,6 +72,21 @@
     "discount": 37,
     "active": true
   },
+  "https://perfectcigarblend.com/product/camacho-scorpion-claw-5-pack-selection/": {
+    "price": 36.95,
+    "discount": 32,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/cao-flathead-mk-i-v23-gigante/": {
+    "price": 49.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/cao-flathead-resonator-860/": {
+    "price": 44.95,
+    "discount": 30,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/cao-flathead-v450-sparkplug/": {
     "price": 34.95,
     "discount": 35,
@@ -85,6 +100,11 @@
   "https://perfectcigarblend.com/product/cao-flathead-v660-carb/": {
     "price": 39.95,
     "discount": 36,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/cao-session-robusto/": {
+    "price": 34.95,
+    "discount": 32,
     "active": true
   },
   "https://perfectcigarblend.com/product/casdagli-brothers-of-the-saber-epicurist-figurado/": {
@@ -117,6 +137,11 @@
     "discount": null,
     "active": false
   },
+  "https://perfectcigarblend.com/product/cohiba-red-dot-toro-tube/": {
+    "price": 99.95,
+    "discount": 30,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/cohiba-royale-toro/": {
     "price": 109.95,
     "discount": 36,
@@ -131,6 +156,11 @@
     "price": 97.5,
     "discount": null,
     "active": false
+  },
+  "https://perfectcigarblend.com/product/dunbarton-tobacco-trust-mi-querida-gran-bufalo-10-pack/": {
+    "price": 101.5,
+    "discount": 30,
+    "active": true
   },
   "https://perfectcigarblend.com/product/eclectic-select-sampler/": {
     "price": 59.95,
@@ -157,9 +187,39 @@
     "discount": 40,
     "active": true
   },
+  "https://perfectcigarblend.com/product/hoyo-de-monterrey-excalibur-black-no-1/": {
+    "price": 37.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/hoyo-de-monterrey-excalibur-black-robusto/": {
+    "price": 34.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/hoyo-de-monterrey-excalibur-black-toro/": {
+    "price": 35.95,
+    "discount": 30,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/hvc-edicion-especial-2015-maduro-toro/": {
     "price": 35.95,
     "discount": 47,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-latte-petit-corona/": {
+    "price": 30.95,
+    "discount": 32,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-latte-robusto/": {
+    "price": 39.95,
+    "discount": 32,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-latte-the-58/": {
+    "price": 44.95,
+    "discount": 32,
     "active": true
   },
   "https://perfectcigarblend.com/product/java-latte-toro/": {
@@ -172,6 +232,16 @@
     "discount": 33,
     "active": true
   },
+  "https://perfectcigarblend.com/product/java-maduro-robusto/": {
+    "price": 39.95,
+    "discount": 32,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-maduro-the-58/": {
+    "price": 44.95,
+    "discount": 32,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/java-maduro-toro/": {
     "price": 41.95,
     "discount": 33,
@@ -182,6 +252,11 @@
     "discount": 33,
     "active": true
   },
+  "https://perfectcigarblend.com/product/java-mint-the-58/": {
+    "price": 44.95,
+    "discount": 32,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/java-mint-toro/": {
     "price": 41.95,
     "discount": 33,
@@ -190,6 +265,21 @@
   "https://perfectcigarblend.com/product/java-red-corona/": {
     "price": 35.95,
     "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-red-petit-corona/": {
+    "price": 30.95,
+    "discount": 32,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-red-robusto/": {
+    "price": 39.95,
+    "discount": 32,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/java-red-the-58/": {
+    "price": 44.95,
+    "discount": 32,
     "active": true
   },
   "https://perfectcigarblend.com/product/java-red-toro/": {
@@ -222,6 +312,11 @@
     "discount": 40,
     "active": true
   },
+  "https://perfectcigarblend.com/product/liga-mixtape-selection/": {
+    "price": 59.95,
+    "discount": 31,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/macanduo-emissary-selection/": {
     "price": 59.95,
     "discount": 54,
@@ -247,9 +342,19 @@
     "discount": 33,
     "active": true
   },
+  "https://perfectcigarblend.com/product/partagas-cortado-toro/": {
+    "price": 35.95,
+    "discount": 30,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/petit-perfection-premium-selection/": {
     "price": 69.95,
     "discount": 34,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/plasencia-rgb-sampler-selection/": {
+    "price": 89.95,
+    "discount": 31,
     "active": true
   },
   "https://perfectcigarblend.com/product/plasencia-triunfal-gran-toro-limited-edition-2026/": {
@@ -257,9 +362,24 @@
     "discount": null,
     "active": false
   },
+  "https://perfectcigarblend.com/product/platinum-nova-limited-edition-corona/": {
+    "price": 95.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/platinum-nova-platinum-batch-robusto-nicaragua/": {
+    "price": 48.95,
+    "discount": 30,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/precious-cargo-selection/": {
     "price": 44.95,
     "discount": 50,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/punch-knuckle-buster-maduro-stubby/": {
+    "price": 24.95,
+    "discount": 30,
     "active": true
   },
   "https://perfectcigarblend.com/product/punch-rare-corojo-aristocrat-le-2022/": {
@@ -267,9 +387,89 @@
     "discount": 45,
     "active": true
   },
+  "https://perfectcigarblend.com/product/rocky-patel-dbs-sixty/": {
+    "price": 66.95,
+    "discount": 30,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/rocky-patel-fifty-five-titan/": {
     "price": 49.95,
     "discount": 33,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-fifty-five-toro/": {
+    "price": 43.75,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-lb1-sixty/": {
+    "price": 39.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-lb1-toro/": {
+    "price": 34.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-vintage-1990-broadleaf-sixty/": {
+    "price": 43.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-vintage-1990-broadleaf-toro/": {
+    "price": 37.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-vintage-1990-broadleaf-torpedo/": {
+    "price": 41.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-vintage-1992-sumatra-robusto/": {
+    "price": 35.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-vintage-1992-sumatra-sixty/": {
+    "price": 43.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-vintage-1992-sumatra-toro/": {
+    "price": 37.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-vintage-1992-sumatra-torpedo/": {
+    "price": 41.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-vintage-1999-connecticut-sixty/": {
+    "price": 43.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-vintage-2006-san-andres-sixty/": {
+    "price": 48.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-white-label-churchill/": {
+    "price": 76.96,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-white-label-sixty/": {
+    "price": 79.95,
+    "discount": 31,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/rocky-patel-white-label-toro/": {
+    "price": 76.95,
+    "discount": 30,
     "active": true
   },
   "https://perfectcigarblend.com/product/rojas-statement-lancero-10-pack-7-x-38/": {
@@ -280,6 +480,11 @@
   "https://perfectcigarblend.com/product/rojas-statement-toro-10-pack-6-x-50/": {
     "price": 70.95,
     "discount": 46,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/roma-craft-favorites-5-cigar-selection/": {
+    "price": 39.95,
+    "discount": 32,
     "active": true
   },
   "https://perfectcigarblend.com/product/roma-craft-society-selection/": {
