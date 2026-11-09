@@ -12,6 +12,11 @@
     "discount": 57.9,
     "active": true
   },
+  "https://www.cigora.com/product/bandidos-cherry-cream/YYF-PM.html": {
+    "price": 85.99,
+    "discount": 31.1,
+    "active": true
+  },
   "https://www.cigora.com/product/blackened-spray-can-lighter-and-cutter-combo/CGOR149-SP.html": {
     "price": 79.99,
     "discount": 50.0,
@@ -87,6 +92,11 @@
     "discount": 39.7,
     "active": true
   },
+  "https://www.cigora.com/product/fratello-navetta-inverso/FT5-PM.html": {
+    "price": 8.99,
+    "discount": 31.8,
+    "active": true
+  },
   "https://www.cigora.com/product/la-palina-nicaragua-connecticut/9UC-PM.html": {
     "price": 29.99,
     "discount": 42.3,
@@ -135,6 +145,11 @@
   "https://www.cigora.com/product/nica-libre-x-oliva/NLX-PM.html": {
     "price": 9.69,
     "discount": 76.9,
+    "active": true
+  },
+  "https://www.cigora.com/product/nicaraguan-trio-collection/CIGASST767-SP.html": {
+    "price": 39.99,
+    "discount": 30.4,
     "active": true
   },
   "https://www.cigora.com/product/rocky-patel-best-of-mellow-collection/RPASST56-SP.html": {
