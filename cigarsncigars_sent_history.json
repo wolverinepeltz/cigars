@@ -2,6 +2,26 @@
   "_meta": {
     "last_examined": 171
   },
+  "https://cigarsncigars.com/601-green-oscuro-la-fuerza/": {
+    "price": 105.95,
+    "discount": 30.3,
+    "active": true
+  },
+  "https://cigarsncigars.com/601-red-habano-trabuco/": {
+    "price": 106.95,
+    "discount": 30.5,
+    "active": true
+  },
+  "https://cigarsncigars.com/camacho-robusto-tubo-display-assortment/": {
+    "price": 75.95,
+    "discount": 30.9,
+    "active": true
+  },
+  "https://cigarsncigars.com/david-p-ehrlich-tremont-robusto/": {
+    "price": 120.95,
+    "discount": 30.1,
+    "active": true
+  },
   "https://cigarsncigars.com/epicurean-carnivale-double-robusto/": {
     "price": 79.95,
     "discount": 44.1,
@@ -13,13 +33,98 @@
     "active": true
   },
   "https://cigarsncigars.com/flores-y-rodriguez-cabinet-seleccion-maduro-canonazo/": {
-    "price": 89.95,
-    "discount": 34.3,
-    "active": false
+    "price": 94.95,
+    "discount": 30.7,
+    "active": true
+  },
+  "https://cigarsncigars.com/fratello-bianco-iii-robusto/": {
+    "price": 110.95,
+    "discount": 31.9,
+    "active": true
+  },
+  "https://cigarsncigars.com/fratello-bianco-iv-gran-toro/": {
+    "price": 119.95,
+    "discount": 31.8,
+    "active": true
+  },
+  "https://cigarsncigars.com/fratello-boxer-box-pressed-torpedo/": {
+    "price": 119.95,
+    "discount": 30.2,
+    "active": true
+  },
+  "https://cigarsncigars.com/fratello-corona-cigars/": {
+    "price": 99.95,
+    "discount": 31.0,
+    "active": true
+  },
+  "https://cigarsncigars.com/fratello-dmv-19-delaware/": {
+    "price": 124.95,
+    "discount": 30.6,
+    "active": true
+  },
+  "https://cigarsncigars.com/fratello-original-robusto-unboxed/": {
+    "price": 109.95,
+    "discount": 30.4,
+    "active": true
   },
   "https://cigarsncigars.com/guayacan-habano-ecuador-torpedo-box-of-25/": {
     "price": 90.95,
     "discount": 38.5,
+    "active": true
+  },
+  "https://cigarsncigars.com/gurkha-bourbon-collection-corona-natural/": {
+    "price": 62.95,
+    "discount": 30.8,
+    "active": true
+  },
+  "https://cigarsncigars.com/gurkha-ghost-exorcist-bundle-of-20/": {
+    "price": 120.95,
+    "discount": 30.9,
+    "active": true
+  },
+  "https://cigarsncigars.com/gurkha-heritage-xo-bundle-of-20/": {
+    "price": 123.95,
+    "discount": 30.3,
+    "active": true
+  },
+  "https://cigarsncigars.com/gurkha-rum-private-select-corona-box-of-10/": {
+    "price": 62.95,
+    "discount": 30.8,
+    "active": true
+  },
+  "https://cigarsncigars.com/joya-de-nicaragua-joya-red-canonazo/": {
+    "price": 104.95,
+    "discount": 30.5,
+    "active": true
+  },
+  "https://cigarsncigars.com/la-flor-dominicana-la-volcada-petite-5-tins-of-6/": {
+    "price": 75.95,
+    "discount": 30.3,
+    "active": true
+  },
+  "https://cigarsncigars.com/laranja-reserva-escuro-toro/": {
+    "price": 68.95,
+    "discount": 30.3,
+    "active": true
+  },
+  "https://cigarsncigars.com/leaf-by-oscar-corojo-robusto/": {
+    "price": 120.95,
+    "discount": 30.1,
+    "active": true
+  },
+  "https://cigarsncigars.com/nomad-martial-law-toro/": {
+    "price": 69.95,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://cigarsncigars.com/punch-clasico-maduro-pitas/": {
+    "price": 120.95,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://cigarsncigars.com/punch-gran-puro-nicaragua-petite-robusto/": {
+    "price": 96.95,
+    "discount": 30.7,
     "active": true
   },
   "https://cigarsncigars.com/pura-soul-barber-pole/": {
@@ -31,5 +136,25 @@
     "price": 59.95,
     "discount": 38.8,
     "active": false
+  },
+  "https://cigarsncigars.com/sabor-de-esteli-gordo-6x60-habano-2014/": {
+    "price": 90.95,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://cigarsncigars.com/sabor-de-esteli-san-andres-toro-2014/": {
+    "price": 80.95,
+    "discount": 32.5,
+    "active": true
+  },
+  "https://cigarsncigars.com/southern-draw-cedrus-the-hogan/": {
+    "price": 69.95,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://cigarsncigars.com/viejo-mundo-corona/": {
+    "price": 110.95,
+    "discount": 30.2,
+    "active": true
   }
 }
