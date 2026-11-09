@@ -13,7 +13,7 @@ shopify.py) with:
 
     name                 shown in logs and the email subject
     history_file         Path of its sent-history JSON
-    defaults             dict of default CLI values, e.g. {"min_discount": 33}
+    defaults             dict of default CLI values, e.g. {"min_discount": 30}
     add_arguments(p)     add store-specific CLI flags (optional)
     scan(session, args)  return (matching-or-not items, number examined)
 
@@ -465,7 +465,7 @@ def send_email(store_name, items):
 # --------------------------------------------------------------------------
 
 def build_parser(store):
-    d = {"min_discount": 40, "max_price": 125.0, "alt_min_discount": None,
+    d = {"min_discount": 30, "max_price": 125.0, "alt_min_discount": None,
          "alt_min_price": None, "alt_max_price": None, "delay": 1.5}
     d.update(getattr(store, "defaults", {}))
 

@@ -77,7 +77,7 @@ jobs:
         env:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
         run: |
-          python pcb_deal_alert.py --min-discount 33 --max-price 125
+          python pcb_deal_alert.py --min-discount 30 --max-price 125
           exit $LASTEXITCODE
 
       - name: Commit updated history file

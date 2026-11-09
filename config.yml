@@ -2,7 +2,7 @@
 
 # --- what to look for ---
 categories: 0          # how many brand categories to crawl. 0 = all of them
-min_discount: 40        # only keep items at least this % off. 0 = keep everything
+min_discount: 30        # only keep items at least this % off. 0 = keep everything
 min_pack: 5             # smallest pack to keep. 5 skips singles. 1 = keep singles
 max_price:    125            # price cap in dollars. leave blank for no cap
 

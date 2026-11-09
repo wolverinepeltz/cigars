@@ -6,7 +6,7 @@ BigCommerce store; all the scraping logic lives in dealalerts/bigcommerce.py.
 This file only holds Cigar King's settings.
 
     python cigarking_deal_alert.py --dry-run
-    python cigarking_deal_alert.py --min-discount 33 --max-price 125
+    python cigarking_deal_alert.py --min-discount 30 --max-price 125
     python cigarking_deal_alert.py --full-catalog
 """
 
@@ -27,7 +27,7 @@ STORE = BigCommerceStore(
         "weekend-preview-sale-hidden-offers",
     ],
     full_catalog_category=None,  # --full-catalog = every sitemap category
-    defaults={"min_discount": 33, "max_price": 125},
+    defaults={"min_discount": 30, "max_price": 125},
 )
 
 if __name__ == "__main__":

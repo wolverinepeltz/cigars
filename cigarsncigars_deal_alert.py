@@ -28,7 +28,7 @@ STORE = BigCommerceStore(
         "deals",
     ],
     full_catalog_category="cigars",  # --full-catalog adds the all-cigars listing
-    defaults={"min_discount": 33, "max_price": 125},
+    defaults={"min_discount": 30, "max_price": 125},
 )
 
 if __name__ == "__main__":

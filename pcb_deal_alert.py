@@ -10,7 +10,7 @@ Crawls the paginated cigar catalog (/product-category/cigars/page/N/) and
 reads each product's price and "You save X%".
 
     python pcb_deal_alert.py --dry-run
-    python pcb_deal_alert.py --min-discount 33 --max-price 125
+    python pcb_deal_alert.py --min-discount 30 --max-price 125
     python pcb_deal_alert.py --max-pages 5          # quick test
 """
 
@@ -114,7 +114,7 @@ def _extract_products(soup: BeautifulSoup) -> list[dict]:
 class PerfectCigarBlendStore:
     name = "Perfect Cigar Blend"
     history_file = Path(__file__).parent / "pcb_sent_history.json"
-    defaults = {"min_discount": 40, "max_price": 125, "delay": 1.5}
+    defaults = {"min_discount": 30, "max_price": 125, "delay": 1.5}
 
     # Safety cap: the catalog has been well under this; a run that reaches
     # it is looping (e.g. the site serving an earlier page for page N).
