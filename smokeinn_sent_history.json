@@ -27,6 +27,11 @@
     "discount": 49,
     "active": true
   },
+  "https://www.smokeinn.com/Arturo-Fuente-Chateau-Sungrown.html": {
+    "price": 142.5,
+    "discount": 30,
+    "active": true
+  },
   "https://www.smokeinn.com/Arturo-Fuente-Sungrown-Royal-Salute.html": {
     "price": 103.5,
     "discount": 30,
@@ -39,6 +44,16 @@
   },
   "https://www.smokeinn.com/Baccarat-Havana-Selection-Churchill.html": {
     "price": 120.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Havana-Selection-Double-Corona.html": {
+    "price": 125.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Havana-Selection-King.html": {
+    "price": 133.95,
     "discount": 30,
     "active": true
   },
@@ -62,8 +77,18 @@
     "discount": 30,
     "active": true
   },
+  "https://www.smokeinn.com/Baccarat-Maduro-Double-Corona.html": {
+    "price": 125.95,
+    "discount": 30,
+    "active": true
+  },
   "https://www.smokeinn.com/Baccarat-Maduro-King-SKU3271113.html": {
     "price": 108.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Maduro-King.html": {
+    "price": 133.95,
     "discount": 30,
     "active": true
   },
@@ -77,9 +102,44 @@
     "discount": 30,
     "active": true
   },
+  "https://www.smokeinn.com/Baccarat-Nicaraguan-King-SKU32721121.html": {
+    "price": 125.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Nicaraguan-King.html": {
+    "price": 133.95,
+    "discount": 30,
+    "active": true
+  },
   "https://www.smokeinn.com/Baccarat-Nicaraguan-Toro.html": {
     "price": 113.95,
     "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/CAO-America-Monument.html": {
+    "price": 147.95,
+    "discount": 32,
+    "active": true
+  },
+  "https://www.smokeinn.com/CAO-Brazilia-Box-Pressed.html": {
+    "price": 145.95,
+    "discount": 31,
+    "active": true
+  },
+  "https://www.smokeinn.com/CAO-Brazilia-Lambada.html": {
+    "price": 141.95,
+    "discount": 31,
+    "active": true
+  },
+  "https://www.smokeinn.com/CAO-Brazilia-Samba.html": {
+    "price": 147.95,
+    "discount": 31,
+    "active": true
+  },
+  "https://www.smokeinn.com/CAO-Italia-Gondola.html": {
+    "price": 147.95,
+    "discount": 32,
     "active": true
   },
   "https://www.smokeinn.com/Cavalier-Geneve-Inner-Circle-Petit-Robusto-5-Pack-SKU3641511.html": {
@@ -262,6 +322,11 @@
     "discount": 47,
     "active": true
   },
+  "https://www.smokeinn.com/La-Palina-KB-Part-Two-10-Pack-Promo.html": {
+    "price": 135.0,
+    "discount": 43,
+    "active": true
+  },
   "https://www.smokeinn.com/Los-Statos-Deluxe-Connecticut-Robusto-5-Pack.html": {
     "price": 22.0,
     "discount": 50,
@@ -372,14 +437,29 @@
     "discount": 35,
     "active": true
   },
+  "https://www.smokeinn.com/Room-101-FARCE-Connecticut-Churchill.html": {
+    "price": 140.95,
+    "discount": 50,
+    "active": true
+  },
   "https://www.smokeinn.com/Room-101-FARCE-Connecticut-Robusto-10-Pack-Promo.html": {
     "price": 84.5,
     "discount": 35,
     "active": true
   },
+  "https://www.smokeinn.com/Room-101-FARCE-Connecticut-Robusto.html": {
+    "price": 129.95,
+    "discount": 50,
+    "active": true
+  },
   "https://www.smokeinn.com/Room-101-FARCE-Connecticut-Super-Toro-10-Pack-Promo.html": {
     "price": 97.5,
     "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-FARCE-Connecticut-Super-Toro.html": {
+    "price": 149.95,
+    "discount": 50,
     "active": true
   },
   "https://www.smokeinn.com/Room-101-FARCE-Maduro-Toro-10-Pack-Promo.html": {
@@ -392,6 +472,11 @@
     "discount": 59,
     "active": true
   },
+  "https://www.smokeinn.com/Room-101-FARCE-Maduro-Toro.html": {
+    "price": 148.95,
+    "discount": 50,
+    "active": true
+  },
   "https://www.smokeinn.com/Room-101-FARCE-Original-Robusto-10-Pack-Promo.html": {
     "price": 88.0,
     "discount": 35,
@@ -400,6 +485,11 @@
   "https://www.smokeinn.com/Room-101-FARCE-Original-Toro-10-Pack-Promo.html": {
     "price": 97.0,
     "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-FARCE-Original-Toro.html": {
+    "price": 149.0,
+    "discount": 50,
     "active": true
   },
   "https://www.smokeinn.com/Room-101-Farce-Nicaragua-Gordo-10-Pack-SKU34918212.html": {
@@ -415,6 +505,11 @@
   "https://www.smokeinn.com/Room-101-Farce-Nicaragua-Toro-10-Pack-SKU3491812.html": {
     "price": 96.95,
     "discount": 35,
+    "active": true
+  },
+  "https://www.smokeinn.com/Room-101-Farce-Nicaragua-Toro.html": {
+    "price": 148.95,
+    "discount": 50,
     "active": true
   },
   "https://www.smokeinn.com/Sancho-Panza-Extra-Chido-Gigante-10-Pack-Promo.html": {
