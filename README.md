@@ -128,8 +128,8 @@ platform comes along, move the page reading into a module next to
 
 ## Options every store script takes
 
-    --min-discount 30 --max-price 125     main rule
-    --alt-min-discount 25 --alt-min-price 100 --alt-max-price 125
+    --min-discount 30 --max-price 150     main rule
+    --alt-min-discount 25 --alt-min-price 100 --alt-max-price 150
                                           optional second rule
     --dry-run                             find deals, don't email or save
     --max-pages 1                         quick test

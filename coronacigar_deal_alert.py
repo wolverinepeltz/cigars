@@ -28,7 +28,7 @@ STORE = BigCommerceStore(
         "cigars/cigar-fan-favorites/cigar-deals",
     ],
     full_catalog_category=None,  # --full-catalog = every sitemap category
-    defaults={"min_discount": 30, "max_price": 125},
+    defaults={"min_discount": 30, "max_price": 150},
 )
 
 if __name__ == "__main__":

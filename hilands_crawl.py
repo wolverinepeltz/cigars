@@ -84,7 +84,7 @@ DEFAULTS = {
     "categories": 0,
     "min_discount": 30,
     "min_pack": 5,
-    "max_price": 99.99,
+    "max_price": 150,
     "include_out_of_stock": False,
     "allow_backorder": False,
     "include_unknown_pack": False,

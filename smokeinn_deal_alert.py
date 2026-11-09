@@ -12,7 +12,7 @@ page from the Big List of Brands (~1000 pages), where an MSRP / Save X%
 line only appears on discounted sizes.
 
     python smokeinn_deal_alert.py --dry-run
-    python smokeinn_deal_alert.py --min-discount 30 --max-price 125 --full-catalog
+    python smokeinn_deal_alert.py --min-discount 30 --max-price 150 --full-catalog
     python smokeinn_deal_alert.py --full-catalog --max-lines 20     # quick test
 """
 
@@ -219,7 +219,7 @@ def scrape_brand_lines(session: requests.Session, max_lines: int | None = None) 
 class SmokeInnStore:
     name = "Smoke Inn"
     history_file = Path(__file__).parent / "smokeinn_sent_history.json"
-    defaults = {"min_discount": 30, "max_price": 125, "delay": 1.0}
+    defaults = {"min_discount": 30, "max_price": 150, "delay": 1.0}
 
     def add_arguments(self, p):
         p.add_argument("--url", default=CLEARANCE_URL,

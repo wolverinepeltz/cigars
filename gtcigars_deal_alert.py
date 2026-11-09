@@ -23,9 +23,9 @@ STORE = ShopifyStore(
     # case a promo item isn't filed under it. Duplicates are removed.
     collections=["shop-all-cigars", "daily-deals", "weekly-deals", "monthly-deals"],
     defaults={
-        "min_discount": 30, "max_price": 125,
-        # second rule: 25%+ off between $100 and $125
-        "alt_min_discount": 25, "alt_min_price": 100, "alt_max_price": 125,
+        "min_discount": 30, "max_price": 150,
+        # second rule: 25%+ off between $100 and $150
+        "alt_min_discount": 25, "alt_min_price": 100, "alt_max_price": 150,
     },
 )
 

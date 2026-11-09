@@ -12,7 +12,7 @@ Actions runners) get HTTP 403, while the same code often works from a home
 connection.
 
     python cigora_deal_alert.py --dry-run
-    python cigora_deal_alert.py --min-discount 30 --max-price 125
+    python cigora_deal_alert.py --min-discount 30 --max-price 150
     python cigora_deal_alert.py --category samplers
     python cigora_deal_alert.py --max-pages 5        # quick test
 """
@@ -156,7 +156,7 @@ def _extract_products(soup: BeautifulSoup) -> list[dict]:
 class CigoraStore:
     name = "Cigora"
     history_file = Path(__file__).parent / "cigora_sent_history.json"
-    defaults = {"min_discount": 30, "max_price": 125, "delay": 1.5}
+    defaults = {"min_discount": 30, "max_price": 150, "delay": 1.5}
 
     def add_arguments(self, p):
         p.add_argument("--category", default=CATEGORY,

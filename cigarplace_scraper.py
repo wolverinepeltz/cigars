@@ -3,7 +3,7 @@
 Cigarplace Deals Scraper
 ------------------------
 Crawls https://www.cigarplace.biz/cigars.html and emails every cigar
-that is >= 30% off MSRP AND our price <= $125 (optionally rated >= 4.5 stars).
+that is >= 30% off MSRP AND our price <= $150 (optionally rated >= 4.5 stars).
 
 The rating criterion can be turned off with CHECK_RATINGS = False, in
 which case the Stamped.io lookup is skipped entirely and deals qualify
@@ -40,7 +40,7 @@ MAX_PAGES       = None    # None = all pages, or e.g. 3
 MIN_DISCOUNT    = 0.30    # 30% off
 CHECK_RATINGS   = False   # False = skip Stamped API, ignore MIN_RATING
 MIN_RATING      = 4.5     # only used when CHECK_RATINGS is True
-MAX_OUR_PRICE   = 125.00
+MAX_OUR_PRICE   = 150.00
 BATCH_SIZE      = 8       # parallel pages at once
 GOTO_TIMEOUT_MS = 30_000  # navigation timeout
 FORCE           = False   # True = ignore history, email everything found

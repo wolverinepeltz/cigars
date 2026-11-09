@@ -39,7 +39,7 @@ jobs:
         env:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
         run: |
-          ARGS="--min-discount 30 --max-price 125"
+          ARGS="--min-discount 30 --max-price 150"
           if [ "${{ github.event.inputs.full_catalog }}" = "true" ]; then
             ARGS="$ARGS --full-catalog"
           fi

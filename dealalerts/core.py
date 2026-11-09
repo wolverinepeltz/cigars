@@ -465,7 +465,7 @@ def send_email(store_name, items):
 # --------------------------------------------------------------------------
 
 def build_parser(store):
-    d = {"min_discount": 30, "max_price": 125.0, "alt_min_discount": None,
+    d = {"min_discount": 30, "max_price": 150.0, "alt_min_discount": None,
          "alt_min_price": None, "alt_max_price": None, "delay": 1.5}
     d.update(getattr(store, "defaults", {}))
 
