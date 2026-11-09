@@ -27,9 +27,34 @@
     "discount": 40.0,
     "active": true
   },
+  "https://www.cigarking.com/aging-room-la-boheme-poeta-robusto-5-7x54-pack-15/": {
+    "price": 131.27,
+    "discount": 70.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-bellas-artes-maduro-figurado-6-5x52-box-20/": {
+    "price": 149.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-bellas-artes-maduro-gordo-6-5x58-box-20/": {
+    "price": 143.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-bellas-artes-maduro-robusto-5-5x52-box-20/": {
+    "price": 137.95,
+    "discount": 40.0,
+    "active": true
+  },
   "https://www.cigarking.com/aj-fernandez-bellas-artes-maduro-short-churchill-6x48-box-20/": {
     "price": 119.95,
     "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-bellas-artes-maduro-toro-6x54-box-20/": {
+    "price": 143.95,
+    "discount": 40.0,
     "active": true
   },
   "https://www.cigarking.com/aj-fernandez-cuban-strong-inflation-buster-deal-assorted-sizes-20-pack/": {
@@ -117,6 +142,11 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/aj-fernandez-san-lotano-requiem-habano-torpedo-6-5x52-box-20-30-off-retail/": {
+    "price": 132.3,
+    "discount": 30.0,
+    "active": true
+  },
   "https://www.cigarking.com/aj-fernandez-san-lotano-requiem-maduro-churchill-7x52-box-20/": {
     "price": 119.95,
     "discount": 52.0,
@@ -135,6 +165,11 @@
   "https://www.cigarking.com/aj-fernandez-san-lotano-requiem-maduro-torpedo-6-5x52-box-20/": {
     "price": 119.95,
     "discount": 52.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-spanish-heirloom-toro-6x52-box-20/": {
+    "price": 129.95,
+    "discount": 56.7,
     "active": true
   },
   "https://www.cigarking.com/alec-bradley-black-market-churchill-7x50-10-pack/": {
@@ -160,6 +195,11 @@
   "https://www.cigarking.com/asylum-13-split-personality-gordo-6x60-5-pack-flash-sale/": {
     "price": 37.49,
     "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/atabey-cigars-secret-motherload-flight-assorted-sizes-quantity-undisclosed/": {
+    "price": 129.95,
+    "discount": 35.0,
     "active": true
   },
   "https://www.cigarking.com/bestselling-blends-sampler-assorted-sizes-20-pack/": {
@@ -197,6 +237,11 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/cain-daytona-550-robusto-5x50-box-24/": {
+    "price": 133.1,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/cain-daytona-646-corona-6x46-box-24/": {
     "price": 83.95,
     "discount": 50.0,
@@ -207,9 +252,19 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/cain-f-550-robusto-5x50-box-24/": {
+    "price": 133.1,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/cain-habano-550-robusto-5x50-box-24/": {
     "price": 93.37,
     "discount": 57.6,
+    "active": true
+  },
+  "https://www.cigarking.com/cain-nub-maduro-460-4x60-box-24/": {
+    "price": 139.15,
+    "discount": 50.0,
     "active": true
   },
   "https://www.cigarking.com/camacho-scorpion-sun-grown-super-gordo-7x70-box-10-41-off-free-shipping/": {
@@ -382,6 +437,61 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-aj-fernandez-bellas-artes-robusto-extra-5-5x52-box-20-1/": {
+    "price": 131.95,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-bellas-artes-short-churchill-6x48-box-20-1/": {
+    "price": 125.95,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-bellas-artes-toro-6x54-box-20-1/": {
+    "price": 137.95,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-cuban-diplomat-gordo-6x60-box-20-kzin/": {
+    "price": 149.95,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-cuban-diplomat-gordo-box-press-6x60-box-20-rccj/": {
+    "price": 149.95,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-cuban-diplomat-robusto-5x54-box-20/": {
+    "price": 149.95,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-cuban-diplomat-robusto-box-press-5x54-box-20/": {
+    "price": 149.95,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-cuban-diplomat-toro-6x54-box-20/": {
+    "price": 149.95,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-cuban-diplomat-toro-box-press-6x54-box-20/": {
+    "price": 149.95,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-cuban-diplomat-torpedo-6-5x54-box-20-imsd/": {
+    "price": 149.95,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-cuban-diplomat-torpedo-box-press-6-5x54-box-20-qaew/": {
+    "price": 149.95,
+    "discount": 42.3,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-aj-fernandez-dias-de-gloria-brazil-figurado-6-5x52-10-pack/": {
     "price": 108.49,
     "discount": 30.0,
@@ -402,6 +512,11 @@
     "discount": 30.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-aj-fernandez-dias-de-gloria-gordo-6x58-box-20/": {
+    "price": 137.49,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-aj-fernandez-dias-de-gloria-robusto-5-5x52-box-20/": {
     "price": 115.49,
     "discount": 50.0,
@@ -410,6 +525,26 @@
   "https://www.cigarking.com/copy-of-aj-fernandez-dias-de-gloria-short-churchill-6-5x48-box-20/": {
     "price": 104.49,
     "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-dias-de-gloria-toro-6x56-box-20/": {
+    "price": 126.49,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-enclave-broadleaf-belicoso-6x56-box-20-1/": {
+    "price": 143.95,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-enclave-broadleaf-robusto-5x52-box-20-1/": {
+    "price": 129.6,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-enclave-broadleaf-toro-6-5x54-box-20-1/": {
+    "price": 136.8,
+    "discount": 40.0,
     "active": true
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-enclave-churchill-7x52-box-20/": {
@@ -502,6 +637,11 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-aj-fernandez-new-world-decenio-gordo-6x58-box-20-ack3/": {
+    "price": 150.0,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-aj-fernandez-new-world-decenio-robusto-5-5x54-10-pack-e3pf/": {
     "price": 62.5,
     "discount": 50.0,
@@ -514,6 +654,11 @@
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-new-world-decenio-toro-6-5x54-10-pack-brqa/": {
     "price": 70.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-new-world-decenio-toro-6-5x54-box-20-fqzo/": {
+    "price": 140.0,
     "discount": 50.0,
     "active": true
   },
@@ -547,6 +692,11 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-aj-fernandez-new-world-puro-especial-gordo-6x60-box-20-free-deck-of-cigar-king-playing-cards/": {
+    "price": 132.0,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-aj-fernandez-new-world-puro-especial-robusto-5-5x52-box-20-free-deck-of-cigar-king-playing-cards/": {
     "price": 121.0,
     "discount": 50.0,
@@ -554,6 +704,11 @@
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-new-world-puro-especial-short-churchill-6x48-box-20-free-deck-of-cigar-king-playing-cards/": {
     "price": 117.7,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-new-world-puro-especial-toro-6-5x52-box-20-free-deck-of-cigar-king-playing-cards/": {
+    "price": 125.4,
     "discount": 50.0,
     "active": true
   },
@@ -577,9 +732,19 @@
     "discount": 33.7,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-aj-fernandez-nicaraguan-heirloom-connecticut-toro-6x52-box-20/": {
+    "price": 129.95,
+    "discount": 56.7,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-aj-fernandez-nicaraguan-heirloom-toro-6x52-5-pack/": {
     "price": 49.75,
     "discount": 33.7,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-aj-fernandez-nicaraguan-heirloom-toro-6x52-box-20/": {
+    "price": 129.95,
+    "discount": 56.7,
     "active": true
   },
   "https://www.cigarking.com/copy-of-avo-syncro-nicaragua-box-pressed-toro-6x54-10-pack/": {
@@ -617,6 +782,16 @@
     "discount": 57.7,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-cain-habano-660-double-toro-6x60-box-24/": {
+    "price": 126.11,
+    "discount": 57.7,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-cain-maduro-550-robusto-5x50-box-24-li1e/": {
+    "price": 133.1,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-cao-pilon-anejo-gigante-5-7x60-box-20-pem1/": {
     "price": 104.47,
     "discount": 45.0,
@@ -642,6 +817,11 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-casa-magna-oscuro-churchill-gordo-6-6x56-bundle-27-flash-sale/": {
+    "price": 149.95,
+    "discount": 61.1,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-casa-magna-oscuro-no-4-corona-5x44-15-pack-lxx4/": {
     "price": 67.5,
     "discount": 50.0,
@@ -655,6 +835,11 @@
   "https://www.cigarking.com/copy-of-casa-magna-oscuro-robusto-5x54-15-pack-rldh/": {
     "price": 86.25,
     "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-casa-magna-oscuro-robusto-5x54-box-27-flash-sale-hiyj/": {
+    "price": 132.59,
+    "discount": 61.0,
     "active": true
   },
   "https://www.cigarking.com/copy-of-cigar-king-celebrating-64-years-robusto-vs-atabey-sabios-assorted-sizes-8-pack/": {
@@ -672,6 +857,11 @@
     "discount": 35.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-dbl-amarillo-fancy-belicoso-5-6x54-box-20-tcg2/": {
+    "price": 135.2,
+    "discount": 35.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-dbl-amarillo-robusto-5x52-box-20-w7qe/": {
     "price": 101.4,
     "discount": 35.0,
@@ -682,8 +872,18 @@
     "discount": 35.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-dbl-extra-viejo-double-prensado-gorda-5-7x60-box-20-1/": {
+    "price": 128.7,
+    "discount": 35.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-dbl-extra-viejo-double-prensado-robusto-5-25x50-box-20-1/": {
     "price": 102.7,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-dbl-extra-viejo-double-prensado-super-gorda-7x66-box-20-1/": {
+    "price": 143.0,
     "discount": 35.0,
     "active": true
   },
@@ -697,6 +897,11 @@
     "discount": 35.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-dbl-formula-gorda-7x60-box-18/": {
+    "price": 128.7,
+    "discount": 35.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-dbl-formula-petit-corona-5-25x44-box-18/": {
     "price": 81.9,
     "discount": 35.0,
@@ -707,13 +912,43 @@
     "discount": 35.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-dbl-habano-corona-6x44-box-20/": {
+    "price": 136.5,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-dbl-habano-robusto-5x50-box-20/": {
+    "price": 142.95,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-dbl-maduro-big-papi-6x54-box-24/": {
+    "price": 140.4,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-dbl-maduro-la-flecha-5-5x50-box-24/": {
+    "price": 131.04,
+    "discount": 35.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-dbl-maduro-lancero-7x40-box-20/": {
     "price": 117.0,
     "discount": 35.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-el-septimo-geneva-the-sacred-arts-collection-botticelli-7-5x58-10-pack/": {
+    "price": 149.95,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-el-septimo-geneva-the-sacred-arts-collection-raphael-6x50-10-pack-flash-sale/": {
     "price": 119.95,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-el-septimo-geneva-the-sacred-arts-collection-salvador-dali-6-5x54-10-pack/": {
+    "price": 149.95,
     "discount": 40.0,
     "active": true
   },
@@ -795,6 +1030,11 @@
   "https://www.cigarking.com/copy-of-jaime-garcia-reserva-especial-connecticut-churchill-7x50-10-pack/": {
     "price": 89.36,
     "discount": 30.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-la-aurora-preferidos-ruby-maduro-double-perfecto-5x54-10-pack-1/": {
+    "price": 128.95,
+    "discount": 57.0,
     "active": true
   },
   "https://www.cigarking.com/copy-of-leaf-by-oscar-connecticut-toro-6x52-pack-10-dxxa/": {
@@ -917,8 +1157,28 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-nub-cameroon-464t-torpedo-by-oliva-4x64-box-24-mbra/": {
+    "price": 130.68,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-nub-cameroon-466-by-oliva-4x66-box-24-4izv/": {
+    "price": 149.8,
+    "discount": 50.9,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-nub-connecticut-354-by-oliva-3-7x54-box-24-jgt6/": {
     "price": 117.37,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-nub-connecticut-358-by-oliva-3-7x58-box-24-s9lc/": {
+    "price": 130.68,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-nub-connecticut-460-by-oliva-4x60-box-24-ddgf/": {
+    "price": 135.52,
     "discount": 50.0,
     "active": true
   },
@@ -927,15 +1187,30 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-nub-connecticut-464t-torpedo-by-oliva-4x64-box-24-nkth/": {
+    "price": 147.62,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-nub-habano-358-by-oliva-3-7x58-5-pack/": {
     "price": 34.95,
     "discount": null,
     "active": false
   },
+  "https://www.cigarking.com/copy-of-nub-habano-358-by-oliva-3-7x58-box-24/": {
+    "price": 130.68,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-nub-habano-460-by-oliva-4x60-5-pack/": {
     "price": 34.95,
     "discount": null,
     "active": false
+  },
+  "https://www.cigarking.com/copy-of-nub-habano-460-by-oliva-4x60-box-24/": {
+    "price": 135.52,
+    "discount": 50.0,
+    "active": true
   },
   "https://www.cigarking.com/copy-of-nub-habano-460-tubos-by-oliva-4x60-box-12-g3pn/": {
     "price": 95.59,
@@ -947,6 +1222,11 @@
     "discount": null,
     "active": false
   },
+  "https://www.cigarking.com/copy-of-nub-habano-464t-torpedo-by-oliva-4x64-box-24/": {
+    "price": 147.62,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-nub-habano-466-by-oliva-4x66-5-pack/": {
     "price": 34.95,
     "discount": null,
@@ -955,6 +1235,16 @@
   "https://www.cigarking.com/copy-of-nub-maduro-354-by-oliva-3-7x54-box-24-qan4/": {
     "price": 117.37,
     "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-nub-maduro-358-by-oliva-3-7x58-box-24-zmnn/": {
+    "price": 130.68,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-nub-maduro-460-by-oliva-4x60-box-24-tzkb/": {
+    "price": 149.8,
+    "discount": 50.1,
     "active": true
   },
   "https://www.cigarking.com/copy-of-nub-maduro-460-tubos-by-oliva-4x60-box-12-fuzg/": {
@@ -976,6 +1266,11 @@
     "price": 123.95,
     "discount": 71.3,
     "active": false
+  },
+  "https://www.cigarking.com/copy-of-oliva-serie-o-maduro-churchill-7x50-box-20/": {
+    "price": 130.68,
+    "discount": 50.0,
+    "active": true
   },
   "https://www.cigarking.com/copy-of-oliva-serie-v-maduro-especial-double-toro-6x60-box-10/": {
     "price": 91.84,
@@ -1242,6 +1537,21 @@
     "discount": 63.3,
     "active": true
   },
+  "https://www.cigarking.com/copy-of-slam-pack-plasencia-alma-fuerte-nestor-iv-toro-vs-h-upmann-the-banker-daytrader-toro-assorted-sizes-10-pack/": {
+    "price": 129.95,
+    "discount": 45.9,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-slam-pack-plasencia-alma-fuerte-nestor-iv-toro-vs-montecristo-original-churchill-assorted-sizes-10-pack/": {
+    "price": 129.95,
+    "discount": 57.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-slam-pack-plasencia-alma-fuerte-nestor-iv-toro-vs-perdomo-30th-anniversary-maduro-epicure-assorted-sizes-10-pack/": {
+    "price": 129.95,
+    "discount": 40.9,
+    "active": true
+  },
   "https://www.cigarking.com/copy-of-stalk-leaf-by-oscar-barber-pole-gordo-6x60-bundle-20-flash-sale-2gym/": {
     "price": 99.0,
     "discount": 57.1,
@@ -1457,8 +1767,33 @@
     "discount": 35.0,
     "active": true
   },
+  "https://www.cigarking.com/dbl-mafu-gordo-cameroon-8x60-box-20/": {
+    "price": 146.9,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://www.cigarking.com/dbl-mafu-gordo-maduro-8x60-box-20/": {
+    "price": 146.9,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://www.cigarking.com/dbl-mafu-toro-cameroon-6x54-box-20/": {
+    "price": 127.4,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://www.cigarking.com/dbl-mafu-toro-maduro-6x54-box-20/": {
+    "price": 127.4,
+    "discount": 35.0,
+    "active": true
+  },
   "https://www.cigarking.com/dbl-nicaragua-robusto-gordo-5-5x54-5-pack/": {
     "price": 35.75,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://www.cigarking.com/dbl-nicaragua-robusto-gordo-5-5x54-box-20/": {
+    "price": 143.0,
     "discount": 35.0,
     "active": true
   },
@@ -1542,6 +1877,11 @@
     "discount": 40.0,
     "active": true
   },
+  "https://www.cigarking.com/e-p-carrillo-short-run-retro-2022-maduro-extended-play-6x52-box-24/": {
+    "price": 136.8,
+    "discount": 40.0,
+    "active": true
+  },
   "https://www.cigarking.com/e-p-carrillo-short-run-retro-2022-maduro-long-play-6x60-4-pack/": {
     "price": 25.2,
     "discount": 40.0,
@@ -1597,6 +1937,11 @@
     "discount": 32.0,
     "active": true
   },
+  "https://www.cigarking.com/five-star-selection-sampler-assorted-sizes-24-cigars/": {
+    "price": 149.95,
+    "discount": 43.4,
+    "active": true
+  },
   "https://www.cigarking.com/gran-habano-20th-anniversary-edicion-limitada-el-desafio-gran-robusto-6x54-5-pack/": {
     "price": 55.61,
     "discount": 33.0,
@@ -1610,6 +1955,11 @@
   "https://www.cigarking.com/gurkha-beauty-toro-6x50-15-pack-free-shipping/": {
     "price": 89.95,
     "discount": 81.1,
+    "active": true
+  },
+  "https://www.cigarking.com/gurkha-cellar-reserve-18-year-edicion-especial-koi-4x58-box-20/": {
+    "price": 143.0,
+    "discount": 35.0,
     "active": true
   },
   "https://www.cigarking.com/gurkha-greats-the-honest-pour-vol-ii-sampler-6x50-12-pack/": {
@@ -1630,6 +1980,11 @@
   "https://www.cigarking.com/gurkha-tyson-2-0-undisputed-habano-toro-6x54-15-pack/": {
     "price": 89.95,
     "discount": 73.9,
+    "active": true
+  },
+  "https://www.cigarking.com/havana-heritage-sampler-assorted-sizes-20-pack/": {
+    "price": 129.95,
+    "discount": 57.9,
     "active": true
   },
   "https://www.cigarking.com/herrera-esteli-norteno-robusto-grande-5-2x52-10-pack/": {
@@ -1655,6 +2010,11 @@
   "https://www.cigarking.com/hvc-cerro-toro-6x54-pack-20/": {
     "price": 89.95,
     "discount": 55.0,
+    "active": true
+  },
+  "https://www.cigarking.com/hvc-first-selection-broadleaf-toro-6x52-box-20-free-shipping-on-your-entire-order/": {
+    "price": 137.95,
+    "discount": 50.0,
     "active": true
   },
   "https://www.cigarking.com/hvc-san-isidro-geniales-6x52-box-20/": {
@@ -1697,6 +2057,11 @@
     "discount": 30.0,
     "active": true
   },
+  "https://www.cigarking.com/illusione-ultra-no-3-4-25x50-box-20/": {
+    "price": 134.4,
+    "discount": 30.0,
+    "active": true
+  },
   "https://www.cigarking.com/island-jim-big-johnny-8x66-box-16-free-shipping-on-your-entire-order/": {
     "price": 123.2,
     "discount": 30.0,
@@ -1717,6 +2082,11 @@
     "discount": 40.0,
     "active": true
   },
+  "https://www.cigarking.com/la-aurora-107-ecuador-belicoso-6-25x52-box-20/": {
+    "price": 137.5,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/la-aurora-107-ecuador-robusto-5x50-10-pack/": {
     "price": 67.5,
     "discount": 40.0,
@@ -1724,6 +2094,11 @@
   },
   "https://www.cigarking.com/la-aurora-107-ecuador-robusto-5x50-box-20/": {
     "price": 112.5,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/la-aurora-107-ecuador-toro-5-75x54-box-20/": {
+    "price": 134.38,
     "discount": 50.0,
     "active": true
   },
@@ -1742,6 +2117,16 @@
     "discount": 40.0,
     "active": true
   },
+  "https://www.cigarking.com/la-aurora-107-nicaragua-belicoso-6-25x52-box-20-y86g/": {
+    "price": 134.38,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/la-aurora-107-nicaragua-gran-toro-6x58-box-20-5isu/": {
+    "price": 143.75,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/la-aurora-107-nicaragua-robusto-5x50-10-pack/": {
     "price": 57.0,
     "discount": 40.0,
@@ -1757,6 +2142,11 @@
     "discount": 40.0,
     "active": true
   },
+  "https://www.cigarking.com/la-aurora-107-nicaragua-toro-5-75x54-box-20-bdow/": {
+    "price": 134.38,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/la-aurora-115-aniversario-robusto-5x50-10-pack/": {
     "price": 63.0,
     "discount": 40.0,
@@ -1767,8 +2157,23 @@
     "discount": 40.0,
     "active": true
   },
+  "https://www.cigarking.com/la-aurora-115th-anniversary-belicoso-6-2x52-box-20/": {
+    "price": 139.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/la-aurora-115th-anniversary-gran-toro-6x58-box-20/": {
+    "price": 143.75,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/la-aurora-115th-anniversary-robusto-5x50-box-20/": {
     "price": 125.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/la-aurora-115th-anniversary-toro-5-7x54-box-20/": {
+    "price": 131.25,
     "discount": 50.0,
     "active": true
   },
@@ -2007,6 +2412,11 @@
     "discount": 40.0,
     "active": true
   },
+  "https://www.cigarking.com/la-aurora-hors-d-age-corona-gorda-6x48-10-pack/": {
+    "price": 132.0,
+    "discount": 40.0,
+    "active": true
+  },
   "https://www.cigarking.com/la-aurora-leon-jimenes-prestige-robusto-5x50-10-pack/": {
     "price": 57.0,
     "discount": 40.0,
@@ -2067,6 +2477,11 @@
     "discount": 40.0,
     "active": true
   },
+  "https://www.cigarking.com/la-aurora-preferido-emerald-no-1-double-perfecto-6x58-10-pack/": {
+    "price": 150.0,
+    "discount": 40.0,
+    "active": true
+  },
   "https://www.cigarking.com/la-aurora-preferido-emerald-no-2-tubos-double-perfecto-5x54-4-pack/": {
     "price": 69.95,
     "discount": 49.1,
@@ -2097,9 +2512,19 @@
     "discount": null,
     "active": false
   },
+  "https://www.cigarking.com/la-aurora-preferido-platinum-no-2-double-perfecto-5x54-10-pack/": {
+    "price": 150.0,
+    "discount": 40.0,
+    "active": true
+  },
   "https://www.cigarking.com/la-aurora-preferido-platinum-no-2-tubos-double-perfecto-5x54-4-pack/": {
     "price": 69.95,
     "discount": 49.1,
+    "active": true
+  },
+  "https://www.cigarking.com/la-aurora-preferido-ruby-no-1-double-perfecto-6x58-10-pack/": {
+    "price": 150.0,
+    "discount": 40.0,
     "active": true
   },
   "https://www.cigarking.com/la-aurora-preferido-ruby-no-2-tubos-double-perfecto-5x54-4-pack/": {
@@ -2110,6 +2535,11 @@
   "https://www.cigarking.com/la-aurora-preferido-ruby-no-2-tubos-double-perfecto-5x54-box-8/": {
     "price": 109.95,
     "discount": 60.3,
+    "active": true
+  },
+  "https://www.cigarking.com/la-aurora-preferido-sapphire-no-1-double-perfecto-6x58-10-pack/": {
+    "price": 150.0,
+    "discount": 40.0,
     "active": true
   },
   "https://www.cigarking.com/la-aurora-preferido-sapphire-no-2-tubos-double-perfecto-5x54-4-pack/": {
@@ -2222,6 +2652,11 @@
     "discount": 59.6,
     "active": true
   },
+  "https://www.cigarking.com/montecristo-ciudad-de-musica-robusto-5x50-box-20/": {
+    "price": 142.68,
+    "discount": 52.4,
+    "active": true
+  },
   "https://www.cigarking.com/montecristo-espada-guard-toro-6x50-10-pack/": {
     "price": 69.0,
     "discount": 70.0,
@@ -2235,6 +2670,11 @@
   "https://www.cigarking.com/montecristo-espada-oscuro-magnum-especial-6x60-10-pack/": {
     "price": 70.47,
     "discount": 70.0,
+    "active": true
+  },
+  "https://www.cigarking.com/montecristo-platinum-sampler-assorted-sizes-15-pack/": {
+    "price": 134.39,
+    "discount": 58.0,
     "active": true
   },
   "https://www.cigarking.com/my-father-flor-de-las-antillas-maduro-robusto-4-5x50-10-pack/": {
@@ -2262,6 +2702,11 @@
     "discount": null,
     "active": false
   },
+  "https://www.cigarking.com/nicaraguan-hall-of-flame-sampler-assorted-sizes-20-pack/": {
+    "price": 139.95,
+    "discount": 48.2,
+    "active": true
+  },
   "https://www.cigarking.com/oliva-big-70-inflation-buster-assorted-sizes-25-cigars/": {
     "price": 107.95,
     "discount": 70.6,
@@ -2274,6 +2719,16 @@
   },
   "https://www.cigarking.com/oliva-connecticut-reserve-lonsdale-6-5x44-box-20/": {
     "price": 114.83,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-connecticut-reserve-petite-corona-4x38-box-30/": {
+    "price": 137.5,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-connecticut-reserve-toro-6x50-box-20/": {
+    "price": 141.57,
     "discount": 30.0,
     "active": true
   },
@@ -2292,6 +2747,11 @@
     "discount": null,
     "active": false
   },
+  "https://www.cigarking.com/oliva-serie-g-cameroon-churchill-7x50-box-25/": {
+    "price": 133.67,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/oliva-serie-g-cameroon-special-g-3-75x48-box-48/": {
     "price": 124.42,
     "discount": null,
@@ -2302,13 +2762,28 @@
     "discount": null,
     "active": false
   },
+  "https://www.cigarking.com/oliva-serie-g-maduro-churchill-7x50-box-24-7sdk/": {
+    "price": 132.17,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/oliva-serie-g-maduro-perfecto-5-5x54-box-24/": {
     "price": 114.33,
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/oliva-serie-g-maduro-presidente-8x52-box-24-ltwt/": {
+    "price": 146.51,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/oliva-serie-g-maduro-robusto-4-5x50-box-24-un3g/": {
     "price": 122.99,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-g-maduro-torpedo-6-5x52-box-24-a6dv/": {
+    "price": 140.02,
     "discount": 50.0,
     "active": true
   },
@@ -2332,6 +2807,16 @@
     "discount": null,
     "active": false
   },
+  "https://www.cigarking.com/oliva-serie-o-maduro-robusto-5x50-box-20/": {
+    "price": 129.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-o-maduro-torpedo-6-5x52-box-20/": {
+    "price": 139.15,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/oliva-serie-v-maduro-especial-double-robusto-5x54-box-10/": {
     "price": 78.53,
     "discount": 50.0,
@@ -2347,9 +2832,24 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/oliva-serie-v-melanio-double-toro-6x60-box-10/": {
+    "price": 127.05,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-edicion-ano-2024-extra-aged-5-5x60-box-10-flash-sale/": {
+    "price": 139.95,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/oliva-serie-v-melanio-edicion-ano-2025-5x54-box-10-flash-sale/": {
     "price": 99.95,
     "discount": 58.4,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-figurado-6-5x54-box-10/": {
+    "price": 127.05,
+    "discount": 50.0,
     "active": true
   },
   "https://www.cigarking.com/oliva-serie-v-melanio-maduro-4-petite-corona-4-5x46-box-10/": {
@@ -2359,6 +2859,16 @@
   },
   "https://www.cigarking.com/oliva-serie-v-melanio-maduro-churchill-7x50-box-10/": {
     "price": 118.75,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-double-toro-6x60-box-10/": {
+    "price": 127.05,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-figurado-6-5x54-box-10/": {
+    "price": 127.05,
     "discount": 50.0,
     "active": true
   },
@@ -2397,9 +2907,24 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/oliva-serie-v-no-4-5x43-box-24-flash-sale/": {
+    "price": 141.57,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-paradise-sampler-assorted-sizes-20-cigars/": {
+    "price": 149.95,
+    "discount": 52.4,
+    "active": true
+  },
   "https://www.cigarking.com/olympic-rings-le-grande-especial-sampler-assorted-sizes-5-cigars/": {
     "price": 79.95,
     "discount": 36.0,
+    "active": true
+  },
+  "https://www.cigarking.com/pepin-garcia-94-97-rated-elite-cigar-selection-assorted-sizes-15-pack/": {
+    "price": 138.95,
+    "discount": 36.8,
     "active": true
   },
   "https://www.cigarking.com/premium-8-racks-aging-room-quattro-nicaragua-vibrato-vs-avo-syncro-nicaragua-special-toro-assorted-sizes-8-pack/": {
@@ -2472,6 +2997,11 @@
     "discount": 38.5,
     "active": true
   },
+  "https://www.cigarking.com/premium-8-racks-la-aurora-preferido-sapphire-no-2-tubos-vs-la-aurora-preferido-diamond-no-2-tubos-assorted-sizes-8-pack/": {
+    "price": 129.95,
+    "discount": 53.1,
+    "active": true
+  },
   "https://www.cigarking.com/premium-8-racks-montecristo-espada-guard-oscuro-vs-e-p-carrillo-pledge-sojourn-assorted-sizes-8-pack/": {
     "price": 79.95,
     "discount": 50.0,
@@ -2502,6 +3032,11 @@
     "discount": 30.5,
     "active": true
   },
+  "https://www.cigarking.com/punch-signature-gigante-6x60-box-18-fam9/": {
+    "price": 130.57,
+    "discount": 40.0,
+    "active": true
+  },
   "https://www.cigarking.com/punch-signature-pita-6x50-box-18/": {
     "price": 121.93,
     "discount": 40.0,
@@ -2509,6 +3044,11 @@
   },
   "https://www.cigarking.com/punch-signature-rothschild-4-5x50-box-18/": {
     "price": 107.89,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://www.cigarking.com/punch-signature-torpedo-5-75x52-box-18/": {
+    "price": 138.13,
     "discount": 40.0,
     "active": true
   },
@@ -2942,6 +3482,11 @@
     "discount": 30.5,
     "active": true
   },
+  "https://www.cigarking.com/stalk-leaf-by-oscar-connecticut-gordo-6x60-bundle-20/": {
+    "price": 139.95,
+    "discount": 39.2,
+    "active": true
+  },
   "https://www.cigarking.com/the-honest-pour-vol-iii-la-aurora-mix-22-assorted-sizes-10-pack/": {
     "price": 49.95,
     "discount": 66.7,
@@ -3005,6 +3550,21 @@
   "https://www.cigarking.com/villiger-cuellar-kreme-torpedo-6-25-x52-box-20/": {
     "price": 124.95,
     "discount": 38.8,
+    "active": true
+  },
+  "https://www.cigarking.com/warped-el-oso-10th-anniversary-grand-papa-toro-6x50-box-10/": {
+    "price": 149.95,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://www.cigarking.com/warped-la-colmena-black-honey-belicoso-5x48-box-10/": {
+    "price": 131.95,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://www.cigarking.com/warped-venture-1492-gran-corona-5-5x48-box-25/": {
+    "price": 149.95,
+    "discount": 40.0,
     "active": true
   }
 }
