@@ -97,6 +97,16 @@
     "discount": null,
     "active": false
   },
+  "https://perfectcigarblend.com/product/cayman-cigars-mariner-robusto/": {
+    "price": 32.5,
+    "discount": 50,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/cayman-cigars-mariner-toro/": {
+    "price": 33.75,
+    "discount": 50,
+    "active": true
+  },
   "https://perfectcigarblend.com/product/cohiba-macassar-gigante/": {
     "price": 97.75,
     "discount": 50,
