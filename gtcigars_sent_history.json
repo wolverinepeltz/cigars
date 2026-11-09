@@ -128,19 +128,19 @@
     "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-new-world-cameroon?variant=50418187829536": {
-    "price": 79.99,
-    "discount": null,
-    "active": false
+    "price": 85.99,
+    "discount": 30.1,
+    "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-new-world-cameroon?variant=50418187862304": {
-    "price": 79.99,
-    "discount": null,
-    "active": false
+    "price": 93.99,
+    "discount": 30.9,
+    "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-new-world-cameroon?variant=50418187895072": {
-    "price": 79.99,
-    "discount": null,
-    "active": false
+    "price": 97.99,
+    "discount": 31.0,
+    "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-new-world-cameroon?variant=50418187927840": {
     "price": 79.99,
@@ -175,6 +175,11 @@
   "https://gtcigars.com/products/aj-fernandez-new-world-connecticut?variant=50417815814432": {
     "price": 79.99,
     "discount": 30.6,
+    "active": true
+  },
+  "https://gtcigars.com/products/aj-fernandez-new-world-dorado?variant=50417793040672": {
+    "price": 79.99,
+    "discount": 30.4,
     "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-new-world-dorado?variant=50417793073440": {
@@ -355,6 +360,16 @@
   "https://gtcigars.com/products/drew-estate-factory-smokes-sweets?variant=50552133124384": {
     "price": 43.02,
     "discount": 34.8,
+    "active": true
+  },
+  "https://gtcigars.com/products/drew-estate-undercrown-maduro?variant=52029697032480": {
+    "price": 69.99,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://gtcigars.com/products/drew-estate-undercrown-shade?variant=52029692346656": {
+    "price": 69.99,
+    "discount": 30.0,
     "active": true
   },
   "https://gtcigars.com/products/espinosa-laranja-reserva-escuro?variant=50499258188064": {
@@ -550,6 +565,11 @@
   "https://gtcigars.com/products/oliva-flor-de-oliva?variant=51028197507360": {
     "price": 57.99,
     "discount": 38.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/oliva-flor-de-oliva?variant=51028197638432": {
+    "price": 69.99,
+    "discount": 32.7,
     "active": true
   },
   "https://gtcigars.com/products/oliva-flor-de-oliva?variant=51028197671200": {
@@ -785,6 +805,86 @@
   "https://gtcigars.com/products/tatiana-4pk-assorted-fresh-pack?variant=52203987763488": {
     "price": 12.99,
     "discount": 40.9,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263440912672": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263440945440": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263440978208": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441010976": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441043744": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441076512": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441109280": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441142048": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441174816": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441207584": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441240352": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441273120": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441305888": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441338656": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51483616379168": {
+    "price": 89.99,
+    "discount": 31.3,
+    "active": true
+  },
+  "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51483619229984": {
+    "price": 89.99,
+    "discount": 31.3,
     "active": true
   },
   "https://gtcigars.com/products/tatiana-la-vita-5-x-38?variant=51263641092384": {
