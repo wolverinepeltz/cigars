@@ -27,6 +27,61 @@
     "discount": 49,
     "active": true
   },
+  "https://www.smokeinn.com/Arturo-Fuente-Sungrown-Royal-Salute.html": {
+    "price": 103.5,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Arturo-Fuente-and-J.C.-Newman-Toast-Across-America-2-Pack.html": {
+    "price": 68.95,
+    "discount": 31,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Havana-Selection-Churchill.html": {
+    "price": 120.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Havana-Selection-Rothschild.html": {
+    "price": 108.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Havana-Selection-Toro.html": {
+    "price": 113.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Maduro-Belicoso.html": {
+    "price": 106.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Maduro-Churchill.html": {
+    "price": 120.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Maduro-King-SKU3271113.html": {
+    "price": 108.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Nicaragua-Rothschild.html": {
+    "price": 108.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Nicaraguan-Churchill.html": {
+    "price": 120.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Baccarat-Nicaraguan-Toro.html": {
+    "price": 113.95,
+    "discount": 30,
+    "active": true
+  },
   "https://www.smokeinn.com/Cavalier-Geneve-Inner-Circle-Petit-Robusto-5-Pack-SKU3641511.html": {
     "price": 68.0,
     "discount": 53,
@@ -35,6 +90,11 @@
   "https://www.smokeinn.com/Chazz-Palminteri-s-A-Bronx-Tale-Toro-5-Pack-Clearance.html": {
     "price": 49.95,
     "discount": 58,
+    "active": true
+  },
+  "https://www.smokeinn.com/Crowned-Heads-Broadway-Robusto-Extra-10-Pack-Promo.html": {
+    "price": 119.5,
+    "discount": 30,
     "active": true
   },
   "https://www.smokeinn.com/Crowned-Heads-La-Vereda-No.-54-5-Pack-SKU3689722281.html": {
@@ -57,9 +117,54 @@
     "discount": 50,
     "active": true
   },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Maduro-Churchill.html": {
+    "price": 62.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Maduro-Robusto.html": {
+    "price": 54.95,
+    "discount": 31,
+    "active": true
+  },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Maduro-Toro.html": {
+    "price": 58.95,
+    "discount": 31,
+    "active": true
+  },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Shade-Churchill.html": {
+    "price": 62.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Shade-Robusto.html": {
+    "price": 54.95,
+    "discount": 31,
+    "active": true
+  },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Shade-Toro.html": {
+    "price": 58.95,
+    "discount": 31,
+    "active": true
+  },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Sun-Grown-Churchill.html": {
+    "price": 62.95,
+    "discount": 30,
+    "active": true
+  },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Sun-Grown-Robusto.html": {
+    "price": 54.95,
+    "discount": 31,
+    "active": true
+  },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Sun-Grown-Toro.html": {
     "price": 58.95,
     "discount": 34,
+    "active": true
+  },
+  "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Sweet-Robusto.html": {
+    "price": 47.95,
+    "discount": 30,
     "active": true
   },
   "https://www.smokeinn.com/El-Titan-De-Bronze-30th-Anniversary-5-pack.html": {
@@ -222,6 +327,11 @@
     "discount": 34,
     "active": true
   },
+  "https://www.smokeinn.com/Raices-Cubanas-Clasico-Churchill-10-Pack-Promo.html": {
+    "price": 84.95,
+    "discount": 32,
+    "active": true
+  },
   "https://www.smokeinn.com/Raices-Cubanas-Clasico-Churchill-5-Pack.html": {
     "price": 24.0,
     "discount": 44,
@@ -325,6 +435,11 @@
   "https://www.smokeinn.com/Sancho-Panza-Extra-Chido-Toro.html": {
     "price": 94.95,
     "discount": 50,
+    "active": true
+  },
+  "https://www.smokeinn.com/Smoke-Inn-Challenge-Coin-Holder-7-color-set.html": {
+    "price": 16.95,
+    "discount": 31,
     "active": true
   },
   "https://www.smokeinn.com/Tatiana-Classic-Cherry.html": {
