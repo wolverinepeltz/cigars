@@ -34,6 +34,7 @@ def variant_items(product, base_url):
     """One item per size of one product."""
     handle = product.get("handle", "")
     name = (product.get("title") or "").strip()
+    brand = (product.get("vendor") or "").strip() or None
     items = []
     for v in product.get("variants") or []:
         price = to_float(v.get("price"))
@@ -47,6 +48,7 @@ def variant_items(product, base_url):
             size = ""
         items.append({
             "name": name,
+            "brand": brand,
             "size": size,
             "price": price,
             "ref": msrp if msrp and msrp > price else None,

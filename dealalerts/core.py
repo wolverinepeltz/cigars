@@ -5,7 +5,7 @@ Shared pieces every deal alert needs, whatever platform the store runs on:
     Rules          the discount / price filter (with an optional second rule)
     History        the <store>_sent_history.json file: what's been emailed,
                    and which deals are currently live
-    send_email()   the Gmail alert
+    send_email()   the Gmail alert (built in emailfmt.py)
     run()          the command line every store script shares
 
 A store plugs in by providing a Store object (see bigcommerce.py and
@@ -23,7 +23,9 @@ and optionally:
     size        size/variant label to show after the name
     ref         the price it's discounted from
     ref_label   what to call ref in the email ("was", "MSRP")
-    from_price  cheapest size, for listings priced as a range
+    brand       maker, when the store gives it separately
+    pack_count  cigars in the pack, when the store gives it
+    rating, reviews
     listed_deal the store itself lists this as a deal (e.g. a clearance page
                 with no "was" price); it qualifies at max_price or less
                 whatever the discount, and the email shows this text
@@ -31,18 +33,14 @@ and optionally:
 
 import argparse
 import json
-import os
 import re
-import smtplib
 import time
-from email.mime.text import MIMEText
 from pathlib import Path
 
 import requests
 
-SENDER_EMAIL = "peltz.chris@gmail.com"
-SENDER_PASSWORD = os.environ.get("GMAIL_PASSWORD", "")  # set in GitHub Secrets
-TO_EMAIL = "peltz.chris@gmail.com"
+from .emailfmt import send_email, summarize  # the email itself
+
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -396,78 +394,6 @@ class History:
 
 
 # --------------------------------------------------------------------------
-# Email
-# --------------------------------------------------------------------------
-
-def describe_item(item):
-    size = f" - {item['size']}" if item.get("size") else ""
-    ref = (f" ({item.get('ref_label', 'was')} ${item['ref']:.2f})"
-           if item.get("ref") else "")
-    sizes = (f"\n  largest size; smaller packs from ${item['from_price']:.2f}"
-             if item.get("from_price") else "")
-    change = item.get("change")
-    why = f"[{'NEW' if change == 'new' else change}] " if change else ""
-    off = (f"{item['discount_pct']:g}% off" if item["discount_pct"] or not item.get("listed_deal")
-           else item["listed_deal"])
-    return (f"{why}{item['name']}{size}\n"
-            f"  ${item['price']:.2f}{ref}, {off}{sizes}\n"
-            f"  {item['url']}")
-
-
-def change_kind(change):
-    """Main reason, for counting: new > back > price drop > discount up."""
-    change = change or "new"
-    if change == "new":
-        return "new"
-    if change.startswith("back"):
-        return "back"
-    if "price dropped" in change:
-        return "price drop"
-    return "discount up"
-
-
-def summarize(items):
-    """e.g. '2 new, 1 back, 3 price drops' (each deal counted once)."""
-    plural = {"new": "new", "back": "back", "price drop": "price drops",
-              "discount up": "discounts up"}
-    counts = {}
-    for i in items:
-        k = change_kind(i.get("change"))
-        counts[k] = counts.get(k, 0) + 1
-    return ", ".join(f"{counts[k]} {k if counts[k] == 1 else plural[k]}"
-                     for k in plural if k in counts)
-
-
-def send_email(store_name, items):
-    """Returns True if the mail went out."""
-    if not SENDER_PASSWORD:
-        print("ERROR: GMAIL_PASSWORD environment variable not set.")
-        print("  No email sent. History not updated, so these will retry next run.")
-        return False
-
-    ordered = sorted(items, key=lambda x: (-x["discount_pct"], x["price"]))
-    summary = summarize(items)
-    body = (f"{len(items)} cigar deal(s) on {store_name} ({summary}):\n\n"
-            + "\n\n".join(describe_item(i) for i in ordered))
-
-    msg = MIMEText(body)
-    msg["Subject"] = f"{store_name}: {len(items)} deal(s) ({summary})"
-    msg["From"] = SENDER_EMAIL
-    msg["To"] = TO_EMAIL
-
-    print(f"Sending email to {TO_EMAIL} ...")
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(SENDER_EMAIL, SENDER_PASSWORD)
-            server.sendmail(SENDER_EMAIL, TO_EMAIL, msg.as_string())
-        print(f"Email sent to {TO_EMAIL}")
-        return True
-    except Exception as e:
-        print(f"Email failed: {type(e).__name__}: {e}")
-        return False
-
-
-# --------------------------------------------------------------------------
 # Command line
 # --------------------------------------------------------------------------
 
@@ -535,8 +461,10 @@ def run(store, argv=None):
         print(f"{len(to_send)} to email ({summarize(to_send)}):")
         for item in to_send:
             size = f" [{item['size']}]" if item.get("size") else ""
+            off = (f"{item['discount_pct']:.0f}% off" if item["discount_pct"]
+                   else item.get("listed_deal") or "no % off")
             print(f"  - [{item['change']}] {item['name']}{size} "
-                  f"(${item['price']:.2f}, {item['discount_pct']:g}% off) {item['url']}")
+                  f"(${item['price']:.2f}, {off}) {item['url']}")
     else:
         print("Nothing new, cheaper, more discounted, or back since last run.")
 

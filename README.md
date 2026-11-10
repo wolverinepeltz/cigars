@@ -7,15 +7,35 @@ that emails deals and saves what it sent in `<store>_sent_history.json`.
 
 For the stores on the shared code, a qualifying deal is emailed when it is:
 
-| Label | Meaning |
+| Tag in the email | Meaning |
 |---|---|
 | `NEW` | never emailed before |
-| `price dropped from $X` | cheaper than the last email said |
-| `discount up from X%` | same price, but at least 1 point more off (MSRP/was went up) |
+| `↓ $8.68` | cheaper than the last email said, by that much |
+| `↑ from 30%` | same price, but at least 1 point more off (MSRP/was went up) |
 | `back` | it stopped qualifying (sold out, price rose, left the deals page) and now qualifies again |
 
-Discounts shrinking or prices rising are never emailed. The subject line
-counts each kind, e.g. `Cigar King: 4 deal(s) (2 new, 1 back, 1 price drop)`.
+Discounts shrinking or prices rising are never emailed (Hiland's is the
+exception: it reports any discount change, tagged `↓ from X%` when it fell).
+
+## The email
+
+Every store sends the same HTML email (with a plain-text copy), built in
+`dealalerts/emailfmt.py`:
+
+- Subject: `Cigar King: 4 deals (2 new, 1 back, 1 price drop, 30-50% off)`
+- Discount bands (80%+, 70-79%, ... 30-39%), then "On clearance"
+- Within a band: brands A to Z, then each cigar line A to Z with its % range,
+  then its vitolas, cheapest first. A cigar sits in the band of its best
+  vitola, so all its sizes stay together.
+- Each vitola is two lines, and the row is the link:
+  `[tag] size, pack count, rating` and
+  `price, was/MSRP price, % off, price per cigar`
+- Prices over $125 are red. Where a store gives only "save X%", the list
+  price is worked out and shown as "about $X list".
+
+Brand, cigar line and vitola are read from the product name
+(`parse_name()`); a store that knows the brand passes it as `brand`.
+Details a store doesn't have (rating, pack count) are simply left out.
 
 Each history entry looks like `{"price": 89.95, "discount": 40.0, "active": true}`.
 If a run reads less than half as many items as the last one (a page failed
@@ -27,7 +47,8 @@ they are and are upgraded on the next save.
 
 | File | What it does |
 |---|---|
-| `core.py` | Fetching with retries, deal rules, sent history, email, command-line options |
+| `core.py` | Fetching with retries, deal rules, sent history, command-line options |
+| `emailfmt.py` | The email every store sends (layout above) |
 | `browser.py` | Last-resort fetching through real Chrome, for sites behind Cloudflare's "Just a moment..." check |
 | `bigcommerce.py` | Reads product tiles from BigCommerce stores and finds their deal pages |
 | `shopify.py` | Reads the product feed from Shopify stores |
@@ -43,7 +64,7 @@ they are and are upgraded on the next save.
 | Cigora | `cigora_deal_alert.py` | Salesforce Commerce | in the script |
 | Cigar Circus | `cigarcircus_deal_alert.py` | Odoo | in the script |
 
-All of these use `core.py` for fetching, rules, history, email and options.
+All of these use `core.py` for fetching, rules, history and options.
 Stores on a platform with no shared module keep their page reading in their
 own script and plug into `core.run()` with a small store class.
 
@@ -52,14 +73,16 @@ categories at or under `--max-price` is emailed (marked `on clearance`),
 along with price drops. Items elsewhere in its catalog are only emailed
 if they show a struck-through price that meets the discount rules.
 
-Still standalone, because they work differently:
+Still standalone, because they work differently (they send the same
+email through `emailfmt.py`):
 
 - `hilands_crawl.py` (Hiland's): settings in `config.yml`, pack-size filter,
-  CSV reports in `data/`, emails on any discount change.
+  CSV reports in `data/` (not emailed), emails on any discount change.
 - `cigarplace_scraper.py` (Cigarplace): drives a real browser (Playwright)
   and can check star ratings.
 - `scraper.py` (Smoking Hub): reads a deals blog with coupon codes, not a
-  store's prices.
+  store's prices. **Disabled**: its workflow has no schedule (manual runs
+  only) and it keeps its own email.
 
 ## When a site blocks GitHub
 

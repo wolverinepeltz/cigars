@@ -20,13 +20,9 @@ environment variable (set in GitHub Secrets).
 """
 
 # ══════════════════════════════════════════════════════════════════════════════
-#  EMAIL CONFIG
+#  EMAIL CONFIG  (sender, recipient and layout: dealalerts/emailfmt.py)
 # ══════════════════════════════════════════════════════════════════════════════
 import os
-
-SENDER_EMAIL    = "peltz.chris@gmail.com"
-SENDER_PASSWORD = os.environ.get("GMAIL_PASSWORD", "")   # set in GitHub Secrets
-TO_EMAIL        = "peltz.chris@gmail.com"
 
 SEND_EMAIL      = True    # False = crawl and write files, never send
 FORCE           = False   # True = ignore history, treat everything as new
@@ -35,19 +31,16 @@ FORCE           = False   # True = ignore history, treat everything as new
 import csv
 import html
 import re
-import smtplib
 import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from email import encoders
-from email.mime.base import MIMEBase
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
 import requests
 import yaml
 from bs4 import BeautifulSoup
+
+from dealalerts import emailfmt
 
 BASE = "https://www.hilandscigars.com"
 ROOT = f"{BASE}/shop/cigars/"
@@ -143,7 +136,7 @@ def describe(cfg):
         f"  rate:          {cfg['workers']} worker(s), "
         f"{cfg['delay']:g}s between requests",
         f"  email:         "
-        + (f"on -> {TO_EMAIL}" if SEND_EMAIL else "off"),
+        + (f"on -> {emailfmt.TO_EMAIL}" if SEND_EMAIL else "off"),
     ])
 
 
@@ -644,49 +637,22 @@ def html_products(url):
 
 # ── Email ─────────────────────────────────────────────────────────────────────
 
-def build_email_body(changed, total, cfg):
-    """Plain text body, grouped by brand, new items before re-priced ones."""
-    new_items = [c for c in changed if c["change"] == "new"]
-    moved = [c for c in changed if c["change"] != "new"]
-
-    cap = ("" if cfg["max_price"] is None
-           else f", at or under ${cfg['max_price']:.0f}")
-    lines = [
-        f"{len(changed)} change(s) at Hiland's: {len(new_items)} new, "
-        f"{len(moved)} re-priced.",
-        f"Filters: {cfg['min_discount']:g}% off or more, packs of "
-        f"{cfg['min_pack']}+{cap}, in stock.",
-        f"{total} item(s) currently qualify in total.",
-        "=" * 60,
-    ]
-
-    def block(title, items):
-        if not items:
-            return
-        lines.append(f"\n{title.upper()} ({len(items)})")
-        by_brand = {}
-        for c in items:
-            by_brand.setdefault(c.get("brand") or "Other", []).append(c)
-        order = sorted((b for b in by_brand if b != "Other"), key=str.lower)
-        if "Other" in by_brand:
-            order.append("Other")
-        for b in order:
-            rows = sorted(by_brand[b], key=lambda c: c["name"].lower())
-            lines.append(f"\n---- {b} ({len(rows)}) ----")
-            for c in rows:
-                note = "" if c["change"] == "new" else f"   [{c['change']}]"
-                lines.extend([
-                    f"\n{c['name']}",
-                    f"  ${c['sale_price']:.2f}  was ${c['regular_price']:.2f}  "
-                    f"({c['discount_pct']:g}% off)  "
-                    f"{c['pack_qty'] or '?'} count{note}",
-                    f"  {c['url']}",
-                ])
-
-    block("New deals", new_items)
-    block("Discount changed", moved)
-    lines.extend(["\n" + "=" * 60, "\nFull results attached as CSV."])
-    return "\n".join(lines)
+def email_items(changed):
+    """Changed rows in the shared email's item format (dealalerts/emailfmt.py)."""
+    items = []
+    for c in changed:
+        change = c["change"]
+        m = re.match(r"([\d.]+)% -> ([\d.]+)%", change)
+        if m:
+            old, new = float(m.group(1)), float(m.group(2))
+            change = f"discount {'up' if new > old else 'down'} from {old:g}%"
+        items.append({
+            "name": c["name"], "url": c["url"], "brand": c.get("brand") or None,
+            "price": c["sale_price"], "ref": c["regular_price"],
+            "ref_label": "was", "discount_pct": c["discount_pct"],
+            "pack_count": c["pack_qty"] or None, "change": change,
+        })
+    return items
 
 
 def send_email(changed, total, cfg):
@@ -697,42 +663,7 @@ def send_email(changed, total, cfg):
     if not changed:
         print("Nothing changed since the last run, so no email sent.")
         return False
-    if not SENDER_PASSWORD:
-        print("ERROR: GMAIL_PASSWORD environment variable not set.")
-        print("  No email sent. The changes are still in the CSV.")
-        return False
-
-    print(f"Sending email to {TO_EMAIL} ...")
-    msg = MIMEMultipart()
-    msg["From"] = SENDER_EMAIL
-    msg["To"] = TO_EMAIL
-    new_count = sum(1 for c in changed if c["change"] == "new")
-    msg["Subject"] = (f"Hiland's: {len(changed)} change(s), "
-                      f"{new_count} new at {cfg['min_discount']:g}%+ off")
-    msg.attach(MIMEText(build_email_body(changed, total, cfg), "plain"))
-
-    for path, label in ((CHANGES, "hilands_changes.csv"),
-                        (OUTPUT, "hilands_all_deals.csv")):
-        try:
-            with open(path, "rb") as f:
-                part = MIMEBase("application", "octet-stream")
-                part.set_payload(f.read())
-            encoders.encode_base64(part)
-            part.add_header("Content-Disposition",
-                            f'attachment; filename="{label}"')
-            msg.attach(part)
-        except OSError as e:
-            print(f"  could not attach {path}: {e}")
-
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(SENDER_EMAIL, SENDER_PASSWORD)
-            server.sendmail(SENDER_EMAIL, TO_EMAIL, msg.as_string())
-        print(f"Email sent to {TO_EMAIL}")
-        return True
-    except Exception as e:
-        print(f"Email failed: {type(e).__name__}: {e}")
-        return False
+    return emailfmt.send_email("Hiland's", email_items(changed))
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────

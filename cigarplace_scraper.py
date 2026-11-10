@@ -32,9 +32,7 @@ Dependencies (installed by the GitHub Actions workflow):
 # ══════════════════════════════════════════════════════════════════════════════
 import os
 
-SENDER_EMAIL    = "peltz.chris@gmail.com"
-SENDER_PASSWORD = os.environ.get("GMAIL_PASSWORD", "")   # set in GitHub Secrets
-TO_EMAIL        = "peltz.chris@gmail.com"
+# Sender, recipient and email layout: dealalerts/emailfmt.py
 
 MAX_PAGES       = None    # None = all pages, or e.g. 3
 MIN_DISCOUNT    = 0.30    # 30% off
@@ -55,15 +53,13 @@ STAMPED_BATCH     = 50    # product IDs per API call
 # ══════════════════════════════════════════════════════════════════════════════
 
 # ── Imports ───────────────────────────────────────────────────────────────────
-import asyncio, csv, json, math, re, smtplib, time
+import asyncio, csv, json, math, re, time
 import urllib.request
-from email import encoders
-from email.mime.base import MIMEBase
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
+
+from dealalerts import emailfmt
 
 # ── State files ───────────────────────────────────────────────────────────────
 try:
@@ -487,81 +483,27 @@ with open(OUTPUT_CSV, "w", newline="", encoding="utf-8") as f:
 print(f"✓ CSV saved to {OUTPUT_CSV}\n")
 
 # ── Email (only if there are new deals) ───────────────────────────────────────
+def email_item(c):
+    """A deal in the shared email's item format (dealalerts/emailfmt.py)."""
+    return {
+        "name": c["name"], "url": c["url"], "brand": c.get("brand") or None,
+        "price": c["our_price"], "ref": c["msrp"], "ref_label": "MSRP",
+        "discount_pct": round(c["discount_pct"] * 100, 1),
+        "rating": c.get("rating"), "reviews": c.get("reviews"),
+        "change": (f"price dropped from ${c['prev_price']:.2f}"
+                   if c.get("prev_price") else "new"),
+    }
+
+
 if not new_deals:
     print("No new deals since last run - no email sent.")
-elif not SENDER_PASSWORD:
-    print("ERROR: GMAIL_PASSWORD environment variable not set.")
-    print("  History NOT updated - these deals will be retried next run.")
+elif emailfmt.send_email("Cigarplace", [email_item(c) for c in new_deals]):
+    if not FORCE:
+        history.update({c["url"]: c["our_price"] for c in new_deals})
+        save_history(history)
+        print(f"✓ {len(new_deals)} URL(s) added to "
+              f"{os.path.basename(HISTORY_FILE)}")
+    else:
+        print("Force mode - history not updated.")
 else:
-    print("Sending email…")
-
-    body_lines = [
-        f"Found {len(new_deals)} NEW cigar deal(s) - {CRITERIA}"
-        + (f", including {drops} price drop(s)" if drops else "")
-        + (f"  ({skipped} previously sent, skipped)" if skipped else "")
-        + "\n",
-        "=" * 60,
-    ]
-
-    # Group by discount tier (80%+, 70-79%, ... 30-39%, then under 30%),
-    # best first; within a tier, alphabetical by brand then name.
-    def tier(c):
-        t = int(round(c["discount_pct"] * 100)) // 10 * 10
-        return min(t, 80) if t >= 30 else 0
-
-    by_tier = {}
-    for c in new_deals:
-        by_tier.setdefault(tier(c), []).append(c)
-
-    for t in sorted(by_tier, reverse=True):
-        label = ("80%+ off" if t == 80 else
-                 "Under 30% off" if t == 0 else f"{t}-{t+9}% off")
-        items = sorted(by_tier[t],
-                       key=lambda c: ((c.get("brand") or "~").lower(),
-                                      c["name"].lower()))
-        body_lines.append(f"\n════ {label} ({len(items)}) ════")
-        for c in items:
-            price = format_price(c)
-            msrp  = f"${c['msrp']:.2f}"      if c["msrp"]      else "N/A"
-            brand = f"[{c['brand']}]  " if c.get("brand") else ""
-            body_lines += [
-                f"\n{brand}{c['name']}",
-                f"  Our price {price}  (MSRP {msrp})  "
-                f"({c['discount_pct']*100:.0f}% off)"
-                f"{format_stars(c)}",
-                f"  {c['url']}",
-            ]
-    body_lines += ["\n" + "="*60, "\nFull results attached as CSV."]
-
-    msg = MIMEMultipart()
-    msg["From"]    = SENDER_EMAIL
-    msg["To"]      = TO_EMAIL
-    msg["Subject"] = (f"🍵 Cigar Deals: {len(new_deals)} new"
-                      + (f" ({drops} price drop)" if drops == 1 else
-                         f" ({drops} price drops)" if drops else ""))
-    msg.attach(MIMEText("\n".join(body_lines), "plain"))
-
-    with open(OUTPUT_CSV, "rb") as f:
-        part = MIMEBase("application", "octet-stream")
-        part.set_payload(f.read())
-        encoders.encode_base64(part)
-        part.add_header("Content-Disposition",
-                        'attachment; filename="cigar_deals.csv"')
-        msg.attach(part)
-
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(SENDER_EMAIL, SENDER_PASSWORD)
-            server.sendmail(SENDER_EMAIL, TO_EMAIL, msg.as_string())
-        print(f"✓ Email sent to {TO_EMAIL}")
-
-        if not FORCE:
-            history.update({c["url"]: c["our_price"] for c in new_deals})
-            save_history(history)
-            print(f"✓ {len(new_deals)} URL(s) added to "
-                  f"{os.path.basename(HISTORY_FILE)}")
-        else:
-            print("Force mode - history not updated.")
-    except Exception as e:
-        print(f"✗ Email failed: {e}")
-        print("  History NOT updated - these deals will be retried next run.")
+    print("  History NOT updated - these deals will be retried next run.")

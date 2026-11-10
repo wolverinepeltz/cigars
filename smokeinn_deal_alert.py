@@ -108,6 +108,7 @@ def _extract_products(soup: BeautifulSoup) -> list[dict]:
         if not retail_match:
             continue  # not a priced item (shouldn't happen on Clearance, but be safe)
         current_price = float(retail_match.group(2).replace(",", ""))
+        retail_price = float(retail_match.group(1).replace(",", ""))
 
         save_match = SAVE_RE.search(block_text)
         discount_pct = int(save_match.group(1)) if save_match else 0
@@ -119,6 +120,8 @@ def _extract_products(soup: BeautifulSoup) -> list[dict]:
             "name": name,
             "url": href,
             "price": current_price,
+            "ref": retail_price if retail_price > current_price else None,
+            "ref_label": "MSRP",
             "discount_pct": discount_pct,
             "in_stock": not out_of_stock,
         })
@@ -173,6 +176,8 @@ def _extract_line_page_products(soup: BeautifulSoup) -> list[dict]:
 
         retail_save_match = SKU_RETAIL_SAVE_RE.search(block_text)
         discount_pct = int(retail_save_match.group(2)) if retail_save_match else 0
+        retail_price = (float(retail_save_match.group(1).replace(",", ""))
+                        if retail_save_match else None)
 
         out_of_stock = "out of stock" in block_text.lower()
 
@@ -181,6 +186,8 @@ def _extract_line_page_products(soup: BeautifulSoup) -> list[dict]:
             "name": name,
             "url": href,
             "price": current_price,
+            "ref": retail_price if retail_price and retail_price > current_price else None,
+            "ref_label": "MSRP",
             "discount_pct": discount_pct,
             "in_stock": not out_of_stock,
         })
