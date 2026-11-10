@@ -11,3 +11,29 @@
 #
 # Edit this file on GitHub; the next run of each store uses it.
 
+# Budget brands (reviewed Nov 9, 2026)
+Tatiana
+Gurkha
+Flor de Oliva
+Villiger
+Villigar
+Quorum
+Java
+Chillin Moose
+Chillin' Moose
+Consuegra
+Factory Smokes
+Big & Beefy
+Big and Beefy
+Isla del Sol
+Gilberto Oliva
+5 Vegas
+JM Dominican
+JM Cigars
+Persian King
+Spirit of Cuba
+Cusano
+Last Call
+Bahia Blu
+Raices Cubanas
+Puros Indios
