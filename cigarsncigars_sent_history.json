@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 171
+    "last_examined": 242
   },
   "https://cigarsncigars.com/601-green-oscuro-la-fuerza/": {
     "price": 105.95,
@@ -22,6 +22,11 @@
     "discount": 30.9,
     "active": true
   },
+  "https://cigarsncigars.com/david-ehrlich-tremont-gordo/": {
+    "price": 143.95,
+    "discount": 30.8,
+    "active": true
+  },
   "https://cigarsncigars.com/david-p-ehrlich-tremont-robusto/": {
     "price": 120.95,
     "discount": 30.1,
@@ -32,9 +37,19 @@
     "discount": 40.3,
     "active": true
   },
+  "https://cigarsncigars.com/don-pepin-garcia-series-jj-selectos/": {
+    "price": 108.95,
+    "discount": 30.6,
+    "active": true
+  },
   "https://cigarsncigars.com/drew-estate-tabak-especial-colada-negra-box-of-40/": {
     "price": 149.95,
     "discount": 30.2,
+    "active": true
+  },
+  "https://cigarsncigars.com/el-cedro-purple-dye-sa-cigar/": {
+    "price": 110.95,
+    "discount": 33.1,
     "active": true
   },
   "https://cigarsncigars.com/epicurean-carnivale-double-robusto/": {
@@ -105,22 +120,22 @@
   "https://cigarsncigars.com/gurkha-bourbon-collection-corona-natural/": {
     "price": 62.95,
     "discount": 30.8,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/gurkha-ghost-exorcist-bundle-of-20/": {
     "price": 120.95,
     "discount": 30.9,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/gurkha-heritage-xo-bundle-of-20/": {
     "price": 123.95,
     "discount": 30.3,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/gurkha-rum-private-select-corona-box-of-10/": {
     "price": 62.95,
     "discount": 30.8,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/joya-de-nicaragua-joya-red-canonazo/": {
     "price": 104.95,
