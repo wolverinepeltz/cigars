@@ -59,7 +59,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
 
-from dealalerts import emailfmt
+from dealalerts import blacklist, emailfmt
 
 # ── State files ───────────────────────────────────────────────────────────────
 try:
@@ -406,6 +406,7 @@ for c in candidates:
     if not CHECK_RATINGS or (c["rating"] and c["rating"] >= MIN_RATING):
         qualifying.append(c)
 
+qualifying = blacklist.remove_blocked(qualifying)   # deal_blacklist.txt
 qualifying.sort(key=lambda x: (-x["discount_pct"], -(x["rating"] or 0)))
 
 funnel = (f"Funnel: {stats['parsed']} parsed (≤${MAX_OUR_PRICE:.0f})  |  "

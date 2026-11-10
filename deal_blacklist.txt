@@ -1,0 +1,13 @@
+# Deals listed here are never emailed, from any store.
+#
+# One word or phrase per line. A deal is skipped when its name, brand or
+# size contains it as whole words. Capitals and accents don't matter, and
+# "sampler" also blocks "Samplers". Examples (remove the # to use one):
+#
+# Gurkha                  a brand
+# Tatiana Classic         one cigar line
+# sampler                 a kind of product
+# https://www.cigarking.com/some-product/    one product, by its link
+#
+# Edit this file on GitHub; the next run of each store uses it.
+

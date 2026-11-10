@@ -39,6 +39,7 @@ from pathlib import Path
 
 import requests
 
+from .blacklist import remove_blocked
 from .emailfmt import send_email, summarize  # the email itself
 
 
@@ -434,6 +435,7 @@ def run(store, argv=None):
 
     session = requests.Session()
     items, examined = store.scan(session, args)
+    items = remove_blocked(items, "listing")  # deal_blacklist.txt
     # A product can be listed on more than one page; keep its first
     # qualifying listing only.
     matches, matched_urls = [], set()

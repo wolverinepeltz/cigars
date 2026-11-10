@@ -40,7 +40,7 @@ import requests
 import yaml
 from bs4 import BeautifulSoup
 
-from dealalerts import emailfmt
+from dealalerts import blacklist, emailfmt
 
 BASE = "https://www.hilandscigars.com"
 ROOT = f"{BASE}/shop/cigars/"
@@ -674,10 +674,13 @@ def main():
     RATE.min_interval = cfg["delay"]
     print(describe(cfg) + "\n")
 
-    dropped = {"oos": 0, "pack": 0, "price": 0, "disc": 0}
+    dropped = {"black": 0, "oos": 0, "pack": 0, "price": 0, "disc": 0}
     alerted = set()
 
     def keep(row):
+        if blacklist.blocked(row):          # deal_blacklist.txt
+            dropped["black"] += 1
+            return False
         if not cfg["include_out_of_stock"]:
             if row.get("in_stock") is False or row.get("purchasable") is False:
                 dropped["oos"] += 1
@@ -840,7 +843,8 @@ def main():
               f"as new. Next run will show real changes.")
     print("Baseline updated: data/latest.csv")
 
-    for key, msg in (("oos", "out of stock"),
+    for key, msg in (("black", "on the blacklist"),
+                     ("oos", "out of stock"),
                      ("pack", f"under {cfg['min_pack']} count"),
                      ("price", "over the price cap"),
                      ("disc", f"under {cfg['min_discount']:g}% off")):

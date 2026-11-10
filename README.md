@@ -43,12 +43,22 @@ or the site blocked part of the run), nothing is marked inactive, so a bad
 run can't cause a wave of false "back" emails. Older history files load as
 they are and are upgraded on the next save.
 
+## Blacklist
+
+`deal_blacklist.txt` lists deals never to email, from any store: one word
+or phrase per line (a brand, a cigar line, a kind of product like
+`sampler`, or a product link). A deal is skipped when its name, brand or
+size contains the entry as whole words; capitals and accents don't
+matter. Each run's log shows what it skipped. (`blacklist.json` is the
+separate domain list for the disabled Smoking Hub script.)
+
 ## Shared components (`dealalerts/`)
 
 | File | What it does |
 |---|---|
 | `core.py` | Fetching with retries, deal rules, sent history, command-line options |
 | `emailfmt.py` | The email every store sends (layout above) |
+| `blacklist.py` | Reads `deal_blacklist.txt` and skips matching deals |
 | `browser.py` | Last-resort fetching through real Chrome, for sites behind Cloudflare's "Just a moment..." check |
 | `bigcommerce.py` | Reads product tiles from BigCommerce stores and finds their deal pages |
 | `shopify.py` | Reads the product feed from Shopify stores |
