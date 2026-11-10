@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 2423
+    "last_examined": 2421
   },
   "https://gtcigars.com/products/601-green-label-oscuro?variant=50534758154528": {
     "price": 135.24,
@@ -10,7 +10,7 @@
   "https://gtcigars.com/products/601-green-label-oscuro?variant=50534758187296": {
     "price": 133.49,
     "discount": 27.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-bellas-artes-maduro?variant=50423808753952": {
     "price": 131.99,
@@ -90,22 +90,22 @@
   "https://gtcigars.com/products/aj-fernandez-last-call-maduro?variant=50419014598944": {
     "price": 79.99,
     "discount": 49.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-last-call-maduro?variant=50419014631712": {
     "price": 79.99,
     "discount": 51.5,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-last-call-maduro?variant=50419014664480": {
     "price": 79.99,
     "discount": 54.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-last-call-maduro?variant=50419014697248": {
     "price": 79.99,
     "discount": 55.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-last-call-maduro?variant=50419014730016": {
     "price": 79.99,
@@ -115,22 +115,22 @@
   "https://gtcigars.com/products/aj-fernandez-last-call?variant=50419037405472": {
     "price": 79.99,
     "discount": 48.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-last-call?variant=50419037438240": {
     "price": 79.99,
     "discount": 49.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-last-call?variant=50419037471008": {
     "price": 79.99,
     "discount": 52.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-last-call?variant=50419037503776": {
     "price": 79.99,
     "discount": 53.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/aj-fernandez-last-call?variant=50419037536544": {
     "price": 79.99,
@@ -310,82 +310,82 @@
   "https://gtcigars.com/products/cain-by-oliva?variant=51024410280224": {
     "price": 70.99,
     "discount": 43.7,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cain-by-oliva?variant=51024410312992": {
     "price": 95.99,
     "discount": 43.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cain-by-oliva?variant=51024410345760": {
     "price": 113.99,
     "discount": 43.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cain-by-oliva?variant=51024410378528": {
     "price": 118.99,
     "discount": 43.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cain-by-oliva?variant=51024410411296": {
     "price": 134.99,
     "discount": 42.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cain-daytona-by-oliva?variant=50771612008736": {
     "price": 92.99,
     "discount": 43.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cain-daytona-by-oliva?variant=50771612041504": {
     "price": 108.99,
     "discount": 43.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cain-daytona-by-oliva?variant=50771612074272": {
     "price": 134.99,
     "discount": 43.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cao-brazilia-tin-mini-cigarillos-3-5x20?variant=52250665419040": {
     "price": 70.99,
     "discount": 33.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cao-brazilia?variant=50611337462048": {
     "price": 139.89,
     "discount": 33.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cao-italia?variant=50611311640864": {
     "price": 141.99,
     "discount": 33.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/chillin-moose-too-copy?variant=51020563382560": {
     "price": 68.99,
     "discount": 34.9,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/chillin-moose-too-copy?variant=51020563415328": {
     "price": 71.99,
     "discount": 34.5,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/chillin-moose-too-copy?variant=51020563448096": {
     "price": 74.99,
     "discount": 35.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/chillin-moose-too?variant=51020560400672": {
     "price": 71.99,
     "discount": 34.5,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/chillin-moose-too?variant=51020560433440": {
     "price": 75.99,
     "discount": 34.5,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/cohiba-blue-robusto-5-5-x-50-fresh-pack-of-1?variant=52204455493920": {
     "price": 50.99,
@@ -395,7 +395,7 @@
   "https://gtcigars.com/products/drew-estate-factory-smokes-sweets?variant=50552133124384": {
     "price": 43.02,
     "discount": 34.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/drew-estate-undercrown-maduro?variant=52029697032480": {
     "price": 69.99,
@@ -410,82 +410,82 @@
   "https://gtcigars.com/products/espinosa-habano?variant=50519601545504": {
     "price": 140.99,
     "discount": 26.9,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/espinosa-habano?variant=50519601578272": {
     "price": 144.99,
     "discount": 27.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/espinosa-laranja-reserva-escuro?variant=50499258188064": {
     "price": 104.99,
     "discount": 26.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/espinosa-laranja-reserva-escuro?variant=50499258220832": {
     "price": 108.99,
     "discount": 26.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/espinosa-laranja-reserva-escuro?variant=50499258253600": {
     "price": 115.99,
     "discount": 25.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/flor-de-oliva-gold?variant=50761546268960": {
     "price": 63.99,
     "discount": 45.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/flor-de-oliva-gold?variant=50761549873440": {
     "price": 57.99,
     "discount": 50.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/flor-de-oliva-gold?variant=50761549906208": {
     "price": 57.99,
     "discount": 50.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/flor-de-oliva-gold?variant=50761549938976": {
     "price": 72.99,
     "discount": 34.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/flor-de-oliva-maduro?variant=51028204224800": {
     "price": 63.99,
     "discount": 45.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/flor-de-oliva-maduro?variant=51028204257568": {
     "price": 57.99,
     "discount": 50.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/flor-de-oliva-maduro?variant=51028204290336": {
     "price": 57.99,
     "discount": 50.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/flor-de-oliva-maduro?variant=51028204323104": {
     "price": 63.99,
     "discount": 45.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/gilberto-oliva-reserva?variant=50761488236832": {
     "price": 104.99,
     "discount": 40.7,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/gispert?variant=51102160257312": {
     "price": 133.99,
     "discount": 25.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/gispert?variant=51102160290080": {
     "price": 134.99,
     "discount": 25.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/h-upmann-1844-classic?variant=50585841565984": {
     "price": 99.99,
@@ -530,17 +530,17 @@
   "https://gtcigars.com/products/java-mint?variant=51052514967840": {
     "price": 146.99,
     "discount": 45.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/java-mint?variant=51052515066144": {
     "price": 98.99,
     "discount": 71.5,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/java-red?variant=51052575097120": {
     "price": 146.99,
     "discount": 45.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/la-gloria-cubana-4-cigar-fresh-pack?variant=52204198854944": {
     "price": 16.99,
@@ -550,7 +550,7 @@
   "https://gtcigars.com/products/m-by-macanudo-irish-cream?variant=51055287107872": {
     "price": 140.99,
     "discount": 25.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/montecristo-espada-oscuro?variant=50586390561056": {
     "price": 79.99,
@@ -595,82 +595,82 @@
   "https://gtcigars.com/products/nub-cameroon-by-oliva?variant=51024368206112": {
     "price": 118.99,
     "discount": 43.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-cameroon-by-oliva?variant=51024368238880": {
     "price": 123.99,
     "discount": 43.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-cameroon-by-oliva?variant=51024368271648": {
     "price": 138.99,
     "discount": 42.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-connecticut-by-oliva?variant=50757515903264": {
     "price": 138.99,
     "discount": 42.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-connecticut-by-oliva?variant=50757515936032": {
     "price": 143.99,
     "discount": 42.9,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-connecticut-by-oliva?variant=50757515968800": {
     "price": 83.99,
     "discount": 43.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-habano-by-oliva?variant=50443409260832": {
     "price": 83.99,
     "discount": 43.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-habano-by-oliva?variant=50443409326368": {
     "price": 138.99,
     "discount": 42.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-habano-by-oliva?variant=50443409359136": {
     "price": 143.99,
     "discount": 42.9,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-maduro-by-oliva?variant=50443376165152": {
     "price": 90.99,
     "discount": 43.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-nuance-by-oliva?variant=50443319542048": {
     "price": 92.99,
     "discount": 43.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-nuance-by-oliva?variant=50443319574816": {
     "price": 105.99,
     "discount": 43.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/nub-nuance-by-oliva?variant=50443319607584": {
     "price": 123.99,
     "discount": 43.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/oliva-flor-de-oliva?variant=51028197507360": {
     "price": 57.99,
     "discount": 38.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/oliva-flor-de-oliva?variant=51028197638432": {
     "price": 69.99,
     "discount": 32.7,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/oliva-flor-de-oliva?variant=51028197671200": {
     "price": 71.99,
     "discount": 34.5,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/oliva-serie-g-maduro?variant=50441556951328": {
     "price": 119.99,
@@ -822,6 +822,11 @@
     "discount": 39.1,
     "active": true
   },
+  "https://gtcigars.com/products/oliva-serie-v-plus-ashtray-deal?variant=68210683248928": {
+    "price": 79.99,
+    "discount": 64.2,
+    "active": true
+  },
   "https://gtcigars.com/products/oliva-serie-v?variant=50425420972320": {
     "price": 104.99,
     "discount": 39.3,
@@ -915,32 +920,32 @@
   "https://gtcigars.com/products/perdomo-inmenso-seventy-maduro?variant=50487620239648": {
     "price": 109.99,
     "discount": 28.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/perdomo-inmenso-seventy-maduro?variant=50487620272416": {
     "price": 122.99,
     "discount": 27.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/perdomo-inmenso-seventy-maduro?variant=50487620305184": {
     "price": 134.99,
     "discount": 27.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/perdomo-inmenso-seventy-sun-grown?variant=50487601168672": {
     "price": 109.99,
     "discount": 28.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/perdomo-inmenso-seventy-sun-grown?variant=50487601201440": {
     "price": 122.99,
     "discount": 28.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/perdomo-inmenso-seventy-sun-grown?variant=50487601234208": {
     "price": 134.99,
     "discount": 27.4,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/perdomo-lot-23-connecticut?variant=50487499915552": {
     "price": 146.99,
@@ -960,7 +965,7 @@
   "https://gtcigars.com/products/perdomo-reserve-10th-anniv-champagne-purito-tin-petite-corona-4-0x38?variant=52251318747424": {
     "price": 102.99,
     "discount": 25.9,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/saint-luis-rey-original?variant=51158770975008": {
     "price": 148.99,
@@ -980,187 +985,187 @@
   "https://gtcigars.com/products/saint-luis-rey-tabacales?variant=51158823665952": {
     "price": 146.99,
     "discount": 25.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/special-edition?variant=51176382464288": {
     "price": 77.99,
     "discount": 36.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/special-edition?variant=51176382497056": {
     "price": 80.99,
     "discount": 35.7,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/special-edition?variant=51176382529824": {
     "price": 89.99,
     "discount": 36.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/sun-grown?variant=51176527560992": {
     "price": 126.99,
     "discount": 36.8,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/sun-grown?variant=51176527659296": {
     "price": 135.99,
     "discount": 38.7,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-4pk-assorted-fresh-pack?variant=52203987763488": {
     "price": 12.99,
     "discount": 40.9,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263440912672": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263440945440": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263440978208": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441010976": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441043744": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441076512": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441109280": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441142048": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441174816": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441207584": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441240352": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441273120": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441305888": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51263441338656": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51483616379168": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-classic-6-x-44?variant=51483619229984": {
     "price": 89.99,
     "discount": 31.3,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-la-vita-5-x-38?variant=51263641092384": {
     "price": 67.99,
     "discount": 37.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-la-vita-5-x-38?variant=51263641125152": {
     "price": 67.99,
     "discount": 37.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-la-vita-5-x-38?variant=51263641157920": {
     "price": 67.99,
     "discount": 37.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-la-vita-5-x-38?variant=51263641190688": {
     "price": 67.99,
     "discount": 37.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-la-vita-5-x-38?variant=51263641223456": {
     "price": 67.99,
     "discount": 37.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-mini-tins-3-5-x-26-5-tins-of-10?variant=51263853396256": {
     "price": 58.99,
     "discount": 36.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-mini-tins-3-5-x-26-5-tins-of-10?variant=51263853429024": {
     "price": 58.99,
     "discount": 36.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-mini-tins-3-5-x-26-5-tins-of-10?variant=51263853461792": {
     "price": 58.99,
     "discount": 36.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-mini-tins-3-5-x-26-5-tins-of-10?variant=51263853494560": {
     "price": 58.99,
     "discount": 36.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-mini-tins-3-5-x-26-5-tins-of-10?variant=51263853527328": {
     "price": 58.99,
     "discount": 36.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-mini-tins-3-5-x-26-5-tins-of-10?variant=51263853560096": {
     "price": 58.99,
     "discount": 36.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-mini-tins-3-5-x-26-5-tins-of-10?variant=51263853592864": {
     "price": 58.99,
     "discount": 36.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-mini-tins-3-5-x-26-5-tins-of-10?variant=51483627847968": {
     "price": 58.99,
     "discount": 36.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/tatiana-mini-tins-3-5-x-26-5-tins-of-10?variant=51483632369952": {
     "price": 58.99,
     "discount": 36.6,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/trader-jacks-kickin-cigars-midnight?variant=51024552919328": {
     "price": 33.99,
@@ -1205,61 +1210,61 @@
   "https://gtcigars.com/products/villigar-export-brazil?variant=51511483531552": {
     "price": 68.99,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villigar-export-brazil?variant=51511483564320": {
     "price": 68.99,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villigar-export-maduro?variant=51511413375264": {
     "price": 68.99,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villigar-export-maduro?variant=51511413408032": {
     "price": 68.99,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villiger-cuellar-kreme?variant=51511513776416": {
     "price": 114.99,
     "discount": 40.7,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villiger-cuellar-kreme?variant=51511513809184": {
     "price": 57.99,
     "discount": 40.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villiger-cuellar-kreme?variant=51511513841952": {
     "price": 114.95,
     "discount": 40.7,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villiger-cuellar-kreme?variant=51511513874720": {
     "price": 57.99,
     "discount": 40.2,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villiger-cuellar-kreme?variant=51511513907488": {
     "price": 109.99,
     "discount": 42.1,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villiger-cuellar-kreme?variant=51511513940256": {
     "price": 56.99,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villiger-export-classic?variant=51511369335072": {
     "price": 68.99,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://gtcigars.com/products/villiger-export-classic?variant=51511369367840": {
     "price": 68.99,
     "discount": 40.0,
-    "active": true
+    "active": false
   }
 }
