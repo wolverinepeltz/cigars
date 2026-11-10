@@ -27,7 +27,13 @@ CHALLENGE_TITLES = ("just a moment", "attention required", "checking your browse
                     "please wait", "verifying you are human", "security verification",
                     "security check", "one more step")
 CHALLENGE_MARKERS = ("challenge-platform", "cf-chl-", "cf_chl_opt", "turnstile")
-CHALLENGE_WAIT = 30      # seconds to let a challenge clear
+CHALLENGE_WAIT = 60      # seconds to let a challenge clear
+PASSED_EXTRA_WAIT = 45   # more seconds once Cloudflare says "Verification
+                         # successful" and is only waiting for the site
+PASSED_MARKERS = ("verification successful", "waiting for")
+CHECKBOX_FRAME = "challenges.cloudflare.com"   # Turnstile's "Verify you are human"
+CHECKBOX_TRIES = 3       # clicks per challenge, CHECKBOX_EVERY seconds apart
+CHECKBOX_EVERY = 8
 NAV_TIMEOUT_MS = 45_000
 
 # Hide the most obvious signs of automation.
@@ -126,19 +132,11 @@ class RealBrowser:
         title, html = self._page.title(), self._page.content()
         flagged = bool(resp) and (resp.headers or {}).get("cf-mitigated") == "challenge"
         if flagged or looks_like_challenge(title, html):
-            print("  challenge page; letting the browser work through it ...")
-            deadline = time.time() + CHALLENGE_WAIT
-            while time.time() < deadline:
-                self._page.wait_for_timeout(1000)
-                try:
-                    title, html = self._page.title(), self._page.content()
-                except Exception:
-                    continue  # mid-navigation while the challenge redirects
-                if not looks_like_challenge(title, html):
-                    status = 200
-                    break
-            else:
+            if not self._wait_out_challenge():
+                title, html = self._page.title(), self._page.content()
                 return BrowserResponse(403, html, url, {"page-title": title})
+            title, html = self._page.title(), self._page.content()
+            status = 200
             if raw:
                 # The page reloaded itself after the check; load the URL again
                 # (now with the clearance cookie) to get its exact response.
@@ -156,6 +154,61 @@ class RealBrowser:
         if status == 0:
             status = 200
         return BrowserResponse(status, html, url)
+
+    def _wait_out_challenge(self):
+        """
+        Give a Cloudflare check up to CHALLENGE_WAIT seconds to clear.
+        Clicks the "Verify you are human" box if the check shows one, and
+        waits PASSED_EXTRA_WAIT longer once Cloudflare reports the check
+        passed but the site is slow to answer. True if the page cleared.
+        """
+        print("  challenge page; letting the browser work through it ...")
+        start = time.time()
+        deadline = start + CHALLENGE_WAIT
+        clicks, last_click, extended = 0, 0.0, False
+        while time.time() < deadline:
+            self._page.wait_for_timeout(1000)
+            try:
+                title, html = self._page.title(), self._page.content()
+            except Exception:
+                continue  # mid-navigation while the challenge redirects
+            if not looks_like_challenge(title, html):
+                print(f"  challenge cleared after {time.time() - start:.0f}s")
+                return True
+            if not extended and any(m in html.lower() for m in PASSED_MARKERS):
+                extended = True
+                deadline = max(deadline, time.time() + PASSED_EXTRA_WAIT)
+                print("  check passed; waiting for the site to respond ...")
+            if (clicks < CHECKBOX_TRIES and time.time() - last_click >= CHECKBOX_EVERY
+                    and self._click_checkbox()):
+                clicks += 1
+                last_click = time.time()
+                print(f"  clicked the verify checkbox ({clicks}/{CHECKBOX_TRIES})")
+        return False
+
+    def _click_checkbox(self):
+        """Click Turnstile's checkbox if the page shows one. True if clicked."""
+        for frame in self._page.frames:
+            if CHECKBOX_FRAME not in (frame.url or ""):
+                continue
+            try:
+                box = frame.locator("input[type=checkbox]")
+                if box.count():
+                    box.first.click(timeout=3000)
+                    return True
+            except Exception:
+                pass
+            # The box can sit where the page can't reach it directly; click
+            # where it's drawn instead: the left end of the widget.
+            try:
+                bb = frame.frame_element().bounding_box()
+                if bb and bb["width"] > 0:
+                    self._page.mouse.click(bb["x"] + min(30, bb["width"] / 2),
+                                           bb["y"] + bb["height"] / 2)
+                    return True
+            except Exception:
+                pass
+        return False
 
     def close(self):
         for closer in (getattr(self, "_context", None), getattr(self, "_browser", None)):
