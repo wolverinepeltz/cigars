@@ -69,6 +69,7 @@ separate domain list for the disabled Smoking Hub script.)
 | Cigars N Cigars | `cigarsncigars_deal_alert.py` | BigCommerce | shared |
 | Corona Cigar | `coronacigar_deal_alert.py` | BigCommerce | shared |
 | GT Cigars | `gtcigars_deal_alert.py` | Shopify | shared |
+| Cigars Boston | `cigarsboston_deal_alert.py` | Shopify | shared (brand from product tags) |
 | Smoke Inn | `smokeinn_deal_alert.py` | Miva | in the script |
 | Perfect Cigar Blend | `pcb_deal_alert.py` | WooCommerce | in the script |
 | Cigora | `cigora_deal_alert.py` | Salesforce Commerce | in the script |

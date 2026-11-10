@@ -1,5 +1,5 @@
 """
-Shopify stores: GT Cigars.
+Shopify stores: GT Cigars, Cigars Boston.
 
 Shopify publishes a public feed for every collection:
 
@@ -30,11 +30,32 @@ def to_float(raw):
         return None
 
 
-def variant_items(product, base_url):
-    """One item per size of one product."""
+def tag_brand(product, name):
+    """
+    The longest tag the product name starts with, e.g. tag "Cuban Mistakes"
+    for "Cuban Mistakes Double Corona Maduro"; None if no tag fits.
+    """
+    title = name.lower()
+    tags = product.get("tags") or []
+    if isinstance(tags, str):  # some stores send "a, b, c"
+        tags = tags.split(",")
+    fits = [t.strip() for t in tags
+            if t.strip() and title.startswith(t.strip().lower() + " ")]
+    return max(fits, key=len) if fits else None
+
+
+def variant_items(product, base_url, vendor_is_brand=True):
+    """
+    One item per size of one product. When the store fills "vendor" with
+    its own name rather than the maker's (vendor_is_brand=False), the brand
+    comes from the product's tags instead, or failing that from the name.
+    """
     handle = product.get("handle", "")
     name = (product.get("title") or "").strip()
-    brand = (product.get("vendor") or "").strip() or None
+    if vendor_is_brand:
+        brand = (product.get("vendor") or "").strip() or None
+    else:
+        brand = tag_brand(product, name)
     items = []
     for v in product.get("variants") or []:
         price = to_float(v.get("price"))
@@ -68,9 +89,12 @@ class ShopifyStore:
     history_file  Path to <store>_sent_history.json
     collections   collection handles scanned by default
     defaults      default CLI values, e.g. {"min_discount": 35}
+    vendor_is_brand  False when the store puts its own name in "vendor"
     """
 
-    def __init__(self, name, base_url, history_file, collections, defaults=None):
+    def __init__(self, name, base_url, history_file, collections, defaults=None,
+                 vendor_is_brand=True):
+        self.vendor_is_brand = vendor_is_brand
         self.name = name
         self.base_url = base_url.rstrip("/")
         self.history_file = history_file
@@ -101,7 +125,7 @@ class ShopifyStore:
                 return
             print(f"  {len(products)} product(s)")
             for p in products:
-                yield from variant_items(p, self.base_url)
+                yield from variant_items(p, self.base_url, self.vendor_is_brand)
             if len(products) < PAGE_SIZE:
                 return  # short page means that was the last one
             page += 1

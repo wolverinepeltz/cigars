@@ -71,6 +71,13 @@ BRANDS = sorted({
     "San Cristobal", "Southern Draw", "Tabak Especial", "Tatiana", "Tatuaje",
     "Undercrown", "West Tampa", "601", "Stalk Leaf by Oscar", "Purofino", "Purofino by Perdomo",
     "David P. Ehrlich", "Flores y Rodriguez", "Nomad", "DBL", "Island Jim",
+    "Nicaragua Cream", "Dominican Cream", "Brazilian Cream", "Cuban Honeys",
+    "Cuban Mistakes", "Cuban Delights", "Victor Sinclair", "Dolce Vita",
+    "Rough Rider", "Nica Libre", "Cuba Libre", "Black Label Trading Co",
+    "Black Works Studio", "Casa Magna", "Don Pepin", "Don Rafael",
+    "Don Tomas", "Gran Habano", "Herrera Esteli", "La Gloria Cubana",
+    "La Palina", "La Perla", "Man O' War", "Mark Twain", "Oscar Valladares",
+    "Perla del Mar", "Ramon Bueso", "San Lotano", "Sancho Panza",
 }, key=len, reverse=True)
 
 # Vitola (shape) names, longest first so "Gran Toro" beats "Toro".
@@ -221,8 +228,10 @@ def parse_name(name, brand=None, size=None):
     text = text.strip(" -|")
 
     line, vitola = text, ""
-    if " - " in text:                                   # "Flor de Oliva - Churchill"
+    if " - " in text and not VITOLA_RE.match(text):     # "Flor de Oliva - Churchill"
         line, vitola = (p.strip() for p in text.split(" - ", 1))
+    elif " - " in text:                                 # "Robusto - Vanilla"
+        line, vitola = "", text.replace(" - ", " ")
     else:
         m = next((m for m in VITOLA_RE.finditer(text) if m.start() > 0), None)
         if m:

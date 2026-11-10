@@ -3,7 +3,7 @@ name: GT Cigars deal alert
 # GMAIL_PASSWORD must be set under
 #   Settings > Secrets and variables > Actions > New repository secret
 # using a Gmail App Password, not your account password.
-# Sender/recipient are set as constants in gtcigars_deal_alert.py.
+# Sender/recipient are set in dealalerts/emailfmt.py.
 
 on:
   schedule:
