@@ -60,21 +60,21 @@
   "https://www.coronacigar.com/rocky-patel-olde-world-reserve-corojo-2nds-torpedo/": {
     "price": 75.95,
     "discount": 55.2,
-    "active": true
+    "active": false
   },
   "https://www.coronacigar.com/rocky-patel-smoking-world-championship-robusto/": {
     "price": 95.95,
     "discount": 69.6,
-    "active": true
+    "active": false
   },
   "https://www.coronacigar.com/villiger-kreme-connecticut-churchill/": {
     "price": 124.95,
     "discount": 38.8,
-    "active": true
+    "active": false
   },
   "https://www.coronacigar.com/villiger-kreme-connecticut-toro-gordo/": {
     "price": 119.95,
     "discount": 40.0,
-    "active": true
+    "active": false
   }
 }
