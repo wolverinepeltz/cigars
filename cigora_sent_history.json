@@ -30,7 +30,7 @@
   "https://www.cigora.com/product/cao-gold-cigarillos/001-CAO_Gold_Minis.html": {
     "price": 73.99,
     "discount": 37.5,
-    "active": true
+    "active": false
   },
   "https://www.cigora.com/product/champagne-toast-mega-sampler-ii/CIDD613-SP.html": {
     "price": 99.99,
@@ -125,7 +125,7 @@
   "https://www.cigora.com/product/man-o-war-armada/MWF-PM.html": {
     "price": 39.99,
     "discount": 68.5,
-    "active": true
+    "active": false
   },
   "https://www.cigora.com/product/man-o-war-dark-horse-se/MWT-PM.html": {
     "price": 79.99,
@@ -165,12 +165,12 @@
   "https://www.cigora.com/product/rocky-patel-best-of-mellow-collection/RPASST56-SP.html": {
     "price": 59.99,
     "discount": 48.1,
-    "active": true
+    "active": false
   },
   "https://www.cigora.com/product/rocky-patel-top-twenty-collection/RPASST54-SP.html": {
     "price": 94.99,
     "discount": 54.0,
-    "active": true
+    "active": false
   },
   "https://www.cigora.com/product/room101-ichiban-limited-edition-maduro/RMP-PM.html": {
     "price": 59.99,
