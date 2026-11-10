@@ -41,10 +41,16 @@ they are and are upgraded on the next save.
 | Smoke Inn | `smokeinn_deal_alert.py` | Miva | in the script |
 | Perfect Cigar Blend | `pcb_deal_alert.py` | WooCommerce | in the script |
 | Cigora | `cigora_deal_alert.py` | Salesforce Commerce | in the script |
+| Cigar Circus | `cigarcircus_deal_alert.py` | Odoo | in the script |
 
 All of these use `core.py` for fetching, rules, history, email and options.
 Stores on a platform with no shared module keep their page reading in their
 own script and plug into `core.run()` with a small store class.
+
+Cigar Circus shows no "was" or MSRP price, so anything in its clearance
+categories at or under `--max-price` is emailed (marked `on clearance`),
+along with price drops. Items elsewhere in its catalog are only emailed
+if they show a struck-through price that meets the discount rules.
 
 Still standalone, because they work differently:
 

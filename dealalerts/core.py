@@ -24,6 +24,9 @@ and optionally:
     ref         the price it's discounted from
     ref_label   what to call ref in the email ("was", "MSRP")
     from_price  cheapest size, for listings priced as a range
+    listed_deal the store itself lists this as a deal (e.g. a clearance page
+                with no "was" price); it qualifies at max_price or less
+                whatever the discount, and the email shows this text
 """
 
 import argparse
@@ -256,6 +259,8 @@ class Rules:
         if not item["in_stock"]:
             return False
         pct, price = item["discount_pct"], item["price"]
+        if item.get("listed_deal") and price <= self.max_price:
+            return True
         if pct >= self.min_discount and price <= self.max_price:
             return True
         if self.alt_min_discount is None:
@@ -402,8 +407,10 @@ def describe_item(item):
              if item.get("from_price") else "")
     change = item.get("change")
     why = f"[{'NEW' if change == 'new' else change}] " if change else ""
+    off = (f"{item['discount_pct']:g}% off" if item["discount_pct"] or not item.get("listed_deal")
+           else item["listed_deal"])
     return (f"{why}{item['name']}{size}\n"
-            f"  ${item['price']:.2f}{ref}, {item['discount_pct']:g}% off{sizes}\n"
+            f"  ${item['price']:.2f}{ref}, {off}{sizes}\n"
             f"  {item['url']}")
 
 
