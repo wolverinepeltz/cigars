@@ -217,6 +217,8 @@ def parse_name(name, brand=None, size=None):
         brand = _clean(brand)
         if _plain(text).startswith(_plain(brand) + " "):
             text = text[len(brand):].strip()
+        elif _plain(text).endswith(" by " + _plain(brand)):   # "ACID Kuba by Drew Estate"
+            text = text[:-(len(brand) + 4)].strip()
     else:
         low = _plain(text)
         brand = next((b for b in BRANDS if low.startswith(_plain(b) + " ")), None)

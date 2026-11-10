@@ -70,9 +70,10 @@ separate domain list for the disabled Smoking Hub script.)
 | Corona Cigar | `coronacigar_deal_alert.py` | BigCommerce | shared |
 | GT Cigars | `gtcigars_deal_alert.py` | Shopify | shared |
 | Cigars Boston | `cigarsboston_deal_alert.py` | Shopify | shared (brand from product tags) |
+| TC Cigar | `tccigar_deal_alert.py` | Shopify | shared |
 | Smoke Inn | `smokeinn_deal_alert.py` | Miva | in the script |
 | Perfect Cigar Blend | `pcb_deal_alert.py` | WooCommerce | in the script |
-| Cigora | `cigora_deal_alert.py` | Salesforce Commerce | in the script |
+| Cigora (disabled) | `cigora_deal_alert.py` | Salesforce Commerce | in the script |
 | Cigar Circus | `cigarcircus_deal_alert.py` | Odoo | in the script |
 
 All of these use `core.py` for fetching, rules, history and options.
@@ -106,11 +107,11 @@ servers a workflow only gets the real-browser step if it installs
 
 Cigora, Perfect Cigar Blend and Hiland's block GitHub's servers outright
 (Cloudflare challenges even a real browser there), so they run on the home
-runner.
+runner. (Cigora is currently disabled: its workflow has no schedule.)
 
 ## Home runner
 
-Cigora, Perfect Cigar Blend and Hiland's run on a Windows PC at home, through a
+Cigora (disabled), Perfect Cigar Blend and Hiland's run on a Windows PC at home, through a
 GitHub self-hosted runner labelled `home-cigars`. Their workflows say
 `runs-on: [self-hosted, Windows, home-cigars]`; nothing else runs there.
 

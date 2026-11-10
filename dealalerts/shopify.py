@@ -1,5 +1,5 @@
 """
-Shopify stores: GT Cigars, Cigars Boston.
+Shopify stores: GT Cigars, Cigars Boston, TC Cigar.
 
 Shopify publishes a public feed for every collection:
 
@@ -44,7 +44,7 @@ def tag_brand(product, name):
     return max(fits, key=len) if fits else None
 
 
-def variant_items(product, base_url, vendor_is_brand=True):
+def variant_items(product, base_url, vendor_is_brand=True, ref_label="MSRP"):
     """
     One item per size of one product. When the store fills "vendor" with
     its own name rather than the maker's (vendor_is_brand=False), the brand
@@ -73,7 +73,7 @@ def variant_items(product, base_url, vendor_is_brand=True):
             "size": size,
             "price": price,
             "ref": msrp if msrp and msrp > price else None,
-            "ref_label": "MSRP",
+            "ref_label": ref_label,
             "discount_pct": discount(price, msrp),
             "in_stock": bool(v.get("available")),
             "variant_id": v.get("id"),
@@ -90,11 +90,14 @@ class ShopifyStore:
     collections   collection handles scanned by default
     defaults      default CLI values, e.g. {"min_discount": 35}
     vendor_is_brand  False when the store puts its own name in "vendor"
+    ref_label     what the store calls compare_at_price: "MSRP", or "was"
+                  when it's the store's own regular price
     """
 
     def __init__(self, name, base_url, history_file, collections, defaults=None,
-                 vendor_is_brand=True):
+                 vendor_is_brand=True, ref_label="MSRP"):
         self.vendor_is_brand = vendor_is_brand
+        self.ref_label = ref_label
         self.name = name
         self.base_url = base_url.rstrip("/")
         self.history_file = history_file
@@ -125,7 +128,8 @@ class ShopifyStore:
                 return
             print(f"  {len(products)} product(s)")
             for p in products:
-                yield from variant_items(p, self.base_url, self.vendor_is_brand)
+                yield from variant_items(p, self.base_url, self.vendor_is_brand,
+                                         self.ref_label)
             if len(products) < PAGE_SIZE:
                 return  # short page means that was the last one
             page += 1

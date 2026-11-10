@@ -1,4 +1,4 @@
-name: Cigora deal alert
+name: Cigora deal alert (disabled)
 
 # Runs on the home Windows PC (a self-hosted runner labelled "home-cigars"),
 # not on GitHub's servers: cigora.com answers GitHub's servers with Cloudflare's
@@ -9,10 +9,11 @@ name: Cigora deal alert
 #   Settings > Secrets and variables > Actions > New repository secret
 # using a Gmail App Password, not your account password.
 
+# Disabled: no schedule. It can still be run by hand from the Actions tab.
+# To turn it back on, restore:
+#   schedule:
+#     - cron: "58 22 * * *"   # 4:58 PM Denver (MDT), 3:58 PM (MST)
 on:
-  schedule:
-    # 4:58 PM Denver in summer (MDT), 3:58 PM in winter (MST). Cron is UTC.
-    - cron: "58 22 * * *"
   workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
 
 jobs:
