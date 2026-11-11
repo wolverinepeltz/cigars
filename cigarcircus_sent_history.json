@@ -1,0 +1,65 @@
+{
+  "_meta": {
+    "last_examined": 2015
+  },
+  "https://www.cigarcircus.com/shop/cromagnon-emh-fomorian-56x5-42490": {
+    "price": 57.0,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/los-statos-deluxe-connecticut-gigante-20726": {
+    "price": 47.5,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/los-statos-deluxe-connecticut-robusto-20507": {
+    "price": 41.8,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/los-statos-deluxe-connecticut-toro-20727": {
+    "price": 45.1,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/los-statos-deluxe-maduro-gigante-20729": {
+    "price": 49.4,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/los-statos-deluxe-maduro-toro-20730": {
+    "price": 47.5,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/los-statos-deluxe-toro-20731": {
+    "price": 47.5,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/montecristo-1935-anniversary-edicion-diamante-robusto-20027": {
+    "price": 115.36,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/partagas-1845-extra-fuerte-gigante-21326": {
+    "price": 47.5,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/partagas-1845-extra-fuerte-toro-21104": {
+    "price": 42.75,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/partagas-1845-gigante-21784": {
+    "price": 50.8,
+    "discount": 0,
+    "active": true
+  },
+  "https://www.cigarcircus.com/shop/partagas-1845-toro-21785": {
+    "price": 45.6,
+    "discount": 0,
+    "active": true
+  }
+}
