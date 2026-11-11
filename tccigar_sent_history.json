@@ -1,0 +1,45 @@
+{
+  "_meta": {
+    "last_examined": 2003
+  },
+  "https://www.tccigar.com/products/baccarat-the-game-belicoso?variant=49870388887799": {
+    "price": 100.95,
+    "discount": 33.6,
+    "active": true
+  },
+  "https://www.tccigar.com/products/baccarat-the-game-double-corona?variant=49871665037559": {
+    "price": 119.95,
+    "discount": 33.4,
+    "active": true
+  },
+  "https://www.tccigar.com/products/baccarat-the-game-gordo?variant=49871847555319": {
+    "price": 127.95,
+    "discount": 33.5,
+    "active": true
+  },
+  "https://www.tccigar.com/products/baccarat-the-game-rothschild?variant=49871991308535": {
+    "price": 103.95,
+    "discount": 32.9,
+    "active": true
+  },
+  "https://www.tccigar.com/products/belleau-wood-daily-driver-36-cigar-bundle-pack?variant=50621888659703": {
+    "price": 99.95,
+    "discount": 32.3,
+    "active": true
+  },
+  "https://www.tccigar.com/products/omar-ortez-connecticut-toro?variant=50217109946615": {
+    "price": 104.95,
+    "discount": 31.9,
+    "active": true
+  },
+  "https://www.tccigar.com/products/omar-ortez-original-toro?variant=50217085272311": {
+    "price": 98.95,
+    "discount": 32.2,
+    "active": true
+  },
+  "https://www.tccigar.com/products/omar-ortez-originals-maduro-toro?variant=50604157501687": {
+    "price": 98.95,
+    "discount": 30.3,
+    "active": true
+  }
+}
