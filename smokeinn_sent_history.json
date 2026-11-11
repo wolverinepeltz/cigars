@@ -1,16 +1,16 @@
 {
   "_meta": {
-    "last_examined": 6087
+    "last_examined": 6082
   },
   "https://www.smokeinn.com/AVO-XO-Maestoso-5-Pack.html": {
     "price": 42.5,
     "discount": 43,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/AVO-XO-Notturno-5-Pack.html": {
     "price": 35.0,
     "discount": 43,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Affinity-Churchill-5-Pack.html": {
     "price": 20.5,
@@ -120,27 +120,27 @@
   "https://www.smokeinn.com/CAO-America-Monument.html": {
     "price": 147.95,
     "discount": 32,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/CAO-Brazilia-Box-Pressed.html": {
     "price": 145.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/CAO-Brazilia-Lambada.html": {
     "price": 141.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/CAO-Brazilia-Samba.html": {
     "price": 147.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/CAO-Italia-Gondola.html": {
     "price": 147.95,
     "discount": 32,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Cavalier-Geneve-Inner-Circle-Petit-Robusto-5-Pack-SKU3641511.html": {
     "price": 68.0,
@@ -180,52 +180,52 @@
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Maduro-Churchill.html": {
     "price": 62.95,
     "discount": 30,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Maduro-Robusto.html": {
     "price": 54.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Maduro-Toro.html": {
     "price": 58.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Shade-Churchill.html": {
     "price": 62.95,
     "discount": 30,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Shade-Robusto.html": {
     "price": 54.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Shade-Toro.html": {
     "price": 58.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Sun-Grown-Churchill.html": {
     "price": 62.95,
     "discount": 30,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Sun-Grown-Robusto.html": {
     "price": 54.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Sun-Grown-Toro.html": {
     "price": 58.95,
     "discount": 34,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Drew-Estate-Factory-Smokes-Sweet-Robusto.html": {
     "price": 47.95,
     "discount": 30,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/El-Titan-De-Bronze-30th-Anniversary-5-pack.html": {
     "price": 90.0,
@@ -260,7 +260,7 @@
   "https://www.smokeinn.com/Four-Kicks-Capa-Especial-Corona-Gorda-5-Pack-SKU334681111.html": {
     "price": 24.5,
     "discount": 45,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Four-Kicks-Capa-Especial-Robusto-5-Pack.html": {
     "price": 29.5,
@@ -395,32 +395,32 @@
   "https://www.smokeinn.com/Raices-Cubanas-Clasico-Churchill-10-Pack-Promo.html": {
     "price": 84.95,
     "discount": 32,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Raices-Cubanas-Clasico-Churchill-5-Pack.html": {
     "price": 24.0,
     "discount": 44,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Raices-Cubanas-Clasico-Robusto-10-Pack-Promo.html": {
     "price": 72.5,
     "discount": 36,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Raices-Cubanas-Clasico-Robusto-5-Pack-SKU4118612.html": {
     "price": 19.5,
     "discount": 46,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Raices-Cubanas-Liga-De-Reyes-Churchill-5-pack-SKU413331112.html": {
     "price": 22.98,
     "discount": 58,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Raices-Cubanas-Liga-De-Reyes-Robusto-5-Pack-SKU41333122.html": {
     "price": 20.34,
     "discount": 58,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Romeo-By-Romeo-y-Julieta-Piramides-5-Pack-SKU18610122.html": {
     "price": 42.5,
@@ -540,57 +540,57 @@
   "https://www.smokeinn.com/Tatiana-Classic-Cherry.html": {
     "price": 81.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Classic-Chocolate.html": {
     "price": 81.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Classic-Cinnamon.html": {
     "price": 81.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Classic-Cognac-Corona.html": {
     "price": 81.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Classic-Groovy-Blue-Corona.html": {
     "price": 81.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Classic-Honey.html": {
     "price": 81.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Classic-Night-Cap-Corona.html": {
     "price": 81.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Classic-Rum.html": {
     "price": 81.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Classic-Sweet-Euphoria-Corona.html": {
     "price": 81.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Rum-Robusto.html": {
     "price": 103.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatiana-Vanilla-Robusto.html": {
     "price": 103.5,
     "discount": 35,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Tatuaje-Nuevitas-Jibaro-No.-1-5-Pack.html": {
     "price": 28.5,
