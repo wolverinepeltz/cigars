@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4808
+    "last_examined": 4788
   },
   "https://www.cigarking.com/601-la-bomba-by-espinosa-sake-bomb-4-5x42-10-pack-special-30-off-retail-free-shipping-on-your-entire-order/": {
     "price": 62.26,
@@ -2862,13 +2862,28 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-double-toro-6x60-5-pack/": {
+    "price": 63.53,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/oliva-serie-v-melanio-maduro-double-toro-6x60-box-10/": {
     "price": 127.05,
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-figurado-6-5x54-5-pack/": {
+    "price": 63.53,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/oliva-serie-v-melanio-maduro-figurado-6-5x54-box-10/": {
     "price": 127.05,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-robusto-5x52-5-pack/": {
+    "price": 46.59,
     "discount": 50.0,
     "active": true
   },
@@ -2879,6 +2894,11 @@
   },
   "https://www.cigarking.com/oliva-serie-v-melanio-maduro-toro-6x52-box-10/": {
     "price": 113.14,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/oliva-serie-v-melanio-maduro-torpedo-6-5x52-5-pack/": {
+    "price": 59.29,
     "discount": 50.0,
     "active": true
   },
