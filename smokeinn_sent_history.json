@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 6082
+    "last_examined": 6080
   },
   "https://www.smokeinn.com/AVO-XO-Maestoso-5-Pack.html": {
     "price": 42.5,
@@ -325,6 +325,36 @@
   "https://www.smokeinn.com/La-Palina-KB-Part-Two-10-Pack-Promo.html": {
     "price": 135.0,
     "discount": 43,
+    "active": true
+  },
+  "https://www.smokeinn.com/La-Sirena-King-Poseidon-Gran-Toro-5-Pack-SKU3433611.html": {
+    "price": 32.0,
+    "discount": 49,
+    "active": true
+  },
+  "https://www.smokeinn.com/La-Sirena-Mexican-Mermaid-Box-Pressed-Toro-5-Pack.html": {
+    "price": 38.5,
+    "discount": 49,
+    "active": true
+  },
+  "https://www.smokeinn.com/La-Sirena-Mexican-Mermaid-Lancero-5-Pack.html": {
+    "price": 38.5,
+    "discount": 49,
+    "active": true
+  },
+  "https://www.smokeinn.com/La-Sirena-Mexican-Mermaid-Robusto-5-Pack.html": {
+    "price": 36.0,
+    "discount": 49,
+    "active": true
+  },
+  "https://www.smokeinn.com/La-Sirena-The-Prince-Robusto-5-Pack-SKU34336211.html": {
+    "price": 27.0,
+    "discount": 49,
+    "active": true
+  },
+  "https://www.smokeinn.com/La-Sirena-Trident-Churchill-5-Pack-SKU343362211.html": {
+    "price": 31.0,
+    "discount": 48,
     "active": true
   },
   "https://www.smokeinn.com/Los-Statos-Deluxe-Connecticut-Robusto-5-Pack.html": {
