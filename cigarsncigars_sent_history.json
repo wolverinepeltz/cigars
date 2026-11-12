@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 874
+    "last_examined": 869
   },
   "https://cigarsncigars.com/2012-original-guayacan-robusto-by-noel-rojas/": {
     "price": 82.95,
@@ -20,12 +20,12 @@
   "https://cigarsncigars.com/acid-kuba-kuba-deluxe/": {
     "price": 107.95,
     "discount": 50.5,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/acid-kuba-kuba-grande/": {
     "price": 110.95,
     "discount": 49.1,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/alec-bradley-black-market-esteli-toro/": {
     "price": 136.95,
@@ -80,7 +80,7 @@
   "https://cigarsncigars.com/don-pepin-garcia-series-jj-selectos/": {
     "price": 108.95,
     "discount": 30.6,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/drew-estate-tabak-especial-colada-negra-box-of-40/": {
     "price": 149.95,
