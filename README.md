@@ -109,6 +109,13 @@ Cigora, Perfect Cigar Blend and Hiland's block GitHub's servers outright
 (Cloudflare challenges even a real browser there), so they run on the home
 runner. (Cigora is currently disabled: its workflow has no schedule.)
 
+Perfect Cigar Blend still challenged that browser, so its workflow also
+sets `DEALALERTS_STEALTH=1` (drive Chrome with Patchright, which hides the
+signs of automation) and `DEALALERTS_PROFILE` (keep Chrome's profile, and
+Cloudflare's clearance cookie, between runs in the runner's tool folder,
+`pcb-chrome-profile`). See `dealalerts/browser.py`. Any other store can
+use the same two settings.
+
 ## Home runner
 
 Cigora (disabled), Perfect Cigar Blend and Hiland's run on a Windows PC at home, through a

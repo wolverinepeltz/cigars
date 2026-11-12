@@ -16,6 +16,17 @@ servers get from xvfb-run. Without one it runs hidden (headless).
 
 Needs:  pip install playwright   (uses Google Chrome if it's installed;
 otherwise Playwright's own Chromium: python -m playwright install chromium)
+
+Two settings for sites whose check still won't clear (environment variables,
+set in that store's workflow):
+
+    DEALALERTS_STEALTH=1        drive Chrome with Patchright instead of
+                                Playwright (pip install patchright): the same
+                                API with the signs of automation that
+                                Cloudflare looks for removed
+    DEALALERTS_PROFILE=<folder> keep Chrome's profile (cookies, including
+                                Cloudflare's clearance) in that folder between
+                                runs, so a check passed once carries over
 """
 
 import atexit
@@ -30,7 +41,7 @@ CHALLENGE_MARKERS = ("challenge-platform", "cf-chl-", "cf_chl_opt", "turnstile")
 CHALLENGE_WAIT = 60      # seconds to let a challenge clear
 PASSED_EXTRA_WAIT = 45   # more seconds once Cloudflare says "Verification
                          # successful" and is only waiting for the site
-PASSED_MARKERS = ("verification successful", "waiting for")
+PASSED_MARKERS = ("verification successful",)   # in the page's visible text
 CHECKBOX_FRAME = "challenges.cloudflare.com"   # Turnstile's "Verify you are human"
 CHECKBOX_TRIES = 3       # clicks per challenge, CHECKBOX_EVERY seconds apart
 CHECKBOX_EVERY = 8
@@ -87,10 +98,59 @@ def wants_headless():
     return sys.platform.startswith("linux") and not os.environ.get("DISPLAY")
 
 
+def _driver():
+    """(sync_playwright, name): Patchright if DEALALERTS_STEALTH is on and installed."""
+    if os.environ.get("DEALALERTS_STEALTH", "").strip().lower() in ("1", "true", "yes"):
+        try:
+            from patchright.sync_api import sync_playwright
+            return sync_playwright, "patchright"
+        except ImportError:
+            print("  DEALALERTS_STEALTH is set but patchright isn't installed "
+                  "(pip install patchright); using playwright.")
+    from playwright.sync_api import sync_playwright  # ImportError if missing
+    return sync_playwright, "playwright"
+
+
 class RealBrowser:
     def __init__(self):
-        from playwright.sync_api import sync_playwright  # ImportError if missing
+        sync_playwright, self._driver_name = _driver()
         self._pw = sync_playwright().start()
+        self._browser = None
+        profile = os.environ.get("DEALALERTS_PROFILE", "").strip()
+        if profile:
+            self._start_with_profile(profile)
+        else:
+            self._start_fresh()
+        atexit.register(self.close)
+
+    def _start_with_profile(self, folder):
+        """
+        Chrome with a profile kept between runs. Launched the way Patchright
+        recommends (real Chrome, visible, default window and headers, no
+        added scripts) so nothing about it looks different from a person's.
+        """
+        os.makedirs(folder, exist_ok=True)
+        attempts = [("chrome", False), (None, False)]
+        if wants_headless():
+            attempts = [("chrome", True), (None, True)]
+        last_error = None
+        for channel, headless in attempts:
+            try:
+                opts = {"channel": channel} if channel else {}
+                self._context = self._pw.chromium.launch_persistent_context(
+                    folder, headless=headless, no_viewport=True, **opts)
+                break
+            except Exception as e:
+                last_error, self._context = e, None
+        if self._context is None:
+            raise last_error
+        which = "Google Chrome" if channel else "Chromium"
+        print(f"  started {which} ({'headless' if headless else 'visible window'}, "
+              f"{self._driver_name}, saved profile {folder})")
+        self._page = (self._context.pages[0] if self._context.pages
+                      else self._context.new_page())
+
+    def _start_fresh(self):
         args = ["--disable-blink-features=AutomationControlled",
                 "--no-sandbox", "--disable-dev-shm-usage"]
         # Try the best combination first; fall back if a browser or a
@@ -109,13 +169,14 @@ class RealBrowser:
         if self._browser is None:
             raise last_error
         which = "Google Chrome" if channel else "Chromium"
-        print(f"  started {which} ({'headless' if headless else 'visible window'})")
+        print(f"  started {which} ({'headless' if headless else 'visible window'}"
+              f"{', patchright' if self._driver_name == 'patchright' else ''})")
         self._context = self._browser.new_context(
             locale="en-US", timezone_id="America/Denver",
             viewport={"width": 1366, "height": 768})
-        self._context.add_init_script(STEALTH_JS)
+        if self._driver_name != "patchright":   # Patchright hides these itself
+            self._context.add_init_script(STEALTH_JS)
         self._page = self._context.new_page()
-        atexit.register(self.close)
 
     def get(self, url, params=None, timeout=None, raw=False, **_):
         """
@@ -175,7 +236,7 @@ class RealBrowser:
             if not looks_like_challenge(title, html):
                 print(f"  challenge cleared after {time.time() - start:.0f}s")
                 return True
-            if not extended and any(m in html.lower() for m in PASSED_MARKERS):
+            if not extended and any(m in self._visible_text() for m in PASSED_MARKERS):
                 extended = True
                 deadline = max(deadline, time.time() + PASSED_EXTRA_WAIT)
                 print("  check passed; waiting for the site to respond ...")
@@ -185,6 +246,14 @@ class RealBrowser:
                 last_click = time.time()
                 print(f"  clicked the verify checkbox ({clicks}/{CHECKBOX_TRIES})")
         return False
+
+    def _visible_text(self):
+        """The page's visible text, lowercased ('' mid-navigation)."""
+        try:
+            return (self._page.evaluate("document.body ? document.body.innerText : ''")
+                    or "").lower()
+        except Exception:
+            return ""
 
     def _click_checkbox(self):
         """Click Turnstile's checkbox if the page shows one. True if clicked."""

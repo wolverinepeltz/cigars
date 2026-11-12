@@ -64,7 +64,7 @@ jobs:
       - name: Install dependencies
         run: |
           $ErrorActionPreference = "Continue"
-          python -m pip install --upgrade --quiet requests beautifulsoup4 curl_cffi playwright
+          python -m pip install --upgrade --quiet requests beautifulsoup4 curl_cffi playwright patchright
           if ($LASTEXITCODE -ne 0) { exit 1 }
           # Only used if the site still challenges a plain request: the shared
           # code falls back to Google Chrome, or to this Chromium if Chrome
@@ -76,7 +76,13 @@ jobs:
       - name: Run deal alert
         env:
           GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+          # Cloudflare challenges even a normal automated Chrome here, so:
+          # drive Chrome with Patchright (hides the signs of automation), and
+          # keep its profile between runs so a passed check carries over.
+          # The profile lives on the PC, next to the runner's Python.
+          DEALALERTS_STEALTH: "1"
         run: |
+          $env:DEALALERTS_PROFILE = Join-Path $env:RUNNER_TOOL_CACHE "pcb-chrome-profile"
           python pcb_deal_alert.py --min-discount 30 --max-price 150
           exit $LASTEXITCODE
 
