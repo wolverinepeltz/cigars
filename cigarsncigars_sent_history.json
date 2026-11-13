@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 869
+    "last_examined": 868
   },
   "https://cigarsncigars.com/2012-original-guayacan-robusto-by-noel-rojas/": {
     "price": 82.95,
@@ -30,6 +30,11 @@
   "https://cigarsncigars.com/alec-bradley-black-market-esteli-toro/": {
     "price": 136.95,
     "discount": 30.5,
+    "active": true
+  },
+  "https://cigarsncigars.com/alec-bradley-medalist-churchill/": {
+    "price": 112.95,
+    "discount": 30.7,
     "active": true
   },
   "https://cigarsncigars.com/camacho-robusto-tubo-display-assortment/": {
@@ -210,7 +215,7 @@
   "https://cigarsncigars.com/joya-de-nicaragua-joya-silver-toro/": {
     "price": 129.95,
     "discount": 34.4,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/la-flor-dominicana-la-volcada-petite-5-tins-of-6/": {
     "price": 75.95,
@@ -280,7 +285,7 @@
   "https://cigarsncigars.com/southern-draw-cedrus-the-hogan/": {
     "price": 69.95,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://cigarsncigars.com/viejo-mundo-corona/": {
     "price": 110.95,
