@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 6080
+    "last_examined": 6075
   },
   "https://www.smokeinn.com/AVO-XO-Maestoso-5-Pack.html": {
     "price": 42.5,
@@ -315,7 +315,7 @@
   "https://www.smokeinn.com/La-Palina-Black-Toro-SKU206561205.html": {
     "price": 28.0,
     "discount": 49,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/La-Palina-KB-Part-One-10-Pack-Promo.html": {
     "price": 112.5,
