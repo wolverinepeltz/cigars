@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 2420
+    "last_examined": 2421
   },
   "https://gtcigars.com/products/601-green-label-oscuro?variant=50534758154528": {
     "price": 135.24,
@@ -391,6 +391,11 @@
     "price": 50.99,
     "discount": null,
     "active": false
+  },
+  "https://gtcigars.com/products/drew-estate-black-friday-24-count-mega-infusion-sampler?variant=68310431203616": {
+    "price": 99.99,
+    "discount": 65.6,
+    "active": true
   },
   "https://gtcigars.com/products/drew-estate-factory-smokes-sweets?variant=50552133124384": {
     "price": 43.02,
