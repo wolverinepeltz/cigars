@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4864
+    "last_examined": 4860
   },
   "https://www.cigarking.com/601-la-bomba-by-espinosa-sake-bomb-4-5x42-10-pack-special-30-off-retail-free-shipping-on-your-entire-order/": {
     "price": 62.26,
@@ -2065,7 +2065,7 @@
   "https://www.cigarking.com/island-jim-big-johnny-8x66-box-16-free-shipping-on-your-entire-order/": {
     "price": 123.2,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/joya-de-nicaragua-antano-gran-reserva-gt20-6x52-10-pack/": {
     "price": 69.0,
@@ -2933,8 +2933,8 @@
     "active": true
   },
   "https://www.cigarking.com/oliva-serie-v-paradise-sampler-assorted-sizes-20-cigars/": {
-    "price": 149.95,
-    "discount": 52.4,
+    "price": 119.95,
+    "discount": 61.9,
     "active": true
   },
   "https://www.cigarking.com/olympic-rings-le-grande-especial-sampler-assorted-sizes-5-cigars/": {
@@ -3085,7 +3085,7 @@
   "https://www.cigarking.com/roma-craft-volstead-1920-george-remus-5x56-5-pack/": {
     "price": 35.95,
     "discount": 40.1,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/san-lotano-bull-torpedo-by-aj-fernandez-6-5x54-box-20-flash-pricing/": {
     "price": 93.8,
