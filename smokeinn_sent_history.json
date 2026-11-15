@@ -250,7 +250,7 @@
   "https://www.smokeinn.com/Epic-Maduro-Toro-Tubes-10-Pack-Clearance.html": {
     "price": 82.8,
     "discount": 40,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Fiat-Lux-Geniuses-5-Pack-SKU335522211.html": {
     "price": 27.5,
@@ -390,7 +390,7 @@
   "https://www.smokeinn.com/Mas-Igneus-Toro-5-Pack-SKU3469912.html": {
     "price": 31.95,
     "discount": 48,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Montecristo-Epic-Vintage-12-Blue-No.-2-Torpedo-5-Pack-SKU3214612.html": {
     "price": 55.5,
