@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 3391
+    "last_examined": 3390
   },
   "https://cigarsboston.com/products/aj-fernandez-empress-of-cuba-maduro-churchill?variant=43981344473335": {
     "price": 97.99,
@@ -532,6 +532,11 @@
     "discount": 60.5,
     "active": true
   },
+  "https://cigarsboston.com/products/graycliff-g2-pgxl-gordo-ecuadorian-connecticut?variant=39774509826204": {
+    "price": 99.99,
+    "discount": 60.0,
+    "active": true
+  },
   "https://cigarsboston.com/products/graycliff-g2-pirate-torpedo-nicaraguan?variant=40832509051036": {
     "price": 87.99,
     "discount": 60.9,
@@ -575,7 +580,7 @@
   "https://cigarsboston.com/products/hc-series-criollo-grande-nicaraguan?variant=43920121200887": {
     "price": 102.99,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarsboston.com/products/hc-series-criollo-premium-churchill?variant=42992416325879": {
     "price": 109.99,
@@ -585,6 +590,11 @@
   "https://cigarsboston.com/products/hc-series-criollo-premium-toro?variant=42992416522487": {
     "price": 109.99,
     "discount": 42.1,
+    "active": true
+  },
+  "https://cigarsboston.com/products/hc-series-criollo-robusto-nicaraguan?variant=49549418004727": {
+    "price": 94.99,
+    "discount": 47.2,
     "active": true
   },
   "https://cigarsboston.com/products/hc-series-habano-premium-churchill?variant=42992427270391": {
@@ -700,7 +710,7 @@
   "https://cigarsboston.com/products/la-estrella-cubana-connecticut-robusto?variant=43752585462007": {
     "price": 67.99,
     "discount": 30.6,
-    "active": true
+    "active": false
   },
   "https://cigarsboston.com/products/la-gloria-cubana-serie-r-esteli-no-52-toro?variant=39595023958172": {
     "price": 110.99,
@@ -715,7 +725,7 @@
   "https://cigarsboston.com/products/la-herencia-cubana-oscuro-fuerte-belicoso?variant=50101369438455": {
     "price": 94.99,
     "discount": 42.8,
-    "active": true
+    "active": false
   },
   "https://cigarsboston.com/products/la-herencia-cubana-oscuro-fuerte-robusto?variant=51114072506615": {
     "price": 99.99,
@@ -790,6 +800,11 @@
   "https://cigarsboston.com/products/la-perla-habana-classic-toro-maduro?variant=37858440708252": {
     "price": 82.99,
     "discount": 48.8,
+    "active": true
+  },
+  "https://cigarsboston.com/products/la-perla-habana-white-pearl-robusto?variant=40105540059292": {
+    "price": 89.99,
+    "discount": 30.8,
     "active": true
   },
   "https://cigarsboston.com/products/la-perla-habana-wide-maduro-robusto?variant=39692460785820": {
