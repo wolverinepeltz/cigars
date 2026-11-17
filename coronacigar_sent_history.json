@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 166
+    "last_examined": 170
   },
   "https://www.coronacigar.com/corona-ranchero-churchill/": {
     "price": 49.95,
@@ -50,6 +50,16 @@
   "https://www.coronacigar.com/corona-special-wheel-nicaragua-torpedo/": {
     "price": 64.0,
     "discount": 50.8,
+    "active": true
+  },
+  "https://www.coronacigar.com/drew-estate-extreme-collector-sampler/": {
+    "price": 139.95,
+    "discount": 42.4,
+    "active": true
+  },
+  "https://www.coronacigar.com/drew-estate-traditional-collector-sampler/": {
+    "price": 139.95,
+    "discount": 37.0,
     "active": true
   },
   "https://www.coronacigar.com/oliveros-gran-retorno-habano-toro/": {
