@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4856
+    "last_examined": 4880
   },
   "https://www.cigarking.com/601-la-bomba-by-espinosa-sake-bomb-4-5x42-10-pack-special-30-off-retail-free-shipping-on-your-entire-order/": {
     "price": 62.26,
@@ -1484,6 +1484,11 @@
   },
   "https://www.cigarking.com/copy-of-purofino-white-label-sun-grown-torpedo-6-5x52-bundle-20-ekl9/": {
     "price": 99.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-ramon-allones-by-aj-fernandez-churchill-7x50-10-pack/": {
+    "price": 82.5,
     "discount": 50.0,
     "active": true
   },
