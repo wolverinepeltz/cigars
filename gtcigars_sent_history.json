@@ -84,8 +84,8 @@
   },
   "https://gtcigars.com/products/aj-fernandez-enclave?variant=50419192987936": {
     "price": 79.99,
-    "discount": null,
-    "active": false
+    "discount": 60.0,
+    "active": true
   },
   "https://gtcigars.com/products/aj-fernandez-last-call-maduro?variant=50419014598944": {
     "price": 79.99,
@@ -979,8 +979,8 @@
   },
   "https://gtcigars.com/products/saint-luis-rey-original?variant=51158771007776": {
     "price": 121.99,
-    "discount": null,
-    "active": false
+    "discount": 38.0,
+    "active": true
   },
   "https://gtcigars.com/products/saint-luis-rey-original?variant=51158771073312": {
     "price": 135.99,
