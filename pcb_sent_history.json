@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 1942
+    "last_examined": 1930
   },
   "https://perfectcigarblend.com/product/acid-by-drew-estate-krush-classic-morado-maduro-tins/": {
     "price": 59.95,
@@ -295,7 +295,7 @@
   "https://perfectcigarblend.com/product/joya-de-nicaragua-3x3-selection/": {
     "price": 54.95,
     "discount": 49,
-    "active": true
+    "active": false
   },
   "https://perfectcigarblend.com/product/la-gloria-cubana-los-gloriosos-toro/": {
     "price": 29.95,
@@ -375,7 +375,7 @@
   "https://perfectcigarblend.com/product/plasencia-rgb-sampler-selection/": {
     "price": 89.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://perfectcigarblend.com/product/plasencia-triunfal-gran-toro-limited-edition-2026/": {
     "price": 108.25,
