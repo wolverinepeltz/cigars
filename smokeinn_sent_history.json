@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 6096
+    "last_examined": 6098
   },
   "https://www.smokeinn.com/AVO-XO-Maestoso-5-Pack.html": {
     "price": 42.5,
@@ -270,7 +270,7 @@
   "https://www.smokeinn.com/HVC-Havana-City-Seleccion-No.1-Maduro-Poderosos-5-Pack-SKU357482215.html": {
     "price": 26.5,
     "discount": 50,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Hoyo-La-Amistad-Dark-Sumatra-Espresso.html": {
     "price": 124.95,
