@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 2424
+    "last_examined": 2425
   },
   "https://gtcigars.com/products/601-green-label-oscuro?variant=50534758154528": {
     "price": 135.24,
@@ -661,6 +661,16 @@
     "price": 123.99,
     "discount": 43.1,
     "active": false
+  },
+  "https://gtcigars.com/products/odyssey-maduro?variant=51023870427424": {
+    "price": 33.99,
+    "discount": 32.0,
+    "active": true
+  },
+  "https://gtcigars.com/products/odyssey-maduro?variant=51023870525728": {
+    "price": 30.99,
+    "discount": 32.6,
+    "active": true
   },
   "https://gtcigars.com/products/oliva-flor-de-oliva?variant=51028197507360": {
     "price": 57.99,
