@@ -1,12 +1,16 @@
 name: Smoke Inn deal alert
 
-# Uses the same GMAIL_PASSWORD secret as the other deal-alert workflow.
+# Runs on the home Windows PC (a self-hosted runner labelled "home-cigars"),
+# not on GitHub's servers: in Nov 2026 smokeinn.com stopped answering GitHub's
+# servers at all (every request timed out) while it still loads normally
+# elsewhere. Setup steps are in README.md under "Home runner".
+#
+# Uses the same GMAIL_PASSWORD secret as the other deal-alert workflows.
 # Sender/recipient are set as constants in smokeinn_deal_alert.py.
 
 on:
   schedule:
     # 3:38 PM Denver in summer (MDT), 2:38 PM in winter (MST). Cron is UTC.
-    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
     - cron: "38 21 * * *"
   workflow_dispatch:
     inputs:
@@ -21,57 +25,98 @@ on:
 
 jobs:
   check-deals:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Windows, home-cigars]
     # Full-catalog mode does ~1000 requests at a 1s delay - roughly 20-30
-    # minutes. Clearance-only is well under a minute. Adjust if needed.
-    timeout-minutes: 45
+    # minutes. Clearance-only is well under a minute.
+    timeout-minutes: 60
     permissions:
       contents: write
+    defaults:
+      run:
+        shell: powershell
+    env:
+      # Product names can contain characters like n-tilde; make Python's
+      # output UTF-8 so Windows' default code page can't crash the run.
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        # Uses the Python installed on the PC for all users, in a private
+        # environment the runner can install packages into (same one the
+        # Perfect Cigar Blend and Hiland's workflows use).
+        run: |
+          $ErrorActionPreference = "Continue"
+          $py = @("$env:ProgramFiles\Python312\python.exe", "$env:ProgramFiles\Python313\python.exe") |
+                Where-Object { Test-Path $_ } | Select-Object -First 1
+          if (-not $py) {
+            $cmd = Get-Command python -ErrorAction SilentlyContinue
+            if ($cmd -and $cmd.Source -notlike "*WindowsApps*") { $py = $cmd.Source }
+          }
+          if (-not $py) {
+            Write-Host "Python isn't installed for all users on this PC. In an Administrator PowerShell run:"
+            Write-Host "  winget install -e --id Python.Python.3.12 --scope machine"
+            exit 1
+          }
+          Write-Host "Using $py"
+          $venv = Join-Path $env:RUNNER_TOOL_CACHE "cigars-venv"
+          if (-not (Test-Path (Join-Path $venv "Scripts\python.exe"))) {
+            & $py -m venv $venv
+            if ($LASTEXITCODE -ne 0) { Write-Host "Couldn't create $venv"; exit 1 }
+          }
+          Add-Content -Path $env:GITHUB_PATH -Value (Join-Path $venv "Scripts")
+          & (Join-Path $venv "Scripts\python.exe") --version
+          exit $LASTEXITCODE
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 curl_cffi
-
-      - name: Run deal alert (scheduled - Clearance + full catalog)
-        if: github.event_name == 'schedule'
-        env:
-          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
-        run: python smokeinn_deal_alert.py --min-discount 30 --max-price 150 --full-catalog
-
-      - name: Run deal alert (manual trigger)
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
         run: |
-          ARGS="--min-discount 30 --max-price 150"
-          if [ "${{ github.event.inputs.full_catalog }}" = "true" ]; then
-            ARGS="$ARGS --full-catalog"
-          fi
-          if [ -n "${{ github.event.inputs.max_lines }}" ]; then
-            ARGS="$ARGS --max-lines ${{ github.event.inputs.max_lines }}"
-          fi
-          python smokeinn_deal_alert.py $ARGS
+          $ErrorActionPreference = "Continue"
+          python -m pip install --upgrade --quiet requests beautifulsoup4 curl_cffi
+          exit $LASTEXITCODE
+
+      - name: Run deal alert
+        env:
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+          EVENT_NAME: ${{ github.event_name }}
+          FULL_CATALOG: ${{ github.event.inputs.full_catalog }}
+          MAX_LINES: ${{ github.event.inputs.max_lines }}
+        run: |
+          $argsList = @("--min-discount", "30", "--max-price", "150")
+          # Scheduled runs always crawl the full catalog; manual runs when ticked.
+          if ($env:EVENT_NAME -eq "schedule" -or $env:FULL_CATALOG -eq "true") {
+            $argsList += "--full-catalog"
+          }
+          if ($env:MAX_LINES) { $argsList += @("--max-lines", $env:MAX_LINES) }
+          python smokeinn_deal_alert.py @argsList
+          exit $LASTEXITCODE
 
       - name: Commit updated history file
         run: |
+          $ErrorActionPreference = "Continue"   # git reports progress on stderr
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          [ -f smokeinn_sent_history.json ] || echo '{}' > smokeinn_sent_history.json
-          git add smokeinn_sent_history.json
-          git diff --staged --quiet || git commit -m "Update Smoke Inn sent history [skip ci]"
+          $hist = "smokeinn_sent_history.json"
+          if (-not (Test-Path $hist)) { [IO.File]::WriteAllText((Join-Path $PWD $hist), "{}") }
+          git add $hist
+          git diff --staged --quiet
+          if ($LASTEXITCODE -eq 0) { Write-Host "No history changes."; exit 0 }
+          git commit -m "Update Smoke Inn sent history [skip ci]"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
           # Other workflows push to main too; pull their commits first so this
           # push isn't rejected as out of date. Retries in case two land at once.
-          pushed=no
-          for i in 1 2 3; do
-            if git pull --rebase origin main && git push; then pushed=yes; break; fi
-            git rebase --abort 2>/dev/null || true
-            echo "Push attempt $i failed, retrying..."; sleep $((i * 10))
-          done
-          [ "$pushed" = yes ] || { echo "Push failed after 3 attempts"; exit 1; }
+          $pushed = $false
+          foreach ($i in 1..3) {
+            git pull --rebase origin main
+            if ($LASTEXITCODE -eq 0) {
+              git push
+              if ($LASTEXITCODE -eq 0) { $pushed = $true; break }
+            } else {
+              git rebase --abort
+            }
+            Write-Host "Push attempt $i failed, retrying..."
+            Start-Sleep -Seconds (10 * $i)
+          }
+          if (-not $pushed) { Write-Host "Push failed after 3 attempts"; exit 1 }
+          exit 0

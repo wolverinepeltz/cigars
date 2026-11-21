@@ -118,7 +118,7 @@ use the same two settings.
 
 ## Home runner
 
-Cigora (disabled), Perfect Cigar Blend and Hiland's run on a Windows PC at home, through a
+Cigora (disabled), Perfect Cigar Blend, Hiland's and Smoke Inn run on a Windows PC at home, through a
 GitHub self-hosted runner labelled `home-cigars`. Their workflows say
 `runs-on: [self-hosted, Windows, home-cigars]`; nothing else runs there.
 
