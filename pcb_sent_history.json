@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 1930
+    "last_examined": 1939
   },
   "https://perfectcigarblend.com/product/acid-by-drew-estate-krush-classic-morado-maduro-tins/": {
     "price": 59.95,
@@ -181,6 +181,21 @@
     "price": 29.5,
     "discount": null,
     "active": false
+  },
+  "https://perfectcigarblend.com/product/foundation-aksum-maduro-corona-gorda/": {
+    "price": 50.75,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/foundation-aksum-maduro-doble-corona/": {
+    "price": 63.0,
+    "discount": 30,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/foundation-aksum-maduro-toro/": {
+    "price": 57.75,
+    "discount": 30,
+    "active": true
   },
   "https://perfectcigarblend.com/product/herrera-esteli-brazilian-maduro-lonsdale-deluxe-10-pack-6-x-44/": {
     "price": 66.95,
