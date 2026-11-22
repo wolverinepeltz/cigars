@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4936
+    "last_examined": 5016
   },
   "https://www.cigarking.com/601-la-bomba-by-espinosa-sake-bomb-4-5x42-10-pack-special-30-off-retail-free-shipping-on-your-entire-order/": {
     "price": 62.26,
@@ -755,7 +755,7 @@
   "https://www.cigarking.com/copy-of-avo-syncro-nicaragua-fogata-toro-6x50-10-pack/": {
     "price": 90.88,
     "discount": 36.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-brick-house-classic-toro-6x52-15-pack-flash-sale-qm6j/": {
     "price": 95.95,
@@ -1075,6 +1075,26 @@
   "https://www.cigarking.com/copy-of-macanudo-inspirado-green-toro-6x50-box-25/": {
     "price": 119.95,
     "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-macanudo-inspirado-white-churchill-7x48-box-20-anyb/": {
+    "price": 103.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-macanudo-inspirado-white-gigante-gordo-6x60-box-20-wnzf/": {
+    "price": 105.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-macanudo-inspirado-white-robusto-5x50-box-20-lhak/": {
+    "price": 93.0,
+    "discount": 49.9,
+    "active": true
+  },
+  "https://www.cigarking.com/copy-of-macanudo-inspirado-white-toro-6-5x50-box-20-f9lx/": {
+    "price": 98.0,
+    "discount": 49.9,
     "active": true
   },
   "https://www.cigarking.com/copy-of-my-father-flor-de-las-antillas-belicoso-5-5x52-10-pack-1/": {
@@ -1930,7 +1950,7 @@
   "https://www.cigarking.com/el-septimo-the-sacred-arts-collection-michelangelo-5-5x50-10-pack-free-shipping/": {
     "price": 89.99,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/eric-s-drew-estate-deadwood-tobacco-co-sampler-assorted-sizes-10-pack-free-deadwood-cutter-40-value/": {
     "price": 89.95,
@@ -2602,6 +2622,46 @@
     "discount": 40.0,
     "active": true
   },
+  "https://www.cigarking.com/macanudo-inspirado-black-churchill-7x48-5-pack/": {
+    "price": 25.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-black-churchill-7x48-box-20/": {
+    "price": 100.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-black-robusto-4-8x48-5-pack/": {
+    "price": 22.5,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-black-robusto-4-8x48-box-20/": {
+    "price": 90.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-black-robusto-tubo-4-8x48-5-pack/": {
+    "price": 26.25,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-black-robusto-tubo-4-8x48-box-20/": {
+    "price": 105.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-black-toro-5-5x54-5-pack/": {
+    "price": 25.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-black-toro-5-5x54-box-20/": {
+    "price": 100.0,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/macanudo-inspirado-orange-churchill-7x50-box-20/": {
     "price": 122.49,
     "discount": 50.0,
@@ -2623,8 +2683,8 @@
     "active": true
   },
   "https://www.cigarking.com/macanudo-inspirado-orange-toro-6x50-box-20/": {
-    "price": 89.88,
-    "discount": 40.0,
+    "price": 75.0,
+    "discount": 49.9,
     "active": true
   },
   "https://www.cigarking.com/macanudo-inspirado-red-churchill-7x48-box-20/": {
@@ -2637,6 +2697,16 @@
     "discount": 50.0,
     "active": true
   },
+  "https://www.cigarking.com/macanudo-inspirado-red-minis-3x20-5-tins-of-20/": {
+    "price": 41.22,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-red-minis-3x20-tin-of-20/": {
+    "price": 8.25,
+    "discount": 50.0,
+    "active": true
+  },
   "https://www.cigarking.com/macanudo-inspirado-red-robusto-5x50-box-20/": {
     "price": 114.99,
     "discount": 50.0,
@@ -2645,6 +2715,46 @@
   "https://www.cigarking.com/macanudo-inspirado-red-toro-6x50-box-20/": {
     "price": 119.95,
     "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-white-churchill-7x48-5-pack/": {
+    "price": 26.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-white-cigarillos-4-2x32-1-tin-of-10/": {
+    "price": 9.99,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-white-cigarillos-ascot-4-2x32-10-tins-of-10/": {
+    "price": 99.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-white-gigante-gordo-6x60-5-pack/": {
+    "price": 26.25,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-white-minis-3x20-5-tins-of-20/": {
+    "price": 41.22,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-white-minis-3x20-tin-of-20/": {
+    "price": 8.25,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-white-robusto-5x50-5-pack/": {
+    "price": 23.25,
+    "discount": 49.9,
+    "active": true
+  },
+  "https://www.cigarking.com/macanudo-inspirado-white-toro-6-5x50-5-pack/": {
+    "price": 24.5,
+    "discount": 49.9,
     "active": true
   },
   "https://www.cigarking.com/macanudo-maduro-crystal-tubes-5-5x50-box-8/": {
