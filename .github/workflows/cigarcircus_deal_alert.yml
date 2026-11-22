@@ -7,8 +7,8 @@ name: Cigar Circus deal alert
 
 on:
   schedule:
-    # 5:08 PM Denver in summer (MDT), 4:08 PM in winter (MST). Cron is UTC.
-    - cron: "8 23 * * *"
+    # 10:53 AM Denver in winter (MST), 11:53 AM in summer (MDT). Cron is UTC.
+    - cron: "53 17 * * *"
   workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
 
 jobs:

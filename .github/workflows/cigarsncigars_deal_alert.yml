@@ -7,9 +7,8 @@ name: Cigars N Cigars deal alert
 
 on:
   schedule:
-    # 4:38 PM Denver in summer (MDT), 3:38 PM in winter (MST). Cron is UTC.
-    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
-    - cron: "38 22 * * *"
+    # 9:23 AM Denver in winter (MST), 10:23 AM in summer (MDT). Cron is UTC.
+    - cron: "23 16 * * *"
   workflow_dispatch:
     inputs:
       full_catalog:

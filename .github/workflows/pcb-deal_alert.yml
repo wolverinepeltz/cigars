@@ -11,8 +11,8 @@ name: Perfect Cigar Blend deal alert
 
 on:
   schedule:
-    # 3:58 PM Denver in summer (MDT), 2:58 PM in winter (MST). Cron is UTC.
-    - cron: "58 21 * * *"
+    # 3:48 PM Denver in winter (MST), 4:48 PM in summer (MDT). Cron is UTC.
+    - cron: "48 22 * * *"
   workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
 
 jobs:

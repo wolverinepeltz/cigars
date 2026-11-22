@@ -7,9 +7,8 @@ name: TC Cigar deal alert
 
 on:
   schedule:
-    # 5:28 PM Denver in summer (MDT), 4:28 PM in winter (MST). Cron is UTC.
-    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
-    - cron: "28 23 * * *"
+    # 12:23 PM Denver in winter (MST), 1:23 PM in summer (MDT). Cron is UTC.
+    - cron: "23 19 * * *"
   workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
 
 jobs:

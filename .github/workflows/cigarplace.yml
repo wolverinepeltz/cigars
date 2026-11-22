@@ -1,9 +1,8 @@
 name: Cigarplace Deal Scraper
 on:
   schedule:
-    # 3:48 PM Denver in summer (MDT), 2:48 PM in winter (MST). Cron is UTC.
-    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
-    - cron: "48 21 * * *"
+    # 7:13 AM Denver in winter (MST), 8:13 AM in summer (MDT). Cron is UTC.
+    - cron: "13 14 * * *"
   workflow_dispatch:
 jobs:
   scrape:

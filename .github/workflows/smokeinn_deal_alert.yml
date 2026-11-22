@@ -10,8 +10,8 @@ name: Smoke Inn deal alert
 
 on:
   schedule:
-    # 3:38 PM Denver in summer (MDT), 2:38 PM in winter (MST). Cron is UTC.
-    - cron: "38 21 * * *"
+    # 12:08 PM Denver in winter (MST), 1:08 PM in summer (MDT). Cron is UTC.
+    - cron: "8 19 * * *"
   workflow_dispatch:
     inputs:
       full_catalog:

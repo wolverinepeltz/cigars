@@ -7,9 +7,8 @@ name: Cigar King deal alert
 
 on:
   schedule:
-    # 4:28 PM Denver in summer (MDT), 3:28 PM in winter (MST). Cron is UTC.
-    # Mid-afternoon Denver has the shortest GitHub scheduling delays.
-    - cron: "28 22 * * *"
+    # 8:38 AM Denver in winter (MST), 9:38 AM in summer (MDT). Cron is UTC.
+    - cron: "38 15 * * *"
   workflow_dispatch:
     inputs:
       full_catalog:
