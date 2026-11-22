@@ -1,5 +1,6 @@
 """
-Shopify stores: GT Cigars, Cigars Boston, TC Cigar.
+Shopify stores: GT Cigars, Cigars Boston, TC Cigar, Cigar Federation, Cigars
+Direct, iHeartCigars, Mr. Bundles.
 
 Shopify publishes a public feed for every collection:
 
@@ -92,10 +93,14 @@ class ShopifyStore:
     vendor_is_brand  False when the store puts its own name in "vendor"
     ref_label     what the store calls compare_at_price: "MSRP", or "was"
                   when it's the store's own regular price
+    skip_types    product types to leave out (case-insensitive), e.g.
+                  {"lighters", "hats"}, for stores whose catalog mixes
+                  accessories in with cigars
     """
 
     def __init__(self, name, base_url, history_file, collections, defaults=None,
-                 vendor_is_brand=True, ref_label="MSRP"):
+                 vendor_is_brand=True, ref_label="MSRP", skip_types=()):
+        self.skip_types = {t.lower() for t in skip_types}
         self.vendor_is_brand = vendor_is_brand
         self.ref_label = ref_label
         self.name = name
@@ -128,6 +133,8 @@ class ShopifyStore:
                 return
             print(f"  {len(products)} product(s)")
             for p in products:
+                if (p.get("product_type") or "").strip().lower() in self.skip_types:
+                    continue
                 yield from variant_items(p, self.base_url, self.vendor_is_brand,
                                          self.ref_label)
             if len(products) < PAGE_SIZE:

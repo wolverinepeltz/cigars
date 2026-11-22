@@ -3,7 +3,9 @@ Shared building blocks for the cigar deal alerts.
 
     core.py         fetching, deal rules, sent history, email, command line
     bigcommerce.py  stores on BigCommerce (Cigar King, Cigars N Cigars, Corona)
-    shopify.py      stores on Shopify (GT Cigars)
+    shopify.py      stores on Shopify (GT Cigars, Cigars Boston, TC Cigar,
+                    Cigar Federation, Cigars Direct, iHeartCigars, Mr. Bundles)
+    woocommerce.py  stores on WooCommerce (Cigar Country, NH Cigars, Oaks Cigar)
 
 Smoke Inn, Perfect Cigar Blend and Cigora read their own pages in their
 scripts and use core.py for everything else.

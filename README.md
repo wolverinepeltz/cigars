@@ -62,6 +62,7 @@ separate domain list for the disabled Smoking Hub script.)
 | `browser.py` | Last-resort fetching through real Chrome, for sites behind Cloudflare's "Just a moment..." check |
 | `bigcommerce.py` | Reads product tiles from BigCommerce stores and finds their deal pages |
 | `shopify.py` | Reads the product feed from Shopify stores |
+| `woocommerce.py` | Reads the Store API feed from WooCommerce stores |
 
 | Store | Script | Platform | Page reading |
 |---|---|---|---|
@@ -71,6 +72,13 @@ separate domain list for the disabled Smoking Hub script.)
 | GT Cigars | `gtcigars_deal_alert.py` | Shopify | shared |
 | Cigars Boston | `cigarsboston_deal_alert.py` | Shopify | shared (brand from product tags) |
 | TC Cigar | `tccigar_deal_alert.py` | Shopify | shared |
+| Cigar Federation | `cigarfederation_deal_alert.py` | Shopify | shared |
+| Cigars Direct | `cigarsdirect_deal_alert.py` | Shopify | shared |
+| iHeartCigars | `iheartcigars_deal_alert.py` | Shopify | shared |
+| Mr. Bundles | `mrbundles_deal_alert.py` | Shopify | shared (brand from product tags) |
+| Cigar Country | `cigarcountry_deal_alert.py` | WooCommerce | shared |
+| NH Cigars | `nhcigars_deal_alert.py` | WooCommerce | shared |
+| Oaks Cigar | `oakscigar_deal_alert.py` | WooCommerce | shared |
 | Smoke Inn | `smokeinn_deal_alert.py` | Miva | in the script |
 | Perfect Cigar Blend | `pcb_deal_alert.py` | WooCommerce | in the script |
 | Cigora (disabled) | `cigora_deal_alert.py` | Salesforce Commerce | in the script |
@@ -84,6 +92,13 @@ Cigar Circus shows no "was" or MSRP price, so anything in its clearance
 categories at or under `--max-price` is emailed (marked `on clearance`),
 along with price drops. Items elsewhere in its catalog are only emailed
 if they show a struck-through price that meets the discount rules.
+
+2 Guys Cigars (2guyscigars.com) has no alert: it shows a single price per
+item, with no MSRP or sale price to measure a discount against.
+
+Runs are spread from about 7 AM to 7 PM Denver time, one every 45 minutes or
+so, with the three home-runner jobs far enough apart not to queue behind
+each other. Cron times are UTC, so every run is an hour later in summer.
 
 Still standalone, because they work differently (they send the same
 email through `emailfmt.py`):
