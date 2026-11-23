@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "last_examined": 3996
+  },
+  "https://iheartcigars.com/products/a-first-class-experience?variant=46628657823921": {
+    "price": 135.0,
+    "discount": 32.5,
+    "active": true
+  },
+  "https://iheartcigars.com/products/aniversario-short-perfecto-box-25?variant=47790162804913": {
+    "price": 92.0,
+    "discount": 84.2,
+    "active": true
+  },
+  "https://iheartcigars.com/products/aniversario-special-t?variant=48145770905777": {
+    "price": 128.0,
+    "discount": 79.7,
+    "active": true
+  },
+  "https://iheartcigars.com/products/avo-robusto-assortment?variant=47702805545137": {
+    "price": 60.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/bella-dominicana-e-bond-roberts-no-3-la-dalia?variant=47857099800753": {
+    "price": 80.0,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/caldwell-long-live-the-queen-chalice?variant=47860033618097": {
+    "price": 119.0,
+    "discount": 35.2,
+    "active": true
+  },
+  "https://iheartcigars.com/products/cavalier-geneve-le-2022-ep-carrillo-encore-el-primero?variant=47857079451825": {
+    "price": 99.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/freud-limited-edition-collaboration-2023-the-disruptor-sigmund?variant=47246659485873": {
+    "price": 135.0,
+    "discount": 35.7,
+    "active": true
+  },
+  "https://iheartcigars.com/products/liga-privada-undercrown-10-flying-pig-h99-flying-pig?variant=46674445729969": {
+    "price": 131.0,
+    "discount": 30.5,
+    "active": true
+  },
+  "https://iheartcigars.com/products/nicaragua-box-pressed-toro?variant=47860020609201": {
+    "price": 102.0,
+    "discount": 66.7,
+    "active": true
+  },
+  "https://iheartcigars.com/products/oliva-serie-v-churchill-extra-serie-v-lancero?variant=47867831091377": {
+    "price": 87.72,
+    "discount": 36.8,
+    "active": true
+  },
+  "https://iheartcigars.com/products/signature-6000?variant=45698100002993": {
+    "price": 80.0,
+    "discount": 35.5,
+    "active": true
+  },
+  "https://iheartcigars.com/products/signature-toro?variant=47860015595697": {
+    "price": 130.0,
+    "discount": 81.9,
+    "active": true
+  },
+  "https://iheartcigars.com/products/ultra-op-no-8-churchill?variant=46016663388337": {
+    "price": 43.0,
+    "discount": 31.7,
+    "active": true
+  },
+  "https://iheartcigars.com/products/warped-croc-bites-cavalier-geneve-black-serie-ii-torpedo?variant=47841780072625": {
+    "price": 89.0,
+    "discount": 30.5,
+    "active": true
+  }
+}
