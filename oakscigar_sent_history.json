@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "last_examined": 1716
+  },
+  "https://www.oakscigar.com/product/alec-bradley-filthy-hooligan-barber-pole-2024-6-x-50/?attribute_pa_cigar-quantity=5-pack": {
+    "price": 31.87,
+    "discount": 44.3,
+    "active": true
+  },
+  "https://www.oakscigar.com/product/avo-cigars-8-cigar-fresh-pack-sampler-combo/": {
+    "price": 51.95,
+    "discount": 37.6,
+    "active": true
+  },
+  "https://www.oakscigar.com/product/montecristo-ciudad-de-musica-piramide-6-1-x-52/?attribute_pa_cigar-quantity=5-pack": {
+    "price": 43.25,
+    "discount": 37.9,
+    "active": true
+  },
+  "https://www.oakscigar.com/product/sancho-panza-extra-chido-gigante-6-x-60/?attribute_pa_cigar-quantity=5-pack": {
+    "price": 25.0,
+    "discount": 37.5,
+    "active": true
+  },
+  "https://www.oakscigar.com/product/sancho-panza-extra-chido-gigante-6-x-60/?attribute_pa_cigar-quantity=box-of-20": {
+    "price": 100.0,
+    "discount": 37.5,
+    "active": true
+  },
+  "https://www.oakscigar.com/product/sancho-panza-extra-chido-robusto-5-x-50/?attribute_pa_cigar-quantity=5-pack": {
+    "price": 22.0,
+    "discount": 37.5,
+    "active": true
+  },
+  "https://www.oakscigar.com/product/sancho-panza-extra-chido-robusto-5-x-50/?attribute_pa_cigar-quantity=box-of-20": {
+    "price": 88.0,
+    "discount": 37.5,
+    "active": true
+  },
+  "https://www.oakscigar.com/product/sancho-panza-extra-chido-toro-6-x-52/?attribute_pa_cigar-quantity=5-pack": {
+    "price": 23.75,
+    "discount": 37.5,
+    "active": true
+  },
+  "https://www.oakscigar.com/product/sancho-panza-extra-chido-toro-6-x-52/?attribute_pa_cigar-quantity=box-of-20": {
+    "price": 95.0,
+    "discount": 37.5,
+    "active": true
+  }
+}
