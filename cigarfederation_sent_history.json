@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "last_examined": 5329
+  },
+  "https://store.cigarfederation.com/products/c-ali-epc?variant=45758144282786": {
+    "price": 41.1,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/ch-jh?variant=1137222948": {
+    "price": 29.95,
+    "discount": 40.1,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/chba-nic?variant=50513302290594": {
+    "price": 49.95,
+    "discount": 60.0,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/epc-encr?variant=45828443308194": {
+    "price": 44.95,
+    "discount": 37.6,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/jsk-red?variant=46384799056034": {
+    "price": 32.95,
+    "discount": 40.1,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/lltq?variant=50754380103842": {
+    "price": 49.95,
+    "discount": 45.6,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/lp-kill-bill?variant=975179388": {
+    "price": 39.95,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/m35?variant=45194306027682": {
+    "price": 62.9,
+    "discount": 53.2,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/qvmag?variant=47546426687650": {
+    "price": 59.95,
+    "discount": 45.5,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/the-griffins-by-davidoff?variant=44887396122786": {
+    "price": 39.95,
+    "discount": 53.0,
+    "active": true
+  },
+  "https://store.cigarfederation.com/products/zino-plat?variant=43995364163746": {
+    "price": 39.95,
+    "discount": 61.8,
+    "active": true
+  }
+}
