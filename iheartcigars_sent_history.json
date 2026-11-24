@@ -27,6 +27,31 @@
     "discount": 30.0,
     "active": true
   },
+  "https://iheartcigars.com/products/brick-house-churchill-dbl-connecticut?variant=47702023700657": {
+    "price": 142.31,
+    "discount": 45.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/brick-house-corona-larga-natural?variant=47702023962801": {
+    "price": 124.85,
+    "discount": 45.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/brulee-double-corona?variant=45748194738353": {
+    "price": 134.81,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/brulee-toro?variant=45698086666417": {
+    "price": 126.75,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/caldwell-long-live-the-king-maduro-super-toro?variant=47860034699441": {
+    "price": 86.63,
+    "discount": 45.0,
+    "active": true
+  },
   "https://iheartcigars.com/products/caldwell-long-live-the-queen-chalice?variant=47860033618097": {
     "price": 119.0,
     "discount": 35.2,
@@ -37,14 +62,34 @@
     "discount": 40.0,
     "active": true
   },
+  "https://iheartcigars.com/products/cosecha-146-monte-carlo?variant=45698087747761": {
+    "price": 133.0,
+    "discount": 30.0,
+    "active": true
+  },
   "https://iheartcigars.com/products/freud-limited-edition-collaboration-2023-the-disruptor-sigmund?variant=47246659485873": {
     "price": 135.0,
     "discount": 35.7,
     "active": true
   },
+  "https://iheartcigars.com/products/grand-cru-robusto-1?variant=46276946624689": {
+    "price": 90.68,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/liga-privada-10-aniversario-corona-viva?variant=46647225909425": {
+    "price": 117.0,
+    "discount": 35.0,
+    "active": true
+  },
   "https://iheartcigars.com/products/liga-privada-undercrown-10-flying-pig-h99-flying-pig?variant=46674445729969": {
     "price": 131.0,
     "discount": 30.5,
+    "active": true
+  },
+  "https://iheartcigars.com/products/liga-privada-unico-serie-ratzilla?variant=47635992838321": {
+    "price": 128.38,
+    "discount": 35.0,
     "active": true
   },
   "https://iheartcigars.com/products/nicaragua-box-pressed-toro?variant=47860020609201": {
@@ -55,6 +100,21 @@
   "https://iheartcigars.com/products/oliva-serie-v-churchill-extra-serie-v-lancero?variant=47867831091377": {
     "price": 87.72,
     "discount": 36.8,
+    "active": true
+  },
+  "https://iheartcigars.com/products/olmec-claro-toro?variant=46518947119281": {
+    "price": 125.89,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/privada-unico-serie-bakkwa?variant=46639770239153": {
+    "price": 69.06,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/privada-unico-serie-dirty-rat?variant=46421256798385": {
+    "price": 143.0,
+    "discount": 35.0,
     "active": true
   },
   "https://iheartcigars.com/products/signature-6000?variant=45698100002993": {
@@ -75,6 +135,21 @@
   "https://iheartcigars.com/products/warped-croc-bites-cavalier-geneve-black-serie-ii-torpedo?variant=47841780072625": {
     "price": 89.0,
     "discount": 30.5,
+    "active": true
+  },
+  "https://iheartcigars.com/products/winston-churchill-late-hour-churchill?variant=45921166852273": {
+    "price": 101.4,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/winston-churchill-late-hour-robusto?variant=45921169768625": {
+    "price": 88.4,
+    "discount": 35.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/winston-churchill-the-late-hour-toro-box-20?variant=45813778317489": {
+    "price": 96.2,
+    "discount": 35.0,
     "active": true
   }
 }
