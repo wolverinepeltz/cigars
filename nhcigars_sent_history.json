@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 3169
+    "last_examined": 3171
   },
   "https://nhcigars.com/product/3-leaf-cigar-sampler/": {
     "price": 112.99,
@@ -190,6 +190,11 @@
   "https://nhcigars.com/product/arturo-fuente-king-b/": {
     "price": 69.99,
     "discount": 30.0,
+    "active": true
+  },
+  "https://nhcigars.com/product/arturo-fuente-opus-x-society-gold-bullet-single/": {
+    "price": 119.99,
+    "discount": 40.0,
     "active": true
   },
   "https://nhcigars.com/product/arturo-fuente-opus-x-society/": {
@@ -1017,6 +1022,11 @@
     "discount": 48.0,
     "active": true
   },
+  "https://nhcigars.com/product/jaime-garcia-reserva-especial-toro-gordo/": {
+    "price": 62.99,
+    "discount": 49.6,
+    "active": true
+  },
   "https://nhcigars.com/product/jc-newman-6-x-60-sampler/": {
     "price": 39.99,
     "discount": 33.3,
@@ -1147,6 +1157,11 @@
     "discount": 36.0,
     "active": true
   },
+  "https://nhcigars.com/product/my-father-la-gran-oferta-torpedo-5-pack/": {
+    "price": 56.99,
+    "discount": 36.7,
+    "active": true
+  },
   "https://nhcigars.com/product/my-father-la-lealtad-robusto-5-pack/": {
     "price": 64.99,
     "discount": 31.6,
@@ -1185,6 +1200,11 @@
   "https://nhcigars.com/product/my-father-le-bijou-1922-petit-robusto-5-pack/": {
     "price": 45.99,
     "discount": 42.5,
+    "active": true
+  },
+  "https://nhcigars.com/product/my-father-le-bijou-1922-petite-robusto-4-5-x-50-box-of-23/": {
+    "price": 149.99,
+    "discount": 34.8,
     "active": true
   },
   "https://nhcigars.com/product/my-father-original-sampler/": {
