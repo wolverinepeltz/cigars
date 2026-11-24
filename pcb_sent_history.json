@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 1939
+    "last_examined": 1946
   },
   "https://perfectcigarblend.com/product/acid-by-drew-estate-krush-classic-morado-maduro-tins/": {
     "price": 59.95,
@@ -15,7 +15,7 @@
   "https://perfectcigarblend.com/product/aj-fernandez-the-hits-volume-1/": {
     "price": 49.95,
     "discount": 37,
-    "active": true
+    "active": false
   },
   "https://perfectcigarblend.com/product/aladino-cameroon-gordo/": {
     "price": 40.75,
@@ -70,6 +70,11 @@
   "https://perfectcigarblend.com/product/big-papi-firecracker/": {
     "price": 39.95,
     "discount": 37,
+    "active": true
+  },
+  "https://perfectcigarblend.com/product/black-pink-x-hemingway-selection/": {
+    "price": 119.95,
+    "discount": 30,
     "active": true
   },
   "https://perfectcigarblend.com/product/camacho-scorpion-claw-5-pack-selection/": {
