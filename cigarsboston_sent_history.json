@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 3390
+    "last_examined": 3388
   },
   "https://cigarsboston.com/products/aj-fernandez-empress-of-cuba-maduro-churchill?variant=43981344473335": {
     "price": 97.99,
@@ -375,7 +375,7 @@
   "https://cigarsboston.com/products/don-rafael-gold-dominican-churchill?variant=37447200571548": {
     "price": 77.99,
     "discount": 44.3,
-    "active": true
+    "active": false
   },
   "https://cigarsboston.com/products/don-rafael-gold-premium-corona?variant=36482877980828": {
     "price": 62.99,
@@ -750,7 +750,7 @@
   "https://cigarsboston.com/products/la-perla-habana-black-pearl-oro-belicoso?variant=40430644494492": {
     "price": 92.99,
     "discount": 56.3,
-    "active": true
+    "active": false
   },
   "https://cigarsboston.com/products/la-perla-habana-black-pearl-oro-robusto?variant=40286579818652": {
     "price": 82.99,
@@ -800,6 +800,11 @@
   "https://cigarsboston.com/products/la-perla-habana-classic-toro-maduro?variant=37858440708252": {
     "price": 82.99,
     "discount": 48.8,
+    "active": true
+  },
+  "https://cigarsboston.com/products/la-perla-habana-white-pearl-churchill-extra?variant=42452167164151": {
+    "price": 99.99,
+    "discount": 57.9,
     "active": true
   },
   "https://cigarsboston.com/products/la-perla-habana-white-pearl-robusto?variant=40105540059292": {
