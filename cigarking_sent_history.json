@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 5016
+    "last_examined": 5032
   },
   "https://www.cigarking.com/601-la-bomba-by-espinosa-sake-bomb-4-5x42-10-pack-special-30-off-retail-free-shipping-on-your-entire-order/": {
     "price": 62.26,
@@ -2095,7 +2095,7 @@
   "https://www.cigarking.com/joya-de-nicaragua-antano-gran-reserva-gt20-6x52-10-pack/": {
     "price": 69.0,
     "discount": 50.7,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/la-aurora-107-belicoso-6-25x52-7-pack/": {
     "price": 54.83,
@@ -3090,7 +3090,7 @@
   "https://www.cigarking.com/premium-8-racks-cohiba-black-churchill-vs-joya-de-nicaragua-cuatro-cinco-petit-corona-assorted-sizes-8-pack/": {
     "price": 79.95,
     "discount": 61.7,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/premium-8-racks-don-s-warehouse-mashup-assorted-sizes-8-pack/": {
     "price": 69.95,
