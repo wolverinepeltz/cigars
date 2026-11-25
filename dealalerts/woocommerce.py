@@ -1,5 +1,6 @@
 """
-WooCommerce stores: Cigar Country, NH Cigars, Oaks Cigar.
+WooCommerce stores: Cigar Country, NH Cigars, Oaks Cigar, Cigars Daily,
+Thor's Cigar Vault, Fox Cigar.
 
 WooCommerce sites publish their catalog through the public Store API (the
 same feed the site's own cart and product blocks use):
