@@ -79,6 +79,9 @@ separate domain list for the disabled Smoking Hub script.)
 | Cigar Country | `cigarcountry_deal_alert.py` | WooCommerce | shared |
 | NH Cigars | `nhcigars_deal_alert.py` | WooCommerce | shared |
 | Oaks Cigar | `oakscigar_deal_alert.py` | WooCommerce | shared |
+| Cigars Daily | `cigarsdaily_deal_alert.py` | WooCommerce | shared |
+| Thor's Cigar Vault | `thorscigarvault_deal_alert.py` | WooCommerce | shared |
+| Fox Cigar | `foxcigar_deal_alert.py` | WooCommerce | shared |
 | Smoke Inn | `smokeinn_deal_alert.py` | Miva | in the script |
 | Perfect Cigar Blend | `pcb_deal_alert.py` | WooCommerce | in the script |
 | Cigora (disabled) | `cigora_deal_alert.py` | Salesforce Commerce | in the script |
