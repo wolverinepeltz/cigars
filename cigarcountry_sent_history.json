@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 3874
+    "last_examined": 2676
   },
   "https://cigarcountry.com/product/best-of-the-best-essential-assortment/?attribute_pa_size=box-of-12": {
     "price": 74.95,
@@ -15,12 +15,12 @@
   "https://cigarcountry.com/product/crowned-heads-four-kicks-capa-especial-sublime/?attribute_pa_size=box-of-24": {
     "price": 130.95,
     "discount": 50.2,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/dominican-master-sampler-cigar-country/?attribute_pa_size=box-of-10": {
     "price": 64.95,
     "discount": 40.9,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/don-diego-aniversario-corona-tube/?attribute_pa_size=box-of-20": {
     "price": 128.95,
@@ -75,22 +75,22 @@
   "https://cigarcountry.com/product/don-pepin-garcia-original-delicias/?attribute_pa_size=box-of-20": {
     "price": 119.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/don-pepin-garcia-original-toro-gordo-2/?attribute_pa_size=box-of-20": {
     "price": 129.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/h-upmann-1844-classic-corona/?attribute_pa_size=pack-of-25": {
     "price": 144.95,
     "discount": 37.6,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/h-upmann-1844-reserve-corona-major/?attribute_pa_size=box-of-21": {
     "price": 135.95,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/h-upmann-connecticut-by-grupo-de-maestros-robusto/?attribute_pa_size=box-of-20": {
     "price": 97.95,
@@ -135,7 +135,7 @@
   "https://cigarcountry.com/product/henry-clay-rothchilde/?attribute_pa_size=box-of-25": {
     "price": 85.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/henry-clay-toro/?attribute_pa_size=box-of-25": {
     "price": 115.95,
@@ -155,7 +155,7 @@
   "https://cigarcountry.com/product/la-aurora-treasure-box-holidays/?attribute_pa_size=box-of-6": {
     "price": 84.95,
     "discount": 50.3,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/la-flor-dominicana-coronado-toro/?attribute_pa_size=box-of-18": {
     "price": 111.95,
@@ -165,12 +165,12 @@
   "https://cigarcountry.com/product/la-flor-dominicana-lfd-suave-grand-maduro-no-5-box-of-25/?attribute_pa_size=box-of-25": {
     "price": 132.95,
     "discount": 50.3,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/la-flor-dominicana-lfd-suave-grand-maduro-no-6-box-of-25/?attribute_pa_size=box-of-25": {
     "price": 144.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/la-flor-dominicana-suave-mambises/?attribute_pa_size=box-of-25": {
     "price": 130.95,
@@ -190,22 +190,22 @@
   "https://cigarcountry.com/product/leon-jimenes-flavored-petit-corona/?attribute_pa_size=box-of-10": {
     "price": 33.25,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/liga-privada-seleccion-mercado-corona-viva/?attribute_pa_size=box-of-10": {
     "price": 131.6,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/liga-privada-seleccion-mercado-robusto/?attribute_pa_size=box-of-10": {
     "price": 142.45,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/liga-privada-seleccion-mercado-toro/?attribute_pa_size=box-of-10": {
     "price": 149.45,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/liga-privada-unico-serie-ratzilla/?attribute_pa_size=box-of-10": {
     "price": 142.45,
@@ -240,7 +240,7 @@
   "https://cigarcountry.com/product/montecristo-classic-memories/?attribute_pa_size=box-of-30": {
     "price": 48.45,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/montecristo-connoisseur-edition-new-york-no-2/?attribute_pa_size=box-of-10": {
     "price": 138.3,
@@ -275,27 +275,27 @@
   "https://cigarcountry.com/product/montecristo-media-noche-edmundo/?attribute_pa_size=box-of-20": {
     "price": 149.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/montecristo-white-label-toro-2/?attribute_pa_size=box-of-10": {
     "price": 107.28,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/onyx-bold-nicaragua-robusto/?attribute_pa_size=box-of-20": {
     "price": 111.95,
     "discount": 50.2,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/partagas-mini-miniatures/?attribute_pa_size=box-of-40": {
     "price": 50.95,
     "discount": 36.3,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/pdr-a-flores-1975-gran-reserva-sungrown-purito-tins/?attribute_pa_size=box-of-30": {
     "price": 57.95,
     "discount": 50.6,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/romeo-by-romeo-y-julieta-churchill/?attribute_pa_size=box-of-20": {
     "price": 138.95,
@@ -305,7 +305,7 @@
   "https://cigarcountry.com/product/romeo-by-romeo-y-julieta-magnum/?attribute_pa_size=box-of-20": {
     "price": 141.95,
     "discount": 50.1,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/romeo-by-romeo-y-julieta-piramides/?attribute_pa_size=box-of-20": {
     "price": 139.95,
@@ -330,12 +330,12 @@
   "https://cigarcountry.com/product/romeo-y-julieta-1875-gordo/?attribute_pa_size=box-of-15": {
     "price": 87.95,
     "discount": 50.2,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/romeo-y-julieta-1875-nicaragua-clemenceau-en-tubo/?attribute_pa_size=box-of-10": {
     "price": 74.88,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/romeo-y-julieta-1875-numero-dos-en-tubo/?attribute_pa_size=box-of-10": {
     "price": 74.95,
@@ -345,12 +345,12 @@
   "https://cigarcountry.com/product/romeo-y-julieta-1875-romeos-tins/?attribute_pa_size=box-of-30": {
     "price": 42.12,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/romeo-y-julieta-1875-tubo-collection/?attribute_pa_size=box-of-9": {
     "price": 69.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/romeo-y-julieta-corona-assortment/?attribute_pa_size=box-of-20": {
     "price": 109.95,
@@ -375,17 +375,17 @@
   "https://cigarcountry.com/product/vegafina-1998-50/?attribute_pa_size=box-of-10": {
     "price": 73.43,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/vegafina-1998-52-tube/?attribute_pa_size=box-of-15": {
     "price": 122.5,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/vegafina-1998-52/?attribute_pa_size=box-of-10": {
     "price": 79.03,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/vegafina-1998-vf-44s/?attribute_pa_size=box-of-10": {
     "price": 44.95,
@@ -395,7 +395,7 @@
   "https://cigarcountry.com/product/vegafina-1998-vf-56/?attribute_pa_size=box-of-25": {
     "price": 134.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/vegafina-1998-vintage-1-vf-42l/?attribute_pa_size=box-of-10": {
     "price": 46.95,
@@ -405,7 +405,7 @@
   "https://cigarcountry.com/product/vegafina-classic-corona-tubos/?attribute_pa_size=box-of-10": {
     "price": 54.95,
     "discount": 50.4,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/vegafina-classic-robusto-tubo-cigars-cigar-country/?attribute_pa_size=box-of-20": {
     "price": 89.95,
@@ -420,7 +420,7 @@
   "https://cigarcountry.com/product/vegafina-classic-toro/?attribute_pa_size=box-of-20": {
     "price": 139.86,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/vegafina-nicaragua-corona/?attribute_pa_size=box-of-25": {
     "price": 134.4,
@@ -440,6 +440,6 @@
   "https://cigarcountry.com/product/vegafina-serie-2-short-magnum/?attribute_pa_size=box-of-25": {
     "price": 113.95,
     "discount": 50.1,
-    "active": true
+    "active": false
   }
 }
