@@ -105,12 +105,12 @@
   "https://www.cigarsdirect.com/products/victor-sinclair-serie-55-imperial-connecticut-double-toro?variant=37996758171825": {
     "price": 109.99,
     "discount": 53.7,
-    "active": true
+    "active": false
   },
   "https://www.cigarsdirect.com/products/victor-sinclair-serie-55-imperial-connecticut-toro?variant=37996758302897": {
     "price": 94.99,
     "discount": 55.3,
-    "active": true
+    "active": false
   },
   "https://www.cigarsdirect.com/products/victor-sinclair-serie-55-imperial-habano-robusto?variant=37996758368433": {
     "price": 89.99,
