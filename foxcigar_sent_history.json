@@ -1,0 +1,460 @@
+{
+  "_meta": {
+    "last_examined": 6640
+  },
+  "https://foxcigar.com/shop/bundles/j-c-newman-bundles/havana-q-double-churchill/": {
+    "price": 53.83,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/bundles/j-c-newman-bundles/havana-q-double-grande/": {
+    "price": 57.82,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/bundles/j-c-newman-bundles/havana-q-double-robusto/": {
+    "price": 48.02,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/bundles/j-c-newman-bundles/havana-q-double-toro/": {
+    "price": 50.61,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/ashton-10-cigar-sampler/": {
+    "price": 99.99,
+    "discount": 31.8,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/autographed-perez-carrillo-encore-noir/?attribute_pa_cigar-count=10ct-box": {
+    "price": 99.99,
+    "discount": 41.2,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/hoyo-de-monterrey-excalibur-no-v/?attribute_pa_cigar-count=20ct-box": {
+    "price": 100.9,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/independence-day-cigars/kentucky-fire-cured-midnight-rambler/?attribute_pa_cigar-count=10ct-pack": {
+    "price": 49.99,
+    "discount": 60.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-cameroon-1903-gran-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 122.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-cameroon-1903-robusto/?attribute_pa_cigar-count=20ct-box": {
+    "price": 108.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-cameroon-1903-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 115.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-cazadores-claro-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 77.0,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-cazadores-nicaragua-gordo-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 94.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-cazadores-nicaragua-robusto-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 73.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-connecticut-1987-churchill-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 115.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-connecticut-1987-gran-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 122.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-connecticut-1987-robusto-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 108.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-connecticut-1987-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 115.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-maduro-1985-churchill-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 115.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-maduro-1985-gran-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 122.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-maduro-1985-robusto-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 108.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-maduro-1985-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 115.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-preferido-double-figurado-diamond-tubo-2/?attribute_pa_cigar-count=8ct-box": {
+    "price": 149.99,
+    "discount": 33.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-preferido-double-figurado-emerald-tubo-2/?attribute_pa_cigar-count=8ct-box": {
+    "price": 149.99,
+    "discount": 33.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-preferido-double-figurado-gold-tubo-2/?attribute_pa_cigar-count=8ct-box": {
+    "price": 149.99,
+    "discount": 33.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-preferido-double-figurado-platinum-tubo-2/?attribute_pa_cigar-count=8ct-box": {
+    "price": 149.99,
+    "discount": 33.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-preferido-double-figurado-ruby-tubo-2/?attribute_pa_cigar-count=8ct-box": {
+    "price": 149.99,
+    "discount": 33.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-preferido-double-figurado-sapphire-tubo-2/?attribute_pa_cigar-count=8ct-box": {
+    "price": 149.99,
+    "discount": 33.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-preferidos-treasure-tubo-box/": {
+    "price": 99.99,
+    "discount": 41.5,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-gloria-cubana-8th-street-toro/?attribute_pa_cigar-count=10ct-pack": {
+    "price": 109.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-gloria-cubana-serie-r-no-4-2/?attribute_pa_cigar-count=24ct-box": {
+    "price": 128.28,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-gloria-cubana-spirit-of-the-lady-churchill/?attribute_pa_cigar-count=20ct-box": {
+    "price": 149.9,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/montecristo-1935-anniversary-nicaragua-no-2-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 144.48,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/montecristo-1935-anniversary-nicaragua-robusto-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 124.67,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/montecristo-1935-anniversary-nicaragua-toro-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 144.48,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/montecristo-classic-collection-toro-5pk/": {
+    "price": 63.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/nicaragua-espeso/?attribute_pa_cigar-count=10ct-box": {
+    "price": 139.65,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-churchill-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 140.6,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-double-toro-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 74.24,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-lonsdale/?attribute_pa_cigar-count=20ct-box": {
+    "price": 98.98,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-petit-corona-2/?attribute_pa_cigar-count=30ct-box": {
+    "price": 114.72,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-robusto-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 101.23,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 121.47,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-toro-tubos/?attribute_pa_cigar-count=10ct-box": {
+    "price": 70.86,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-torpedo-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 140.6,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-belicoso/?attribute_pa_cigar-count=25ct-box": {
+    "price": 109.11,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-churchill-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 111.35,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-double-robusto-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 131.6,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-figurado/?attribute_pa_cigar-count=25ct-box": {
+    "price": 124.85,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-maduro-belicoso-2/?attribute_pa_cigar-count=24ct-box": {
+    "price": 111.35,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-maduro-churchill/?attribute_pa_cigar-count=24ct-box": {
+    "price": 113.6,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-maduro-robusto-2/?attribute_pa_cigar-count=24ct-box": {
+    "price": 105.73,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-maduro-torpedo-2/?attribute_pa_cigar-count=24ct-box": {
+    "price": 120.35,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-robusto-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 106.85,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-toro-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 111.35,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-toro-tubo/?attribute_pa_cigar-count=10ct-box": {
+    "price": 49.5,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-g-torpedo/?attribute_pa_cigar-count=25ct-box": {
+    "price": 111.35,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-o-churchill-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 109.11,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-o-double-toro-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 64.12,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-o-maduro-churchill-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 121.47,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-o-maduro-double-robusto-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 124.85,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-o-maduro-double-toro-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 73.11,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-o-maduro-robusto/?attribute_pa_cigar-count=20ct-box": {
+    "price": 112.48,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-o-robusto/?attribute_pa_cigar-count=20ct-box": {
+    "price": 94.48,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-o-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 102.36,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-o-torpedo/?attribute_pa_cigar-count=20ct-box": {
+    "price": 109.11,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-club-20-2/?attribute_pa_cigar-count=5ct-sleeve": {
+    "price": 60.63,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-maduro-especial-double-robusto-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 66.36,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-maduro-especial-double-toro-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 77.6,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-maduro-especial-toro-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 73.11,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-maduro-especial-torpedo-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 75.36,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-melanio-churchill-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 102.04,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-melanio-double-toro-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 110.07,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-melanio-edicion-ano-2025/?attribute_pa_cigar-count=10ct-box": {
+    "price": 100.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-melanio-maduro-double-toro-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 110.07,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-melanio-maduro-figurado-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 110.07,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-melanio-maduro-torpedo/?attribute_pa_cigar-count=10ct-box": {
+    "price": 102.04,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-melanio-torpedo-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 102.04,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-no-4/?attribute_pa_cigar-count=24ct-box": {
+    "price": 119.23,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliva-serie-v-senoritas-2/?attribute_pa_cigar-count=5ct-sleeve": {
+    "price": 64.34,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/oliveros-gran-retorno-swing-connecticut/?attribute_pa_cigar-count=20ct-bundle": {
+    "price": 29.99,
+    "discount": 78.6,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/romeo-y-julieta-1875-churchill-en-tubo-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 85.96,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/romeo-y-julieta-1875-clemenceau-en-tubo-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 80.78,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/romeo-y-julieta-1875-julietas-2/?attribute_pa_cigar-count=6ct-sleeve": {
+    "price": 77.4,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/romeo-y-julieta-1875-rothchilde-en-tubo-2/?attribute_pa_cigar-count=10ct-box": {
+    "price": 79.17,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/saint-luis-rey-carenas-ultramar-robusto/?attribute_pa_cigar-count=20ct-box": {
+    "price": 99.29,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/surrogates-back-line-2025/": {
+    "price": 129.99,
+    "discount": 33.3,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/taste-of-oliva-sampler/": {
+    "price": 48.36,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/the-patriot-kit-blue/": {
+    "price": 59.99,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/the-patriot-kit-red/": {
+    "price": 59.99,
+    "discount": 42.3,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/the-patriot-kit-white/": {
+    "price": 59.99,
+    "discount": 42.3,
+    "active": true
+  }
+}
