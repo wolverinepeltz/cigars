@@ -1375,7 +1375,7 @@
   "https://nhcigars.com/product/oliva-serie-v-melanio-6-cigar-sampler/": {
     "price": 79.99,
     "discount": 46.7,
-    "active": true
+    "active": false
   },
   "https://nhcigars.com/product/oliva-serie-v-melanio-maduro-torpedo-cigars/": {
     "price": 125.99,
