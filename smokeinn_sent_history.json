@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 6118
+    "last_examined": 6124
   },
   "https://www.smokeinn.com/AVO-XO-Maestoso-5-Pack.html": {
     "price": 42.5,
@@ -40,7 +40,7 @@
   "https://www.smokeinn.com/Arturo-Fuente-and-J.C.-Newman-Toast-Across-America-2-Pack.html": {
     "price": 68.95,
     "discount": 31,
-    "active": true
+    "active": false
   },
   "https://www.smokeinn.com/Baccarat-Havana-Selection-Churchill.html": {
     "price": 120.95,
