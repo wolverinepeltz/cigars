@@ -1,23 +1,43 @@
 {
   "_meta": {
-    "last_examined": 6640
+    "last_examined": 6643
   },
   "https://foxcigar.com/shop/bundles/j-c-newman-bundles/havana-q-double-churchill/": {
     "price": 53.83,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/bundles/j-c-newman-bundles/havana-q-double-grande/": {
     "price": 57.82,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/bundles/j-c-newman-bundles/havana-q-double-robusto/": {
     "price": 48.02,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/bundles/j-c-newman-bundles/havana-q-double-toro/": {
+    "price": 50.61,
+    "discount": 30.0,
+    "active": false
+  },
+  "https://foxcigar.com/shop/bundles/jc-newman-bundles/havana-q-double-churchill/": {
+    "price": 53.83,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/bundles/jc-newman-bundles/havana-q-double-grande/": {
+    "price": 57.82,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/bundles/jc-newman-bundles/havana-q-double-robusto/": {
+    "price": 48.02,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/bundles/jc-newman-bundles/havana-q-double-toro/": {
     "price": 50.61,
     "discount": 30.0,
     "active": true
@@ -27,9 +47,34 @@
     "discount": 31.8,
     "active": true
   },
+  "https://foxcigar.com/shop/cigars/ashton-vsg-and-5-cigar-samplers-package-deal/": {
+    "price": 99.99,
+    "discount": 39.5,
+    "active": true
+  },
   "https://foxcigar.com/shop/cigars/autographed-perez-carrillo-encore-noir/?attribute_pa_cigar-count=10ct-box": {
     "price": 99.99,
     "discount": 41.2,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/deadwood-tobacco-co-sweet-jane-dia-de-los-muertos-2026-toro/?attribute_pa_cigar-count=20ct-box": {
+    "price": 135.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/deadwood-tobacco-co-the-girl-with-no-name-corona/?attribute_pa_cigar-count=10ct-box": {
+    "price": 59.99,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/god-of-fire-never-back-down-and-special-reserve-black-sampler/": {
+    "price": 134.5,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/god-of-fire-never-back-down-and-special-reserve-macassar-sampler/": {
+    "price": 134.5,
+    "discount": 50.0,
     "active": true
   },
   "https://foxcigar.com/shop/cigars/hoyo-de-monterrey-excalibur-no-v/?attribute_pa_cigar-count=20ct-box": {
@@ -40,6 +85,16 @@
   "https://foxcigar.com/shop/cigars/independence-day-cigars/kentucky-fire-cured-midnight-rambler/?attribute_pa_cigar-count=10ct-pack": {
     "price": 49.99,
     "discount": 60.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-barrel-aged-by-karl-malone-robusto-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 146.87,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/la-aurora-barrel-aged-by-karl-malone-sumo-toro-2/?attribute_pa_cigar-count=20ct-box": {
+    "price": 140.0,
+    "discount": 50.0,
     "active": true
   },
   "https://foxcigar.com/shop/cigars/la-aurora-cameroon-1903-gran-toro-2/?attribute_pa_cigar-count=20ct-box": {
@@ -380,7 +435,7 @@
   "https://foxcigar.com/shop/cigars/oliva-serie-v-melanio-maduro-figurado-2/?attribute_pa_cigar-count=10ct-box": {
     "price": 110.07,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/cigars/oliva-serie-v-melanio-maduro-torpedo/?attribute_pa_cigar-count=10ct-box": {
     "price": 102.04,
@@ -432,6 +487,41 @@
     "discount": 50.0,
     "active": true
   },
+  "https://foxcigar.com/shop/cigars/sencillo-black-gigante-2023-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 134.38,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-piramide-largo-54-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 134.38,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-robusto-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 111.88,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-double-robusto/?attribute_pa_cigar-count=25ct-box": {
+    "price": 127.19,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-gran-toro-56-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 128.13,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-piramide/?attribute_pa_cigar-count=25ct-box": {
+    "price": 134.38,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-robusto-2/?attribute_pa_cigar-count=25ct-box": {
+    "price": 111.88,
+    "discount": 50.0,
+    "active": true
+  },
   "https://foxcigar.com/shop/cigars/surrogates-back-line-2025/": {
     "price": 129.99,
     "discount": 33.3,
@@ -455,6 +545,11 @@
   "https://foxcigar.com/shop/cigars/the-patriot-kit-white/": {
     "price": 59.99,
     "discount": 42.3,
+    "active": true
+  },
+  "https://foxcigar.com/shop/samplers/gof-kkp-special-reserve-4-cigar-assortment-black/": {
+    "price": 134.5,
+    "discount": 50.0,
     "active": true
   }
 }
