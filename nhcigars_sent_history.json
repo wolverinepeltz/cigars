@@ -935,7 +935,7 @@
   "https://nhcigars.com/product/hvc-broadleaf-gladiator/": {
     "price": 15.99,
     "discount": 46.7,
-    "active": true
+    "active": false
   },
   "https://nhcigars.com/product/hvc-edicion-especial-2015-short-robusto-single/": {
     "price": 11.99,
@@ -1005,7 +1005,7 @@
   "https://nhcigars.com/product/hvc-pan-caliente-10th-anniversary-gloriosos-single/": {
     "price": 14.99,
     "discount": 31.9,
-    "active": true
+    "active": false
   },
   "https://nhcigars.com/product/hvc-stud-cigar-sampler/": {
     "price": 98.99,
