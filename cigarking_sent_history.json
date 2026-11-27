@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 5142
+    "last_examined": 5414
   },
   "https://www.cigarking.com/601-la-bomba-by-espinosa-sake-bomb-4-5x42-10-pack-special-30-off-retail-free-shipping-on-your-entire-order/": {
     "price": 62.26,
@@ -30,6 +30,46 @@
   "https://www.cigarking.com/aging-room-la-boheme-poeta-robusto-5-7x54-pack-15/": {
     "price": 131.27,
     "discount": 70.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-amar-gordo-6x60-5-pack/": {
+    "price": 39.55,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-amar-gordo-6x60-box-20/": {
+    "price": 112.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-amar-robusto-5-5x54-5-pack/": {
+    "price": 36.4,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-amar-robusto-5-5x54-box-20/": {
+    "price": 103.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-amar-torito-6-5x50-5-pack/": {
+    "price": 37.45,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-amar-torito-6-5x50-box-20/": {
+    "price": 106.9,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-amar-toro-6x56-5-pack/": {
+    "price": 38.5,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://www.cigarking.com/aj-fernandez-amar-toro-6x56-box-20/": {
+    "price": 109.95,
+    "discount": 50.0,
     "active": true
   },
   "https://www.cigarking.com/aj-fernandez-bellas-artes-maduro-figurado-6-5x52-box-20/": {
@@ -400,42 +440,42 @@
   "https://www.cigarking.com/copy-of-aj-fernandez-amar-gordo-6x60-5-pack-rpra/": {
     "price": 39.55,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-amar-gordo-6x60-box-20/": {
     "price": 112.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-amar-robusto-5-5x54-5-pack-3t4v/": {
     "price": 36.4,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-amar-robusto-5-5x54-box-20/": {
     "price": 103.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-amar-torito-6-5x50-5-pack-pyzn/": {
     "price": 37.45,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-amar-torito-6-5x50-box-20/": {
     "price": 106.9,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-amar-toro-6x56-5-pack-y0um/": {
     "price": 38.5,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-amar-toro-6x56-box-20/": {
     "price": 109.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/copy-of-aj-fernandez-bellas-artes-robusto-extra-5-5x52-box-20-1/": {
     "price": 131.95,
