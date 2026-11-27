@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_examined": 4942
+    "last_examined": 5142
   },
   "https://www.cigarking.com/601-la-bomba-by-espinosa-sake-bomb-4-5x42-10-pack-special-30-off-retail-free-shipping-on-your-entire-order/": {
     "price": 62.26,
@@ -3280,17 +3280,17 @@
   "https://www.cigarking.com/slam-pack-cigar-king-celebrating-64-years-robusto-vs-davidoff-nicaragua-primeros-assorted-sizes-10-pack/": {
     "price": 79.95,
     "discount": 38.5,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-cigar-king-celebrating-64-years-robusto-vs-davidoff-signature-1000-assorted-sizes-10-pack/": {
     "price": 79.95,
     "discount": 53.5,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-cigar-king-celebrating-64-years-robusto-vs-davidoff-winston-churchill-petit-panetela-assorted-sizes-10-pack/": {
     "price": 79.95,
     "discount": 42.9,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-dbl-amarillo-churchill-vs-aj-fernandez-nicaraguan-heirloom-connecticut-toro-assorted-sizes-10-pack/": {
     "price": 59.95,
@@ -3420,7 +3420,7 @@
   "https://www.cigarking.com/slam-pack-la-aurora-120th-anniversary-robusto-vs-davidoff-nicaragua-primeros-assorted-sizes-10-pack/": {
     "price": 69.95,
     "discount": 46.2,
-    "active": true
+    "active": false
   },
   "https://www.cigarking.com/slam-pack-la-aurora-120th-anniversary-robusto-vs-h-upmann-the-banker-daytrader-toro-assorted-sizes-10-pack/": {
     "price": 69.95,
