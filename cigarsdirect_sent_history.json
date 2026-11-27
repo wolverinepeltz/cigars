@@ -1,11 +1,11 @@
 {
   "_meta": {
-    "last_examined": 12594
+    "last_examined": 12591
   },
   "https://www.cigarsdirect.com/products/buffalo-trace-ashtray-sca_clone_freegift?variant=46638380023985": {
     "price": 0.0,
     "discount": 100.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarsdirect.com/products/cigars-direct-black-box-of-long-stem-matches?variant=44240943710385": {
     "price": 1.0,
@@ -80,7 +80,7 @@
   "https://www.cigarsdirect.com/products/victor-sinclair-connecticut-yankee-robusto?variant=19713420132449": {
     "price": 69.99,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarsdirect.com/products/victor-sinclair-connecticut-yankee-torpedo?variant=19713420230753": {
     "price": 79.99,
