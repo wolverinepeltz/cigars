@@ -32,6 +32,11 @@
     "discount": 49.1,
     "active": false
   },
+  "https://cigarsncigars.com/alec-bradley-american-classic-blend-toro/": {
+    "price": 100.95,
+    "discount": 30.4,
+    "active": true
+  },
   "https://cigarsncigars.com/alec-bradley-black-market-esteli-toro/": {
     "price": 136.95,
     "discount": 30.5,
