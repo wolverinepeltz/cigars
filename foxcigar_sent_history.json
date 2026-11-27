@@ -70,12 +70,12 @@
   "https://foxcigar.com/shop/cigars/god-of-fire-never-back-down-and-special-reserve-black-sampler/": {
     "price": 134.5,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/cigars/god-of-fire-never-back-down-and-special-reserve-macassar-sampler/": {
     "price": 134.5,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/cigars/hoyo-de-monterrey-excalibur-no-v/?attribute_pa_cigar-count=20ct-box": {
     "price": 100.9,
@@ -110,7 +110,7 @@
   "https://foxcigar.com/shop/cigars/la-aurora-cameroon-1903-toro-2/?attribute_pa_cigar-count=20ct-box": {
     "price": 115.5,
     "discount": 30.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/cigars/la-aurora-cazadores-claro-toro-2/?attribute_pa_cigar-count=20ct-box": {
     "price": 77.0,
@@ -520,7 +520,7 @@
   "https://foxcigar.com/shop/cigars/sencillo-platinum-robusto-2/?attribute_pa_cigar-count=25ct-box": {
     "price": 111.88,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/cigars/surrogates-back-line-2025/": {
     "price": 129.99,
@@ -550,6 +550,6 @@
   "https://foxcigar.com/shop/samplers/gof-kkp-special-reserve-4-cigar-assortment-black/": {
     "price": 134.5,
     "discount": 50.0,
-    "active": true
+    "active": false
   }
 }
