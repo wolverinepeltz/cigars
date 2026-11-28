@@ -865,7 +865,7 @@
   "https://nhcigars.com/product/graycliff-professional-pgx-single-cigar/": {
     "price": 13.99,
     "discount": 33.4,
-    "active": true
+    "active": false
   },
   "https://nhcigars.com/product/h-upmann-banker-day-trader-robusto/": {
     "price": 129.99,
@@ -935,7 +935,7 @@
   "https://nhcigars.com/product/hvc-broadleaf-gladiator/": {
     "price": 15.99,
     "discount": 46.7,
-    "active": false
+    "active": true
   },
   "https://nhcigars.com/product/hvc-edicion-especial-2015-short-robusto-single/": {
     "price": 11.99,
@@ -1005,7 +1005,7 @@
   "https://nhcigars.com/product/hvc-pan-caliente-10th-anniversary-gloriosos-single/": {
     "price": 14.99,
     "discount": 31.9,
-    "active": false
+    "active": true
   },
   "https://nhcigars.com/product/hvc-stud-cigar-sampler/": {
     "price": 98.99,
@@ -1375,7 +1375,7 @@
   "https://nhcigars.com/product/oliva-serie-v-melanio-6-cigar-sampler/": {
     "price": 79.99,
     "discount": 46.7,
-    "active": false
+    "active": true
   },
   "https://nhcigars.com/product/oliva-serie-v-melanio-maduro-torpedo-cigars/": {
     "price": 125.99,
