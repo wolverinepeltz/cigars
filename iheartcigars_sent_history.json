@@ -1,10 +1,40 @@
 {
   "_meta": {
-    "last_examined": 4062
+    "last_examined": 4325
   },
   "https://iheartcigars.com/products/a-first-class-experience?variant=46628657823921": {
     "price": 135.0,
     "discount": 32.5,
+    "active": true
+  },
+  "https://iheartcigars.com/products/aj-fernandez-dias-de-gloria-brazil-robusto?variant=47860035092657": {
+    "price": 120.0,
+    "discount": 58.6,
+    "active": true
+  },
+  "https://iheartcigars.com/products/aj-fernandez-dias-de-gloria-brazil-toro?variant=47860035223729": {
+    "price": 30.0,
+    "discount": 60.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/alma-del-cielo-celeste-robusto?variant=46043352236209": {
+    "price": 75.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/alma-fuerte-colorado-claro-eduardo-i-toro?variant=46016571080881": {
+    "price": 73.0,
+    "discount": 37.6,
+    "active": true
+  },
+  "https://iheartcigars.com/products/anejo-reserva-48?variant=46059335188657": {
+    "price": 58.0,
+    "discount": 30.1,
+    "active": true
+  },
+  "https://iheartcigars.com/products/aniversario-short-perfecto-box-25?variant=45813784903857": {
+    "price": 81.0,
+    "discount": 30.2,
     "active": true
   },
   "https://iheartcigars.com/products/aniversario-short-perfecto-box-25?variant=47790162804913": {
@@ -18,8 +48,8 @@
     "active": true
   },
   "https://iheartcigars.com/products/avo-robusto-assortment?variant=47702805545137": {
-    "price": 60.0,
-    "discount": 40.0,
+    "price": 55.0,
+    "discount": 45.0,
     "active": true
   },
   "https://iheartcigars.com/products/bella-dominicana-e-bond-roberts-no-3-la-dalia?variant=47857099800753": {
@@ -36,6 +66,16 @@
     "price": 124.85,
     "discount": 45.0,
     "active": false
+  },
+  "https://iheartcigars.com/products/brick-house-corona-larga-natural?variant=47702023995569": {
+    "price": 23.0,
+    "discount": 49.3,
+    "active": true
+  },
+  "https://iheartcigars.com/products/brick-house-toro-maduro?variant=47702025273521": {
+    "price": 123.0,
+    "discount": 49.8,
+    "active": true
   },
   "https://iheartcigars.com/products/brulee-double-corona?variant=45748194738353": {
     "price": 134.81,
@@ -62,20 +102,155 @@
     "discount": 40.0,
     "active": true
   },
-  "https://iheartcigars.com/products/cosecha-146-monte-carlo?variant=45698087747761": {
-    "price": 133.0,
+  "https://iheartcigars.com/products/chimolly-pioneer-robusto?variant=47660857688241": {
+    "price": 56.0,
     "discount": 30.0,
-    "active": false
+    "active": true
+  },
+  "https://iheartcigars.com/products/cojonu-2006?variant=46040940150961": {
+    "price": 49.0,
+    "discount": 34.7,
+    "active": true
+  },
+  "https://iheartcigars.com/products/colorado-claro-special-r?variant=46043281457329": {
+    "price": 90.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/confidenciaal-fiftytwo?variant=47223964598449": {
+    "price": 47.0,
+    "discount": 40.4,
+    "active": true
+  },
+  "https://iheartcigars.com/products/cosecha-146-monte-carlo?variant=45698087747761": {
+    "price": 118.0,
+    "discount": 37.9,
+    "active": true
+  },
+  "https://iheartcigars.com/products/cosecha-146-san-luis-toro?variant=46043353546929": {
+    "price": 60.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/crowned-heads-moon-flower-toro?variant=47660856180913": {
+    "price": 47.0,
+    "discount": 30.4,
+    "active": true
+  },
+  "https://iheartcigars.com/products/davidoff-escurio-gran-toro-liga-privada-unico-serie-l40-black-friday-combo?variant=48234885939377": {
+    "price": 139.0,
+    "discount": 36.1,
+    "active": true
+  },
+  "https://iheartcigars.com/products/davidoff-nicaragua-short-corona-liga-privada-no-9-belicoso-black-friday-combo?variant=48234885546161": {
+    "price": 119.0,
+    "discount": 32.3,
+    "active": true
+  },
+  "https://iheartcigars.com/products/davidoff-short-pleasures-assortment?variant=47246648639665": {
+    "price": 75.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/davidoff-sign-1000-ce-eun?variant=47691247321265": {
+    "price": 46.0,
+    "discount": 40.3,
+    "active": true
+  },
+  "https://iheartcigars.com/products/davidoff-signature-6000-plasencia-alma-fuerte-robustus-corto-black-friday-combo?variant=48234885382321": {
+    "price": 129.0,
+    "discount": 35.2,
+    "active": true
+  },
+  "https://iheartcigars.com/products/don-carlos-the-man-eye-of-the-shark?variant=47880284340401": {
+    "price": 126.0,
+    "discount": 31.9,
+    "active": true
+  },
+  "https://iheartcigars.com/products/don-tomas-clasico-robusto?variant=48182358474929": {
+    "price": 135.0,
+    "discount": 39.9,
+    "active": true
+  },
+  "https://iheartcigars.com/products/eastern-standard-the-cypress-room?variant=47241983819953": {
+    "price": 44.0,
+    "discount": 49.7,
+    "active": true
+  },
+  "https://iheartcigars.com/products/fratello-classico-toro?variant=47860031881393": {
+    "price": 38.0,
+    "discount": 44.3,
+    "active": true
+  },
+  "https://iheartcigars.com/products/fratello-oro-robusto?variant=47860032143537": {
+    "price": 139.0,
+    "discount": 44.8,
+    "active": true
   },
   "https://iheartcigars.com/products/freud-limited-edition-collaboration-2023-the-disruptor-sigmund?variant=47246659485873": {
     "price": 135.0,
     "discount": 35.7,
     "active": true
   },
+  "https://iheartcigars.com/products/gatekeeper-corona?variant=46043354824881": {
+    "price": 26.0,
+    "discount": 50.0,
+    "active": true
+  },
   "https://iheartcigars.com/products/grand-cru-robusto-1?variant=46276946624689": {
     "price": 90.68,
     "discount": 35.0,
     "active": false
+  },
+  "https://iheartcigars.com/products/grand-cru-toro?variant=48145882808497": {
+    "price": 100.0,
+    "discount": 37.9,
+    "active": true
+  },
+  "https://iheartcigars.com/products/illusione-epernay-ltaureau?variant=47781625659569": {
+    "price": 43.0,
+    "discount": 40.3,
+    "active": true
+  },
+  "https://iheartcigars.com/products/illusione-oneoff-black-robusto?variant=47702808690865": {
+    "price": 96.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/italy-toscana?variant=46069313896625": {
+    "price": 54.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/jaime-garcia-reserva-especial-toro-gordo?variant=47246671675569": {
+    "price": 109.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/kintsugi-corona-gorda?variant=46043284963505": {
+    "price": 100.0,
+    "discount": 49.7,
+    "active": true
+  },
+  "https://iheartcigars.com/products/larutan-dirt-torpedo?variant=47702030024881": {
+    "price": 25.0,
+    "discount": 44.4,
+    "active": true
+  },
+  "https://iheartcigars.com/products/larutan-dirt?variant=47702029828273": {
+    "price": 132.0,
+    "discount": 45.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/larutan-root?variant=47702030450865": {
+    "price": 125.0,
+    "discount": 45.2,
+    "active": true
+  },
+  "https://iheartcigars.com/products/le-2022?variant=46705149837489": {
+    "price": 52.0,
+    "discount": 45.3,
+    "active": true
   },
   "https://iheartcigars.com/products/liga-privada-10-aniversario-corona-viva?variant=46647225909425": {
     "price": 117.0,
@@ -92,9 +267,34 @@
     "discount": 35.0,
     "active": false
   },
+  "https://iheartcigars.com/products/liga-undercrown-sun-grown-corona-doble?variant=47790183645361": {
+    "price": 90.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/macanudo-inspirado-orange-robusto?variant=48182404284593": {
+    "price": 130.0,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/marrakesh?variant=47305937322161": {
+    "price": 114.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/midnight-express-toro?variant=45698093940913": {
+    "price": 35.0,
+    "discount": 45.3,
+    "active": true
+  },
   "https://iheartcigars.com/products/nicaragua-box-pressed-toro?variant=47860020609201": {
     "price": 102.0,
     "discount": 66.7,
+    "active": true
+  },
+  "https://iheartcigars.com/products/no-9-belicoso?variant=46040947032241": {
+    "price": 58.0,
+    "discount": 39.7,
     "active": true
   },
   "https://iheartcigars.com/products/oliva-serie-v-churchill-extra-serie-v-lancero?variant=47867831091377": {
@@ -107,6 +307,26 @@
     "discount": 35.0,
     "active": false
   },
+  "https://iheartcigars.com/products/oscar-rosalila-by-oscar-inframundo-toro-maduro-21s?variant=47301799313585": {
+    "price": 119.0,
+    "discount": 40.2,
+    "active": true
+  },
+  "https://iheartcigars.com/products/plasencia-alma-del-campo-madrono-gordo?variant=47702031532209": {
+    "price": 144.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/plasencia-alma-del-campo-sendero-toro-gordo?variant=47702031663281": {
+    "price": 64.0,
+    "discount": 40.4,
+    "active": true
+  },
+  "https://iheartcigars.com/products/privada-h99-toro-box-24?variant=45813766848689": {
+    "price": 59.0,
+    "discount": 35.3,
+    "active": true
+  },
   "https://iheartcigars.com/products/privada-unico-serie-bakkwa?variant=46639770239153": {
     "price": 69.06,
     "discount": 35.0,
@@ -116,6 +336,11 @@
     "price": 143.0,
     "discount": 35.0,
     "active": false
+  },
+  "https://iheartcigars.com/products/privada-unico-serie-dirty-rat?variant=46421256831153": {
+    "price": 60.0,
+    "discount": 34.5,
+    "active": true
   },
   "https://iheartcigars.com/products/signature-6000?variant=45698100002993": {
     "price": 80.0,
@@ -127,14 +352,54 @@
     "discount": 81.9,
     "active": true
   },
+  "https://iheartcigars.com/products/sin-compromiso-seleccion-no-5-warped-isla-del-cocodrilo-toro-grande-le-black-friday-combo?variant=48234885316785": {
+    "price": 125.0,
+    "discount": 35.2,
+    "active": true
+  },
+  "https://iheartcigars.com/products/special-c-discontinued?variant=46706073338033": {
+    "price": 45.0,
+    "discount": 40.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/symmetry-robusto?variant=45842738249905": {
+    "price": 58.0,
+    "discount": 30.1,
+    "active": true
+  },
+  "https://iheartcigars.com/products/tatuaje-lancero-sampler?variant=47301800231089": {
+    "price": 77.0,
+    "discount": 30.0,
+    "active": true
+  },
+  "https://iheartcigars.com/products/timeless-classics-assortment?variant=47212364300465": {
+    "price": 59.0,
+    "discount": 40.4,
+    "active": true
+  },
   "https://iheartcigars.com/products/ultra-op-no-8-churchill?variant=46016663388337": {
     "price": 43.0,
     "discount": 31.7,
     "active": true
   },
+  "https://iheartcigars.com/products/unico-serie-l40?variant=46040952373425": {
+    "price": 60.0,
+    "discount": 40.0,
+    "active": true
+  },
   "https://iheartcigars.com/products/warped-croc-bites-cavalier-geneve-black-serie-ii-torpedo?variant=47841780072625": {
     "price": 89.0,
     "discount": 30.5,
+    "active": true
+  },
+  "https://iheartcigars.com/products/warped-isla-del-cocodrilo-toro-grande?variant=47702810198193": {
+    "price": 59.0,
+    "discount": 34.4,
+    "active": true
+  },
+  "https://iheartcigars.com/products/winston-churchill-collection-discontinued?variant=46726451265713": {
+    "price": 114.0,
+    "discount": 40.0,
     "active": true
   },
   "https://iheartcigars.com/products/winston-churchill-late-hour-churchill?variant=45921166852273": {
@@ -151,5 +416,10 @@
     "price": 96.2,
     "discount": 35.0,
     "active": false
+  },
+  "https://iheartcigars.com/products/zino-platinum-chubby-tubos?variant=47702032941233": {
+    "price": 65.0,
+    "discount": 40.4,
+    "active": true
   }
 }
