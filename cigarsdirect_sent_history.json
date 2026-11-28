@@ -85,7 +85,7 @@
   "https://www.cigarsdirect.com/products/victor-sinclair-connecticut-yankee-torpedo?variant=19713420230753": {
     "price": 79.99,
     "discount": 46.7,
-    "active": true
+    "active": false
   },
   "https://www.cigarsdirect.com/products/victor-sinclair-primeros-gordo?variant=19713420296289": {
     "price": 84.99,
@@ -165,7 +165,7 @@
   "https://www.cigarsdirect.com/products/victor-sinclair-vintage-toro?variant=19713420787809": {
     "price": 74.99,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://www.cigarsdirect.com/products/victor-sinclair-vintage-torpedo?variant=19713420820577": {
     "price": 79.99,
