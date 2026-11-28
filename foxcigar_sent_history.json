@@ -42,6 +42,51 @@
     "discount": 30.0,
     "active": true
   },
+  "https://foxcigar.com/shop/cigars/angelenos-double-robusto-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 38.5,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/angelenos-double-robusto-2/?attribute_pa_cigar-count=single": {
+    "price": 7.7,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/angelenos-gran-toro-54/?attribute_pa_cigar-count=5-pack": {
+    "price": 45.5,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/angelenos-gran-toro-54/?attribute_pa_cigar-count=single": {
+    "price": 9.1,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/angelenos-robusto-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 35.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/angelenos-robusto-2/?attribute_pa_cigar-count=single": {
+    "price": 7.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/angelenos-robusto-gordo-54-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 39.75,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/angelenos-robusto-gordo-54-2/?attribute_pa_cigar-count=single": {
+    "price": 7.95,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/angelenos-toro-2/?attribute_pa_cigar-count=single": {
+    "price": 7.43,
+    "discount": 50.0,
+    "active": true
+  },
   "https://foxcigar.com/shop/cigars/ashton-10-cigar-sampler/": {
     "price": 99.99,
     "discount": 31.8,
@@ -60,7 +105,7 @@
   "https://foxcigar.com/shop/cigars/deadwood-tobacco-co-sweet-jane-dia-de-los-muertos-2026-toro/?attribute_pa_cigar-count=20ct-box": {
     "price": 135.0,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/cigars/deadwood-tobacco-co-the-girl-with-no-name-corona/?attribute_pa_cigar-count=10ct-box": {
     "price": 59.99,
@@ -260,7 +305,7 @@
   "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-petit-corona-2/?attribute_pa_cigar-count=30ct-box": {
     "price": 114.72,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://foxcigar.com/shop/cigars/oliva-connecticut-reserve-robusto-2/?attribute_pa_cigar-count=20ct-box": {
     "price": 101.23,
@@ -492,8 +537,48 @@
     "discount": 50.0,
     "active": true
   },
+  "https://foxcigar.com/shop/cigars/sencillo-black-gigante-2023-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 26.88,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-gigante-2023-2/?attribute_pa_cigar-count=single": {
+    "price": 5.38,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-piramide-60-no-4-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 32.0,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-piramide-60-no-4-2/?attribute_pa_cigar-count=single": {
+    "price": 6.4,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-piramide-60-no-5-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 33.75,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-piramide-60-no-5-2/?attribute_pa_cigar-count=single": {
+    "price": 6.75,
+    "discount": 50.0,
+    "active": true
+  },
   "https://foxcigar.com/shop/cigars/sencillo-black-piramide-largo-54-2/?attribute_pa_cigar-count=25ct-box": {
     "price": 134.38,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-piramide-largo-54-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 26.88,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-piramide-largo-54-2/?attribute_pa_cigar-count=single": {
+    "price": 5.38,
     "discount": 50.0,
     "active": true
   },
@@ -502,13 +587,43 @@
     "discount": 50.0,
     "active": true
   },
+  "https://foxcigar.com/shop/cigars/sencillo-black-robusto-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 22.38,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-black-robusto-2/?attribute_pa_cigar-count=single": {
+    "price": 4.48,
+    "discount": 49.9,
+    "active": true
+  },
   "https://foxcigar.com/shop/cigars/sencillo-platinum-double-robusto/?attribute_pa_cigar-count=25ct-box": {
     "price": 127.19,
+    "discount": 50.0,
+    "active": false
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-double-robusto/?attribute_pa_cigar-count=5-pack": {
+    "price": 25.44,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-double-robusto/?attribute_pa_cigar-count=single": {
+    "price": 5.09,
     "discount": 50.0,
     "active": true
   },
   "https://foxcigar.com/shop/cigars/sencillo-platinum-gran-toro-56-2/?attribute_pa_cigar-count=25ct-box": {
     "price": 128.13,
+    "discount": 50.0,
+    "active": false
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-gran-toro-56-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 25.63,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-gran-toro-56-2/?attribute_pa_cigar-count=single": {
+    "price": 5.13,
     "discount": 50.0,
     "active": true
   },
@@ -517,10 +632,30 @@
     "discount": 50.0,
     "active": true
   },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-piramide/?attribute_pa_cigar-count=5-pack": {
+    "price": 26.88,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-piramide/?attribute_pa_cigar-count=single": {
+    "price": 5.38,
+    "discount": 50.0,
+    "active": true
+  },
   "https://foxcigar.com/shop/cigars/sencillo-platinum-robusto-2/?attribute_pa_cigar-count=25ct-box": {
     "price": 111.88,
     "discount": 50.0,
     "active": false
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-robusto-2/?attribute_pa_cigar-count=5-pack": {
+    "price": 22.38,
+    "discount": 50.0,
+    "active": true
+  },
+  "https://foxcigar.com/shop/cigars/sencillo-platinum-robusto-2/?attribute_pa_cigar-count=single": {
+    "price": 4.48,
+    "discount": 49.9,
+    "active": true
   },
   "https://foxcigar.com/shop/cigars/surrogates-back-line-2025/": {
     "price": 129.99,
