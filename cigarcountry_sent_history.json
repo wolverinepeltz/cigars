@@ -75,7 +75,7 @@
   "https://cigarcountry.com/product/don-pepin-garcia-original-delicias/?attribute_pa_size=box-of-20": {
     "price": 119.95,
     "discount": 50.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/don-pepin-garcia-original-toro-gordo-2/?attribute_pa_size=box-of-20": {
     "price": 129.95,
@@ -125,7 +125,7 @@
   "https://cigarcountry.com/product/henry-clay-brevas-finas/?attribute_pa_size=box-of-25": {
     "price": 104.95,
     "discount": 50.3,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/henry-clay-brevas/?attribute_pa_size=box-of-25": {
     "price": 94.95,
@@ -280,7 +280,7 @@
   "https://cigarcountry.com/product/montecristo-white-label-toro-2/?attribute_pa_size=box-of-10": {
     "price": 107.28,
     "discount": 40.0,
-    "active": true
+    "active": false
   },
   "https://cigarcountry.com/product/onyx-bold-nicaragua-robusto/?attribute_pa_size=box-of-20": {
     "price": 111.95,
